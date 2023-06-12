@@ -121,12 +121,114 @@ separate page at the end of the document.
 %% Start the main part of the manuscript here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-TODO
+Historically, there have been two main approaches to including
+polarization in force fields: fluctuating charges\cite{rick1994dynamical}
+or induced dipoles\cite{applequist1985multipole}. There have also been
+attempts to unify these approaches allowing for both charge rearrangements
+and induced dipoles.\cite{stern2001combined}
+
+Our goal in this paper is to develop a new class of polarizable
+force field which is able to quantitatively reproduce all of the terms
+from energy decomposition analysis (EDA). The reason we want to do this
+is that by reproducing the EDA term-by-term, we can ensure that the force
+field will be transferable across the phase diagram of a homogeneous
+system and to new heterogenous systems.
+Additionally, by reproducing the EDA term-by-term, the force field
+is able to provide insights which many other models simply cannot because
+they do not include particular terms. For instance, many force fields
+do not include charge transfer or charge penetrations terms.
+Many force fields also use terms which package the Pauli repulsion and dispersion 
+energies together. We will discuss this further in the results section,
+but by neglecting these terms, one limits the interpretability of the
+energies and forces predicted by a force field. Even worse, one can only
+exclude charge transfer and charge penetration from force fields because
+these energies are strongly correlated to the Pauli repulsion (see Fig. 1).
+This correlation is not guaranteed to be consistent between systems, however,
+which may explain part of the difficulty in producing water models which
+generalize to heterogeneous systems.
 
 \section{Theory}
-Historically, there have been two main approaches to including polarization in force fields. The first is to 
+EDA splits the interaction energy into five components: Pauli repulsion,
+electrostatics, dispersion, polarization, and charge transfer. The force
+field described in this work will model each of these term by term, resulting
+in two different models, which we will call the dipole model (DM) and
+ansiotropic model (AM).
+
+Our approach builds on the density overlap hypothesis\cite{kim1981dependence,wheatley1990overlap,gavezzotti2002calculation,van2016beyond}
+which states that the short-range contributions to intermolecular
+interactions is proportional to the electron density overlap. In order
+for this idea to be amenable to force fields, one must use atom-centered
+density overlaps. One way of doing this was developed thoroughly by
+Misquitta and others\cite{misquitta2014distributed,misquitta2018isa} based
+on iterated stockholder atoms which can be used to define Slater-like
+densities for atoms in molecules. Since this approach has been discussed
+extensivly, we will only summarize the salient points.
+
+One can show that the overlap, $S^{ij}_\rho$, of two Slater-like atomic densities,
+$\rho_i(\mathbf{r})$ and $\rho_j(\mathbf{r})$, is,
+\begin{equation}
+  S^{ii}_\rho=\frac{\pi D^2}{b_{ii}^3}P(b_{ii}r_{ii})\exp(-b_{ii}r_{ii})
+\end{equation}
+The above overlap expression is only strictly true for the exponential tail
+of the Slater density and for identical atoms. The overlap between atoms
+with different densities, $S^{ij}_\rho$, has a more complicated form, but
+it has been shown that setting $b_{ij}=\sqrt{b_ib_j}$ allows the expression
+for $S^{ii}_\rho$ to be used for different atom types with negligible
+approximation\cite{van2016beyond}. The polynomial prefactor in the overlap is,
+\begin{equation}
+  P(b_{ij}r_{ij})=\frac13(b_{ij}r_{ij})^2 + b_{ij}r_{ij}+1
+\end{equation}
+where, again, we will use the combination rule $b_{ij}=\sqrt{b_ib_j}$.
+
+\subsection*{Pauli Repulsion}
+The original aim of the density overlap model was to model the
+Pauli repulsion energy.\cite{wwallqvist1989new,wheatley1990overlap,gordon1996approximate}
+In this work, we employ two different models for Pauli repsulison,
+both inspired by the work of Van Vleet \textit{et al.}\cite{van2016beyond,van2018new}.
+The first is a simple isotropic model of Pauli repulsion with energy given by,
+\begin{equation}
+  E_{exch} = \sum_{i<j}a_{ij}^{exch}\exp(-b_{ij}r_{ij})P(b_{ij}r_{ij})
+  \label{eq:exch_iso}
+\end{equation}
+
+In Eq. \ref*{eq:exch_iso}, $a_{ij}^{exch}=a_{i}^{exch}a_{j}^{exch}$ where
+$a_{i}^{exch}$ is a free parameter for atom $i$. This isotropic sum is the
+approach we use for the DM model. In the anisotropic model (AM), we,
+unsurprisingly, put anisotropy into the atom-specific parameters.
+We do this in similarly to the approach of Van Vleet, but with some minor
+modifications\cite{van2018new}. First, the anisotropy is introduced by multiplying
+the isotropic term with a spherical harmonic expansion. The spherical harmonics
+used here are given by,
+\begin{equation}
+  C_{lm}(\theta,\phi)=\sqrt{\frac{4\pi}{2l+1}}Y_{lm}(\theta,\phi)
+\end{equation}
+where $\theta$ and $\phi$ are the polar and azimuthal angles
+calculated between two local axis systems for each atom.\cite{bernardo1994anisotropic}
+That is, $\theta_i$ is the angle of the vector between two axis systems,
+$\mathbf{r}_{ij}=\mathbf{r}_j-\mathbf{r}_i$, and the z-axis of axis system $i$.
+$\phi_i$ is the azimuthal angle, which is the angle of $\mathbf{r}_{ij}$ in the range $[0,2\pi]$ from the
+x-axis of axis system $i$.
+\begin{equation}
+  a_i^{exch} = a_{i,iso}^{exch}\left(1 + \sum_{l>0,k}a_{i,lk}^{exch}C_{lk}(\theta_i,\phi_i)\right)
+  \label{eq:exch_params_aniso}
+\end{equation}
+
+\subsection*{Electrostatics}
+
+We make one adjustment which is to split the electrostatic energy into
+a point multipole and charge penetration contribution. We will refer to
+these energies as the DMA energy and CP energy, respectively. 
+
+\section{Parameterization}
+
+The last important point in this model concerns the determination of the
+atomic width, $b_i$. We utilize the implementation of the ISA model of
+Misquitta\cite{misquitta2014distributed} available in CamCASP\cite{misquitta2016ab}
+to obtain these parameters from monomer electron densities.
 
 \section{Results and discussion}
+
+\input{tables/mae_table.tex}
 
 \begin{acknowledgement}
 
@@ -150,5 +252,4 @@ TODO
 %% and also names the section correctly.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{references}
-
 \end{document}

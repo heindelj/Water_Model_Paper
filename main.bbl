@@ -1,0 +1,145 @@
+\providecommand{\latin}[1]{#1}
+\makeatletter
+\providecommand{\doi}
+  {\begingroup\let\do\@makeother\dospecials
+  \catcode`\{=1 \catcode`\}=2 \doi@aux}
+\providecommand{\doi@aux}[1]{\endgroup\texttt{#1}}
+\makeatother
+\providecommand*\mcitethebibliography{\thebibliography}
+\csname @ifundefined\endcsname{endmcitethebibliography}
+  {\let\endmcitethebibliography\endthebibliography}{}
+\begin{mcitethebibliography}{14}
+\providecommand*\natexlab[1]{#1}
+\providecommand*\mciteSetBstSublistMode[1]{}
+\providecommand*\mciteSetBstMaxWidthForm[2]{}
+\providecommand*\mciteBstWouldAddEndPuncttrue
+  {\def\EndOfBibitem{\unskip.}}
+\providecommand*\mciteBstWouldAddEndPunctfalse
+  {\let\EndOfBibitem\relax}
+\providecommand*\mciteSetBstMidEndSepPunct[3]{}
+\providecommand*\mciteSetBstSublistLabelBeginEnd[3]{}
+\providecommand*\EndOfBibitem{}
+\mciteSetBstSublistMode{f}
+\mciteSetBstMaxWidthForm{subitem}{(\alph{mcitesubitemcount})}
+\mciteSetBstSublistLabelBeginEnd
+  {\mcitemaxwidthsubitemform\space}
+  {\relax}
+  {\relax}
+
+\bibitem[Rick \latin{et~al.}(1994)Rick, Stuart, and Berne]{rick1994dynamical}
+Rick,~S.~W.; Stuart,~S.~J.; Berne,~B.~J. Dynamical fluctuating charge force
+  fields: Application to liquid water. \emph{The Journal of chemical physics}
+  \textbf{1994}, \emph{101}, 6141--6156\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Applequist(1985)]{applequist1985multipole}
+Applequist,~J. A multipole interaction theory of electric polarization of
+  atomic and molecular assemblies. \emph{The Journal of chemical physics}
+  \textbf{1985}, \emph{83}, 809--826\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stern \latin{et~al.}(2001)Stern, Rittner, Berne, and
+  Friesner]{stern2001combined}
+Stern,~H.~A.; Rittner,~F.; Berne,~B.; Friesner,~R.~A. Combined fluctuating
+  charge and polarizable dipole models: Application to a five-site water
+  potential function. \emph{The Journal of chemical physics} \textbf{2001},
+  \emph{115}, 2237--2251\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Kim \latin{et~al.}(1981)Kim, Kim, and Lee]{kim1981dependence}
+Kim,~Y.~S.; Kim,~S.~K.; Lee,~W.~D. Dependence of the closed-shell repulsive
+  interaction on the overlap of the electron densities. \emph{Chemical Physics
+  Letters} \textbf{1981}, \emph{80}, 574--575\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Wheatley and Price(1990)Wheatley, and Price]{wheatley1990overlap}
+Wheatley,~R.~J.; Price,~S.~L. An overlap model for estimating the anisotropy of
+  repulsion. \emph{Molecular Physics} \textbf{1990}, \emph{69}, 507--533\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Gavezzotti(2002)]{gavezzotti2002calculation}
+Gavezzotti,~A. Calculation of intermolecular interaction energies by direct
+  numerical integration over electron densities. I. Electrostatic and
+  polarization energies in molecular crystals. \emph{The Journal of Physical
+  Chemistry B} \textbf{2002}, \emph{106}, 4145--4154\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Van~Vleet \latin{et~al.}(2016)Van~Vleet, Misquitta, Stone, and
+  Schmidt]{van2016beyond}
+Van~Vleet,~M.~J.; Misquitta,~A.~J.; Stone,~A.~J.; Schmidt,~J.~R. Beyond
+  Born--Mayer: Improved models for short-range repulsion in ab initio force
+  fields. \emph{Journal of chemical theory and computation} \textbf{2016},
+  \emph{12}, 3851--3870\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Misquitta \latin{et~al.}(2014)Misquitta, Stone, and
+  Fazeli]{misquitta2014distributed}
+Misquitta,~A.~J.; Stone,~A.~J.; Fazeli,~F. Distributed multipoles from a robust
+  basis-space implementation of the iterated stockholder atoms procedure.
+  \emph{Journal of Chemical Theory and Computation} \textbf{2014}, \emph{10},
+  5405--5418\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Misquitta and Stone(2018)Misquitta, and Stone]{misquitta2018isa}
+Misquitta,~A.~J.; Stone,~A.~J. ISA-Pol: distributed polarizabilities and
+  dispersion models from a basis-space implementation of the iterated
+  stockholder atoms procedure. \emph{Theoretical Chemistry Accounts}
+  \textbf{2018}, \emph{137}, 1--20\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Gordon(1996)]{gordon1996approximate}
+Gordon,~J. H. J. M.~S. An approximate formula for the intermolecular Pauli
+  repulsion between closed shell molecules. \emph{molecular physics}
+  \textbf{1996}, \emph{89}, 1313--1325\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Van~Vleet \latin{et~al.}(2018)Van~Vleet, Misquitta, and
+  Schmidt]{van2018new}
+Van~Vleet,~M.~J.; Misquitta,~A.~J.; Schmidt,~J. New angles on standard force
+  fields: Toward a general approach for treating atomic-level anisotropy.
+  \emph{Journal of Chemical Theory and Computation} \textbf{2018}, \emph{14},
+  739--758\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Bernardo \latin{et~al.}(1994)Bernardo, Ding, Krogh-Jespersen, and
+  Levy]{bernardo1994anisotropic}
+Bernardo,~D.~N.; Ding,~Y.; Krogh-Jespersen,~K.; Levy,~R.~M. An anisotropic
+  polarizable water model: incorporation of all-atom polarizabilities into
+  molecular mechanics force fields. \emph{The Journal of Physical Chemistry}
+  \textbf{1994}, \emph{98}, 4180--4187\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Misquitta and Stone(2016)Misquitta, and Stone]{misquitta2016ab}
+Misquitta,~A.~J.; Stone,~A.~J. Ab initio atom--atom potentials using CamCASP:
+  Theory and application to many-body models for the pyridine dimer.
+  \emph{Journal of chemical theory and computation} \textbf{2016}, \emph{12},
+  4184--4208\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\end{mcitethebibliography}
