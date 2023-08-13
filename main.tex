@@ -68,7 +68,7 @@
 %% optional argument to \title.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title[An \textsf{achemso} demo]
-  {Construction of Accurate Force Fields from Energy Decomposition Analysis: Water}
+  {Construction of Accurate Force Fields from Energy Decomposition Analysis: Water and Monovalent Ions}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Some journals require a list of abbreviations or keywords to be
@@ -129,7 +129,7 @@ and induced dipoles.\cite{stern2001combined}
 
 Our goal in this paper is to develop a new class of polarizable
 force field which is able to quantitatively reproduce all of the terms
-from energy decomposition analysis (EDA). The reason we want to do this
+from energy decomposition analysis (EDA). The reason to do this
 is that by reproducing the EDA term-by-term, we can ensure that the force
 field will be transferable across the phase diagram of a homogeneous
 system and to new heterogenous systems.
@@ -152,7 +152,9 @@ EDA splits the interaction energy into five components: Pauli repulsion,
 electrostatics, dispersion, polarization, and charge transfer. The force
 field described in this work will model each of these term by term, resulting
 in two different models, which we will call the dipole model (DM) and
-ansiotropic model (AM).
+anisotropic model (AM). Note we will use a convention of referring to all energy
+terms in the force field with a $V$ and all energy terms from electronic structre
+with an $E$.
 
 Our approach builds on the density overlap hypothesis\cite{kim1981dependence,wheatley1990overlap,gavezzotti2002calculation,van2016beyond}
 which states that the short-range contributions to intermolecular
@@ -164,16 +166,16 @@ on iterated stockholder atoms which can be used to define Slater-like
 densities for atoms in molecules. Since this approach has been discussed
 extensivly, we will only summarize the salient points.
 
-One can show that the overlap, $S^{ij}_\rho$, of two Slater-like atomic densities,
-$\rho_i(\mathbf{r})$ and $\rho_j(\mathbf{r})$, is,
+One can show that the overlap, $S^{ii}_\rho$, of two identical Slater-like atomic densities
+at different locations, $\rho_i(\mathbf{r}_i)$ and $\rho_i(\mathbf{r}_j)$, is,
 \begin{equation}
-  S^{ii}_\rho=\frac{\pi D^2}{b_{ii}^3}P(b_{ii}r_{ii})\exp(-b_{ii}r_{ii})
+  S_{ii}^\rho=\frac{\pi D^2}{b_{ii}^3}P(b_{ii}r_{ij})\exp(-b_{ii}r_{ij})
 \end{equation}
 The above overlap expression is only strictly true for the exponential tail
 of the Slater density and for identical atoms. The overlap between atoms
 with different densities, $S^{ij}_\rho$, has a more complicated form, but
 it has been shown that setting $b_{ij}=\sqrt{b_ib_j}$ allows the expression
-for $S^{ii}_\rho$ to be used for different atom types with negligible
+for $S_{ii}^\rho$ to be used for different atom types with negligible
 approximation\cite{van2016beyond}. The polynomial prefactor in the overlap is,
 \begin{equation}
   P(b_{ij}r_{ij})=\frac13(b_{ij}r_{ij})^2 + b_{ij}r_{ij}+1
@@ -182,20 +184,22 @@ where, again, we will use the combination rule $b_{ij}=\sqrt{b_ib_j}$.
 
 \subsection*{Pauli Repulsion}
 The original aim of the density overlap model was to model the
-Pauli repulsion energy.\cite{wwallqvist1989new,wheatley1990overlap,gordon1996approximate}
+Pauli repulsion energy.\cite{wallqvist1989new,wheatley1990overlap,gordon1996approximate}
 In this work, we employ two different models for Pauli repsulison,
 both inspired by the work of Van Vleet \textit{et al.}\cite{van2016beyond,van2018new}.
-The first is a simple isotropic model of Pauli repulsion with energy given by,
+The first is a simple isotropic model of Pauli repulsion where the energy is proportional
+to the density overlap with a quadratic term that we found essentialy for ion-ion interactions
+at shorter-than-equilibrium distances,
 \begin{equation}
-  E_{exch} = \sum_{i<j}a_{ij}^{exch}\exp(-b_{ij}r_{ij})P(b_{ij}r_{ij})
+  V^{exch} = \sum_{i<j}a_{ij}^{(1),exch}S_{ij}^\rho+a_{ij}^{(2),exch}(S_{ij}^\rho)^2
   \label{eq:exch_iso}
 \end{equation}
 
-In Eq. \ref*{eq:exch_iso}, $a_{ij}^{exch}=a_{i}^{exch}a_{j}^{exch}$ where
+In Eq. \ref{eq:exch_iso}, $a_{ij}^{exch}=a_{i}^{exch}a_{j}^{exch}$ where
 $a_{i}^{exch}$ is a free parameter for atom $i$. This isotropic sum is the
 approach we use for the DM model. In the anisotropic model (AM), we,
 unsurprisingly, put anisotropy into the atom-specific parameters.
-We do this in similarly to the approach of Van Vleet, but with some minor
+We do this similarly to the approach of Van Vleet, but with some minor
 modifications\cite{van2018new}. First, the anisotropy is introduced by multiplying
 the isotropic term with a spherical harmonic expansion. The spherical harmonics
 used here are given by,
@@ -215,9 +219,64 @@ x-axis of axis system $i$.
 
 \subsection*{Electrostatics}
 
-We make one adjustment which is to split the electrostatic energy into
-a point multipole and charge penetration contribution. We will refer to
-these energies as the DMA energy and CP energy, respectively. 
+Our description of electrostatics comes from a traditional
+point multipole approach and a charge penetration contribution. We will refer to
+these contributions as the DMA energy and CP energy, respectively.
+Our working definition of charge penetration comes by taking the
+classical electrostatic energy from EDA minus the interaction energy
+when using Stone's distributed multipole analysis\cite{stone1981distributed,stone1985distributed}
+out to hexadecapoles on all atoms.
+
+\begin{equation}
+  E^{CP}=E^{elec}_{EDA}-E^{elec}_{DMA}
+\end{equation}
+
+The advantage of this approach is it allows us to ensure that
+our multipoles are not biased to compensate for error in the
+description of charge penetration, which is essential to reproduce
+the classical electrostatic energy in EDA.
+All distributed multipole calculations were carried out
+in Stone's Orient program.\cite{stone2002orient}
+
+Our description of charge penetration in the models is essentially
+the same as for Pauli repulsion. Namely, the DM model uses only
+isotropic terms and includes a quadratic overlap term which, again,
+is immensely helpful for the short range description of ion-ion interactions:
+
+\begin{equation}
+  V^{CP} = \sum_{i<j}a_{ij}^{(1),CP}S_{ij}^\rho+a_{ij}^{(2),CP}(S_{ij}^\rho)^2
+  \label{eq:exch_iso}
+\end{equation}
+
+For the AM model, we include anisotropy in the first order charge penetration
+parameter, $a_{ij}^{(1),CP}$, in the same way as for exchange in Eq. (\ref{eq:exch_params_aniso}).
+
+The permanent point electrostatics aim to reproduce the distributed
+multipole energies used in defining the charge penetration, $E^{elec}_{DMA}$.
+The electrostatic energy is expressed as,
+
+\textbf{PUT EXPRESSIONS IN HERE FOR MULTIPOLES AND DAMPING AND ALL THAT.}
+
+\section*{Polarization}
+
+\begin{equation}
+  \begin{pmatrix}
+    \mathbf{T}_{qq} & \mathbf{1}_\lambda & \mathbf{T}_{q\mu} \\
+    \mathbf{1}_\lambda^\dagger & 0 & 0 \\
+    \mathbf{T}_{q\mu}^\dagger & 0 & \mathbf{T}_{\mu\mu} \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \delta q \\
+    \lambda \\
+    \mu \\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -\mathbf{V} \\
+    \mathbf{Q} \\
+    \mathbf{E} \\
+  \end{pmatrix}
+\end{equation}
 
 \section{Parameterization}
 

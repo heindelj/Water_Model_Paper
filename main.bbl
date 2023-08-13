@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{14}
+\begin{mcitethebibliography}{18}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -105,6 +105,14 @@ Misquitta,~A.~J.; Stone,~A.~J. ISA-Pol: distributed polarizabilities and
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Wallqvist and Karlstr{\"o}m(1989)Wallqvist, and
+  Karlstr{\"o}m]{wallqvist1989new}
+Wallqvist,~A.; Karlstr{\"o}m,~G. A new non-empirical force field for computer
+  simulations. \emph{Chem. Scr. A} \textbf{1989}, \emph{29}, 1989\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Gordon(1996)]{gordon1996approximate}
 Gordon,~J. H. J. M.~S. An approximate formula for the intermolecular Pauli
   repulsion between closed shell molecules. \emph{molecular physics}
@@ -132,6 +140,31 @@ Bernardo,~D.~N.; Ding,~Y.; Krogh-Jespersen,~K.; Levy,~R.~M. An anisotropic
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stone(1981)]{stone1981distributed}
+Stone,~A.~J. Distributed multipole analysis, or how to describe a molecular
+  charge distribution. \emph{Chemical Physics Letters} \textbf{1981},
+  \emph{83}, 233--239\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stone and Alderton(1985)Stone, and Alderton]{stone1985distributed}
+Stone,~A.~J.; Alderton,~M. Distributed multipole analysis: methods and
+  applications. \emph{Molecular Physics} \textbf{1985}, \emph{56},
+  1047--1064\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stone \latin{et~al.}(2002)Stone, Dullweber, Engkvist, Fraschini,
+  Hodges, Meredith, Nutt, Popelier, and Wales]{stone2002orient}
+Stone,~A.~J.; Dullweber,~A.; Engkvist,~O.; Fraschini,~E.; Hodges,~M.~P.;
+  Meredith,~A.; Nutt,~D.; Popelier,~P.; Wales,~D. ORIENT, version 4.6.
+  \emph{University of Cambridge, England} \textbf{2002}, \relax
+\mciteBstWouldAddEndPunctfalse
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Misquitta and Stone(2016)Misquitta, and Stone]{misquitta2016ab}
 Misquitta,~A.~J.; Stone,~A.~J. Ab initio atom--atom potentials using CamCASP:

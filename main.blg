@@ -1,51 +1,49 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: achemso.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: acs-main.bib
 Database file #2: references.bib
-Warning--I didn't find a database entry for "wwallqvist1989new"
-achemso 2022-11-25 v3.13f
-You've used 14 entries,
+achemso 2021-01-20 v3.13c
+You've used 18 entries,
             2538 wiz_defined-function locations,
-            837 strings with 9116 characters,
-and the built_in function-call counts, 4706 in all, are:
-= -- 419
-> -- 209
-< -- 10
-+ -- 83
-- -- 69
-* -- 490
-:= -- 621
-add.period$ -- 26
-call.type$ -- 14
+            855 strings with 9696 characters,
+and the built_in function-call counts, 6080 in all, are:
+= -- 530
+> -- 291
+< -- 13
++ -- 115
+- -- 97
+* -- 642
+:= -- 807
+add.period$ -- 34
+call.type$ -- 18
 change.case$ -- 4
 chr.to.int$ -- 2
-cite$ -- 14
-duplicate$ -- 247
-empty$ -- 351
-format.name$ -- 85
-if$ -- 917
+cite$ -- 18
+duplicate$ -- 325
+empty$ -- 441
+format.name$ -- 121
+if$ -- 1183
 int.to.chr$ -- 0
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 106
-num.names$ -- 39
-pop$ -- 24
+newline$ -- 130
+num.names$ -- 51
+pop$ -- 31
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 14
+skip$ -- 18
 stack$ -- 0
-substring$ -- 357
-swap$ -- 229
-text.length$ -- 26
+substring$ -- 423
+swap$ -- 310
+text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 95
+type$ -- 123
 warning$ -- 0
-while$ -- 55
+while$ -- 68
 width$ -- 0
-write$ -- 197
-(There was 1 warning)
+write$ -- 248
