@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{18}
+\begin{mcitethebibliography}{26}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -149,7 +149,7 @@ Stone,~A.~J. Distributed multipole analysis, or how to describe a molecular
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Stone and Alderton(1985)Stone, and Alderton]{stone1985distributed}
+\bibitem[Stone and Alderton(1985)Stone, and Alderton]{stone1985distributeda}
 Stone,~A.~J.; Alderton,~M. Distributed multipole analysis: methods and
   applications. \emph{Molecular Physics} \textbf{1985}, \emph{56},
   1047--1064\relax
@@ -165,6 +165,76 @@ Stone,~A.~J.; Dullweber,~A.; Engkvist,~O.; Fraschini,~E.; Hodges,~M.~P.;
 \mciteBstWouldAddEndPunctfalse
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stone(1985)]{stone1985distributedb}
+Stone,~A. Distributed polarizabilities. \emph{Molecular Physics} \textbf{1985},
+  \emph{56}, 1065--1082\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Ruth Le~Sueur and Stone(1994)Ruth Le~Sueur, and
+  Stone]{ruth1994localization}
+Ruth Le~Sueur,~C.; Stone,~A.~J. Localization methods for distributed
+  polarizabilities. \emph{Molecular Physics} \textbf{1994}, \emph{83},
+  293--307\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Mortier \latin{et~al.}(1986)Mortier, Ghosh, and
+  Shankar]{mortier1986electronegativity}
+Mortier,~W.~J.; Ghosh,~S.~K.; Shankar,~S. Electronegativity-equalization method
+  for the calculation of atomic charges in molecules. \emph{Journal of the
+  American Chemical Society} \textbf{1986}, \emph{108}, 4315--4320\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Chen and Mart{\'\i}nez(2007)Chen, and Mart{\'\i}nez]{chen2007qtpie}
+Chen,~J.; Mart{\'\i}nez,~T.~J. QTPIE: Charge transfer with polarization current
+  equalization. A fluctuating charge model with correct asymptotics.
+  \emph{Chemical physics letters} \textbf{2007}, \emph{438}, 315--320\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Chen \latin{et~al.}(2008)Chen, Hundertmark, and
+  Mart{\'\i}nez]{chen2008unified}
+Chen,~J.; Hundertmark,~D.; Mart{\'\i}nez,~T.~J. A unified theoretical framework
+  for fluctuating-charge models in atom-space and in bond-space. \emph{The
+  Journal of chemical physics} \textbf{2008}, \emph{129}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Thole(1981)]{thole1981molecular}
+Thole,~B.~T. Molecular polarizabilities calculated with a modified dipole
+  interaction. \emph{Chemical Physics} \textbf{1981}, \emph{59}, 341--350\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Tang and Toennies(1984)Tang, and Toennies]{tang1984improved}
+Tang,~K.; Toennies,~J.~P. An improved simple model for the van der Waals
+  potential based on universal damping functions for the dispersion
+  coefficients. \emph{The Journal of chemical physics} \textbf{1984},
+  \emph{80}, 3726--3741\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Ponder \latin{et~al.}(2010)Ponder, Wu, Ren, Pande, Chodera,
+  Schnieders, Haque, Mobley, Lambrecht, DiStasio~Jr, \latin{et~al.}
+  others]{ponder2010current}
+Ponder,~J.~W.; Wu,~C.; Ren,~P.; Pande,~V.~S.; Chodera,~J.~D.;
+  Schnieders,~M.~J.; Haque,~I.; Mobley,~D.~L.; Lambrecht,~D.~S.;
+  DiStasio~Jr,~R.~A., \latin{et~al.}  Current status of the AMOEBA polarizable
+  force field. \emph{The journal of physical chemistry B} \textbf{2010},
+  \emph{114}, 2549--2564\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Misquitta and Stone(2016)Misquitta, and Stone]{misquitta2016ab}
 Misquitta,~A.~J.; Stone,~A.~J. Ab initio atom--atom potentials using CamCASP:

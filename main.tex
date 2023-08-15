@@ -13,6 +13,7 @@
 %% servers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{bm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If issues arise when submitting your manuscript, you may want to
@@ -167,7 +168,7 @@ densities for atoms in molecules. Since this approach has been discussed
 extensivly, we will only summarize the salient points.
 
 One can show that the overlap, $S^{ii}_\rho$, of two identical Slater-like atomic densities
-at different locations, $\rho_i(\mathbf{r}_i)$ and $\rho_i(\mathbf{r}_j)$, is,
+at different locations, $\rho_i(\bm{r}_i)$ and $\rho_i(\bm{r}_j)$, is,
 \begin{equation}
   S_{ii}^\rho=\frac{\pi D^2}{b_{ii}^3}P(b_{ii}r_{ij})\exp(-b_{ii}r_{ij})
 \end{equation}
@@ -209,8 +210,8 @@ used here are given by,
 where $\theta$ and $\phi$ are the polar and azimuthal angles
 calculated between two local axis systems for each atom.\cite{bernardo1994anisotropic}
 That is, $\theta_i$ is the angle of the vector between two axis systems,
-$\mathbf{r}_{ij}=\mathbf{r}_j-\mathbf{r}_i$, and the z-axis of axis system $i$.
-$\phi_i$ is the azimuthal angle, which is the angle of $\mathbf{r}_{ij}$ in the range $[0,2\pi]$ from the
+$\bm{r}_{ij}=\bm{r}_j-\bm{r}_i$, and the z-axis of axis system $i$.
+$\phi_i$ is the azimuthal angle, which is the angle of $\bm{r}_{ij}$ in the range $[0,2\pi]$ from the
 x-axis of axis system $i$.
 \begin{equation}
   a_i^{exch} = a_{i,iso}^{exch}\left(1 + \sum_{l>0,k}a_{i,lk}^{exch}C_{lk}(\theta_i,\phi_i)\right)
@@ -224,7 +225,7 @@ point multipole approach and a charge penetration contribution. We will refer to
 these contributions as the DMA energy and CP energy, respectively.
 Our working definition of charge penetration comes by taking the
 classical electrostatic energy from EDA minus the interaction energy
-when using Stone's distributed multipole analysis\cite{stone1981distributed,stone1985distributed}
+when using Stone's distributed multipole analysis\cite{stone1981distributed,stone1985distributeda}
 out to hexadecapoles on all atoms.
 
 \begin{equation}
@@ -259,33 +260,195 @@ The electrostatic energy is expressed as,
 
 \section*{Polarization}
 
+We introduce a combined fluctuating charge (FQ) and induced dipole model of electronic
+polarization. There are two reasons we have pursued this combined polarization
+approach. The first is quite simple. We want to reproduce all terms from EDA,
+one of which is charge transfer. If charges are not allowed to vary, then one
+cannot model the explicit transfer of charge between molecules. The second reason is
+that atomic polarizabilities naturally contain both charge-flow and induced dipole
+contributions.\cite{stone1985distributedb} Typically, the charge-flow contributions
+are localized away\cite{ruth1994localization}, but our approach does not require nonlocal
+charge flow polarizabilities.
+
+The FQ contribution to our polarization model is a modification of the electronegativity
+equalization model (EEM) of polarization.\cite{mortier1986electronegativity} In EEM,
+the energy of a molecule is expanded to second-order as a function of charge, then,
+these charges are allowed to interact. Mathematically, this takes the following form,
+\begin{equation}
+  E(\bm{q})=\sum_i \chi_i q_i + \frac12 \sum_i \eta_i q_i^2 + \sum_{i<j} \frac{q_i q_j}{r_{ij}}
+  \label{eq:eem}
+\end{equation}
+
+In Eq. \ref{eq:eem}, $\chi_i$ represents the electronegativity of atom $i$ and
+$\eta_i$ is the atomic hardness of atom $i$. The principle of electronegativity
+equalization states that  at equilibrium, the electronegativity of all atoms
+will become equal. This allows the charges in an atom to be determined by solving
+a system of linear equations. There are several known shortcomings of EEM. The first
+is the long-range transfer of charge between molecules, even at infinite distance,
+which is unrealistic for the dielectric systems studied here.\cite{chen2007qtpie,chen2008unified}
+Our solution to this problem is to only allow charge rearrangements within
+a molecule and not between molecules. This constraint can be introduced using
+Lagrange multipliers. A second limitation of EEM is that the approach in Eq. \ref{eq:eem}
+gives back the total charge of atoms in a molecule. This is somewhat awkward because
+we want to separate the multipolar electrostatics, which depends on the total charge,
+from the polarization contribution which should only depend on the external potential
+experienced by each atom. Hence, we drop the linear term and focus only on the
+fluctuation of charges around the reference charge used for permanent electrostatics.
+Another way of viewing this is that we are equalizing electronegativity around an "already
+equalized" state. The change in electronegativity at each atom due to an environment is simply
+the electric potential at that atom. We can then write the FQ contribution in our
+model as,
+\begin{equation}
+  E(\delta \bm{q})=\frac12\sum_i \eta_i \delta q_i^2 + \sum_i \delta q_i V_i + \sum_{i<j}\frac{\delta q_i \delta q_j}{r_{ij}} + \sum_{\alpha}\lambda_\alpha \sum_{i\in\alpha}\delta q_{i}
+  \label{eq:fq}
+\end{equation}
+
+To summarize, Eq. \ref{eq:fq} allows charges to rearrange, $\delta q_i$ in response to an external
+potential, $V_i$, with a quadratic penalty determined by the atomic hardness, $\eta_i$.
+The charge rearrangements are constrained to only occur between atoms such that rearranged
+charges in a molecule sum to the total charge of a molecule. Therefore, the model has $N$ lagrange
+multipliers, $\lambda_\alpha$, where $N$ is the number of molecules in the system. These molecules
+could be water or an ion in this work. Note that all fluctuating charges (and induced
+dipoles) are allowed to interact whether they are in the same molecule or not.
+
+We also allow electric fields due to the environment to induce dipoles on all atoms.
+The energy of an induced dipole in an electric field, $\bm{E}$, including mutual polarization is,
+\begin{equation}
+  E(\bm{\mu}^{ind})=-\frac12\sum_i \bm{\mu}_i^{ind}\cdot \bm{E}_i + \sum_{i<j}\bm{\mu}^{ind}_i \bm{T}^{\mu\mu}_{ij}\bm{\mu}^{ind}_j
+  \label{eq:induced_dipoles}
+\end{equation}
+
+In Eq. \ref{eq:induced_dipoles}, the induced dipoles at each polarizable site, $\bm{\mu}_i^{ind}$,
+interact with an external electric field, $\bm{E}_i$, and with each other via the dipole interaction tensor.
+We will have more to say about this tensor in the next section when we discuss the short-range damping of polarization.
+
+What now remains is to determine the values of $\delta \bm{q}$ and $\bm{\mu}^{ind}$
+which minimize the total energy of the system. In order to do this, we take
+the derivative with respect to each $\delta q_i$ and each component of each
+$\bm{\mu}_i^{ind}$ and set them all equal to zero. This results in a system of linear
+equations which can be written succintly as follows:
+
+
 \begin{equation}
   \begin{pmatrix}
-    \mathbf{T}_{qq} & \mathbf{1}_\lambda & \mathbf{T}_{q\mu} \\
-    \mathbf{1}_\lambda^\dagger & 0 & 0 \\
-    \mathbf{T}_{q\mu}^\dagger & 0 & \mathbf{T}_{\mu\mu} \\
+    \bm{T}^{qq} & \bm{1}_\lambda & \bm{T}^{q\mu} \\
+    \bm{1}_\lambda^\dagger & 0 & 0 \\
+    -\bm{T}^{\mu q} & 0 & \bm{T}^{\mu\mu} \\
   \end{pmatrix}
   \begin{pmatrix}
-    \delta q \\
-    \lambda \\
-    \mu \\
+    \delta \bm{q} \\
+    \bm{\lambda} \\
+    \bm{\mu} \\
   \end{pmatrix}
   =
   \begin{pmatrix}
-    -\mathbf{V} \\
-    \mathbf{Q} \\
-    \mathbf{E} \\
+    -\bm{V} \\
+    \bm{Q} \\
+    \bm{E} \\
   \end{pmatrix}
+  \label{eq:pol_mat}
 \end{equation}
 
-\section{Parameterization}
+The solution vector in Eq. \ref{eq:pol_mat} contains the electric potential,
+$\bm{V}$, the total charges of each molecule, $\bm{Q}$, and the electric
+field on each atom $\bm{E}$. The matrix has several blocks containing the
+charge-charge ($\bm{T}^{qq}$), charge-dipole ($\bm{T}^{q\mu}$),
+dipole-charge ($\bm{T}^{\mu q}$), and dipole-dipole interaction tensors ($\bm{T}^{\mu\mu}$).
+Note that the diagonal elements of $\bm{T}^{qq}$ are the atomic hardness $\eta$ and
+the $3\times 3$ diagonal blocks of $\bm{T}^{\mu\mu}$ are the inverse polarizability tensor
+$\bm{\alpha}_i^{-1}$. The block $\bm{1}_\lambda$ has a column for each molecule in the system.
+An entry in that column is 1 if the $i$th atom is in that molecule and zero otherwise.
+These blocks enforce the charge-conservation constraints for each molecule.
+Finally, $\delta\bm{q}$ contains the optimally rearranged charges, $\bm{\lambda}$ contains
+the Lagrange multipliers which enforce charge conservation, and $\bm{\mu}$ are the induced dipoles.
+
+The form of the $ij$ entries of the multipole interaction tensors are as follows:
+\begin{align}
+  T^{qq}_{ij}&=f_2(x_{ij})\frac{1}{r_{ij}} \\
+  \bm{T}^{q\mu}_{ij}&=f_4(x_{ij})\frac{-\bm{r}_{ij}}{r_{ij}^3} \\
+  \bm{T}^{\mu\mu}_{ij}&=f_6(x_{ij})\left(\frac{\bm{r}_{ij}\otimes\bm{r}_{ij}}{r_{ij}^5}-\frac{\bm{1}}{r_{ij}^3}\right)
+  \label{eq:tensors}
+\end{align}
+
+The interaction tensors in Eq. \ref{eq:tensors} are the usual cartesian multipole interaction
+tensors, generated by successive gradients of $1/r_{ij}$ where $r_{ij}$ is the distance between
+two atoms. These tensors are multiplied by a damping function, which we will discuss in more detail
+now.
+
+\section*{Damping}
+
+The interaction tensors in Eq. \ref{eq:pol_mat} are often
+damped to prevent over-polarization. One common approach is to use Thole damping\cite{thole1981molecular},
+which takes a model electron density and computes the appropriate damping function. This approach is
+a bit awkward both because it requires an arbitrary parameter which controls the extent of damping,
+but also because the model electron densities chosen have no apparent physical meaning.
+For those reasons, we take a different approach in damping all terms related to polarization and
+utilize the Tang-Toennies (TT) damping functions\cite{tang1984improved}.
+
+\begin{equation}
+  f_n(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij^k}}{k!}
+  \label{eq:TT}
+\end{equation}
+
+The appropriate form of $x$ for the tail of a Slater electron density
+has been derived before\cite{van2016beyond} and takes the form,
+\begin{equation}
+  x_{ij}=b_{ij}r_{ij}-\frac{2b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}}{b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}+3}
+  \label{eq:TT_x}
+\end{equation}
+
+The TT damping functions were originally derived to describe the short-range damping
+of dispersion interactions. These damping functions have been very successful in
+modifying the short-range contribution to dispersion. Considering that dispersion is
+simply another form of polarization, we apply the TT damping functions to all
+polarization interactions in this force field.
+
+There are two big advantages to TT damping functions worth discussing. First, as
+shown in Eq. \ref{eq:TT_x}, the scale over which damping is relevant is related to
+Slater exponent for each pair of atoms, $b_{ij}$. This is great because it means the
+damping between each pair of atoms will better reflect the size of each atom. Additionally,
+by reusing these Slater exponents, we eliminate the need for the global parameter used
+to control teh damping strength in Thole damping. Note that the TT damping functions
+depend parametrically on the choice of integer $n$. Generally, higher $n$ means
+damping occurs more rapidly. This brings us to the second advantage. TT damping
+allows us to apply different damping scales to different types of interactions
+just by modifying the value of $n$.
+
+In the original work by Tang and Toennies, they show that the appropriate choice
+of $n$ for dispersion is $n=6$. This makes sense because the damping function will
+then have an exponential multiplied by a sixth order polynomial. This polynomial is
+able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no
+damping at long distances.
+
+Inspired by this, we choose to damp mutual polarization with $n=2,4,6$ for
+charge-charge, charge-dipole, and dipole-dipole interactions, respectively.
+The reason we choose $n=2,4,6$ rather than $n=1,2,3$ is because mutual polarization
+roughyl decays as the square of permanent interactions of the same type.
+Just how dispersion, which can be thought of as describing interacting instantaneous dipoles,
+decays as $r^{-6}$, the interaction of two induced dipoles decays as roughly
+$r^-6$ because the field which induces the interaction also decays rapidly.
+Notice that this interaction would actually decay at different lengths if the polarizing
+field comes from a charge, dipole, or quadrupole. One might instead choose to damp
+with $f_5$ or $f_7$. In our experience the more aggressive damping is slightly better
+and also ensures greater stability of the system of equations.
+
+In fact, the typical Thole damping functions also take the form of a polynomial
+multiplied by an exponential. The polynomial for damping induced dipoles would
+be third-order in Thole damping, which, as just discussed, is insufficient to control the polarization
+energy at short-range. Therefore, we consider our more aggressive damping to be well-justified
+especially since we are interested in ions where polarization catastrophes have
+motivated the use of diminished polarizabilities.\cite{ponder2010current}
+
+\section*{Charge Transfer}
+
+\section*{Parameterization}
 
 The last important point in this model concerns the determination of the
 atomic width, $b_i$. We utilize the implementation of the ISA model of
 Misquitta\cite{misquitta2014distributed} available in CamCASP\cite{misquitta2016ab}
 to obtain these parameters from monomer electron densities.
 
-\section{Results and discussion}
+\section*{Results and discussion}
 
 \input{tables/mae_table.tex}
 
