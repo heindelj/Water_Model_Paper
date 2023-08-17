@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{26}
+\begin{mcitethebibliography}{33}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -232,6 +232,70 @@ Ponder,~J.~W.; Wu,~C.; Ren,~P.; Pande,~V.~S.; Chodera,~J.~D.;
   DiStasio~Jr,~R.~A., \latin{et~al.}  Current status of the AMOEBA polarizable
   force field. \emph{The journal of physical chemistry B} \textbf{2010},
   \emph{114}, 2549--2564\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Rackers \latin{et~al.}(2021)Rackers, Silva, Wang, and
+  Ponder]{rackers2021polarizable}
+Rackers,~J.~A.; Silva,~R.~R.; Wang,~Z.; Ponder,~J.~W. Polarizable water
+  potential derived from a model electron density. \emph{Journal of chemical
+  theory and computation} \textbf{2021}, \emph{17}, 7056--7084\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Das \latin{et~al.}(2019)Das, Urban, Leven, Loipersberger, Aldossary,
+  Head-Gordon, and Head-Gordon]{das2019development}
+Das,~A.~K.; Urban,~L.; Leven,~I.; Loipersberger,~M.; Aldossary,~A.;
+  Head-Gordon,~M.; Head-Gordon,~T. Development of an advanced force field for
+  water using variational energy decomposition analysis. \emph{Journal of
+  chemical theory and computation} \textbf{2019}, \emph{15}, 5001--5013\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Wang \latin{et~al.}(2023)Wang, Yan, Cai, Xu, Ma, and
+  Wang]{wang2023general}
+Wang,~W.; Yan,~D.; Cai,~Y.; Xu,~D.; Ma,~J.; Wang,~Q. General Charge Transfer
+  Dipole Model for AMOEBA-Like Force Fields. \emph{Journal of Chemical Theory
+  and Computation} \textbf{2023}, \emph{19}, 2518--2534\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Khaliullin \latin{et~al.}(2007)Khaliullin, Cobar, Lochan, Bell, and
+  Head-Gordon]{khaliullin2007unravelling}
+Khaliullin,~R.~Z.; Cobar,~E.~A.; Lochan,~R.~C.; Bell,~A.~T.; Head-Gordon,~M.
+  Unravelling the origin of intermolecular interactions using absolutely
+  localized molecular orbitals. \emph{The Journal of Physical Chemistry A}
+  \textbf{2007}, \emph{111}, 8753--8765\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Khaliullin \latin{et~al.}(2008)Khaliullin, Bell, and
+  Head-Gordon]{khaliullin2008analysis}
+Khaliullin,~R.~Z.; Bell,~A.~T.; Head-Gordon,~M. Analysis of charge transfer
+  effects in molecular complexes based on absolutely localized molecular
+  orbitals. \emph{The Journal of chemical physics} \textbf{2008},
+  \emph{128}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Khaliullin \latin{et~al.}(2009)Khaliullin, Bell, and
+  Head-Gordon]{khaliullin2009electron}
+Khaliullin,~R.~Z.; Bell,~A.~T.; Head-Gordon,~M. Electron donation in the
+  water--water hydrogen bond. \emph{Chemistry--A European Journal}
+  \textbf{2009}, \emph{15}, 851--855\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Xantheas(2000)]{xantheas2000cooperativity}
+Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
+  \emph{Chemical Physics} \textbf{2000}, \emph{258}, 225--231\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax

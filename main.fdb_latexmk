@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1692126333 "main.aux" "main.bbl" "main" 1692126333 0
-  "./acs-main.bib" 1692126333 306 2ec6e2c563f7f14bcefed0d36c308168 ""
-  "./references.bib" 1692124274 9843 bac74067082a21f856b791da44d0024e ""
+["bibtex main"] 1692236544 "main.aux" "main.bbl" "main" 1692236545 0
+  "./acs-main.bib" 1692236544 306 2ec6e2c563f7f14bcefed0d36c308168 ""
+  "./references.bib" 1692235383 12003 07aa1280f188e6fef7a3b1cc59372159 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1692126333 4986 ce1d6171d96ac1071aadc876d49586cc "pdflatex"
+  "main.aux" 1692236544 6280 5cc2ad6bd79039f7528073b0c4c55b57 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1692126333 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1692126333 0
+["pdflatex"] 1692236544 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1692236545 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1692126332 25126 8638f1b98191ae2c3c448b471d15233e ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1692236544 30807 f11f4544e7b0825369007cd9ea988037 ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -112,9 +112,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1690152512 4036811 4cb80868003c86b962b6b5ae1e1e2902 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1690152518 1405647 cc8221b3815afa4901915eeb915f9cc3 ""
-  "main.aux" 1692126333 4986 ce1d6171d96ac1071aadc876d49586cc "pdflatex"
-  "main.bbl" 1692126333 12057 6a2124eb30b9a20429e6aac493be55b9 "bibtex main"
-  "main.tex" 1692126332 25126 8638f1b98191ae2c3c448b471d15233e ""
+  "main.aux" 1692236544 6280 5cc2ad6bd79039f7528073b0c4c55b57 "pdflatex"
+  "main.bbl" 1692236544 15340 fad27edb59fe2a612a964bcbe1b07aa6 "bibtex main"
+  "main.tex" 1692236544 30807 f11f4544e7b0825369007cd9ea988037 ""
   "tables/mae_table.tex" 1686356862 959 1709bcf9bbf514719a20cc642298f362 ""
   (generated)
   "acs-main.bib"

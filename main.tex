@@ -275,7 +275,7 @@ equalization model (EEM) of polarization.\cite{mortier1986electronegativity} In 
 the energy of a molecule is expanded to second-order as a function of charge, then,
 these charges are allowed to interact. Mathematically, this takes the following form,
 \begin{equation}
-  E(\bm{q})=\sum_i \chi_i q_i + \frac12 \sum_i \eta_i q_i^2 + \sum_{i<j} \frac{q_i q_j}{r_{ij}}
+  V(\bm{q})=\sum_i \chi_i q_i + \frac12 \sum_i \eta_i q_i^2 + \sum_{i<j} \frac{q_i q_j}{r_{ij}}
   \label{eq:eem}
 \end{equation}
 
@@ -299,7 +299,7 @@ equalized" state. The change in electronegativity at each atom due to an environ
 the electric potential at that atom. We can then write the FQ contribution in our
 model as,
 \begin{equation}
-  E(\delta \bm{q})=\frac12\sum_i \eta_i \delta q_i^2 + \sum_i \delta q_i V_i + \sum_{i<j}\frac{\delta q_i \delta q_j}{r_{ij}} + \sum_{\alpha}\lambda_\alpha \sum_{i\in\alpha}\delta q_{i}
+  V(\delta \bm{q})=\frac12\sum_i \eta_i \delta q_i^2 + \sum_i \delta q_i V_i + \sum_{i<j}\frac{\delta q_i \delta q_j}{r_{ij}} + \sum_{\alpha}\lambda_\alpha \sum_{i\in\alpha}\delta q_{i}
   \label{eq:fq}
 \end{equation}
 
@@ -314,7 +314,7 @@ dipoles) are allowed to interact whether they are in the same molecule or not.
 We also allow electric fields due to the environment to induce dipoles on all atoms.
 The energy of an induced dipole in an electric field, $\bm{E}$, including mutual polarization is,
 \begin{equation}
-  E(\bm{\mu}^{ind})=-\frac12\sum_i \bm{\mu}_i^{ind}\cdot \bm{E}_i + \sum_{i<j}\bm{\mu}^{ind}_i \bm{T}^{\mu\mu}_{ij}\bm{\mu}^{ind}_j
+  V(\bm{\mu}^{ind})=-\frac12\sum_i \bm{\mu}_i^{ind}\cdot \bm{E}_i + \sum_{i<j}\bm{\mu}^{ind}_i \bm{T}^{\mu\mu}_{ij}\bm{\mu}^{ind}_j
   \label{eq:induced_dipoles}
 \end{equation}
 
@@ -386,7 +386,7 @@ For those reasons, we take a different approach in damping all terms related to 
 utilize the Tang-Toennies (TT) damping functions\cite{tang1984improved}.
 
 \begin{equation}
-  f_n(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij^k}}{k!}
+  f_n(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij}^k}{k!}
   \label{eq:TT}
 \end{equation}
 
@@ -404,11 +404,11 @@ simply another form of polarization, we apply the TT damping functions to all
 polarization interactions in this force field.
 
 There are two big advantages to TT damping functions worth discussing. First, as
-shown in Eq. \ref{eq:TT_x}, the scale over which damping is relevant is related to
-Slater exponent for each pair of atoms, $b_{ij}$. This is great because it means the
+shown in Eq. \ref{eq:TT_x}, the scale over which damping is relevant is related to the
+Slater exponent for each pair of atoms, $b_{ij}$. This is convenient because it means the
 damping between each pair of atoms will better reflect the size of each atom. Additionally,
 by reusing these Slater exponents, we eliminate the need for the global parameter used
-to control teh damping strength in Thole damping. Note that the TT damping functions
+to control the damping strength in Thole damping. Note that the TT damping functions
 depend parametrically on the choice of integer $n$. Generally, higher $n$ means
 damping occurs more rapidly. This brings us to the second advantage. TT damping
 allows us to apply different damping scales to different types of interactions
@@ -423,10 +423,10 @@ damping at long distances.
 Inspired by this, we choose to damp mutual polarization with $n=2,4,6$ for
 charge-charge, charge-dipole, and dipole-dipole interactions, respectively.
 The reason we choose $n=2,4,6$ rather than $n=1,2,3$ is because mutual polarization
-roughyl decays as the square of permanent interactions of the same type.
+roughly decays as the square of permanent interactions of the same type.
 Just how dispersion, which can be thought of as describing interacting instantaneous dipoles,
 decays as $r^{-6}$, the interaction of two induced dipoles decays as roughly
-$r^-6$ because the field which induces the interaction also decays rapidly.
+$r^{-6}$ because the field which induces the interaction also decays rapidly.
 Notice that this interaction would actually decay at different lengths if the polarizing
 field comes from a charge, dipole, or quadrupole. One might instead choose to damp
 with $f_5$ or $f_7$. In our experience the more aggressive damping is slightly better
@@ -440,6 +440,90 @@ especially since we are interested in ions where polarization catastrophes have
 motivated the use of diminished polarizabilities.\cite{ponder2010current}
 
 \section*{Charge Transfer}
+Charge transfer is the most difficult of the terms in EDA to model. This is
+because there is no classical analogue for charge transfer. One common approach to
+capturing charge transfer is to use a simple exponential dependent on the distance
+between atoms.\cite{rackers2021polarizable} This captures the main effect which is the
+short-range exponential stabilization due to charge delocalization. Unfortunately,
+many-body charge transfer is non-negligible and this effect will be completely
+missed when using just exponentials. Another attempt is to essentially treat
+charge transfer the same way as polarization and solve a set of induced dipole equations.\cite{das2019development,wang2023general}
+This has the benefit that it can capture many-body charge transfer. One drawback of this
+approach is that it does not actually allow for charge to flow between molecules
+and therefore misses some of the salient physics. It is also ambiguous if the induced
+dipoles relevant to CT should be treated as real dipoles and allowed to interact 
+with permanent and induced multipoles. Perhaps a bigger problem is that
+charge transfer can be an even larger contribution than polarization, especially at short range.
+This means the charge transfer energy would be even more susceptible to
+polarization catastrophes than ordinary polarization.
+
+For all of these reasons, we introduce a new approach to describing charge transfer
+which is enabled by the fact we allow for explicit charge rearrangements in our
+description of polarization. Our charge transfer model includes both direct and
+indirect energy contributions. The direct contributions allow for energetic stabilization
+associated with both forward and backward charge transfer.
+\begin{align}
+  V^{CT}_{i\rightarrow j}&=a_{i\rightarrow j}^{CT}S_{ij}^\rho\\
+  V^{CT}_{j\rightarrow i}&=a_{j\rightarrow i}^{CT}S_{ij}^\rho\\
+  V^{CT}_{direct}&=\sum_{i<j}V^{CT}_{i\rightarrow j}+V^{CT}_{j\rightarrow i}
+  \label{eq:ct_direct}
+\end{align}
+
+As shown in Eq. \ref{eq:ct_direct}, the forward and backward contributions to
+charge transfer are directly proportional to the density overlap.
+We take inspiration from perturbation theory which shows, roughly, that
+the amount of charge transferred between two molecules is proportional to the
+energy associated with forward and backward charge transfer.\cite{khaliullin2007unravelling,khaliullin2008analysis,khaliullin2009electron}
+Therefore, we define the amount of charge transferred from $i$ to $j$, $\Delta Q^{CT}_{i\rightarrow j}$,
+and from $j$ to $i$, $\Delta Q^{CT}_{j\rightarrow i}$, as
+\begin{align}
+  \Delta Q^{CT}_{i\rightarrow j}&=\frac{V^{CT}_{i\rightarrow j}}{\epsilon_{i\rightarrow j}}\\
+  \Delta Q^{CT}_{j\rightarrow i}&=\frac{V^{CT}_{j\rightarrow i}}{\epsilon_{j\rightarrow i}}
+\end{align}
+
+The proportionality constant between direct charge transfer
+energy and the amount of transferred charge is written as $\epsilon_{i\rightarrow j}$
+to emphasize that this proportionality is related to the difference in energy
+of an occupied orbital on $i$ and an unoccupied orbital on $j$.\cite{khaliullin2007unravelling}
+
+The novel thing about this approach is that we can explictly move charge between
+fragments by modifying the molecular charge constraints used in Eq. \ref{eq:pol_mat}.
+The charge constraint for a fragment $A$ will then take the form,
+\begin{equation}
+  Q^{CT}_A=Q_A+\sum_{i\in A}\sum_{j\notin A}\Delta Q^{CT}_{j\rightarrow i}-\Delta Q^{CT}_{i\rightarrow j}
+  \label{eq:charge_constraint}
+\end{equation}
+The charge constraint including charge transfer, $Q^{CT}_A$, is simply the
+difference in charge transferred to atom $i$ (in $A$) and charge transferred from atom
+$i$, summed over all atoms in molecule $A$. These charges may not be optimally
+distributed, so they will be allowed to relax during the polarization process.
+This allows us to capture the so-called "re-polarization"\cite{khaliullin2007unravelling}
+effect in which orbitals relax after allowing for occupied-virtual mixing.
+For example, when charge is transferred from oxygen to hydrogen in a water
+dimer, the final excess charge will mostly come to rest on the oxygen in
+the water with net-negative charge.
+
+The main effect, however, of allowing charge to move between fragments comes from
+the energy penalty associated with any atoms having nonzero values of $\delta q$.
+This is consistent with two known effects about the stability of water clusters.
+First, homodromic rings have particularly large non-additivities.\cite{xantheas2000cooperativity}
+In our model, this type of ring benefits from many-body charge transfer since each molecule
+can pass its excess charge along to the next molecule, resulting in a minor excess charge penalty.
+Similarly, this model makes it clear why water molecules which accept two hydrogen bonds without
+donating any hydrogen bonds are particularly unstable. That is, charge
+gets transferred out of the double acceptor molecule and every molecule gets
+stuck with nonzero total charges.
+
+\textbf{Make a figure illustrating these two scenarios. Charge getting
+trapped on an AA molecule and charge getting passed along in a ring.}
+
+There is one technical point worth noting about this model. Because the
+charge transferred between fragments is proportional to the direct CT contributions,
+the charge constraints depend on the distance between atoms. This means there
+is a gradient contribution which multiplies the lagrange multipliers
+with the gradient of $\Delta Q^{CT}_{i\rightarrow j}$ and $\Delta Q^{CT}_{j\rightarrow i}$.
+This is not difficult or expensive to evaluate, but because it is a rather
+unusual gradient term, we wanted to point this out clearly.
 
 \section*{Parameterization}
 
