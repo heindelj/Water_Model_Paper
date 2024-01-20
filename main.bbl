@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{33}
+\begin{mcitethebibliography}{35}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -166,6 +166,12 @@ Stone,~A.~J.; Dullweber,~A.; Engkvist,~O.; Fraschini,~E.; Hodges,~M.~P.;
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Stone(2013)]{stone2013theory}
+Stone,~A. \emph{The theory of intermolecular forces}; oUP oxford, 2013\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Stone(1985)]{stone1985distributedb}
 Stone,~A. Distributed polarizabilities. \emph{Molecular Physics} \textbf{1985},
   \emph{56}, 1065--1082\relax
@@ -300,11 +306,20 @@ Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Misquitta and Stone(2016)Misquitta, and Stone]{misquitta2016ab}
-Misquitta,~A.~J.; Stone,~A.~J. Ab initio atom--atom potentials using CamCASP:
-  Theory and application to many-body models for the pyridine dimer.
-  \emph{Journal of chemical theory and computation} \textbf{2016}, \emph{12},
-  4184--4208\relax
+\bibitem[Kirov \latin{et~al.}(2008)Kirov, Fanourgakis, and
+  Xantheas]{kirov2008identifying}
+Kirov,~M.~V.; Fanourgakis,~G.~S.; Xantheas,~S.~S. Identifying the most stable
+  networks in polyhedral water clusters. \emph{Chemical Physics Letters}
+  \textbf{2008}, \emph{461}, 180--188\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Misquitta \latin{et~al.}(2008)Misquitta, Welch, Stone, and
+  Price]{misquitta2008first}
+Misquitta,~A.~J.; Welch,~G.~W.; Stone,~A.~J.; Price,~S.~L. A first principles
+  prediction of the crystal structure of C6Br2ClFH2. \emph{Chemical Physics
+  Letters} \textbf{2008}, \emph{456}, 105--109\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax

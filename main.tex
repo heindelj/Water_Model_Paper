@@ -256,7 +256,14 @@ The permanent point electrostatics aim to reproduce the distributed
 multipole energies used in defining the charge penetration, $E^{elec}_{DMA}$.
 The electrostatic energy is expressed as,
 
-\textbf{PUT EXPRESSIONS IN HERE FOR MULTIPOLES AND DAMPING AND ALL THAT.}
+\begin{equation}
+  E_{elec} = \sum_{i<j}\mathbf{M}_i\mathbf{T}_{ij}\mathbf{M}_j
+  \label{eq:elec}
+\end{equation}
+\noindent
+where $\mathbf{M}_i$ is a vector of multipole components (i.e. the charge,
+dipole, and quadrupole components) centered on atom $i$ and $\mathbf{T}_{ij}$ is
+the multipole interaction tensor formed by taking successive gradients of $1/r_{ij}$\cite{stone2013theory}.
 
 \section*{Polarization}
 
@@ -292,7 +299,7 @@ Lagrange multipliers. A second limitation of EEM is that the approach in Eq. \re
 gives back the total charge of atoms in a molecule. This is somewhat awkward because
 we want to separate the multipolar electrostatics, which depends on the total charge,
 from the polarization contribution which should only depend on the external potential
-experienced by each atom. Hence, we drop the linear term and focus only on the
+and field experienced by each atom. Hence, we drop the linear term and focus only on the
 fluctuation of charges around the reference charge used for permanent electrostatics.
 Another way of viewing this is that we are equalizing electronegativity around an "already
 equalized" state. The change in electronegativity at each atom due to an environment is simply
@@ -303,7 +310,7 @@ model as,
   \label{eq:fq}
 \end{equation}
 
-To summarize, Eq. \ref{eq:fq} allows charges to rearrange, $\delta q_i$ in response to an external
+To summarize, Eq. \ref{eq:fq} allows charges to rearrange, $\delta q_i$, in response to an external
 potential, $V_i$, with a quadratic penalty determined by the atomic hardness, $\eta_i$.
 The charge rearrangements are constrained to only occur between atoms such that rearranged
 charges in a molecule sum to the total charge of a molecule. Therefore, the model has $N$ lagrange
@@ -364,9 +371,9 @@ the Lagrange multipliers which enforce charge conservation, and $\bm{\mu}$ are t
 
 The form of the $ij$ entries of the multipole interaction tensors are as follows:
 \begin{align}
-  T^{qq}_{ij}&=f_2(x_{ij})\frac{1}{r_{ij}} \\
-  \bm{T}^{q\mu}_{ij}&=f_4(x_{ij})\frac{-\bm{r}_{ij}}{r_{ij}^3} \\
-  \bm{T}^{\mu\mu}_{ij}&=f_6(x_{ij})\left(\frac{\bm{r}_{ij}\otimes\bm{r}_{ij}}{r_{ij}^5}-\frac{\bm{1}}{r_{ij}^3}\right)
+  T^{qq}_{ij}&=f_3(x_{ij})\frac{1}{r_{ij}} \\
+  \bm{T}^{q\mu}_{ij}&=f_5(x_{ij})\frac{-\bm{r}_{ij}}{r_{ij}^3} \\
+  \bm{T}^{\mu\mu}_{ij}&=f_7(x_{ij})\left(\frac{\bm{r}_{ij}\otimes\bm{r}_{ij}}{r_{ij}^5}-\frac{\bm{1}}{r_{ij}^3}\right)
   \label{eq:tensors}
 \end{align}
 
@@ -397,12 +404,6 @@ has been derived before\cite{van2016beyond} and takes the form,
   \label{eq:TT_x}
 \end{equation}
 
-The TT damping functions were originally derived to describe the short-range damping
-of dispersion interactions. These damping functions have been very successful in
-modifying the short-range contribution to dispersion. Considering that dispersion is
-simply another form of polarization, we apply the TT damping functions to all
-polarization interactions in this force field.
-
 There are two big advantages to TT damping functions worth discussing. First, as
 shown in Eq. \ref{eq:TT_x}, the scale over which damping is relevant is related to the
 Slater exponent for each pair of atoms, $b_{ij}$. This is convenient because it means the
@@ -420,24 +421,20 @@ then have an exponential multiplied by a sixth order polynomial. This polynomial
 able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no
 damping at long distances.
 
-Inspired by this, we choose to damp mutual polarization with $n=2,4,6$ for
+Inspired by this, we choose to damp mutual polarization with $n=3,5,7$ for
 charge-charge, charge-dipole, and dipole-dipole interactions, respectively.
-The reason we choose $n=2,4,6$ rather than $n=1,2,3$ is because mutual polarization
-roughly decays as the square of permanent interactions of the same type.
-Just how dispersion, which can be thought of as describing interacting instantaneous dipoles,
-decays as $r^{-6}$, the interaction of two induced dipoles decays as roughly
-$r^{-6}$ because the field which induces the interaction also decays rapidly.
-Notice that this interaction would actually decay at different lengths if the polarizing
-field comes from a charge, dipole, or quadrupole. One might instead choose to damp
-with $f_5$ or $f_7$. In our experience the more aggressive damping is slightly better
-and also ensures greater stability of the system of equations.
+The reason we choose $n=3,5,7$ is because mutual polarization
+roughly decays as the square of permanent interactions of the same type. This
+would mean $n=2,4,6$ are an appropriate choice. We have tried both
+sets of $n$ and found very little difference between the two, so we picked the stronger damping
+to ensure that polarization catastrophes cannot occur.
 
-In fact, the typical Thole damping functions also take the form of a polynomial
-multiplied by an exponential. The polynomial for damping induced dipoles would
-be third-order in Thole damping, which, as just discussed, is insufficient to control the polarization
+The typical Thole damping functions also take the form of a polynomial
+multiplied by an exponential. The polynomial for damping induced dipoles is third-order in Thole damping,
+which, as just discussed, is insufficient to control the polarization
 energy at short-range. Therefore, we consider our more aggressive damping to be well-justified
 especially since we are interested in ions where polarization catastrophes have
-motivated the use of diminished polarizabilities.\cite{ponder2010current}
+motivated the use of unphysically diminished polarizabilities.\cite{ponder2010current}
 
 \section*{Charge Transfer}
 Charge transfer is the most difficult of the terms in EDA to model. This is
@@ -486,8 +483,8 @@ energy and the amount of transferred charge is written as $\epsilon_{i\rightarro
 to emphasize that this proportionality is related to the difference in energy
 of an occupied orbital on $i$ and an unoccupied orbital on $j$.\cite{khaliullin2007unravelling}
 
-The novel thing about this approach is that we can explictly move charge between
-fragments by modifying the molecular charge constraints used in Eq. \ref{eq:pol_mat}.
+This approach is novel by allowing charge to explicitly move between
+fragments. This is achieved by modifying the molecular charge constraints used in Eq. \ref{eq:pol_mat}.
 The charge constraint for a fragment $A$ will then take the form,
 \begin{equation}
   Q^{CT}_A=Q_A+\sum_{i\in A}\sum_{j\notin A}\Delta Q^{CT}_{j\rightarrow i}-\Delta Q^{CT}_{i\rightarrow j}
@@ -495,7 +492,7 @@ The charge constraint for a fragment $A$ will then take the form,
 \end{equation}
 The charge constraint including charge transfer, $Q^{CT}_A$, is simply the
 difference in charge transferred to atom $i$ (in $A$) and charge transferred from atom
-$i$, summed over all atoms in molecule $A$. These charges may not be optimally
+$i$, summed over all atoms in molecule $A$. These charges will not be optimally
 distributed, so they will be allowed to relax during the polarization process.
 This allows us to capture the so-called "re-polarization"\cite{khaliullin2007unravelling}
 effect in which orbitals relax after allowing for occupied-virtual mixing.
@@ -503,19 +500,22 @@ For example, when charge is transferred from oxygen to hydrogen in a water
 dimer, the final excess charge will mostly come to rest on the oxygen in
 the water with net-negative charge.
 
-The main effect, however, of allowing charge to move between fragments comes from
+The major non-additivity in this charge transfer model comes from
 the energy penalty associated with any atoms having nonzero values of $\delta q$.
-This is consistent with two known effects about the stability of water clusters.
+This is consistent with two known effects that distinguish the stability of water clusters.
 First, homodromic rings have particularly large non-additivities.\cite{xantheas2000cooperativity}
 In our model, this type of ring benefits from many-body charge transfer since each molecule
 can pass its excess charge along to the next molecule, resulting in a minor excess charge penalty.
-Similarly, this model makes it clear why water molecules which accept two hydrogen bonds without
-donating any hydrogen bonds are particularly unstable. That is, charge
+Second, this model makes it clear why water molecules which accept two hydrogen bonds without
+donating any hydrogen bonds are particularly unstable.\cite{kirov2008identifying} That is, charge
 gets transferred out of the double acceptor molecule and every molecule gets
-stuck with nonzero total charges.
+stuck with nonzero total charges. Figure 1(a) illustrates the additional stabilization
+experienced by homodromic rings due to being able to pass along excess charge. Figure 1(b)
+shows why double acceptor water molecules are particularly unstable.
 
-\textbf{Make a figure illustrating these two scenarios. Charge getting
-trapped on an AA molecule and charge getting passed along in a ring.}
+\textbf{Consider moving this into some results section later on...}
+
+
 
 There is one technical point worth noting about this model. Because the
 charge transferred between fragments is proportional to the direct CT contributions,
@@ -525,16 +525,34 @@ with the gradient of $\Delta Q^{CT}_{i\rightarrow j}$ and $\Delta Q^{CT}_{j\righ
 This is not difficult or expensive to evaluate, but because it is a rather
 unusual gradient term, we wanted to point this out clearly.
 
+\section*{Reference Data}
+
+Our model is parameterized using water clusters of size \ce{(H_2O)_n} with n=2-5.
+We use 2400 dimers, trimers, tetramers, and pentamers extracted from various minimized
+cluster geometries. We additionally generated 4800 psuedo-random water dimers using
+based on a Sobol sequence. We follow exactly the same procedure as described elsewhere.\cite{misquitta2008first}
+Using the same procedure we generated 4800 ion-water dimer geometries for all ion species considered in this study,
+namely \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, \ce{I^-}, \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, \ce{Cs^+}, \ce{Mg^{2+}}, and \ce{Ca^{2+}}.
+
 \section*{Parameterization}
 
-The last important point in this model concerns the determination of the
-atomic width, $b_i$. We utilize the implementation of the ISA model of
-Misquitta\cite{misquitta2014distributed} available in CamCASP\cite{misquitta2016ab}
-to obtain these parameters from monomer electron densities.
+%The last important point in this model concerns the determination of the
+%atomic width, $b_i$. We utilize the implementation of the ISA model of
+%Misquitta\cite{misquitta2014distributed} available in CamCASP\cite{misquitta2016ab}
+%to obtain these parameters from monomer electron densities.
 
 \section*{Results and discussion}
 
 \input{tables/mae_table.tex}
+
+\begin{figure}
+  \includegraphics*[width=\textwidth]{figures/trimer_mbe_example.png}
+  \caption{Two water trimers illustrating the importance of both polarization
+  and charge transfer for the stability of water molecules. FRZ corresponds to
+  the frozen contribution: the sum of Pauli, electrostatic, and dispersion enegies. POL is the polarization
+  energy and CT is the charge transfer energy. Energies are computed at the
+  $\omega$B97X-V/def2-QZVPPD level of theory. See text for discussion.}
+\end{figure}
 
 \begin{acknowledgement}
 

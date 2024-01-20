@@ -449,6 +449,11 @@ INPUT ./tables/mae_table.tex
 INPUT tables/mae_table.tex
 INPUT ./tables/mae_table.tex
 INPUT tables/mae_table.tex
+INPUT ./figures/trimer_mbe_example.png
+INPUT ./figures/trimer_mbe_example.png
+INPUT figures/trimer_mbe_example.png
+INPUT ./figures/trimer_mbe_example.png
+INPUT ./figures/trimer_mbe_example.png
 INPUT ./main.bbl
 INPUT main.bbl
 INPUT ./main.bbl
