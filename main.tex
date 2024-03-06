@@ -14,6 +14,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
 \usepackage{bm}
+\usepackage{xcolor}
+\usepackage{dsfont}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If issues arise when submitting your manuscript, you may want to
@@ -54,6 +56,9 @@
 {Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California94720, United States}
 \alsoaffiliation[LBL]
 {Chemical Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, California94720, United States}
+\author{Selim Sami}
+\affiliation[Berkeley]
+{Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California94720, United States}
 \author{Teresa Head-Gordon}
 \email{thg@berkeley.edu}
 \affiliation[Berkeley]
@@ -69,7 +74,7 @@
 %% optional argument to \title.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title[An \textsf{achemso} demo]
-  {Construction of Accurate Force Fields from Energy Decomposition Analysis: Water and Monovalent Ions}
+  {Construction of Accurate Force Fields from Energy Decomposition Analysis: Water and Ions}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Some journals require a list of abbreviations or keywords to be
@@ -115,7 +120,14 @@ separate page at the end of the document.
 %% if an abstract is not used by the target journal.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-  TODO
+This work describes a force field for water and atomic ions which aims to quantitaively
+reproduce each term of an energy decomposition analysis. In the model, polarization
+is handled in a manner that allows for charge fluctuations and induced dipoles.
+The model contains a new approach to modelling charge transfer which allows for
+explicit movement of charge between molecules. We show that this approach naturally
+describes many-body charge transfer by coupling into the polarization equations.
+Additionally, we highlight the fact that many-body charge transfer is non-negligible in aqueous systems.
+\color{red}{More here...}
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,10 +142,10 @@ and induced dipoles.\cite{stern2001combined}
 
 Our goal in this paper is to develop a new class of polarizable
 force field which is able to quantitatively reproduce all of the terms
-from energy decomposition analysis (EDA). The reason to do this
+in an energy decomposition analysis (EDA)\cite{horn2016probing,mao2021intermolecular}. The reason to do this
 is that by reproducing the EDA term-by-term, we can ensure that the force
 field will be transferable across the phase diagram of a homogeneous
-system and to new heterogenous systems.
+system and, ideally, to new heterogenous systems.
 Additionally, by reproducing the EDA term-by-term, the force field
 is able to provide insights which many other models simply cannot because
 they do not include particular terms. For instance, many force fields
@@ -148,26 +160,53 @@ This correlation is not guaranteed to be consistent between systems, however,
 which may explain part of the difficulty in producing water models which
 generalize to heterogeneous systems.
 
+The model described here borrows ideas from many other force fields which
+have proven to be successful. Foremost among these is the use of a model
+electron density such as that employed in both the HIPPO\cite{rackers2021polarizable}
+and the MASTIFF models\cite{van2016beyond,van2018new}. Specifically, treating
+short-range interactions as being related to the overlap of a Slater density
+or Slater orbital is extremely useful. Especially since many of these short-range
+interactions need to be damped to prevent divergences, and having a model density
+naturally generates the appropriate damping functions. We argue, however, that
+polarization should be damped more strongly than the overlap of slater orbitals
+implies. This follows from the observation that most damping functions take the form
+of a polynomial multiplied by an exponential. Ideally, force fields should be free
+of singularities, which means the polynomial in a damping function should be large
+enough to control the polynomial scaling of the interaction in question.
+\textcolor{red}{This should probably go somewhere else. Near the polarization stuff I guess...}
+
 \section{Theory}
 EDA splits the interaction energy into five components: Pauli repulsion,
 electrostatics, dispersion, polarization, and charge transfer. The force
-field described in this work will model each of these term by term, resulting
-in two different models, which we will call the dipole model (DM) and
-anisotropic model (AM). Note we will use a convention of referring to all energy
+field described in this work will model each of these term by term.
+Note we will use a convention of referring to all energy
 terms in the force field with a $V$ and all energy terms from electronic structre
 with an $E$.
 
-Our approach builds on the density overlap hypothesis\cite{kim1981dependence,wheatley1990overlap,gavezzotti2002calculation,van2016beyond}
+Our approach borrows ideas from the density overlap hypothesis\cite{kim1981dependence,wheatley1990overlap,gavezzotti2002calculation,van2016beyond}
 which states that the short-range contributions to intermolecular
 interactions is proportional to the electron density overlap. In order
 for this idea to be amenable to force fields, one must use atom-centered
 density overlaps. One way of doing this was developed thoroughly by
 Misquitta and others\cite{misquitta2014distributed,misquitta2018isa} based
 on iterated stockholder atoms which can be used to define Slater-like
-densities for atoms in molecules. Since this approach has been discussed
+densities for atoms in molecules. Very similar ideas have been developed
+by Rackers \textit{et al.}\cite{rackers2021polarizable} and we will make reference to the differences between
+the various approaches as relevant. In any case, since this approach has been discussed
 extensivly, we will only summarize the salient points.
 
-One can show that the overlap, $S^{ii}_\rho$, of two identical Slater-like atomic densities
+The form of the charge density used in the model is,
+\begin{equation}
+  \rho(r)=\frac{Qb^3}{8\pi}e^{-br}+Z\delta(r)
+  \label{eq:slater}
+\end{equation}
+\noindent
+where $Q$ is the charge associated with the model electron density,
+$Z$ is the effective nuclear charge of the atom, and $b$ defines the width
+of the Slater density. The delta function, $\delta(r)$, means the core is
+treated as a point particle.
+
+One can show that the overlap, $S_{ii}^\rho$, of two identical Slater-like atomic densities
 at different locations, $\rho_i(\bm{r}_i)$ and $\rho_i(\bm{r}_j)$, is,
 \begin{equation}
   S_{ii}^\rho=\frac{\pi D^2}{b_{ii}^3}P(b_{ii}r_{ij})\exp(-b_{ii}r_{ij})
@@ -176,47 +215,26 @@ The above overlap expression is only strictly true for the exponential tail
 of the Slater density and for identical atoms. The overlap between atoms
 with different densities, $S^{ij}_\rho$, has a more complicated form, but
 it has been shown that setting $b_{ij}=\sqrt{b_ib_j}$ allows the expression
-for $S_{ii}^\rho$ to be used for different atom types with negligible
+for $S_{ii}^\rho$ to be used for different atom types to a good
 approximation\cite{van2016beyond}. The polynomial prefactor in the overlap is,
 \begin{equation}
   P(b_{ij}r_{ij})=\frac13(b_{ij}r_{ij})^2 + b_{ij}r_{ij}+1
 \end{equation}
 where, again, we will use the combination rule $b_{ij}=\sqrt{b_ib_j}$.
 
-\subsection*{Pauli Repulsion}
-The original aim of the density overlap model was to model the
-Pauli repulsion energy.\cite{wallqvist1989new,wheatley1990overlap,gordon1996approximate}
-In this work, we employ two different models for Pauli repsulison,
-both inspired by the work of Van Vleet \textit{et al.}\cite{van2016beyond,van2018new}.
-The first is a simple isotropic model of Pauli repulsion where the energy is proportional
-to the density overlap with a quadratic term that we found essentialy for ion-ion interactions
-at shorter-than-equilibrium distances,
-\begin{equation}
-  V^{exch} = \sum_{i<j}a_{ij}^{(1),exch}S_{ij}^\rho+a_{ij}^{(2),exch}(S_{ij}^\rho)^2
-  \label{eq:exch_iso}
-\end{equation}
+Rackers \textit{et al.} utilize a similar idea in the HIPPO model\cite{rackers2021polarizable}
+but rather than relying on density overlap, they treat the Slater function as an
+orbital and are able to derive models of Pauli repulsion, charge penetration, and
+even dispersion. Because HIPPO is derived from a model orbital, the damping functions
+which prevent singularities in various short-range energetic contributions arise naturally.
+We find the HIPPO approach to both Pauli repulsion and electrostatics to be physically principled
+and utilize them here without significant modification.
 
-In Eq. \ref{eq:exch_iso}, $a_{ij}^{exch}=a_{i}^{exch}a_{j}^{exch}$ where
-$a_{i}^{exch}$ is a free parameter for atom $i$. This isotropic sum is the
-approach we use for the DM model. In the anisotropic model (AM), we,
-unsurprisingly, put anisotropy into the atom-specific parameters.
-We do this similarly to the approach of Van Vleet, but with some minor
-modifications\cite{van2018new}. First, the anisotropy is introduced by multiplying
-the isotropic term with a spherical harmonic expansion. The spherical harmonics
-used here are given by,
-\begin{equation}
-  C_{lm}(\theta,\phi)=\sqrt{\frac{4\pi}{2l+1}}Y_{lm}(\theta,\phi)
-\end{equation}
-where $\theta$ and $\phi$ are the polar and azimuthal angles
-calculated between two local axis systems for each atom.\cite{bernardo1994anisotropic}
-That is, $\theta_i$ is the angle of the vector between two axis systems,
-$\bm{r}_{ij}=\bm{r}_j-\bm{r}_i$, and the z-axis of axis system $i$.
-$\phi_i$ is the azimuthal angle, which is the angle of $\bm{r}_{ij}$ in the range $[0,2\pi]$ from the
-x-axis of axis system $i$.
-\begin{equation}
-  a_i^{exch} = a_{i,iso}^{exch}\left(1 + \sum_{l>0,k}a_{i,lk}^{exch}C_{lk}(\theta_i,\phi_i)\right)
-  \label{eq:exch_params_aniso}
-\end{equation}
+We utilize both Slater density overlap and Slater orbital overlap in different terms within
+the model. It is important to realize that either approach really just provides a
+physically meaningful indication of what is "short-range" for a pair of atoms. Therefore,
+combining the idea of overlapping Slater densities with overlapping Slater orbitals seems
+natural to us.
 
 \subsection*{Electrostatics}
 
@@ -230,6 +248,7 @@ out to hexadecapoles on all atoms.
 
 \begin{equation}
   E^{CP}=E^{elec}_{EDA}-E^{elec}_{DMA}
+  \label{eq:cp}
 \end{equation}
 
 The advantage of this approach is it allows us to ensure that
@@ -239,37 +258,85 @@ the classical electrostatic energy in EDA.
 All distributed multipole calculations were carried out
 in Stone's Orient program.\cite{stone2002orient}
 
-Our description of charge penetration in the models is essentially
-the same as for Pauli repulsion. Namely, the DM model uses only
-isotropic terms and includes a quadratic overlap term which, again,
-is immensely helpful for the short range description of ion-ion interactions:
+Charge penetration is described by treating each atom as having both a positively
+charged core and negatively charged shell. We use the same set of damping functions
+as derived by Rackers and Ponder which are appropriate for the Slater density in Eq. \ref{eq:slater}.\cite{rackers2021polarizable}
+Very similar models have been applied successfully in MB-UCB\cite{das2019development}
+based on functional forms proposed by Piquemal\cite{piquemal2003improved} and others\cite{wang2015general,rackers2017optimized}.
+
+Considering the interactions of the collection of cores and shells, which are expanded in multipoles,
+results in the following electrostatic energy expression:
 
 \begin{equation}
-  V^{CP} = \sum_{i<j}a_{ij}^{(1),CP}S_{ij}^\rho+a_{ij}^{(2),CP}(S_{ij}^\rho)^2
-  \label{eq:exch_iso}
-\end{equation}
-
-For the AM model, we include anisotropy in the first order charge penetration
-parameter, $a_{ij}^{(1),CP}$, in the same way as for exchange in Eq. (\ref{eq:exch_params_aniso}).
-
-The permanent point electrostatics aim to reproduce the distributed
-multipole energies used in defining the charge penetration, $E^{elec}_{DMA}$.
-The electrostatic energy is expressed as,
-
-\begin{equation}
-  E_{elec} = \sum_{i<j}\mathbf{M}_i\mathbf{T}_{ij}\mathbf{M}_j
+  V_{elec}=\sum_{i<j}Z_iT_{ij}Z_j+Z_i\bm{T}_{ij}^{damp}\bm{M}_j+Z_j\bm{T}_{ji}^{damp}\bm{M}_i+\bm{M}_i\bm{T}_{ij}^{overlap}\bm{M}_j
   \label{eq:elec}
 \end{equation}
 \noindent
-where $\mathbf{M}_i$ is a vector of multipole components (i.e. the charge,
-dipole, and quadrupole components) centered on atom $i$ and $\mathbf{T}_{ij}$ is
-the multipole interaction tensor formed by taking successive gradients of $1/r_{ij}$\cite{stone2013theory}.
+In eq. \ref{eq:elec}, the first term represents repulsive core-core interactions where $T_{ij}=1/r_{ij}$
+with $Z_i$ the core charge on the $i$th atom. Note that this is not the nuclear charge but an effective
+nuclear charge. The second and third terms describe attractive core-shell interactions where $\bm{M}_i$ is
+a vector whose entries are the components of the multipoles located on that atom. We allow all atoms to have
+multipoles up to the quadrupole. Note that the core-shell interactions are damped according to
+\begin{equation}
+  \bm{T}_{ij}^{damp}=
+  \begin{bmatrix}
+    1 & \nabla & \nabla^2 \\
+  \end{bmatrix}\cdot
+  \left(\frac{1}{r_{ij}}f_{ij}^{damp}(r_{ij})\right)
+  \label{eq:T_damp}
+\end{equation}
+\noindent
+The shell-shell interactions are damped, albeit with a different damping function,
+and the corresponding interaction tensor is written as:
+\begin{equation}
+  \bm{T}_{ij}^{overlap}=
+  \begin{bmatrix}
+    1 & \nabla & \nabla^2 \\
+    \nabla & \nabla^2 & \nabla^3 \\
+    \nabla^2 & \nabla^3 & \nabla^4 \\
+  \end{bmatrix}\cdot
+  \left(\frac{1}{r_{ij}}f_{ij}^{overlap}(r_{ij})\right)
+  \label{eq:T_overlap}
+\end{equation}
+\noindent
+The damping functions $f_{ij}^{damp}(r_{ij})$ and $f_{ij}^{overlap}(r_{ij})$ 
+take the following forms.
+
+\begin{subequations}
+  \begin{equation}
+    f_{ij}^{damp}(r_{ij})=1-\left(1+\frac12b_{j}r_{ij}\right)e^{-b_{j}r_{ij}}
+    \label{eq:damp_a}
+  \end{equation}
+  \begin{equation}
+    f_{ij}^{overlap}(r_{ij})=1-\left(1+\frac{11}{16}b_{ij}r_{ij}+\frac{3}{16}(b_{ij}r_{ij})^2+\frac{1}{48}(b_{ij}r_{ij})^3\right)e^{-b_{ij}r_{ij}} 
+    \label{eq:damp_b}
+  \end{equation}
+\end{subequations}
+\noindent
+Simply comparing the forms of Eq. \ref{eq:damp_a} with Eq. \ref{eq:damp_b} makes it clear
+why the core-shell model of charge penetration works. Namely, as long as $b_j$ is similar
+to $b_{ij}$, which it almost always will be, then the polynomial in Eq. \ref{eq:damp_b} will
+be larger than that in Eq. \ref{eq:damp_a}. This means the overlap damping function is stronger
+and hence the shell-shell repulsions will be damped more strongly than the core-shell
+attractions. Therefore, at short-range the electrostatic energy will be more attractive than a
+point multipole expansion of the density would suggest, which is exactly what is meant by
+charge penetration.
+
+The damping function in Eq. \ref{eq:damp_a} can be derived directly from the form
+of the Slater density in Eq. \ref{eq:slater} by computing its electrostatic potential.
+The damping function in Eq. \ref{eq:damp_b} can be derived from a symmetrized coulomb integral where each
+density interacts with the damped potential generated by the other density.\cite{rackers2021polarizable}
+Finally, it is important to note that these damping functions are the ones which apply
+to charge-charge interactions and that as higher-order multipoles are considered, new damping
+functions are generated alongside the gradients of $1/r_{ij}$. In other words, every interaction
+tensor in the multipole expansion will be damped differently. The form of all relevant damping
+functions have been derived and summarized elsewhere.\cite{rackers2021polarizable}
 
 \section*{Polarization}
 
 We introduce a combined fluctuating charge (FQ) and induced dipole model of electronic
 polarization. There are two reasons we have pursued this combined polarization
-approach. The first is quite simple. We want to reproduce all terms from EDA,
+approach. The first is quite simple: we want to reproduce all terms from EDA,
 one of which is charge transfer. If charges are not allowed to vary, then one
 cannot model the explicit transfer of charge between molecules. The second reason is
 that atomic polarizabilities naturally contain both charge-flow and induced dipole
@@ -321,13 +388,15 @@ dipoles) are allowed to interact whether they are in the same molecule or not.
 We also allow electric fields due to the environment to induce dipoles on all atoms.
 The energy of an induced dipole in an electric field, $\bm{E}$, including mutual polarization is,
 \begin{equation}
-  V(\bm{\mu}^{ind})=-\frac12\sum_i \bm{\mu}_i^{ind}\cdot \bm{E}_i + \sum_{i<j}\bm{\mu}^{ind}_i \bm{T}^{\mu\mu}_{ij}\bm{\mu}^{ind}_j
+  V(\bm{\mu}^{ind})=-\frac12\sum_i \bm{\mu}_i^{ind}\cdot \bm{E}_i^{damp} + \sum_{i<j}\bm{\mu}^{ind}_i \bm{T}^{\mu\mu}_{ij}\bm{\mu}^{ind}_j
   \label{eq:induced_dipoles}
 \end{equation}
 
 In Eq. \ref{eq:induced_dipoles}, the induced dipoles at each polarizable site, $\bm{\mu}_i^{ind}$,
-interact with an external electric field, $\bm{E}_i$, and with each other via the dipole interaction tensor.
-We will have more to say about this tensor in the next section when we discuss the short-range damping of polarization.
+interact with an external electric field, $\bm{E}_i^{damp}$, and with each other via the dipole interaction tensor.
+The field $\bm{E}_i^{damp}$ is the damped electric field generated by a Slater density
+and $\bm{T}^{\mu\mu}_{ij}$ is the damped dipole-dipole interaction tensor which is derived from appropriate
+gradients of $f_{ij}^{overlap}/r_{ij}$.
 
 What now remains is to determine the values of $\delta \bm{q}$ and $\bm{\mu}^{ind}$
 which minimize the total energy of the system. In order to do this, we take
@@ -370,71 +439,98 @@ Finally, $\delta\bm{q}$ contains the optimally rearranged charges, $\bm{\lambda}
 the Lagrange multipliers which enforce charge conservation, and $\bm{\mu}$ are the induced dipoles.
 
 The form of the $ij$ entries of the multipole interaction tensors are as follows:
-\begin{align}
-  T^{qq}_{ij}&=f_3(x_{ij})\frac{1}{r_{ij}} \\
-  \bm{T}^{q\mu}_{ij}&=f_5(x_{ij})\frac{-\bm{r}_{ij}}{r_{ij}^3} \\
-  \bm{T}^{\mu\mu}_{ij}&=f_7(x_{ij})\left(\frac{\bm{r}_{ij}\otimes\bm{r}_{ij}}{r_{ij}^5}-\frac{\bm{1}}{r_{ij}^3}\right)
+\begin{subequations}
+  \begin{equation}
+    T^{qq}_{ij}=f_3^{overlap}\frac{1}{r_{ij}}
+    \label{eq:tensors_a}
+  \end{equation}
+  \begin{equation}
+  \bm{T}^{q\mu}_{ij}=f_5^{overlap}\frac{-\bm{r}_{ij}}{r_{ij}^3}
+    \label{eq:tensors_b}
+  \end{equation}
+  \begin{equation}
+  \bm{T}^{\mu\mu}_{ij}=\left(f_7^{overlap}\frac{\bm{r}_{ij}\otimes\bm{r}_{ij}}{r_{ij}^5}-f_5^{overlap}\frac{\bm{1}}{r_{ij}^3}\right)
+    \label{eq:tensors_c}
+  \end{equation}
   \label{eq:tensors}
-\end{align}
+\end{subequations}
 
 The interaction tensors in Eq. \ref{eq:tensors} are the usual cartesian multipole interaction
 tensors, generated by successive gradients of $1/r_{ij}$ where $r_{ij}$ is the distance between
-two atoms. These tensors are multiplied by a damping function, which we will discuss in more detail
-now.
+two atoms. These tensors are multiplied by the overlap damping function used in the permanent electrostatic
+interactions. Note, however, that we have done something unusal. Naturally, $T^{qq}_{ij}$ would be damped
+with $f_1^{overlap}$ since this is the correct damping function for the interaction of two
+Slater charge densities. This would mean that each damping function is lowered by one order
+in $\bm{T}^{q\mu}_{ij}$ and $\bm{T}^{\mu\mu}_{ij}$.
 
-\section*{Damping}
+We have found that if we do not increase the damping orders used in mutual polarization, then
+the polarization energy tends to be systematically too large. This effect is especially large for ions
+which are polarizable and highly charged and hence strongly induce polarization. This modification
+is not simply empirical though. Let us consider the induced dipoles, which will be roughly
+proportional to the field experienced at each atom. Therefore, the scaling of the interaction between
+two induced dipoles is $1/r_{ij}^3$ (the same scaling as for permanent dipoles) multiplied by 
+the rate at which the polarizing field decays.
+For instance, the field due to a dipole decays as $1/r_{ij}^3$ which means the
+mutual induced dipole interactions will decay as $1/r_{ij}^6$ under that field. The damping
+function $f_5^{overlap}$ turns out to be a fifth-order polynomial multiplied by an exponential.
+Ideally, this would be at least sixth-order to control the significant contribution of dipole
+fields to the magnitude of induced dipoles. This modification of mutual polarization is very important
+as systems get larger such that some molecules have unusually large induced multipoles. As an aside,
+the damping functions generated by the usual Thole damping procedure\cite{thole1981molecular},
+are exponentials multiplied by first-, second-, and third-order polynomials
+for charge-charge, charge-dipole, and dipole-dipole interactions, respectively.\cite{thole1981molecular} The small orders
+of these polynomials certainly contribute to the historic difficulty of controlling
+polarization between ions and water.\cite{jiao2006simulation,mason2012accurate}
 
-The interaction tensors in Eq. \ref{eq:pol_mat} are often
-damped to prevent over-polarization. One common approach is to use Thole damping\cite{thole1981molecular},
-which takes a model electron density and computes the appropriate damping function. This approach is
-a bit awkward both because it requires an arbitrary parameter which controls the extent of damping,
-but also because the model electron densities chosen have no apparent physical meaning.
-For those reasons, we take a different approach in damping all terms related to polarization and
-utilize the Tang-Toennies (TT) damping functions\cite{tang1984improved}.
-
+Normally, the dipole polarizability is treated as a constant in polarizable force fields,
+but Chung \textit{et al.} recently pointed out that the polarizability of ions
+is significantly diminished in the aqueous phase.\cite{chung2022classical}
+This effect is not exclusive to ions, but is simply more noticable for diffuse anions. We adopt a slightly
+simplified version of the scheme suggested by Chung \textit{et al.} for making the polarizability dependent on the local
+environment. For reasons of numerical stability, we damp the inverse polarizability, $\bm{\alpha}^{-1}$, as follows
 \begin{equation}
-  f_n(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij}^k}{k!}
-  \label{eq:TT}
+  \bm{\alpha}^{-1}_i=
+  R_i\begin{pmatrix}
+    \alpha^{-1}_{xx,i} & 0 & 0 \\
+    0 & \alpha^{-1}_{yy,i} & 0 \\
+    0 & 0 & \alpha^{-1}_{zz,i} \\
+  \end{pmatrix}R_i^T
+    +\mathds{1}\sum_{i<j}k^{damp}_{ij}S_{ij}^{\rho}
+    \label{eq:polarizability}
 \end{equation}
+\noindent
+The first term in Eq. \ref{eq:polarizability} is a typical expression of the dipole polarizability
+in the local axis frame of that atom. $\alpha_{xx,i}$ is the $xx$ component of the dipole polarizability
+with other entries defined analogoulsy. $R_i$ is the rotation matrix that transforms the local
+axis system of atom $i$ to the global axis system. The second term defines an environment-dependent
+isotropic damping of the polarizability. In essence, we use the density overlap, $S_{ij}^\rho$,
+as an indicator of if two atoms are near one another and $k_{ij}^{damp}=(k_{i}^{damp}+k_{j}^{damp})/2$
+is a combination of free parameters that control the amount the polarizability will be modified
+in response to a certain amount of density overlap.
 
-The appropriate form of $x$ for the tail of a Slater electron density
-has been derived before\cite{van2016beyond} and takes the form,
+Note that this modification of the polarizability describes a completely different
+effect from the damping of induced electrostatics. In the case of multipolar interactions,
+the damping arises from the fact that real charge densities have a finite width. The effect
+modelled in Eq. \ref{eq:polarizability} is the shrinking of atoms which occurs due to
+antisymmetrization of the wavefunction. The effect is most important for very diffuse atoms, such as \ce{I^-},
+or for very close contacts such as the interaction of \ce{Li^+} with \ce{H2O}.
+
+Finally, there is one more term in our polarization model which is designed to only contribute at very
+short range. Specifically, we introduce another term proportional to density overlap,
 \begin{equation}
-  x_{ij}=b_{ij}r_{ij}-\frac{2b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}}{b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}+3}
-  \label{eq:TT_x}
+  V_{pol,sr}=\sum_{i<j}a_{ij}^{sr}f_3^{TT}(x_{ij})\frac{\bar{\alpha}_i + \bar{\alpha}_j}{2}\frac{1}{r_{ij}^3}S_{ij}^{\rho}
+\label{eq:pol_sr}
 \end{equation}
-
-There are two big advantages to TT damping functions worth discussing. First, as
-shown in Eq. \ref{eq:TT_x}, the scale over which damping is relevant is related to the
-Slater exponent for each pair of atoms, $b_{ij}$. This is convenient because it means the
-damping between each pair of atoms will better reflect the size of each atom. Additionally,
-by reusing these Slater exponents, we eliminate the need for the global parameter used
-to control the damping strength in Thole damping. Note that the TT damping functions
-depend parametrically on the choice of integer $n$. Generally, higher $n$ means
-damping occurs more rapidly. This brings us to the second advantage. TT damping
-allows us to apply different damping scales to different types of interactions
-just by modifying the value of $n$.
-
-In the original work by Tang and Toennies, they show that the appropriate choice
-of $n$ for dispersion is $n=6$. This makes sense because the damping function will
-then have an exponential multiplied by a sixth order polynomial. This polynomial is
-able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no
-damping at long distances.
-
-Inspired by this, we choose to damp mutual polarization with $n=3,5,7$ for
-charge-charge, charge-dipole, and dipole-dipole interactions, respectively.
-The reason we choose $n=3,5,7$ is because mutual polarization
-roughly decays as the square of permanent interactions of the same type. This
-would mean $n=2,4,6$ are an appropriate choice. We have tried both
-sets of $n$ and found very little difference between the two, so we picked the stronger damping
-to ensure that polarization catastrophes cannot occur.
-
-The typical Thole damping functions also take the form of a polynomial
-multiplied by an exponential. The polynomial for damping induced dipoles is third-order in Thole damping,
-which, as just discussed, is insufficient to control the polarization
-energy at short-range. Therefore, we consider our more aggressive damping to be well-justified
-especially since we are interested in ions where polarization catastrophes have
-motivated the use of unphysically diminished polarizabilities.\cite{ponder2010current}
+\noindent
+While Eq. \ref{eq:pol_sr} is much more empirical than the rest of the force field,
+it seems capture the effect of quadrupole polarization, which is known to be important
+in water\cite{herman2023accurate} but is very computationally expensive for the magnitude of the effect.
+In Eq. \ref{eq:pol_sr}, $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$, $f_3^{TT}(x_{ij})$
+is the third-order Tang-Toennies damping function, defined later in Eq. \ref{eq:TT}, and $a_{ij}^{sr}=a_{i}^{sr}a_{j}^{sr}$ is
+the pairwise parameter fit for this term. This term tends to have a magnitude for water
+that is similar to what one expect for quadrupole polarization (around 10\%), but is clearly
+not a true model for quadrupole polarization since Eq. \ref{eq:pol_sr} is pairwise-additive
+while quadrupole polarization would make small, nonzero many-body contributions.
 
 \section*{Charge Transfer}
 Charge transfer is the most difficult of the terms in EDA to model. This is
@@ -459,12 +555,18 @@ which is enabled by the fact we allow for explicit charge rearrangements in our
 description of polarization. Our charge transfer model includes both direct and
 indirect energy contributions. The direct contributions allow for energetic stabilization
 associated with both forward and backward charge transfer.
-\begin{align}
-  V^{CT}_{i\rightarrow j}&=a_{i\rightarrow j}^{CT}S_{ij}^\rho\\
-  V^{CT}_{j\rightarrow i}&=a_{j\rightarrow i}^{CT}S_{ij}^\rho\\
-  V^{CT}_{direct}&=\sum_{i<j}V^{CT}_{i\rightarrow j}+V^{CT}_{j\rightarrow i}
+\begin{subequations}
+  \begin{equation}
+  V^{CT}_{i\rightarrow j}=a_{i\rightarrow j}^{CT}S_{ij}^\rho
+\end{equation}
+\begin{equation}
+  V^{CT}_{j\rightarrow i}=a_{j\rightarrow i}^{CT}S_{ij}^\rho
+\end{equation}
+\begin{equation}
+  V^{CT}_{direct}=\sum_{i<j}V^{CT}_{i\rightarrow j}+V^{CT}_{j\rightarrow i}
+\end{equation}
   \label{eq:ct_direct}
-\end{align}
+\end{subequations}
 
 As shown in Eq. \ref{eq:ct_direct}, the forward and backward contributions to
 charge transfer are directly proportional to the density overlap.
@@ -473,10 +575,14 @@ the amount of charge transferred between two molecules is proportional to the
 energy associated with forward and backward charge transfer.\cite{khaliullin2007unravelling,khaliullin2008analysis,khaliullin2009electron}
 Therefore, we define the amount of charge transferred from $i$ to $j$, $\Delta Q^{CT}_{i\rightarrow j}$,
 and from $j$ to $i$, $\Delta Q^{CT}_{j\rightarrow i}$, as
-\begin{align}
-  \Delta Q^{CT}_{i\rightarrow j}&=\frac{V^{CT}_{i\rightarrow j}}{\epsilon_{i\rightarrow j}}\\
-  \Delta Q^{CT}_{j\rightarrow i}&=\frac{V^{CT}_{j\rightarrow i}}{\epsilon_{j\rightarrow i}}
-\end{align}
+\begin{subequations}
+  \begin{equation}
+  \Delta Q^{CT}_{i\rightarrow j}=\frac{V^{CT}_{i\rightarrow j}}{\epsilon_{i\rightarrow j}}
+\end{equation}
+\begin{equation}
+  \Delta Q^{CT}_{j\rightarrow i}=\frac{V^{CT}_{j\rightarrow i}}{\epsilon_{j\rightarrow i}}
+\end{equation}
+\end{subequations}
 
 The proportionality constant between direct charge transfer
 energy and the amount of transferred charge is written as $\epsilon_{i\rightarrow j}$
@@ -525,23 +631,168 @@ with the gradient of $\Delta Q^{CT}_{i\rightarrow j}$ and $\Delta Q^{CT}_{j\righ
 This is not difficult or expensive to evaluate, but because it is a rather
 unusual gradient term, we wanted to point this out clearly.
 
+\subsection*{Pauli Repulsion}
+The original aim of the density overlap model was to model the
+Pauli repulsion energy.\cite{wallqvist1989new,wheatley1990overlap,gordon1996approximate}
+The density overlap model of Pauli repulsion results in a formally exponential
+repulsion at short-range.
+However, Rackers and Ponder have made a convinving argument that the appropriate
+scaling of Pauli repulsion is actually of the form $E^{exch}\propto e^{-b_{ij}r_{ij}}/r_{ij}$.\cite{rackers2019classical,rackers2021polarizable}
+While the exponential is the more important contribution, the factor of $1/r_{ij}$
+becomes important at short distance and allows for the Pauli repulsion energy
+to be expressed as a multipole expansion.
+
+The multipolar pauli repulsion model has been discussed extensively elsewhere\cite{rackers2019classical}
+so we only recapitulate the main points. The basic idea is that Pauli repulsion energy
+between a pair of atoms is proportional to $S^2/r_{ij}$ where $S$ is the pseudo-orbital
+overlap. The pseudo-orbital is defined as $\sqrt{\rho}$ where $\rho$ is the density in Eq. \ref{eq:slater}.
+
+Therefore, the Pauli repulsion energy can be written as
+\begin{equation}
+  V_{Pauli}=\sum_{i<j}\frac{K_{ij}^q S^2_{q}+K_{ij}^\mu S^2_{\mu}+K_{ij}^\Theta S^2_{\Theta}}{r_{ij}}
+\label{eq:pauli}
+\end{equation}
+\noindent
+In Eq. \ref{eq:pauli}, $S^2$ represents the orbital overlap squared with different contributions
+from charges, dipoles, and quadrupoles. This is critically important since Pauli repulsion
+turns out to be highly anisotropic. However, producing parameters for a complete multipole expansion
+tends to result in overfitting when there is not a way to derive the initial multipoles
+from electronic structure. Therefore, the proportionality constants $K_{ij}=K_iK_j$ are fit instead.
+Since $S^2$ takes the form of a damped multipole expansion\cite{rackers2019classical}, these proportionality
+constants mean multipoles which handle repulsion are proportional to the actual electrostatic
+multipoles. One nice thing about this approach is that the calculation of electrostatics and
+multipolar Pauli repulsion differs only in the choice of damping function. Therefore, significant
+computation can be shared between the two terms.
+
+The expansion of Pauli repulsion in terms of multipoles has an interesting physical interpretation.
+Namely, as two electron densities begin to overlap, the electrons will be expelled
+from the internuclear region in order to keep the total system wavefunction antisymmetric.
+This results in a "hole" in the electron density where nuclei are exposed to one another.
+In a sense, then, these multipoles describe the magnitude and shape of the depletion of electron density
+between two atoms which are near one another.
+
+\section*{Dispersion}
+
+The dispersion energy is the simplest term in the model. We use a damped
+polynomial interaction given by,
+\begin{equation}
+  V_{disp}=\sum_{i<j}f_6^{TT}(x_{ij})\frac{C_{6,ij}}{r_{ij}^6}
+  \label{eq:disp}
+\end{equation}
+\noindent
+In Eq. \ref{eq:disp}, $C_{6,ij}$ is the dispersion coefficient between atoms
+$i$ and $j$ which is determined as $C_{6,ij}=\sqrt{C_{6,i}C_{6,j}}$ and $C_{6,i}$ is
+a parameter fit to the EDA dispersion energy. $f_6^{TT}(x_{ij})$ is the sixth-order
+Tang-Toennies damping function\cite{tang1984improved} which was originally derived
+to damp short-range dispersion,
+
+\begin{equation}
+  f_n^{TT}(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij}^k}{k!}
+  \label{eq:TT}
+\end{equation}
+
+The appropriate form of $x$ for the tail of a Slater electron density
+has been derived before\cite{van2016beyond} and takes the form,
+\begin{equation}
+  x_{ij}=b_{ij}r_{ij}-\frac{2b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}}{b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}+3}
+  \label{eq:TT_x}
+\end{equation}
+
+Note that the TT damping functions, Eq. \ref{eq:TT}, depend parametrically on
+the choice of integer $n$. In their original work, Tang and Toennies show that the appropriate choice
+of $n$ for dispersion is $n=6$. This makes the damping function an exponential multiplied by a sixth order polynomial.
+This polynomial is able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no
+damping at long distances. As an aside, one could also use TT damping functions of different orders to control
+mutual polarization. We have tested this and it works just as well as the procedure we
+described of increasing the order of $f^{overlap}$.
+
 \section*{Reference Data}
 
 Our model is parameterized using water clusters of size \ce{(H_2O)_n} with n=2-5.
 We use 2400 dimers, trimers, tetramers, and pentamers extracted from various minimized
-cluster geometries. We additionally generated 4800 psuedo-random water dimers using
+cluster geometries. We additionally generated 4800 psuedo-random water dimers
 based on a Sobol sequence. We follow exactly the same procedure as described elsewhere.\cite{misquitta2008first}
 Using the same procedure we generated 4800 ion-water dimer geometries for all ion species considered in this study,
 namely \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, \ce{I^-}, \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, \ce{Cs^+}, \ce{Mg^{2+}}, and \ce{Ca^{2+}}.
+For all ions, we also ran a 10ps \textit{ab initio} molecular dynamics simulation
+at 500K with $\omega$B97X-V/def2-TZVPPD to generate more probable ion-water configurations. We then sampled 2400 evenly spaced
+configurations from this trajectory to be used for parameterization.
+
+Some larger ion-water clusters were also generated by the following procedure.
+We used the Crest software package\cite{pracht2020automated} which uses the semi-empirical GFN2-XTB\cite{bannwarth2019gfn2}
+method to search for global minima on a potential energy surface. We carried out the Crest global minimum
+search with five different seed structures generated by taking water clusters, \ce{(H_2O)_n}, n=6-17, from a
+water cluster database\cite{rakshit2019atlas} and replacing one water randomly with one of the ions mentioned.
+We then took the structures of up to the ten lowest energy minima which had different hydrogen-bond
+networks and optimized them at the $\omega$B97X-V/def2-TZVPPD level of theory. This resulted in a total
+of 1044 unique ion-water clusters. These full clusters
+are used to characterize the ion-water potentials, but we also extracted all possible dimers
+and trimers from these clusters to be used in fitting of the ion force field parameters.
+
+All energies and forces that are used in fitting parameters of the force field are computed
+at the $\omega$B97X-V/def2-QZVPPD level of theory. In the cases where clusters are optimized at
+$\omega$B97X-V/def2-TZVPPD, we recompute the energies of those clusters and any derived sub-structures
+with $\omega$B97X-V/def2-QZVPPD.
 
 \section*{Parameterization}
 
-%The last important point in this model concerns the determination of the
-%atomic width, $b_i$. We utilize the implementation of the ISA model of
-%Misquitta\cite{misquitta2014distributed} available in CamCASP\cite{misquitta2016ab}
-%to obtain these parameters from monomer electron densities.
+When parameterizing this force field, we fit each term against only the EDA contribution
+to that particular energy. We also try to ensure that the force field reproduces
+all phsyically meaningful monomer properties including the dipole moment, dipole derivatives,
+molecular polarizability, and polarizability derivatives. Optimization of parameters is done using simple gradient descent
+against the root mean-square deviation (RMSD) of predicted and EDA energies.
+For Pauli repulsion and electrostatics 200 random water dimers from the datasets
+described above are used in fitting. For dispersion, polarization, and charge transfer, we use
+200 random water dimers, trimers, tetramers, and pentamers from the datasets described above.
+
+When parameterizing electrostatics, we optimize against two objectives. First, we ensure
+that the dipole derivatives at the equilibrium geometry of water are correct (this can be achieved
+nearly exactly). Second, we optimize against the distributed multipole electrostatic energy described
+near Eq. \ref{eq:cp}. This helps to ensure we end up with physically meaningful multipoles.
+At this point, we freeze the total charge and dipoles on each atom so that the dipole derivatives
+will remain correct. Next, we fit the value of the core charges, $Z$ and electrostatic exponents, $b_{elec}$, on each atom
+with respect to the total electrostatic energy from EDA. We also allow the quadrupoles to relax
+against the total electrostatic energy as a form of compensation for the lack of higher-order multipoles.
+
+Like electrostatics, polarization parameters need to be constrained to give physically meaningful
+parameters. Specifically, in addition to EDA energies, we include the polarizability and polarizability derivatives
+at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry of water in the fitting process.
+The loss function we minimize against is,
+\begin{equation}
+  L_{pol}=\sum_{i}^{N} \sqrt{\frac{(E_i^{FF}-E_i^{EDA})^2}{N}} + w_1||\bm{\alpha}^{FF}-\bm{\alpha}^{EDA}||+w_2||\frac{\partial\bm{\alpha}^{FF}}{\partial \bm{r}}-\frac{\partial\bm{\alpha}^{EDA}}{\partial \bm{r}}||
+\label{eq:pol_loss}
+\end{equation}
+\noindent
+In the above, the first term is the RMSD of the predicted energies, $E_i^{FF}$, from the
+EDA energies $E_i^{FF}$. The second term is the frobenius norm of the difference between the
+computed and predicted molecular polarizabilities, $\bm{\alpha}$. The third term is the same as
+the second but for the polarizability derivatives. The weights, $w_1$ and $w_2$ are set to
+1.0 and 0.01 respectively. This, in essence, forces the molecular polarizability to be
+reproduced exactly while allowing for error in the polarizability derivatives which are much
+more difficult to reproduce.
+
+The charge transfer energy and dispersion energies are simply fit against the RMSD
+from their EDA energies. Note that for electrostatics and Pauli repulsion, we only use dimers in
+the fitting process since electrostatics is strictly pairwise-additive and Pauli repulsion is nearly so.
+Dispersion, on the other hand, has a large enough many-body contribution that if only dimers
+are used in the fitting, one will systematically over-estimate the dispersion energy since
+many-body dispersion is usually repulsive. There are methods for including many-body dispersion,
+but we have not included such terms in this model.\cite{anatole2010two,van2018new}
+We may add such terms in the future.
+
+The Pauli repulsion term is first fit against the RMSD of the corresponding EDA energy.
+The repulsion parameters are then allowed to relax against the total interaction energy
+for only dimers. This procedure essentially results in improved error cancellation
+which we find is still necessary for a robust force field despite the effort
+to create a physically meaningful force field. We will have more to say about the necessity
+of error cancellation in force fields later. It should be noted that we only allow
+the Pauli repulsion to optimize against dimers so that it cannot try to correct errors
+in the many-body contributions. Furthermore, we will see that the Pauli repulsion energy
+still ends up providing an unbiased estimate of the EDA Pauli repulsion energy.
 
 \section*{Results and discussion}
+
+\textbf{TODO}
 
 \input{tables/mae_table.tex}
 
