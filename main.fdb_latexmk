@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1709712142 "main.aux" "main.bbl" "main" 1709712143 0
-  "./acs-main.bib" 1709712143 306 2ec6e2c563f7f14bcefed0d36c308168 ""
-  "./references.bib" 1709712141 17355 8db771d8c29b659943bafef7096d04fd ""
+["bibtex main"] 1710101789 "main.aux" "main.bbl" "main" 1710101791 0
+  "./acs-main.bib" 1710101790 306 2ec6e2c563f7f14bcefed0d36c308168 ""
+  "./references.bib" 1710101785 23253 4e71a4502b54485134b5478a59df54db ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1709712143 9487 39e0ebec3e3b14ecb36242b8af2fb86d "pdflatex"
+  "main.aux" 1710101790 13418 b903c134ada79ce0aeddba07e24c3f8b "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1709712143 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1709712143 0
+["pdflatex"] 1710101789 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1710101791 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1709712141 48745 6ac972c130f3838c6051a799bb96a480 ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1710101785 64160 9f2a330208e43782b15f5961d027528d ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -62,6 +62,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1248133631 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb" 1248133631 24457 5cbb7bdf209d5d1ce9892a9b80a307cc ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb" 1248133631 24393 3b7eb51a67a0a62aec5849271bdb9c2e ""
@@ -119,11 +120,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1690152512 4036811 4cb80868003c86b962b6b5ae1e1e2902 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1690152518 1405647 cc8221b3815afa4901915eeb915f9cc3 ""
+  "figures/dipole_surface.png" 1710036481 99865 dc428ffd381aa7f9d11b70306b5291ed ""
+  "figures/pauli_ct_cp_correlation.png" 1709933789 116279 4aa83092e750216f2ea2abab5d44bb08 ""
   "figures/trimer_mbe_example.png" 1705705040 71772 1c186bc1ce9f9a727cfd81d510a4a0af ""
-  "main.aux" 1709712143 9487 39e0ebec3e3b14ecb36242b8af2fb86d "pdflatex"
-  "main.bbl" 1709712143 21626 2da22a0d6a3f013d79e6805c33591f15 "bibtex main"
-  "main.tex" 1709712141 48745 6ac972c130f3838c6051a799bb96a480 ""
-  "tables/mae_table.tex" 1686356862 959 1709bcf9bbf514719a20cc642298f362 ""
+  "main.aux" 1710101790 13418 b903c134ada79ce0aeddba07e24c3f8b "pdflatex"
+  "main.bbl" 1710101789 28693 12a2d9299ece3d8cd5eee192d51d8e8f "bibtex main"
+  "main.tex" 1710101785 64160 9f2a330208e43782b15f5961d027528d ""
   (generated)
   "acs-main.bib"
   "main.aux"

@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{46}
+\begin{mcitethebibliography}{61}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -298,6 +298,15 @@ Herman,~K.~M.; Stone,~A.~J.; Xantheas,~S.~S. Accurate calculation of many-body
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Sheng \latin{et~al.}(2022)Sheng, Tang, and
+  Toennies]{sheng2022semiempirical}
+Sheng,~X.; Tang,~K.~T.; Toennies,~J.~P. A semiempirical potential for alkali
+  halide diatoms with damped interactions I. Rittner potential. \emph{Physical
+  Chemistry Chemical Physics} \textbf{2022}, \emph{24}, 24823--24833\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Wang \latin{et~al.}(2023)Wang, Yan, Cai, Xu, Ma, and
   Wang]{wang2023general}
 Wang,~W.; Yan,~D.; Cai,~Y.; Xu,~D.; Ma,~J.; Wang,~Q. General Charge Transfer
@@ -332,22 +341,6 @@ Khaliullin,~R.~Z.; Bell,~A.~T.; Head-Gordon,~M. Analysis of charge transfer
 Khaliullin,~R.~Z.; Bell,~A.~T.; Head-Gordon,~M. Electron donation in the
   water--water hydrogen bond. \emph{Chemistry--A European Journal}
   \textbf{2009}, \emph{15}, 851--855\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Xantheas(2000)]{xantheas2000cooperativity}
-Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
-  \emph{Chemical Physics} \textbf{2000}, \emph{258}, 225--231\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Kirov \latin{et~al.}(2008)Kirov, Fanourgakis, and
-  Xantheas]{kirov2008identifying}
-Kirov,~M.~V.; Fanourgakis,~G.~S.; Xantheas,~S.~S. Identifying the most stable
-  networks in polyhedral water clusters. \emph{Chemical Physics Letters}
-  \textbf{2008}, \emph{461}, 180--188\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -428,6 +421,152 @@ Rakshit,~A.; Bandyopadhyay,~P.; Heindel,~J.~P.; Xantheas,~S.~S. Atlas of
 Anatole~von Lilienfeld,~O.; Tkatchenko,~A. Two-and three-body interatomic
   dispersion energy contributions to binding in molecules and solids. \emph{The
   Journal of chemical physics} \textbf{2010}, \emph{132}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Misquitta(2013)]{misquitta2013charge}
+Misquitta,~A.~J. Charge transfer from regularized symmetry-adapted perturbation
+  theory. \emph{Journal of chemical theory and computation} \textbf{2013},
+  \emph{9}, 5313--5326\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stone and Misquitta(2009)Stone, and Misquitta]{stone2009charge}
+Stone,~A.~J.; Misquitta,~A.~J. Charge-transfer in symmetry-adapted perturbation
+  theory. \emph{Chemical Physics Letters} \textbf{2009}, \emph{473},
+  201--205\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Thirman \latin{et~al.}(2018)Thirman, Engelage, Huber, and
+  Head-Gordon]{thirman2018characterizing}
+Thirman,~J.; Engelage,~E.; Huber,~S.~M.; Head-Gordon,~M. Characterizing the
+  interplay of Pauli repulsion, electrostatics, dispersion and charge transfer
+  in halogen bonding with energy decomposition analysis. \emph{Physical
+  Chemistry Chemical Physics} \textbf{2018}, \emph{20}, 905--915\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Perdew \latin{et~al.}(1982)Perdew, Parr, Levy, and
+  Balduz~Jr]{perdew1982density}
+Perdew,~J.~P.; Parr,~R.~G.; Levy,~M.; Balduz~Jr,~J.~L. Density-functional
+  theory for fractional particle number: Derivative discontinuities of the
+  energy. \emph{Physical Review Letters} \textbf{1982}, \emph{49}, 1691\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Kirov \latin{et~al.}(2008)Kirov, Fanourgakis, and
+  Xantheas]{kirov2008identifying}
+Kirov,~M.~V.; Fanourgakis,~G.~S.; Xantheas,~S.~S. Identifying the most stable
+  networks in polyhedral water clusters. \emph{Chemical Physics Letters}
+  \textbf{2008}, \emph{461}, 180--188\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Xantheas(2000)]{xantheas2000cooperativity}
+Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
+  \emph{Chemical Physics} \textbf{2000}, \emph{258}, 225--231\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Partridge and Schwenke(1997)Partridge, and
+  Schwenke]{partridge1997determination}
+Partridge,~H.; Schwenke,~D.~W. The determination of an accurate isotope
+  dependent potential energy surface for water from extensive ab initio
+  calculations and experimental data. \emph{The Journal of Chemical Physics}
+  \textbf{1997}, \emph{106}, 4618--4639\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Burnham \latin{et~al.}(1999)Burnham, Li, Xantheas, and
+  Leslie]{burnham1999parametrization}
+Burnham,~C.~J.; Li,~J.; Xantheas,~S.~S.; Leslie,~M. The parametrization of a
+  Thole-type all-atom polarizable water model from first principles and its
+  application to the study of water clusters (n= 2--21) and the phonon spectrum
+  of ice Ih. \emph{The Journal of chemical physics} \textbf{1999}, \emph{110},
+  4566--4581\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Fanourgakis and Xantheas(2006)Fanourgakis, and
+  Xantheas]{fanourgakis2006flexible}
+Fanourgakis,~G.~S.; Xantheas,~S.~S. The flexible, polarizable, thole-type
+  interaction potential for water (TTM2-F) revisited. \emph{The Journal of
+  Physical Chemistry A} \textbf{2006}, \emph{110}, 4100--4106\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Babin \latin{et~al.}(2013)Babin, Leforestier, and
+  Paesani]{babin2013development}
+Babin,~V.; Leforestier,~C.; Paesani,~F. Development of a “first principles”
+  water potential with flexible monomers: Dimer potential energy surface, VRT
+  spectrum, and second virial coefficient. \emph{Journal of chemical theory and
+  computation} \textbf{2013}, \emph{9}, 5395--5403\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Babin \latin{et~al.}(2014)Babin, Medders, and
+  Paesani]{babin2014development}
+Babin,~V.; Medders,~G.~R.; Paesani,~F. Development of a “first principles”
+  water potential with flexible monomers. II: Trimer potential energy surface,
+  third virial coefficient, and small clusters. \emph{Journal of chemical
+  theory and computation} \textbf{2014}, \emph{10}, 1599--1607\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Yu \latin{et~al.}(2022)Yu, Qu, Houston, Conte, Nandi, and
+  Bowman]{yu2022q}
+Yu,~Q.; Qu,~C.; Houston,~P.~L.; Conte,~R.; Nandi,~A.; Bowman,~J.~M. q-AQUA: A
+  many-body CCSD (T) water potential, including four-body interactions,
+  demonstrates the quantum nature of water from clusters to the liquid phase.
+  \emph{The Journal of Physical Chemistry Letters} \textbf{2022}, \emph{13},
+  5068--5074\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Hamm(2014)]{hamm20142d}
+Hamm,~P. 2D-Raman-THz spectroscopy: A sensitive test of polarizable water
+  models. \emph{The Journal of Chemical Physics} \textbf{2014},
+  \emph{141}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Sedghamiz \latin{et~al.}(2017)Sedghamiz, Nagy, and
+  Jensen]{sedghamiz2017probing}
+Sedghamiz,~E.; Nagy,~B.; Jensen,~F. Probing the importance of charge flux in
+  force field modeling. \emph{Journal of chemical theory and computation}
+  \textbf{2017}, \emph{13}, 3715--3721\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Yang \latin{et~al.}(2020)Yang, Liu, Walker, and Ren]{yang2020accurate}
+Yang,~X.; Liu,~C.; Walker,~B.~D.; Ren,~P. Accurate description of molecular
+  dipole surface with charge flux implemented for molecular mechanics.
+  \emph{The Journal of Chemical Physics} \textbf{2020}, \emph{153}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Sidler \latin{et~al.}(2018)Sidler, Meuwly, and
+  Hamm]{sidler2018efficient}
+Sidler,~D.; Meuwly,~M.; Hamm,~P. An efficient water force field calibrated
+  against intermolecular THz and Raman spectra. \emph{The Journal of chemical
+  physics} \textbf{2018}, \emph{148}\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax

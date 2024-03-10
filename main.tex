@@ -483,11 +483,11 @@ of these polynomials certainly contribute to the historic difficulty of controll
 polarization between ions and water.\cite{jiao2006simulation,mason2012accurate}
 
 Normally, the dipole polarizability is treated as a constant in polarizable force fields,
-but Chung \textit{et al.} recently pointed out that the polarizability of ions
+but Chung \textit{et al.} have pointed out that the polarizability of ions
 is significantly diminished in the aqueous phase.\cite{chung2022classical}
 This effect is not exclusive to ions, but is simply more noticable for diffuse anions. We adopt a slightly
 simplified version of the scheme suggested by Chung \textit{et al.} for making the polarizability dependent on the local
-environment. For reasons of numerical stability, we damp the inverse polarizability, $\bm{\alpha}^{-1}$, as follows
+environment. We damp the inverse polarizability, $\bm{\alpha}^{-1}$, as follows
 \begin{equation}
   \bm{\alpha}^{-1}_i=
   R_i\begin{pmatrix}
@@ -495,7 +495,7 @@ environment. For reasons of numerical stability, we damp the inverse polarizabil
     0 & \alpha^{-1}_{yy,i} & 0 \\
     0 & 0 & \alpha^{-1}_{zz,i} \\
   \end{pmatrix}R_i^T
-    +\mathds{1}\sum_{i<j}k^{damp}_{ij}S_{ij}^{\rho}
+    +\mathds{1}\sum_{j}k^{damp}_{i}\left(\frac{\bar{\alpha}_i\bar{\alpha}_j}{r_{ij}^6}\right)
     \label{eq:polarizability}
 \end{equation}
 \noindent
@@ -503,10 +503,9 @@ The first term in Eq. \ref{eq:polarizability} is a typical expression of the dip
 in the local axis frame of that atom. $\alpha_{xx,i}$ is the $xx$ component of the dipole polarizability
 with other entries defined analogoulsy. $R_i$ is the rotation matrix that transforms the local
 axis system of atom $i$ to the global axis system. The second term defines an environment-dependent
-isotropic damping of the polarizability. In essence, we use the density overlap, $S_{ij}^\rho$,
-as an indicator of if two atoms are near one another and $k_{ij}^{damp}=(k_{i}^{damp}+k_{j}^{damp})/2$
-is a combination of free parameters that control the amount the polarizability will be modified
-in response to a certain amount of density overlap.
+isotropic damping of the polarizability. We use the dimensionless length scale, $\frac{\bar{\alpha}_i\bar{\alpha}_j}{r_{ij}^6}$,
+to indicate when damping should become important. $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$.
+$k_{i}^{damp}$ is an atom-specific parameter which modulates the increase of the inverse polarizability.
 
 Note that this modification of the polarizability describes a completely different
 effect from the damping of induced electrostatics. In the case of multipolar interactions,
@@ -518,19 +517,20 @@ or for very close contacts such as the interaction of \ce{Li^+} with \ce{H2O}.
 Finally, there is one more term in our polarization model which is designed to only contribute at very
 short range. Specifically, we introduce another term proportional to density overlap,
 \begin{equation}
-  V_{pol,sr}=\sum_{i<j}a_{ij}^{sr}f_3^{TT}(x_{ij})\frac{\bar{\alpha}_i + \bar{\alpha}_j}{2}\frac{1}{r_{ij}^3}S_{ij}^{\rho}
+  V_{pol,sr}=\sum_{i<j}a_{ij}^{sr}f_4^{TT}(x_{ij})\left(\frac{1}{2}\frac{\bar{\alpha}_i + \bar{\alpha}_j}{r_{ij}^3}\right)^{4/3}S_{ij}^{\rho}
 \label{eq:pol_sr}
 \end{equation}
 \noindent
 While Eq. \ref{eq:pol_sr} is much more empirical than the rest of the force field,
 it seems capture the effect of quadrupole polarization, which is known to be important
 in water\cite{herman2023accurate} but is very computationally expensive for the magnitude of the effect.
-In Eq. \ref{eq:pol_sr}, $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$, $f_3^{TT}(x_{ij})$
-is the third-order Tang-Toennies damping function, defined later in Eq. \ref{eq:TT}, and $a_{ij}^{sr}=a_{i}^{sr}a_{j}^{sr}$ is
+In Eq. \ref{eq:pol_sr}, $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$, $f_4^{TT}(x_{ij})$
+is the fourth-order Tang-Toennies damping function, defined later in Eq. \ref{eq:TT}, and $a_{ij}^{sr}=a_{i}^{sr}a_{j}^{sr}$ is
 the pairwise parameter fit for this term. This term tends to have a magnitude for water
-that is similar to what one expect for quadrupole polarization (around 10\%), but is clearly
-not a true model for quadrupole polarization since Eq. \ref{eq:pol_sr} is pairwise-additive
-while quadrupole polarization would make small, nonzero many-body contributions.
+that is only a bit larger than what would one expect for quadrupole polarization (around 20\%). Eq. \ref{eq:pol_sr} is clearly
+not a true model for quadrupole polarization since it is pairwise-additive
+while quadrupole polarization would make small, nonzero many-body contributions. Similar terms
+have been suggested before for capturing the short-range polarization of ions.\cite{sheng2022semiempirical}
 
 \section*{Charge Transfer}
 Charge transfer is the most difficult of the terms in EDA to model. This is
@@ -605,23 +605,6 @@ effect in which orbitals relax after allowing for occupied-virtual mixing.
 For example, when charge is transferred from oxygen to hydrogen in a water
 dimer, the final excess charge will mostly come to rest on the oxygen in
 the water with net-negative charge.
-
-The major non-additivity in this charge transfer model comes from
-the energy penalty associated with any atoms having nonzero values of $\delta q$.
-This is consistent with two known effects that distinguish the stability of water clusters.
-First, homodromic rings have particularly large non-additivities.\cite{xantheas2000cooperativity}
-In our model, this type of ring benefits from many-body charge transfer since each molecule
-can pass its excess charge along to the next molecule, resulting in a minor excess charge penalty.
-Second, this model makes it clear why water molecules which accept two hydrogen bonds without
-donating any hydrogen bonds are particularly unstable.\cite{kirov2008identifying} That is, charge
-gets transferred out of the double acceptor molecule and every molecule gets
-stuck with nonzero total charges. Figure 1(a) illustrates the additional stabilization
-experienced by homodromic rings due to being able to pass along excess charge. Figure 1(b)
-shows why double acceptor water molecules are particularly unstable.
-
-\textbf{Consider moving this into some results section later on...}
-
-
 
 There is one technical point worth noting about this model. Because the
 charge transferred between fragments is proportional to the direct CT contributions,
@@ -748,8 +731,10 @@ described above are used in fitting. For dispersion, polarization, and charge tr
 When parameterizing electrostatics, we optimize against two objectives. First, we ensure
 that the dipole derivatives at the equilibrium geometry of water are correct (this can be achieved
 nearly exactly). Second, we optimize against the distributed multipole electrostatic energy described
-near Eq. \ref{eq:cp}. This helps to ensure we end up with physically meaningful multipoles.
-At this point, we freeze the total charge and dipoles on each atom so that the dipole derivatives
+near Eq. \ref{eq:cp}. Additionally, we also include 200 random dimers
+of \ce{Cl^-(H2O)} and \ce{K^+(H2O)} when fitting against the distributed multipole electrostatics.
+This seems to help with optimizing to physically meaningful multipoles.
+At this point, we freeze the total charges and dipoles on each atom so that the dipole derivatives
 will remain correct. Next, we fit the value of the core charges, $Z$ and electrostatic exponents, $b_{elec}$, on each atom
 with respect to the total electrostatic energy from EDA. We also allow the quadrupoles to relax
 against the total electrostatic energy as a form of compensation for the lack of higher-order multipoles.
@@ -759,7 +744,7 @@ parameters. Specifically, in addition to EDA energies, we include the polarizabi
 at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry of water in the fitting process.
 The loss function we minimize against is,
 \begin{equation}
-  L_{pol}=\sum_{i}^{N} \sqrt{\frac{(E_i^{FF}-E_i^{EDA})^2}{N}} + w_1||\bm{\alpha}^{FF}-\bm{\alpha}^{EDA}||+w_2||\frac{\partial\bm{\alpha}^{FF}}{\partial \bm{r}}-\frac{\partial\bm{\alpha}^{EDA}}{\partial \bm{r}}||
+  L_{pol}=\sqrt{\frac{\sum_{i=1}^{N}(E_i^{FF}-E_i^{EDA})^2}{N}} + w_1||\bm{\alpha}^{FF}-\bm{\alpha}^{EDA}||+w_2||\frac{\partial\bm{\alpha}^{FF}}{\partial \bm{r}}-\frac{\partial\bm{\alpha}^{EDA}}{\partial \bm{r}}||
 \label{eq:pol_loss}
 \end{equation}
 \noindent
@@ -776,9 +761,8 @@ from their EDA energies. Note that for electrostatics and Pauli repulsion, we on
 the fitting process since electrostatics is strictly pairwise-additive and Pauli repulsion is nearly so.
 Dispersion, on the other hand, has a large enough many-body contribution that if only dimers
 are used in the fitting, one will systematically over-estimate the dispersion energy since
-many-body dispersion is usually repulsive. There are methods for including many-body dispersion,
+many-body dispersion is usually repulsive. There are methods for modeling many-body dispersion,
 but we have not included such terms in this model.\cite{anatole2010two,van2018new}
-We may add such terms in the future.
 
 The Pauli repulsion term is first fit against the RMSD of the corresponding EDA energy.
 The repulsion parameters are then allowed to relax against the total interaction energy
@@ -786,24 +770,259 @@ for only dimers. This procedure essentially results in improved error cancellati
 which we find is still necessary for a robust force field despite the effort
 to create a physically meaningful force field. We will have more to say about the necessity
 of error cancellation in force fields later. It should be noted that we only allow
-the Pauli repulsion to optimize against dimers so that it cannot try to correct errors
+the Pauli repulsion to optimize against dimers so that it cannot correct errors
 in the many-body contributions. Furthermore, we will see that the Pauli repulsion energy
 still ends up providing an unbiased estimate of the EDA Pauli repulsion energy.
 
 \section*{Results and discussion}
+\subsection*{Fortuitous Cancellation of Charge Transfer and Charge Penetration}
 
-\textbf{TODO}
+Before describing the outcomes of applying our model to various water clusters and
+ion-water clusters, let us discuss two important problems which we set out to solve
+in the construction of this model. First, it is broadly understood that there are
+contributions to the non-additive component of molecular interactions other than
+classical mutual polarization. By classical mutual polarization, we mean what some
+authors call induction.\cite{herman2023accurate} Induction aims to describe
+how multipoles are induced under an applied field, field gradient, etc.
+and how these induced multipoles interact further. The reason this is classical
+is that it does not describe the effect of charge delocalization which we refer to
+as charge transfer. Note that charge transfer can be understood as energetic
+stabilization associated with tunneling of electrons between molecules
+and hence grows exponentially at short distances.\cite{misquitta2013charge}
 
-\input{tables/mae_table.tex}
+We will focus on the EDA definition of charge transfer energy in this work, though
+other definitions are possible based on symmetry-adapted perturbation theory.\cite{stone2009charge,misquitta2013charge}
+If we consider that charge transfer involves the transfer of actual charge between
+molecules, which is certainly the case in EDA\cite{thirman2018characterizing},
+then it should be clear that there are both attractive and repulsive contributions
+to charge transfer. The attractive part is the energy lowering associated with delocalizing
+the electron density. The repulsive part arises from any molecule having a non-integer
+total charge. It can be seen that there must be a penalty for having non-integer
+charges since the energy of a system with a fractional number of electrons is exactly
+a linear interpolation of the energy of the two nearest states with integer charges.\cite{perdew1982density}
+Therefore, if there were no penalty for moving a fraction of an electron from one molecule to another,
+then the system would not be in the ground state electronic arrangement, which we
+assume to be true in this model.
 
-\begin{figure}
+\begin{figure}[H]
   \includegraphics*[width=\textwidth]{figures/trimer_mbe_example.png}
   \caption{Two water trimers illustrating the importance of both polarization
   and charge transfer for the stability of water molecules. FRZ corresponds to
   the frozen contribution: the sum of Pauli, electrostatic, and dispersion enegies. POL is the polarization
   energy and CT is the charge transfer energy. Energies are computed at the
   $\omega$B97X-V/def2-QZVPPD level of theory. See text for discussion.}
+  \label{fig:trimer}
 \end{figure}
+
+The existence of a penalty for moving charge between molecules makes it clear
+why many-body charge transfer is non-negligible. Figure \ref{fig:trimer} illustrates
+how hydrogen bond networks benefit from many-body charge transfer. Let us imagine that
+an equal amount of charge is transferred along each hydrogen bond, represented by arrows. 
+In the trimer on the left, the hydrogen bonds are organized in such a way that some molecules
+donate more hydrogen bonds than they receive and vice versa. This means that some molecules
+in the trimer on the left will end up with nonzero total charges. This is consistent
+with the known instability of double acceptor water molecules which do not donate
+any hydrogen bonds.\cite{kirov2008identifying}
+
+In the trimer on the right, each molecule donates and receives the same number of hydrogen bonds.
+This means each molecule will have a nearly net-zero charge while still
+benefitting from charge delocalization along each hydrogen bond. Now, if we imagine
+removing any water molecule from the trimer on the right, the two remaining molecules would have
+have nonzero total charges and hence incur a penalty. The elimination of this penalty
+when a third molecule is added to the network is exactly what gives rise to a many-body charge transfer stabilization.
+
+The ability of hydrogen bond networks
+to delocalize charge while keeping each fragment very nearly neutral seems to us
+an under-appreciated aspect of hydrogen bond cooperativity. Indeed, the trimer on the right
+is a so-called homodromic ring, which results in optimal cooperativity
+of the induced dipoles on each molecule.\cite{xantheas2000cooperativity} This can be
+seen by the large 3-body polarization contribution of $-1.66$ kcal/mol. We highlight, here,
+that there is an additional non-negligible 3-body contribution due to charge transfer of
+$-0.76$ kcal/mol. The fact that water can receive and donate two hydrogen bonds simultaneously
+makes it uniquely capable of passing charge between molecules while keeping the total charge
+of each molecule neutral.
+
+It is interesting to note that the frozen term, i.e. the sum of electrostatics, dispersion, and
+Pauli repulsion can end up being smaller than either the polarization or charge transfer contributions.
+Additionally, although not shown explicitly here, the charge penetration contribution, Eq. \ref{eq:cp}, to the
+electrostatic energy of a hydrogen bond is typically about equal to the point-electrostatic contribution.
+This begs the question of how so many force fields have been even qualitatively successful while
+neglecting such large components of the intermolecular energy?
+
+\begin{figure}[H]
+  \includegraphics*[width=\textwidth]{figures/pauli_ct_cp_correlation.png}
+  \caption{Correlation between (A) charge penetration energy (CP), (B) charge transfer energy (CT),
+  and (C) their sum against Pauli repulsion energy.
+  Energies are computed at the $\omega$B97X-V/def2-QZVPPD level of theory. See text for discussion.}
+  \label{fig:cp_ct_pauli}
+\end{figure}
+
+Figure \ref{fig:cp_ct_pauli} demonstrates that force fields have succeeded despite neglecting
+charge transfer (CT) and charge penetration (CP) simply because CT and CP are exceptionally
+strongly correlated to Pauli repulsion. This observation is extremely robust for water. Clearly,
+most force fields are implicitly describing CT and CP by having too soft of a repulsive wall
+when compared against an \textit{ab initio} calculation of Pauli repulsion such as that from EDA.
+It is rather easy to see from Figure \ref{fig:cp_ct_pauli} that the sum
+of CT and CP is generally better correlated to Pauli repulsion than either term individually. Whether
+or not this correlation holds as robustly for other systems is beyond the scope of this work. Figure
+\ref{fig:cp_ct_pauli} does raise the alarming possibility that adding charge penetration to a force field
+without adding charge transfer can make the force field worse by destroying a fortuitous cancellation
+of errors. We consider that Figures \ref{fig:trimer} and \ref{fig:cp_ct_pauli} provide ample motivation for the
+development of a better model for charge transfer, which we present here.
+
+\subsection*{Water Monomer Properties}
+
+In the construction of this model, we have gone to great lengths to ensure that the model
+reproduces as many properties of the water monomer as possible. For instance,
+in Figure \ref{fig:dipole_surface} we make a comparison between the dipole
+surface of this model and the reference surface computed with $\omega$B97X-V/def2-QZVPPD.
+We also show two references of possible interest. The blue points correspond to the
+dipole surface of a force field with fixed charges and dipoles that optimally
+reproduce the electrostatic dimer EDA data described earlier. Clearly, fixed charge
+force fields completely fail to reproduce the dipole surface of water.
+
+\begin{figure}[H]
+  \includegraphics*[width=\textwidth]{figures/dipole_surface.png}
+  \caption{The dipole surface of water for all structures taken from a
+  3-D scan of water internal coordinates with a deformation energy less than
+  20 kcal/mol. The black dashed line shows the values computed with $\omega$B97X-V/def2-QZVPPD.
+  The green dashed line corresponds to the experimental gas-phase dipole moment
+  of water of 1.85 Debye.
+}
+  \label{fig:dipole_surface}
+\end{figure}
+
+The orange points in Figure \ref{fig:dipole_surface} are the dipole surface associated with
+the Partridge-Schwenke (PS) water monomer surface.\cite{partridge1997determination}
+The PS potential and dipole surface are used by many water models such as the TTM models,\cite{burnham1999parametrization,fanourgakis2006flexible}
+MB-Pol\cite{babin2013development,babin2014development}, and q-aqua\cite{yu2022q}.
+Clearly, the PS dipole surface is very accurate over a wide range of energies. We chose
+not to use the PS dipole surface since we intend to construct
+force fields for molecules other than water. Clearly, we have not sacrificed much
+since the FQCT dipole surface essentially parallels the PS dipole surface.
+
+It was first pointed out by Fanourgakis and Xantheas that reproducing the dipole surface of water
+is essential for capturing the opening of the bend angle of water in the condensed phase.\cite{fanourgakis2006flexible}
+Essentially, a model needs to reproduce the dipole derivatives of water to correctly predict
+the opening of the bend angle as water clusters become larger. Our model is able to reproduce
+the dipole derivatives of water to five decimal places in atomic units.
+
+Another important property for accurate energetics and transferability, especially for interactions with ions,
+is the molecular polarizability. Because our model contains anisotropic dipole polarizabilities
+and fluctuating charges, there is more than enough flexibility in parameter space to exactly reproduce
+the molecular polarizability. Our model aims to reproduce the $\omega$B97X-V/def2-QZVPPD molecular
+polarizability with $\alpha_{xx}=10.0321$, $\alpha_{yy}=9.65958$, $\alpha_{zz}=9.40921$, which it manages
+to do up to five decimal places in bohr$^3$. The quoted polarizability values correspond to a water
+molecule with the x-axis as the bisector of the HOH angle and the z-axis normal to the plane of the
+water molecule.
+
+The last monomer property we explicitly aimed to reproduce are the polarizability
+derivatives of gas-phase water at its equilibrium geometry. The polarizability derivatives control
+the intensity of peaks measured with raman spectroscopy but have rarely been
+discussed in the construction of water models to our knowledge. Additionally, since water distorts when interacting
+with other molecules, reproducing the polarizability derivatives indicates how well the molecular polarizability
+at distorted geometries will be reproduced. In Table \ref{tab:pol_derivs}, we report the polarizability derivatives of our final model
+as well as the polarizability derivatives for an identically parameterized model which does not include
+fluctuating charges. It is important to note that one can achieve better agreement with reference
+polarizability derivatives if that is the only quantity one aims to reproduce. These models, however, tend
+to result in inadequate polarization energies.
+
+\begin{table}[ht!]
+  \begin{center}
+  \begin{tabular}{ccccc}
+      \multicolumn{5}{c}{Polarizability Derivatives of Water (bohr$^2$)} \\\hline
+       Atom & $xx$ & $xy$ & $yy$ & $zz$ \\\hline
+       O$x$ & -                 & 4.04/2.92/-0.13    & -                  & -  \\
+       O$y$ & 5.15/1.58/2.04    & -                  & 4.45/3.24/-2.03    & 1.50/0.0/0.0  \\
+       O$z$ & -                 & -                  & -                  & -  \\
+       H$x$ & -4.61/-2.57/0.78  & -2.02/-1.46/0.06   & -2.53/-0.60/-0.78  & -1.39/0.0/0.0  \\
+       H$y$ & -2.57/-0.79/-1.02 & -1.68/-1.25/-0.08  & -2.22/-1.62/1.02   & -0.75/0.0/0.0  \\
+       H$z$ & -                 & -                  & -                  & -  \\
+
+  \end{tabular}
+  \end{center}
+  \vspace{-3mm}
+  \caption{Polarizability derivatives of water computed at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry
+  in three different ways. The first entry is computed with $\omega$B97X-V/def2-QZVPPD, the second with FQCT,
+  and the third with the same model but using parameters optimized without fluctuating charges.
+  The Atom column tells both the atom and component
+  of its position we take the derivative with respect to.
+  The water monomer has its bisector aligned with the $x$-axis and the $z$-axis is normal to the water 
+  molecule plane. Note that the derivatives for the second hydrogen are identical to the first
+  but with opposite sign. The $xz$ and $yz$ entries are omitted since they are small and
+  reproduced to three decimal places by both models.}
+  \label{tab:pol_derivs}
+\end{table}
+
+Certain polarizbility derivatives in Table \ref{tab:pol_derivs} are reproduced very accurately,
+while others are not at all. Most notably, our model does not have any $zz$ polarizability derivatives
+while these should be rather large. The reason our model has no $zz$ polarizability derivatives
+is that we do not include intramolecular polarization. We tested what happens when intramolecular
+polarization is turned on and found that the $zz$ polarizability derivatives are still reproduced
+very poorly and the polarization energies generally became less accurate. It is of some interest that
+when intramolecular polarization is turned on, the polarizability derivatives are quite sensitive
+to the choice and strength of damping function. This may enable the tuning of damping functions
+based on monomers alone.
+
+We find it very interesting that the model which includes fluctuating charges in the polarization
+calculation gives much better polarizability derivatives than one which just uses anisotropic dipole
+polarizabilities. This indicates that one of the main reasons water models have historically
+predicted Raman intensities very poorly\cite{hamm20142d} is the lack of fluctuating charges in the
+polarization process. Furthermore, we are able to achieve higher accuracy in the polarization energies
+using fluctuating charges than without.
+
+The $zz$ polarizability derivatives of water are an interesting case
+since they can be reproduced accurately when using intramolecular polarization, but in our experience, the strength
+of damping to enable this is too weak to have a stable water model. This indicates that an
+interesting future direction for advanced force fields is the construcion of geometry-dependent
+polarizability surfaces. In much the same way that recent force fields employ
+charge flux to ensure accurate dipole surfaces, future models will benefit from
+accurate polarizability surfaces. Indeed, some recent work indicates that
+simple linear interpolation based on internal coordinates may be sufficient for water.\cite{herman2023accurate}
+Linear models of charge flux are accurate for organic molecules\cite{sedghamiz2017probing,yang2020accurate},
+but the same remains to be seen for the polarizability surface of organic molecules.
+
+It is difficult to compare the accuracy of the polarizability derivatives of this model
+to others since very few models report this quantity. At least one water model has been constructed
+for the express purpose of reproducing Raman spectra.\cite{sidler2018efficient}
+The polarizability derivatives were not reported. The polarization is described using
+anisotropic polarizabilities but no fluctuating charges which, based on the contents of Table \ref{tab:pol_derivs}, lead us to believe this model likely has more accurate
+polarizability derivatives.
+
+\subsection*{Water Model}
+
+\begin{table}[ht!]
+  \begin{center}
+  \begin{tabular}{lccccc}
+      \multicolumn{5}{c}{MAE of EDA Terms (kcal/mol)} \\\hline
+       & \ce{(H2O)2} & \ce{(H2O)3} & \ce{(H2O)4} & \ce{(H2O)5} \\\hline
+      Deform. &  &  &  &  \\
+      Pauli &  &  &  &  \\
+      Disp. &  &  &  &  \\
+      Elec. &  &  &  &  \\
+      Pol. &  &  &  &  \\
+      CT &  &  &  &  \\\hline
+      Total &  &  &  &  \\\hline
+  \end{tabular}
+  \end{center}
+  \vspace{-3mm}
+  \caption{Comparison of the MAE of all terms in the EDA against predictions of our
+  water model for water dimers, trimers, tetramers, and pentamers.}
+  \label{tab:mae}
+\end{table}
+
+\textbf{INSERT TABLE WITH MAES AND RMSDS FOR REFERENCE CLUSTERS WITH COMPS TO OTHER FFS}
+
+One of the major goals of this model is to quantitiatively reproduce the many-body contributions
+to both polarization and charge transfer. To assess how well we have achieved this, we computed
+the three-body contribution to both polarization and charge transfer for all trimers extracted
+from the ion-water clusters used in parameterizing this model. The three-body polarization and
+charge transfer energy are defined as, $E_{3B}(123)=E(123)-E(12)-E(13)-E(23)$. That is,
+we take any EDA energy component for a trimer, $E_{3B}(123)$, and subtract off the same
+EDA energy component for the three dimers forming that trimer. There is no one-body
+contribution to this energy since EDA only deals with intermolecular forces.
+
+\textbf{INSERT FIGURE OF 3B CT and POL}
 
 \begin{acknowledgement}
 
