@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{61}
+\begin{mcitethebibliography}{73}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -72,31 +72,74 @@ Mao,~Y.; Loipersberger,~M.; Horn,~P.~R.; Das,~A.; Demerdash,~O.; Levine,~D.~S.;
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Rackers \latin{et~al.}(2021)Rackers, Silva, Wang, and
-  Ponder]{rackers2021polarizable}
-Rackers,~J.~A.; Silva,~R.~R.; Wang,~Z.; Ponder,~J.~W. Polarizable water
-  potential derived from a model electron density. \emph{Journal of chemical
-  theory and computation} \textbf{2021}, \emph{17}, 7056--7084\relax
+\bibitem[Xantheas(2000)]{xantheas2000cooperativity}
+Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
+  \emph{Chemical Physics} \textbf{2000}, \emph{258}, 225--231\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Van~Vleet \latin{et~al.}(2016)Van~Vleet, Misquitta, Stone, and
-  Schmidt]{van2016beyond}
-Van~Vleet,~M.~J.; Misquitta,~A.~J.; Stone,~A.~J.; Schmidt,~J.~R. Beyond
-  Born--Mayer: Improved models for short-range repulsion in ab initio force
-  fields. \emph{Journal of chemical theory and computation} \textbf{2016},
-  \emph{12}, 3851--3870\relax
+\bibitem[Heindel and Xantheas(2021)Heindel, and Xantheas]{heindel2021many}
+Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
+  revisited: II. Alkali metal and halide ion--water interactions. \emph{Journal
+  of chemical theory and computation} \textbf{2021}, \emph{17},
+  2200--2216\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Van~Vleet \latin{et~al.}(2018)Van~Vleet, Misquitta, and
-  Schmidt]{van2018new}
-Van~Vleet,~M.~J.; Misquitta,~A.~J.; Schmidt,~J. New angles on standard force
-  fields: Toward a general approach for treating atomic-level anisotropy.
-  \emph{Journal of Chemical Theory and Computation} \textbf{2018}, \emph{14},
-  739--758\relax
+\bibitem[Herman \latin{et~al.}(2021)Herman, Heindel, and
+  Xantheas]{herman2021many}
+Herman,~K.~M.; Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for
+  aqueous systems revisited: III. Hofmeister ion--water interactions.
+  \emph{Physical Chemistry Chemical Physics} \textbf{2021}, \emph{23},
+  11196--11210\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Heindel and Xantheas(2020)Heindel, and Xantheas]{heindel2020many}
+Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
+  revisited: I. Water--water interactions. \emph{Journal of Chemical Theory and
+  Computation} \textbf{2020}, \emph{16}, 6843--6855\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Zhuang \latin{et~al.}(2022)Zhuang, Riera, Zhou, Deary, and
+  Paesani]{zhuang2022hydration}
+Zhuang,~D.; Riera,~M.; Zhou,~R.; Deary,~A.; Paesani,~F. Hydration structure of
+  Na+ and K+ ions in solution predicted by data-driven many-body potentials.
+  \emph{The Journal of Physical Chemistry B} \textbf{2022}, \emph{126},
+  9349--9360\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Caruso \latin{et~al.}(2022)Caruso, Zhu, Fulton, and
+  Paesani]{caruso2022accurate}
+Caruso,~A.; Zhu,~X.; Fulton,~J.~L.; Paesani,~F. Accurate modeling of bromide
+  and iodide hydration with data-driven many-body potentials. \emph{The Journal
+  of Physical Chemistry B} \textbf{2022}, \emph{126}, 8266--8278\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Leontyev and Stuchebrukhov(2011)Leontyev, and
+  Stuchebrukhov]{leontyev2011accounting}
+Leontyev,~I.; Stuchebrukhov,~A. Accounting for electronic polarization in
+  non-polarizable force fields. \emph{Physical Chemistry Chemical Physics}
+  \textbf{2011}, \emph{13}, 2613--2626\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Bedrov \latin{et~al.}(2019)Bedrov, Piquemal, Borodin, MacKerell~Jr,
+  Roux, and Schroeder]{bedrov2019molecular}
+Bedrov,~D.; Piquemal,~J.-P.; Borodin,~O.; MacKerell~Jr,~A.~D.; Roux,~B.;
+  Schroeder,~C. Molecular dynamics simulations of ionic liquids and
+  electrolytes using polarizable force fields. \emph{Chemical reviews}
+  \textbf{2019}, \emph{119}, 7940--7995\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -125,6 +168,26 @@ Gavezzotti,~A. Calculation of intermolecular interaction energies by direct
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Van~Vleet \latin{et~al.}(2016)Van~Vleet, Misquitta, Stone, and
+  Schmidt]{van2016beyond}
+Van~Vleet,~M.~J.; Misquitta,~A.~J.; Stone,~A.~J.; Schmidt,~J.~R. Beyond
+  Born--Mayer: Improved models for short-range repulsion in ab initio force
+  fields. \emph{Journal of chemical theory and computation} \textbf{2016},
+  \emph{12}, 3851--3870\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Van~Vleet \latin{et~al.}(2018)Van~Vleet, Misquitta, and
+  Schmidt]{van2018new}
+Van~Vleet,~M.~J.; Misquitta,~A.~J.; Schmidt,~J. New angles on standard force
+  fields: Toward a general approach for treating atomic-level anisotropy.
+  \emph{Journal of Chemical Theory and Computation} \textbf{2018}, \emph{14},
+  739--758\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Misquitta \latin{et~al.}(2014)Misquitta, Stone, and
   Fazeli]{misquitta2014distributed}
 Misquitta,~A.~J.; Stone,~A.~J.; Fazeli,~F. Distributed multipoles from a robust
@@ -140,6 +203,25 @@ Misquitta,~A.~J.; Stone,~A.~J. ISA-Pol: distributed polarizabilities and
   dispersion models from a basis-space implementation of the iterated
   stockholder atoms procedure. \emph{Theoretical Chemistry Accounts}
   \textbf{2018}, \emph{137}, 1--20\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Rackers \latin{et~al.}(2021)Rackers, Silva, Wang, and
+  Ponder]{rackers2021polarizable}
+Rackers,~J.~A.; Silva,~R.~R.; Wang,~Z.; Ponder,~J.~W. Polarizable water
+  potential derived from a model electron density. \emph{Journal of chemical
+  theory and computation} \textbf{2021}, \emph{17}, 7056--7084\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Boyer \latin{et~al.}(2019)Boyer, Marsalek, Heindel, Markland, McCoy,
+  and Xantheas]{boyer2019beyond}
+Boyer,~M.~A.; Marsalek,~O.; Heindel,~J.~P.; Markland,~T.~E.; McCoy,~A.~B.;
+  Xantheas,~S.~S. Beyond Badger’s rule: The origins and generality of the
+  structure--spectra relationship of aqueous hydrogen bonds. \emph{The Journal
+  of Physical Chemistry Letters} \textbf{2019}, \emph{10}, 918--924\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -469,13 +551,6 @@ Kirov,~M.~V.; Fanourgakis,~G.~S.; Xantheas,~S.~S. Identifying the most stable
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Xantheas(2000)]{xantheas2000cooperativity}
-Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
-  \emph{Chemical Physics} \textbf{2000}, \emph{258}, 225--231\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
 \bibitem[Partridge and Schwenke(1997)Partridge, and
   Schwenke]{partridge1997determination}
 Partridge,~H.; Schwenke,~D.~W. The determination of an accurate isotope
@@ -567,6 +642,44 @@ Yang,~X.; Liu,~C.; Walker,~B.~D.; Ren,~P. Accurate description of molecular
 Sidler,~D.; Meuwly,~M.; Hamm,~P. An efficient water force field calibrated
   against intermolecular THz and Raman spectra. \emph{The Journal of chemical
   physics} \textbf{2018}, \emph{148}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Herman and Xantheas(2023)Herman, and Xantheas]{herman2023extensive}
+Herman,~K.~M.; Xantheas,~S.~S. An extensive assessment of the performance of
+  pairwise and many-body interaction potentials in reproducing ab initio
+  benchmark binding energies for water clusters n= 2--25. \emph{Physical
+  Chemistry Chemical Physics} \textbf{2023}, \emph{25}, 7120--7143\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Zhu \latin{et~al.}(2023)Zhu, Riera, Bull-Vulpe, and
+  Paesani]{zhu2023mb}
+Zhu,~X.; Riera,~M.; Bull-Vulpe,~E.~F.; Paesani,~F. MB-pol (2023): Sub-chemical
+  accuracy for water simulations from the gas to the liquid phase.
+  \emph{Journal of Chemical Theory and Computation} \textbf{2023}, \emph{19},
+  3551--3566\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Burnham and Xantheas(2002)Burnham, and
+  Xantheas]{burnham2002development}
+Burnham,~C.~J.; Xantheas,~S.~S. Development of transferable interaction models
+  for water. IV. A flexible, all-atom polarizable potential (TTM2-F) based on
+  geometry dependent charges derived from an ab initio monomer dipole moment
+  surface. \emph{The Journal of chemical physics} \textbf{2002}, \emph{116},
+  5115--5124\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Badger(1934)]{badger1934relation}
+Badger,~R.~M. A relation between internuclear distances and bond force
+  constants. \emph{The Journal of Chemical Physics} \textbf{1934}, \emph{2},
+  128--131\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
