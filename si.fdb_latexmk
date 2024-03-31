@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex si"] 1710971861 "si.aux" "si.bbl" "si" 1710971862 0
-  "./references.bib" 1710960111 27516 bda65c5b5ccf52d28be03cb9736eed0e ""
+["bibtex si"] 1711754988 "si.aux" "si.bbl" "si" 1711754989 0
+  "./references.bib" 1711744536 27751 1e0dc8c1d8592bd90928ab2aa8691103 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/unsrtnat.bst" 1233624470 24550 a41a6405f4de768c43e871d9fbce2bc8 ""
-  "si.aux" 1710971862 751 fd3c63cec4c8eba3606bdd4b0b4cff7a "pdflatex"
+  "si.aux" 1711754989 1442 2fd5b7b9dbb0874878de9feb1f1332a5 "pdflatex"
   (generated)
   "si.bbl"
   "si.blg"
   (rewritten before read)
-["pdflatex"] 1710971861 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" "si.pdf" "si" 1710971862 0
+["pdflatex"] 1711754988 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" "si.pdf" "si" 1711754989 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1690389999 28952 107937fbd117a209f7bc50fb576c28bb ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk" 1690389998 49076 546f506cf9caf34708b1cdb291ad1749 ""
@@ -18,7 +18,8 @@
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk" 1693860115 53712 4ff8c22441ef4ee5beb1a8c496d8a7be ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0600.600pk" 1710971689 12316 122174010c815098c359c61b56267dfa ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk" 1695935521 35180 379c780e4576a86ddcc13088b94cea28 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" 1710971861 2121 240517f450d9117b0d28362b3e7e7d5a ""
+  "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk" 1690389995 39096 e6ea623bf6372f99bad6436e6d903566 ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" 1711754987 6956 210f839afc66b52902d640177e684413 ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -33,6 +34,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2074.tfm" 1136768653 3584 8e2870ec7aa9776f59654942b0923f51 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecss0600.tfm" 1136768653 3584 29c1411d292c531bfea559d981c42321 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm" 1136768653 3072 b73d2778cc3af44970de4de5e032d7f6 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1200.tfm" 1136768653 3072 8b5a64dc91775463bc95e2d818524028 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1246382020 1120 200be8b775682cdf80acad4be5ef57e4 ""
@@ -65,8 +67,14 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty" 1583617216 6501 4011d89d9621e0b0901138815ba5ff29 ""
   "/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty" 1572645307 1057 525c2192b5febbd8c1f662c9468335bb ""
@@ -121,10 +129,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1690152512 4036811 4cb80868003c86b962b6b5ae1e1e2902 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1690152518 1405647 cc8221b3815afa4901915eeb915f9cc3 ""
   "MyCommand" 0 -1 0 ""
-  "figures/dipole_derivatives_dimer.png" 1710971587 64578 033278cf11bbe7917cdfc8a070b5e232 ""
-  "si.aux" 1710971862 751 fd3c63cec4c8eba3606bdd4b0b4cff7a "pdflatex"
-  "si.bbl" 1710971861 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex si"
-  "si.tex" 1710971861 2121 240517f450d9117b0d28362b3e7e7d5a ""
+  "figures/dipole_derivatives.png" 1711162613 128187 3011a8092bc0698dd2b3f3f7be1c3d32 ""
+  "si.aux" 1711754989 1442 2fd5b7b9dbb0874878de9feb1f1332a5 "pdflatex"
+  "si.bbl" 1711754988 951 c5809c2619dfb655cf1d4d701c26483f "bibtex si"
+  "si.tex" 1711754987 6956 210f839afc66b52902d640177e684413 ""
   (generated)
   "si.aux"
   "si.log"

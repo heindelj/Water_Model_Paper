@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1711078794 "main.aux" "main.bbl" "main" 1711078797 0
-  "./acs-main.bib" 1711078797 306 2ec6e2c563f7f14bcefed0d36c308168 ""
-  "./references.bib" 1711075336 27808 00e0558497125155b0527cdfbd7dc19c ""
+["bibtex main"] 1711844655 "main.aux" "main.bbl" "main" 1711844734 0
+  "./acs-main.bib" 1711844734 306 2ec6e2c563f7f14bcefed0d36c308168 ""
+  "./references.bib" 1711744536 27751 1e0dc8c1d8592bd90928ab2aa8691103 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1711078797 19543 3f7b8eb589c5e2495e2435598de80c40 "pdflatex"
+  "main.aux" 1711844734 21192 1de6aa00765fd403d34a969eaf5d41b4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1711078794 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1711078797 0
+["pdflatex"] 1711844730 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1711844734 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1711078791 96616 17489de238df95c2dccd7d7e93b6feee ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1711844730 102010 1a85808650a026e65d802bb0c9fb4ad9 ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -62,7 +62,6 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1248133631 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
-  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb" 1248133631 24457 5cbb7bdf209d5d1ce9892a9b80a307cc ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb" 1248133631 24393 3b7eb51a67a0a62aec5849271bdb9c2e ""
@@ -122,14 +121,17 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1690152512 4036811 4cb80868003c86b962b6b5ae1e1e2902 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1690152518 1405647 cc8221b3815afa4901915eeb915f9cc3 ""
+  "figures/badger_correlation_final.png" 1711223568 94965 9eca5f2997b63dda1e035fbc1e553cbd ""
   "figures/dipole_surface.png" 1710036481 99865 dc428ffd381aa7f9d11b70306b5291ed ""
   "figures/error_correlation.png" 1710266151 107766 cef711bae9811be5cf05bab37a76a287 ""
   "figures/pauli_ct_cp_correlation.png" 1709933789 116279 4aa83092e750216f2ea2abab5d44bb08 ""
+  "figures/three_body_pol_and_ct_cations.png" 1711843853 115790 38bf27b7e02351cae91b5ef8f1c1aa86 ""
+  "figures/three_body_pol_and_ct_halides.png" 1711842799 108105 5f523cd3f3d9edb02b946a9bf0be8676 ""
   "figures/three_body_pol_and_ct_water.png" 1710182254 103141 b86ceac2d949c29faf61129408671ac0 ""
   "figures/trimer_mbe_example.png" 1705705040 71772 1c186bc1ce9f9a727cfd81d510a4a0af ""
-  "main.aux" 1711078797 19543 3f7b8eb589c5e2495e2435598de80c40 "pdflatex"
-  "main.bbl" 1711078794 34454 b89774b117c63342621df06f576f707b "bibtex main"
-  "main.tex" 1711078791 96616 17489de238df95c2dccd7d7e93b6feee ""
+  "main.aux" 1711844734 21192 1de6aa00765fd403d34a969eaf5d41b4 "pdflatex"
+  "main.bbl" 1711844655 33988 2e5b16258ade2e354cf2a08749202ded "bibtex main"
+  "main.tex" 1711844730 102010 1a85808650a026e65d802bb0c9fb4ad9 ""
   (generated)
   "acs-main.bib"
   "main.aux"

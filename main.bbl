@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{73}
+\begin{mcitethebibliography}{72}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -529,15 +529,6 @@ Thirman,~J.; Engelage,~E.; Huber,~S.~M.; Head-Gordon,~M. Characterizing the
   interplay of Pauli repulsion, electrostatics, dispersion and charge transfer
   in halogen bonding with energy decomposition analysis. \emph{Physical
   Chemistry Chemical Physics} \textbf{2018}, \emph{20}, 905--915\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Perdew \latin{et~al.}(1982)Perdew, Parr, Levy, and
-  Balduz~Jr]{perdew1982density}
-Perdew,~J.~P.; Parr,~R.~G.; Levy,~M.; Balduz~Jr,~J.~L. Density-functional
-  theory for fractional particle number: Derivative discontinuities of the
-  energy. \emph{Physical Review Letters} \textbf{1982}, \emph{49}, 1691\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
