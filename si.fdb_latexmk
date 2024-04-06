@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex si"] 1711754988 "si.aux" "si.bbl" "si" 1711754989 0
+["bibtex si"] 1712017677 "si.aux" "si.bbl" "si" 1712017707 0
   "./references.bib" 1711744536 27751 1e0dc8c1d8592bd90928ab2aa8691103 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/unsrtnat.bst" 1233624470 24550 a41a6405f4de768c43e871d9fbce2bc8 ""
-  "si.aux" 1711754989 1442 2fd5b7b9dbb0874878de9feb1f1332a5 "pdflatex"
+  "si.aux" 1712017707 1874 386bc26ca5156021150ab984b73b9dec "pdflatex"
   (generated)
   "si.bbl"
   "si.blg"
   (rewritten before read)
-["pdflatex"] 1711754988 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" "si.pdf" "si" 1711754989 0
+["pdflatex"] 1712017706 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" "si.pdf" "si" 1712017707 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1690389999 28952 107937fbd117a209f7bc50fb576c28bb ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk" 1690389998 49076 546f506cf9caf34708b1cdb291ad1749 ""
@@ -17,9 +17,10 @@
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk" 1690390000 34296 d0fdccbe2f272de10ddf61e01cc1128b ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk" 1693860115 53712 4ff8c22441ef4ee5beb1a8c496d8a7be ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0600.600pk" 1710971689 12316 122174010c815098c359c61b56267dfa ""
+  "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk" 1692312765 24944 4bc71ca10ff0638f0d066ceedce11a59 ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk" 1695935521 35180 379c780e4576a86ddcc13088b94cea28 ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk" 1690389995 39096 e6ea623bf6372f99bad6436e6d903566 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" 1711754987 6956 210f839afc66b52902d640177e684413 ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" 1712017706 13060 58ea1648ca2f67262c9b424080be0d6a ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -33,6 +34,8 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1728.tfm" 1136768653 3584 3c76ccb63eda935a68ba65ba9da29f1a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2074.tfm" 1136768653 3584 8e2870ec7aa9776f59654942b0923f51 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecss0600.tfm" 1136768653 3584 29c1411d292c531bfea559d981c42321 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti0600.tfm" 1136768653 3072 80e486733e39bf8ad2a360793cc998ae ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti0800.tfm" 1136768653 3072 828ba0ea87cf5b727c4bfd6367195ec2 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm" 1136768653 3072 b73d2778cc3af44970de4de5e032d7f6 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1200.tfm" 1136768653 3072 8b5a64dc91775463bc95e2d818524028 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -99,6 +102,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty" 1622581934 2894 55431114fc0e491ecee275edafd6c881 ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty" 1603745920 51746 e89c4da670ba533e6ab38e045ce6d1d9 ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty" 1603745920 67929 d50ae850e1d9604065e8337a75a41029 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/doublestroke/dsfont.sty" 1137110062 230 7bc61880b468bfd38aedc173be7c3486 ""
   "/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/share/texlive/texmf-dist/tex/latex/float/float.sty" 1137110151 6749 16d2656a1984957e674b149555f1ea1d ""
   "/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty" 1578002852 41601 9cf6c5257b1bc7af01a58859749dd37a ""
@@ -109,6 +113,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty" 1622581934 18399 7e40f80366dffb22c0e7b70517db5cb4 ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty" 1636758526 7996 a8fb260d598dcaf305a7ae7b9c3e3229 ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty" 1622581934 2671 4de6781a30211fe0ea4c672e4a2a8166 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty" 1622581934 1808 e22d55a4f66156801447813626bd4159 ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty" 1636758526 4009 187ea2dc3194cd5a76cd99a8d7a6c4d0 ""
   "/usr/share/texlive/texmf-dist/tex/latex/grfext/grfext.sty" 1575499774 7133 b94bbacbee6e4fdccdc7f810b2aec370 ""
   "/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty" 1602274869 22521 d2fceb764a442a2001d257ef11db7618 ""
@@ -119,6 +124,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
   "/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty" 1159951381 151738 8cd767481920f0eb785302dacfc87057 ""
   "/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty" 1644012257 45458 f1c6cb3edd91174e966cbbaf88993bcf ""
+  "/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty" 1575674318 6575 25396d208d8f2b9395d06ef315d5886c ""
   "/usr/share/texlive/texmf-dist/tex/latex/titling/titling.sty" 1252107870 7358 95ac619994bd30d405a74f3eca431c84 ""
   "/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty" 1636758526 12694 6c23725d50ab9d1e2d3ce482c58ffcf3 ""
   "/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty" 1622581934 13197 df0fe9a9695763546b59e02a008447b3 ""
@@ -130,9 +136,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1690152518 1405647 cc8221b3815afa4901915eeb915f9cc3 ""
   "MyCommand" 0 -1 0 ""
   "figures/dipole_derivatives.png" 1711162613 128187 3011a8092bc0698dd2b3f3f7be1c3d32 ""
-  "si.aux" 1711754989 1442 2fd5b7b9dbb0874878de9feb1f1332a5 "pdflatex"
-  "si.bbl" 1711754988 951 c5809c2619dfb655cf1d4d701c26483f "bibtex si"
-  "si.tex" 1711754987 6956 210f839afc66b52902d640177e684413 ""
+  "si.aux" 1712017707 1874 386bc26ca5156021150ab984b73b9dec "pdflatex"
+  "si.bbl" 1712017677 951 c5809c2619dfb655cf1d4d701c26483f "bibtex si"
+  "si.tex" 1712017706 13060 58ea1648ca2f67262c9b424080be0d6a ""
   (generated)
   "si.aux"
   "si.log"

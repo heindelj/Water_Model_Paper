@@ -8,6 +8,8 @@
 \usepackage[super,sort&compress,comma]{natbib} \usepackage[font={small}]{caption} %scriptsize = 8pt; footnotesize = 9pt; small = 10pt; normalsize = 11pt (set on line 4 above)
 \usepackage[labelfont=bf]{caption}
 \usepackage{bm}
+\usepackage{dsfont}
+\usepackage{pdflscape}
 \usepackage[T1]{fontenc}
 \usepackage[version=4]{mhchem}
 \usepackage{textcomp}
@@ -112,9 +114,82 @@ In principle, the curves in Figure \ref{fig:dip_derivatives} should eventually b
 explicit solvent is included in the calculation. Since the dipole derivatives computed from
 \ce{(H2O)_{2+6}} are not sufficient to reproduce the Badger correlation, we increase
 the dipole derivatives until the appropriate correlation is reproduced. This results in values
-of $\mu_{\mathrm{OH}}^{(1)}=1.19$ and $\mu_{\mathrm{OH}}^{(2)}=3.69$. To be completely rigorous,
-these dipole derivatives should be functions of the local environment, but we have not explored
-that possibility in this work since choosing them to be constants works quite well.
+of $\mu_{\mathrm{OH}}^{(1)}=1.19$ and $\mu_{\mathrm{OH}}^{(2)}=3.69$.
+
+We have already shown in Figure 5 that our model produces accurate three-body contributions to polarization
+and charge transfer for water trimers extracted from ion-water clusters. It is interesting to see, however,
+the 2-body and many-body contributions to each component of the energy for whole water clusters. To that end,
+we computed the 2-body and many-body contributions for a subset of the reference structures
+used in Tables 3 and 4. A comparison of these quantities as computed with $\omega$B97X-V/def2-QZVPPD and FQCT is shown in Table \ref{tab:mbe}.
+
+\begin{landscape}
+\begin{table}[ht!]
+  \begin{center}
+    \begin{tabular}{llcccccccccc}
+      \multicolumn{12}{c}{Comparison of Many-Body Expansion for EDA Components (kcal/mol)} \\\hline
+      \ce{(H2O)_n}& Component & \multicolumn{2}{c}{Cls. Elec.} & \multicolumn{2}{c}{Mod. Pauli} & \multicolumn{2}{c}{Disp.} & \multicolumn{2}{c}{Pol.} & \multicolumn{2}{c}{CT} \\\hline
+      & & FQCT & $\omega$B97X-V & FQCT & $\omega$B97X-V & FQCT & $\omega$B97X-V & FQCT & $\omega$B97X-V & FQCT & $\omega$B97X-V \\\hline
+      \ce{(H2O)_3} & 2-Body    & -27.28 & -26.77 & 29.05 & 28.87 &  -6.31  & -6.28  &	-3.38  & -3.48  &	-6.13  & -6.08 \\
+             & $\ge$ 3-Body    & -      & -      & 0.0   & -0.24 &   0.0   & 0.21   &	-1.43  & -1.63  &	-0.69  & -0.74 \\\hline
+                    & Total    & -27.28 & -26.77 & 29.05 & 28.63 &  -6.31  & -6.07  &	-4.82  & -5.11  &	-6.82  & -6.82 \\\hline
+      \ce{(H2O)_6} & 2-Body    & -79.27 & -78.43 & 87.70 & 88.40 &	-19.65 & -19.90 &	-10.53 & -10.94 &	-17.86 & -18.41 \\
+      Prism & $\ge$ 3-Body     & -      & -      & 0.0   & -0.62 &	 0.0   & 0.83   &	-6.09  & -6.40  &	-2.71  & -2.80 \\\hline
+                    & Total    & -79.27 & -78.43 & 87.70 & 87.78 &	-19.65 & -19.07 &	-16.62 & -17.34 &	-20.57 & -21.21 \\\hline
+      \ce{(H2O)_6} & 2-Body    & -79.03 & -78.67 & 89.12 & 90.10 &	-19.13 & -19.36 &	-11.01 & -11.25 &	-19.07 & -19.62 \\
+      Cage & $\ge$ 3-Body      & -      & -      & 0.0   & -0.66 &	 0.0   & 0.79   &	-5.99  & -6.26  &	-2.91  & -3.07 \\\hline
+                    & Total    & -79.03 & -78.67 & 89.12 & 89.44 &	-19.13 & -18.56 &	-17.00 & -17.51 &	-21.98 & -22.69 \\\hline
+      \ce{(H2O)_{10}} & 2-Body & -163.4 & -162.4 & 189.1 & 192.2 &	-37.89 & -38.34 &	-24.16 & -24.92 &	-42.01 & -43.27 \\
+                & $\ge$ 3-Body & -      & -      & 0.0   & -0.68 &	0.0    & 1.18   &	-14.24 & -14.92 &	-7.19  & -7.42 \\\hline
+                & Total        & -163.4 & -162.4 & 189.1 & 191.5 &	-37.89 & -37.16 &	-38.40 & -39.84 &	-49.20 & -50.69 \\\hline
+      \ce{(H2O)_{16}} & 2-Body & -280.5 & -277.7 & 325.0 & 329.0 &	-67.23 & -67.61 &	-41.26 & -42.44 &	-71.59 & -73.15 \\
+      Antiboat  & $\ge$ 3-Body & -      & -      & 0.0   & -1.06 &	0.0    & 2.17   &	-25.58 & -27.07 &	-12.05 & -12.37 \\\hline
+                & Total        & -280.5 & -277.7 & 325.0 & 327.9 &	-67.23 & -65.44 &	-66.84 & -69.51 &	-83.64 & -85.52 \\\hline
+      \ce{(H2O)_{20}} & 2-Body & -358.8 & -355.4 & 416.5 & 420.9 &	-89.17 & -89.20 &	-52.53 & -54.26 &	-91.46 & -92.80 \\
+      ES Prism  & $\ge$ 3-Body & -      & -      & 0.0   & -1.66 &	0.0    & 3.03   &	-32.69 & -34.85 &	-15.04 & -15.21 \\\hline
+                & Total        & -358.8 & -355.4 & 416.5 & 419.3 &	-89.17 & -86.17 &	-85.22 & -89.11 &	-106.5 & -108.0 \\\hline
+    \end{tabular}
+  \end{center}
+  \vspace{-3mm}
+  \caption{Comparison of the 2-body, many-body (i.e. $\ge$ 3-Body), and total energies as predicted by FQCT and as computed with $\omega$B97X-V/def2-QZVPPD.
+  Both calculations are done at the \textit{ab initio} optimized geometries. Names of isomers, when applicable, are written below the
+  cluster size.
+  }
+  \label{tab:mbe}
+\end{table}
+\end{landscape}
+
+One of the significant advantages of using data from EDA to parameterize a
+force field is it allows for very fine-grained analysis of the accuracy of a model.
+We illustrate this in Table \ref{tab:mbe} by comparing the 2-body, many-body, and total
+energies as computed by our force field and $\omega$B97X-V/def2-QZVPPD. First, we can see
+that the model is generally very accurate at reproducing each term, as should be expected
+given the excellent performance of the model in reproducing total energies and optimized
+strcutures. With that being said, there are a couple of apparent shortcomings. First,
+we currently do not include many-body dispersion which is very small but not entirely
+negligible, especially considering it is the only term besides Pauli repulsion which is
+repulsive. It is sometimes argued that many-body dispersion can be ignored since there is
+also a small many-body exchange effect which is attractive and hence offsets many-body
+dispersion. It is clear from Table \ref{tab:mbe} that this is at least
+approximately true in EDA. Even if the cancellation were perfect, however, that does
+not guarantee the forces will cancel. For that reason, we may explore adding many-body
+dispersion in the future, but neglect it for now since many-body charge transfer
+is generally much more important.
+
+Additionally, it is apparent that our model slightly understimates two-body contributions
+to both polarization and charge transfer. This likely arises from a limitation of the
+functional forms and hence suggests improvements that can be explored in the future.
+Our description of many-body contributions to charge transfer, however, are excellent.
+Table \ref{tab:mbe} also provides information about ways in which we have gotten lucky
+in the parameterization of this model. For instance, in larger clusters the model's dispersion
+energies are slightly too attractive while our polarization model is not quite attractive
+enough. This cancellation of errors was not intended but likely contributes, in some small
+way, to the successes we have seen in Tables 4 and 5.
+
+We are digging into such detail with the hopes that future force fields will do the same.
+Electronic structure only used to be able to provide coarse-grained information in the form
+of total energies and forces. This hampered the ability to pinpoint limitations of a force field.
+Now, however, we can easily identify systematic errors in a force field using the powerful
+combination of the many-body expansion and energy decomposition analysis.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
