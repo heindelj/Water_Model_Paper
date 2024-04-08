@@ -142,6 +142,37 @@ for hydrogen-bonded \ce{O-H} stretches.
 %% Start the main part of the manuscript here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+Force fields (FFs) are approximations to the quantum mechanical potential energy surface (PES), in which the model design goal is to predict structure, dynamics, and thermodynamics of any molecular system. Although pairwise additive FFs remain popular due to their insight and computational efficiency, they are inherently limited by their inability to describe many-body contributions, thereby reducing their accuracy in property predictions and transferability to new chemistry. For example, it has long been appreciated that non-additive interactions are critical for describing hydrogen-bonded interactions in water\cite{xantheas2000cooperativity}, and the many-body energy contributions for water interacting with ions are quite large, typically around 15\% of the binding energy, and cooperativity effects can be either stabilizing or destabilizing depending on ion type.\cite{heindel2021many,herman2021many}
+
+Recently there has been a paradigm shift in FF development that not only accounts for many-body interactions, but are benefitting from using energy decomposition analysis (EDA) of the many-body expansion (MBE) to better control the piece-wise nature of a FF. However the EDA-MBE-FF paradigm is still in its infancy for developing accurate and yet general transferable functional forms for FF. 
+
+These observations have been made by computing the many-body expansion (MBE) of
+the binding energy\cite{heindel2020many}, which means one gains insights into how much non-additivity
+is relevant to the system, but not which interactions that non-additivity can be
+attributed to. The primary source of non-additivities in most polarizable force fields
+is simply the electric polarization. While this is the main source of non-additive
+interactions for aqueous systems, we will show that many-body contributions to charge
+transfer are also quite important. To that end, we develop a model which is capable
+of describing many-body charge transfer very accurately at only a small additional
+computational cost compared to a similar polarizable force field.
+
+
+Simple atomic ions such as alkaline metal and halide ions play critical roles in the regulation of biological
+systems, environmental chemistry, and energy materials.98–101 Hence, accurate descriptions of the
+interaction between ions and water solvent molecules is very important to elucidate their role in governing
+structure and function of the many interfacial systems, in which additive fixed charge classical force field
+models102, 103 show mixed success that arises from neglect of important many-body effects such as polarization
+and charge transfer. Our recent (many-body) MB-UCB force field for water18 has been recently
+extended to monovalent and divalent alkali metal and halide ions22 in order to accurately describe ion-water
+interactions through a systematic buildup of 2- and 3-body interactions whose molecular interactions are decomposed
+using the ALMO-EDA energy decomposition scheme.25 We showed that the careful reproduction
+of these lower order terms of the many-body expansion transfers well to the prediction of larger ion-water
+6
+cluster energetics and even direct cation-anion interactions. However, for any force field development it is
+important to consider the predictive power of the force fields for condensed phase systems involving direct
+comparison with available experimental properties to further validate the accuracy of the model.
+
+
 
 Historically, there have been two main approaches to including
 polarization in force fields: fluctuating charges\cite{rick1994dynamical}
@@ -153,6 +184,7 @@ capture the charge transfer interaction.\cite{rick1994dynamical} With the advent
 of variational energy decomposition analysis (EDA) techniques\cite{horn2016probing,mao2021intermolecular},
 it is now clear that the charge transfer energy scales exponentially and hence
 cannot be modelled by fluctuating charges alone.
+
 
 Our goal in this paper is to develop a new class of polarizable
 force field which is able to quantitatively reproduce all of the terms
