@@ -3,7 +3,7 @@
 %% The document class accepts keyval options, which should include
 %% the target journal and optionally the manuscript type. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[journal=jacsat,manuscript=article]{achemso}
+\documentclass[journal=jctcce,manuscript=article]{achemso}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Place any additional packages needed here.  Only include packages
@@ -17,6 +17,7 @@
 \usepackage{xcolor}
 \usepackage{dsfont}
 \usepackage{pdflscape}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2cm]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If issues arise when submitting your manuscript, you may want to
@@ -53,21 +54,15 @@
 %% when authors are associated with multiple institutions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \author{Joseph P. Heindel}
-\affiliation[Berkeley]
-{Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California94720, United States}
-\alsoaffiliation[LBL]
-{Chemical Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, California94720, United States}
+\affiliation{Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California 94720, United States}
+\alsoaffiliation{Chemical Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, California 94720, United States}
 \author{Selim Sami}
-\affiliation[Berkeley]
-{Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California94720, United States}
+\affiliation{Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California 94720, United States}
 \author{Teresa Head-Gordon}
 \email{thg@berkeley.edu}
-\affiliation[Berkeley]
-{Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California94720, United States}
-\alsoaffiliation[LBL]
-{Chemical Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, California94720, United States}
-\alsoaffiliation[Berkeley2]
-{Departments of Bioengineering and Chemical and Biomolecular EngineeringUniversity of California, Berkeley, California94720, United States}
+\affiliation{Kenneth S. Pitzer Theory Center and Department of Chemistry, University of California, Berkeley, California 94720, United States}
+\alsoaffiliation{Chemical Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, California 94720, United States}
+\alsoaffiliation{Departments of Bioengineering and Chemical and Biomolecular Engineering, University of California, Berkeley, California 94720, United States}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The document title should be given as usual. Some journals require
@@ -75,7 +70,7 @@
 %% optional argument to \title.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title[An \textsf{achemso} demo]
-  {Construction of Accurate Force Fields from Energy Decomposition Analysis: Water and Ions}
+  {The Description of Many-Body Energies and Forces for Water and Ions}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Some journals require a list of abbreviations or keywords to be
@@ -116,281 +111,80 @@ separate page at the end of the document.
 
 \end{tocentry}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The abstract environment will automatically gobble the contents
 %% if an abstract is not used by the target journal.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-This work describes a force field for water and atomic ions which aims to quantitatively
-reproduce each term of an energy decomposition analysis. In the model, polarization
-is handled in a manner that allows for both intramolecular charge fluctuations and induced dipoles.
-The model also uses a new approach to modelling charge transfer which allows for
-explicit movement of charge between molecules. We show that this approach naturally
-describes many-body charge transfer by coupling into the polarization equations.
-Additionally, we highlight the fact that many-body charge transfer is non-negligible
-in aqueous systems being usually around half the magnitude of many-body polarization.
-We show that the force field described in this work is extensible
-to ion-water systems by showing accurate ion-water dimer surfaces and accurate reproduction
-of three-body polarization and charge transfer for all the alkali metal cations and halide anions.
-We also describe the use of a field-dependent correction to the morse potential,
-requiring zero free parameters, and show that it dramatically improves the accuracy of forces.
-This enables us to reproduce the structure-frequency correspondence expected
-for hydrogen-bonded \ce{O-H} stretches.
+\noindent
+Solvated atomic ions such as alkaline metals and halides play critical roles in the regulation of biological systems, environmental chemistry, and energy materials. This work describes an advanced force field for water and atomic ions which analyzes the many-body energy for non-additivity and to quantitatively reproduce each term of an energy decomposition analysis to achieve accuracy and transferability. This is achieved through the introduction of new many-body models for polarization and charge transfer in the formulation of a very high quality water force field, which generalizes to provide accurate dimer surfaces and three-body polarization and charge transfer for solvated alkali metal cations and halide anions. We also utilize a new one-body potential that accounts for intramolecular polarization, and includes an electric field-dependent correction to the Morse potential, that dramatically improves the accuracy of forces as well as frequencies for hydrogen-bonded \ce{O-H} stretches.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Start the main part of the manuscript here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
-Force fields (FFs) are approximations to the quantum mechanical potential energy surface (PES), in which the model design goal is to predict structure, dynamics, and thermodynamics of any molecular system. Although pairwise additive FFs remain popular due to their insight and computational efficiency, they are inherently limited by their inability to describe many-body contributions, thereby reducing their accuracy in property predictions and transferability to new chemistry. For example, it has long been appreciated that non-additive interactions are critical for describing hydrogen-bonded interactions in water\cite{xantheas2000cooperativity}, and the many-body energy contributions for water interacting with ions are quite large, typically around 15\% of the binding energy, and cooperativity effects can be either stabilizing or destabilizing depending on ion type.\cite{heindel2021many,herman2021many}
+\section*{Introduction}
+Force fields (FFs) are approximations to the quantum mechanical potential energy surface (PES), in which the model design goal is to predict structure, dynamics, and thermodynamics of any molecular system. Although pairwise additive FFs remain popular due to their insight and computational efficiency, they are inherently limited by their inability to describe many-body contributions, thereby reducing their accuracy in property predictions and transferability to new chemistry. For example, it has long been appreciated that non-additive interactions are critical for describing hydrogen-bonded interactions in water\cite{xantheas2000cooperativity}, and the many-body energy contributions for water interacting with ions is quite large, typically around 15\% of the non-bonded energy, and the cooperativity effects can be either stabilizing or destabilizing depending on ion type.\cite{heindel2021many,herman2021many} And yet many simulations involving ions or ionized molecules are carried out by treating the
+ion as a scaled point charge with simple functional forms for dispersion and repulsion that do not describe such complexity.\cite{leontyev2011accounting,bedrov2019molecular}
 
-Recently there has been a paradigm shift in FF development that not only accounts for many-body interactions, but are benefitting from using energy decomposition analysis (EDA) of the many-body expansion (MBE) to better control the piece-wise nature of a FF. However the EDA-MBE-FF paradigm is still in its infancy for developing accurate and yet general transferable functional forms for FF. 
+Recently there has been a paradigm shift in non-reactive many-body FF development by combining energy decomposition analysis (EDA)\cite{Kitaura1976} with the many-body expansion (MBE)\cite{heindel2020many} to better control the accuracy and transferability of advanced FF models. The MBE of the non-bonded  energy\cite{heindel2020many} allows one to gain insights into how much non-additivity is present in the quantum mechanical energy (and forces), while the EDA decomposes the total energy (and forces) into physically motivated contributions from pairwise additive terms such as electrostatics with charge penetration and Pauli repulsion, and many-body contributions that arise from polarization, charge transfer, and dispersion. For example, our recent (many-body) MB-UCB force field for water\cite{das2019development} and extensions to monovalent and divalent alkali metal and halide ions\cite{} describe ion-water interactions through a systematic buildup of 2- and 3-body interactions whose molecular interactions are formulated using the ALMO-EDA energy decomposition scheme.\cite{mao2021intermolecular} By reproducing the EDA term-by-term, we can ensure that the force field will be transferable across the phase diagram of a homogeneous system and, ideally, to new heterogenous systems. They also provide chemical insights in the relative weights of particular energy terms, for instance, charge transfer versus polarization, and better separation of the Pauli repulsion and dispersion energies. Similar many-body potentials for water and ions include AMOEBA+, HIPPO\cite{rackers2021polarizable}, MB-Pol, and q-Aqua that strive for higher accuracy but differ in their use of EDA, MBE, and most critically, their functional forms used for the many-body energy and forces.
 
-These observations have been made by computing the many-body expansion (MBE) of
-the binding energy\cite{heindel2020many}, which means one gains insights into how much non-additivity
-is relevant to the system, but not which interactions that non-additivity can be
-attributed to. The primary source of non-additivities in most polarizable force fields
-is simply the electric polarization. While this is the main source of non-additive
-interactions for aqueous systems, we will show that many-body contributions to charge
-transfer are also quite important. To that end, we develop a model which is capable
-of describing many-body charge transfer very accurately at only a small additional
-computational cost compared to a similar polarizable force field.
-
-
-Simple atomic ions such as alkaline metal and halide ions play critical roles in the regulation of biological
-systems, environmental chemistry, and energy materials.98–101 Hence, accurate descriptions of the
-interaction between ions and water solvent molecules is very important to elucidate their role in governing
-structure and function of the many interfacial systems, in which additive fixed charge classical force field
-models102, 103 show mixed success that arises from neglect of important many-body effects such as polarization
-and charge transfer. Our recent (many-body) MB-UCB force field for water18 has been recently
-extended to monovalent and divalent alkali metal and halide ions22 in order to accurately describe ion-water
-interactions through a systematic buildup of 2- and 3-body interactions whose molecular interactions are decomposed
-using the ALMO-EDA energy decomposition scheme.25 We showed that the careful reproduction
-of these lower order terms of the many-body expansion transfers well to the prediction of larger ion-water
-6
-cluster energetics and even direct cation-anion interactions. However, for any force field development it is
-important to consider the predictive power of the force fields for condensed phase systems involving direct
-comparison with available experimental properties to further validate the accuracy of the model.
-
-
-
-Historically, there have been two main approaches to including
-polarization in force fields: fluctuating charges\cite{rick1994dynamical}
-and induced dipoles\cite{applequist1985multipole}. There have also been
-attempts to unify these approaches allowing for both charge rearrangements
-and induced dipoles.\cite{stern2001combined} The original justification for
-including fluctuating charges in polarizable force fields was to
-capture the charge transfer interaction.\cite{rick1994dynamical} With the advent
-of variational energy decomposition analysis (EDA) techniques\cite{horn2016probing,mao2021intermolecular},
+Our goal in this paper is to develop a new class of many-body force fields which is able to quantitatively reproduce all of the terms in an energy decomposition \cite{horn2016probing,mao2021intermolecular}, with better functional forms for the many-body polarization and charge transfer contributions. Historically, there have been two main approaches to including polarization in force fields: fluctuating charges\cite{rick1994dynamical} and induced dipoles\cite{applequist1985multipole}. There have also been attempts to unify these approaches allowing for both charge rearrangements and induced dipoles\cite{stern2001combined} in order to also capture the charge transfer interaction.\cite{rick1994dynamical} With the advent
+of variational EDA  techniques\cite{horn2016probing,mao2021intermolecular},
 it is now clear that the charge transfer energy scales exponentially and hence
 cannot be modelled by fluctuating charges alone.
 
+This work takes a large step forwards in the construction of many-body force fields capable of handling very strong interactions such as those
+between water and ions, which has remained elusive and is an open research problem dating back decades. We use the ALMO-EDA method\cite{Khaliullin2007,Horn2016} to separate the total non-bonded interaction energy into individual contributions
+\begin{equation}
+E_{\rm int} = E_{\rm elec} + E_{\rm Pauli} + E_{\rm disp} + E_{\rm pol} +  E_{\rm CT}
+ \label{eq:eda}
+\end{equation}
+where $E_{\rm elec}$, $E_{\rm Pauli}$, $ E_{\rm disp}$, $E_{\rm pol}$, and  $E_{\rm CT}$ correspond to the contributions from the permanent electrostatics, Pauli repulsion, dispersion, polarization and charge transfer, respectively. We introduce a new approach to polarization that allows for both intramolecular charge fluctuations and induced dipoles, as well as a new approach for modelling charge transfer to allow for explicit movement of charge between molecules, and which naturally describes many-body charge transfer by coupling into the polarization equations. We also eliminate the need to treat intramolecular and intermolecular polarization separately through a recently reported one-body potential\cite{Sami2024} but modified with a field-dependent correction to the Morse potential that requires zero free parameters, thereby dramatically improving the accuracy of polarization forces. The resulting FQCT (fluctuating charges and charge transfer) model shows excellent accuracy against EDA data, and additional validation data for water clusters and ion-water energies, and reproduces the structure-frequency correspondence expected for hydrogen-bonded \ce{O-H} stretches.
 
-Our goal in this paper is to develop a new class of polarizable
-force field which is able to quantitatively reproduce all of the terms
-in an energy decomposition analysis (EDA)\cite{horn2016probing,mao2021intermolecular},
-including their many-body contributions. The reason to do this
-is that by reproducing the EDA term-by-term, we can ensure that the force
-field will be transferable across the phase diagram of a homogeneous
-system and, ideally, to new heterogenous systems.
-Additionally, by reproducing the EDA term-by-term, the force field
-is able to provide insights which many other models simply cannot because
-they do not include particular terms. For instance, many force fields
-do not include charge transfer or charge penetrations terms.
-Many force fields also use terms which package the Pauli repulsion and dispersion 
-energies together. We will discuss this further in the results section,
-but making such approximations limits the interpretability and accuracy of the
-energies and forces predicted by a force field. Even worse, one can only
-exclude charge transfer and charge penetration from force fields because
-these energies are strongly correlated to the Pauli repulsion (see Fig. \ref{fig:cp_ct_pauli}).
-This correlation is not guaranteed to be consistent between systems, however,
-which may explain part of the historical difficulty in producing water models which
-generalize to heterogeneous systems.
+\section*{Theory and Methods}
+The FQCT force field described in this work will model each of the terms in Eq. \ref{eq:eda}. ALMO-EDA is described elsewhere\cite{Khaliullin2007,Horn2016}, but we provide two important clarifications here. First the most appropriate choice for $E_{\rm elec}$ is the quasi-classical expression, which depends only on the geometry of individual monomers\cite{Mao2016}, and we use the fragment electric response function approach (at the dipole+quadrupole level) to evaluate the  polarization, ensuring a well-defined basis set limit.\cite{Horn2015} All the ALMO-EDA calculations are performed at the level of $\omega$B97X-V DFT functional\cite{Mardirossian2014} and def2-QZVPPD basis set\cite{Rappoport2010} using the Q-Chem software package\cite{Q-chem}. Note that we will use a convention of referring to all energy terms in the force field with a $V$ and all energy terms from electronic structure
+with an $E$. 
 
-It has been appreciated for a long time that non-additive interactions are
-important for describing hydrogen-bonded interactions such as those in water.\cite{xantheas2000cooperativity}
-The importance of many-body contributions for water interacting with ions have
-also been studied extensively and are found to be quite large (typically around 15\% of the binding energy)
-and can be either stabilizing or destabilizing.\cite{heindel2021many,herman2021many}
-These observations have been made by computing the many-body expansion (MBE) of
-the binding energy\cite{heindel2020many}, which means one gains insights into how much non-additivity
-is relevant to the system, but not which interactions that non-additivity can be
-attributed to. The primary source of non-additivities in most polarizable force fields
-is simply the electric polarization. While this is the main source of non-additive
-interactions for aqueous systems, we will show that many-body contributions to charge
-transfer are also quite important. To that end, we develop a model which is capable
-of describing many-body charge transfer very accurately at only a small additional
-computational cost compared to a similar polarizable force field.
-
-The construction of force fields capable of accurately modelling both water and
-its interaction with ions is an open problem dating back decades. The most recent
-progress, arguably, has been made by explicitly fitting the terms of the MBE for
-ion-water interactions.\cite{zhuang2022hydration,caruso2022accurate} This approach
-has the drawback that generalizing the procedure to multi-component systems,
-such as a solution containing multiple types of ions, is made difficult by
-the combinatorial explosion of terms which need to be fit.
-
-Even today, many simulations involving ions or ionized molecules are carried out by treating the
-ion as a scaled charge with simple functional forms for dispersion and repulsion.\cite{leontyev2011accounting,bedrov2019molecular}
-To a large extent, there simply are not good alternatives since most polarizable
-models of water and monoatomic ions leave much to be desired in both accuracy and
-numerical stability. This work takes a large step forwards in the construction of
-polarizable force fields capable of handling very strong interactions such as those
-between water and ions.
-
-\section{Theory}
-EDA splits the interaction energy into five components: Pauli repulsion,
-electrostatics, dispersion, polarization, and charge transfer. The force
-field described in this work will model each of these term by term. We will refer
-to the model as FQCT (fluctuating charges and charge transfer) throughout.
-Note that we will use a convention of referring to all energy
-terms in the force field with a $V$ and all energy terms from electronic structre
-with an $E$.
-
-Our approach borrows ideas from the density overlap hypothesis\cite{kim1981dependence,wheatley1990overlap,gavezzotti2002calculation,van2016beyond,van2018new}
-which states that the short-range contributions to intermolecular
-interactions is proportional to the electron density overlap. In order
-for this idea to be amenable to force fields, one must use atom-centered
-density overlaps. One way of doing this was developed thoroughly by
-Misquitta and others\cite{misquitta2014distributed,misquitta2018isa} based
-on iterated stockholder atoms which can be used to define Slater-like
-densities for atoms in molecules. Very similar ideas have been developed
-by Rackers \textit{et al.}\cite{rackers2021polarizable} for the HIPPO force field
-as well as van Vleet \textit{et al.} in the MASTIFF force field.\cite{van2016beyond,van2018new} 
-We will make reference to the differences between the various approaches as relevant.
-In any case, since the use of a model density in a force field has been discussed extensivly,
-we will only summarize the salient points here.
-
-The form of the charge density used in the model is,
+Our approach adopts ideas from the density overlap hypothesis\cite{kim1981dependence,wheatley1990overlap,gavezzotti2002calculation,van2016beyond,van2018new}
+which states that the short-range contributions to intermolecular interactions is proportional to the electron density overlap. In order for this idea to be amenable to force fields, one must use overlaps of atom-centered
+densities. The form of the charge density used in our model is,
 \begin{equation}
   \rho(r)=\frac{Qb^3}{8\pi}e^{-br}+Z\delta(r)
   \label{eq:slater}
 \end{equation}
 \noindent
-where $Q$ is the charge associated with the model electron density,
-$Z$ is the effective nuclear charge of the atom, and $b$ defines the width
-of the Slater density. The delta function, $\delta(r)$, means the core is
-treated as a point particle.
+where $Q$ is the charge associated with the model electron density, $Z$ is the effective nuclear charge of the atom, and $b$ defines the width of the Slater density. The delta function, $\delta(r)$, means the core is treated as a point particle. 
 
-One can show that the overlap, $S_{ii}^\rho$, of two identical Slater-like atomic densities
-at different locations, $\rho_i(\bm{r}_i)$ and $\rho_i(\bm{r}_j)$, is,
+One can show that the overlap, $S_{ii}^\rho$, of two identical Slater-like atomic densities at different locations, $\rho_i(\bm{r}_i)$ and $\rho_i(\bm{r}_j)$, is,
 \begin{equation}
   S_{ii}^\rho=\frac{\pi D^2}{b_{ii}^3}P(b_{ii}r_{ij})\exp(-b_{ii}r_{ij})
 \end{equation}
-The above overlap expression is only strictly true for the exponential tail
-of the Slater density and for identical atoms. The overlap between atoms
-with different densities, $S^{ij}_\rho$, has a more complicated form, but
-it has been shown that setting $b_{ij}=\sqrt{b_ib_j}$ allows the expression
+The above overlap expression is only strictly true for the exponential tail of the Slater density and for identical atoms. The overlap between atoms with different densities, $S^{ij}_\rho$, has a more complicated form, but it has been shown that setting $b_{ij}=\sqrt{b_ib_j}$ allows the expression
 for $S_{ii}^\rho$ to be used for different atom types to a good
 approximation\cite{van2016beyond}. The polynomial prefactor in the overlap is,
 \begin{equation}
   P(b_{ij}r_{ij})=\frac13(b_{ij}r_{ij})^2 + b_{ij}r_{ij}+1
 \end{equation}
-where, again, we will use the combination rule $b_{ij}=\sqrt{b_ib_j}$.
+where, again, we will use the combination rule $b_{ij}=\sqrt{b_ib_j}$. 
 
-Rackers \textit{et al.} utilize a similar idea in the HIPPO model\cite{rackers2021polarizable}
-but rather than relying on density overlap, they treat the Slater function as an
-orbital and are able to derive models of Pauli repulsion, charge penetration, and
-even dispersion. Because HIPPO is derived from a model orbital, the damping functions
-which prevent singularities in various short-range energetic contributions arise naturally.
-We find the HIPPO approach to both Pauli repulsion and electrostatics to be physically principled
-and utilize them here without significant modification.
+Approaches to density overlap have been developed by Misquitta and others\cite{misquitta2014distributed,misquitta2018isa} based on iterated stockholder atoms which can be used to define Slater-like densities for atoms in molecules, as well as by van Vleet \textit{et al.} in the MASTIFF force field.\cite{van2016beyond,van2018new} Rackers \textit{et al.} utilize a similar idea in the HIPPO model\cite{rackers2021polarizable}
+but rather than relying on density overlap, they treat the Slater function as an orbital and are able to derive models of Pauli repulsion, charge penetration, and even dispersion. Because HIPPO is derived from a model orbital, the damping functions which prevent singularities in various short-range energetic contributions arise naturally. We find the HIPPO approach to both Pauli repulsion and electrostatics to be physically principled and utilize them here without significant modification. In addition, we utilize both Slater density overlap and Slater orbital overlap in the other energy terms within the FQCT model which distinguishes the degree of what is "short-range" for a pair of atoms. 
 
-We utilize both Slater density overlap and Slater orbital overlap in different terms within
-the model. It is important to realize that either approach really just provides a
-physically meaningful indication of what is "short-range" for a pair of atoms. Therefore,
-combining the idea of overlapping Slater densities with overlapping Slater orbitals seems
-natural to us.
-
-\subsection*{Deformation Energy}
-
-The deformation energy for our water model is constructed following a protocol we have
-recently published (\textbf{REF WHEN AVAILABLE}). The one-body potential consists of a
-morse potential, cosine angle potential, a bond-bond coupling term, and bond-angle coupling
-term. The parameters are fit to reproduce the CCSD(T)/aug-cc-pV5Z hessian at the
-corresponding eeuqilibrium geometry. Note that this is the only term where we do not
-use $\omega$B97X-V/def2-QZVPPD as a reference simply because CCSD(T)/aug-cc-pV5Z is a
-bit closer to the experimental geometry. To be explicit, the morse potential is,
-\begin{align}
-  \label{eq:morse}
-  V_{bond}&=D_{\mathrm{OH}}\left[ 1-\exp(-\alpha (R-R_e))\right]^2 \\
-  \label{eq:angle}
-  V_{angle}&=\frac{k_a}{2}(\cos\theta-\cos\theta_e)^2 \\
-  \label{eq:bond_bond}
-  V_{bb}&=k_{bb}(R_1-R_e)(R_2-R_e) \\
-  \label{eq:bond_angle}
-  V_{ba}&=k_{ba}(R-R_e)(\cos\theta-\cos\theta_e)
-\end{align}
-
-In Eq. \ref{eq:morse}, $D_{\mathrm{OH}}$ is the dissociation energy of
-the \ce{O-H} bond in water, $R_e$ is the equilibrium bond length in water,
-and $\alpha=\sqrt{k_e/2D}$ determines the curvature of the potential as is
-evident from the fact it is written in terms of the harmonic force constant, $k_e$.
-The two \ce{O-H} stretches in water are coupled linearly in Eq. \ref{eq:bond_bond}
-via a single bond-coupling parameter, $k_{bb}$.
-
-The angle potential is harmonic in $\cos\theta$ where $\theta$ is the \ce{HOH} angle
-and $\theta_e$ is the equilbrium angle in water, as seen in Eq. \ref{eq:angle}.
-Eq. \ref{eq:bond_angle} shows that the angle and bond potentials are linearly
-coupled by a single parameter, $k_{ba}$.
-
-As will be explained later, we learned that
-it is essential to allow bonding parameters to respond to the local environment to reproduce
-the well-known structure-frequency correspondence in water.\cite{boyer2019beyond} We do this
-by modifying Eq. \ref{eq:morse} to be field-dependent. Specifically, the bond force constant, $k_e$,
-and equilibrium bond length, $R_e$, are coupled to the electric field projected along the bond, $\mathrm{E_{OH}}$,
-via the first and second dipole derivatives, $\mu^{(1)}$ and $\mu^{(2)}$. These derivatives
-are treated as parameters which we compute from electronic structure. The equilbrium bond
-length, $R_e$, becomes
-\begin{equation}
-  R_e(\mathrm{E_{OH}})=R_e^0+ \frac{\mathrm{E_{OH}}\mu^{(1)}}{k_e^0-\mathrm{E_{OH}}\mu^{(2)}}
-  \label{eq:bond_in_field}
-\end{equation}
-
-In the above, $R_e^0$, is the equilibrium bond length under zero field and $k_e^0$ is
-force constant under zero field. The force constant under a nonzero field, $k_e(\mathrm{E_{OH}})$, is,
-\begin{equation}
-  k_e(\mathrm{E_{OH}})=k_e^0-3k_e^0\alpha\left(R_e(\mathrm{E_{OH}})-R_e^0\right)-\mathrm{E_{OH}}\mu^{(2)}
-  \label{eq:force_constant_in_field}
-\end{equation}
-
-We see in Eq. \ref{eq:force_constant_in_field} that the change in the force constant in a field depends
-on the magnitude of the change in bond length due to that field. In this sense, the field-dependent
-morse potential guarantees the structure-frequency correlation will be respected at least approximately.
-It is only somewhat clear from the equations, but we find that the first dipole derivative
-primarily controls the bond length and the second dipole derivative primarily controls the frequency.
-These equations can be derived by analyzing the behavior of a morse potential in an electric field.\cite{boyer2019beyond}
-
-
-\subsection*{Electrostatics}
-
-Our description of electrostatics comes from a traditional
-point multipole approach and a charge penetration contribution. We will refer to
-these contributions as the DMA energy and CP energy, respectively.
-Our working definition of charge penetration comes by taking the
-classical electrostatic energy from EDA minus the interaction energy
-when using Stone's distributed multipole analysis\cite{stone1981distributed,stone1985distributeda}
+\subsection*{Electrostatics, Pauli, and Dispersion Energies}
+\textbf{Permanent Electrostatics.} Our description of electrostatics comes from a traditional point multipole approach up to the quadrupoles, and a charge penetration (CP) contribution that modifies the short-range electrostatic energy to be more attractive than the
+point multipole expansion alone. We isolate the CP energy by taking the total classical electrostatic energy from EDA minus the point multipole interaction energy
+when using Stone's distributed multipole analysis (DMA)\cite{stone1981distributed,stone1985distributeda}
 out to hexadecapoles on all atoms.
 
 \begin{equation}
   E^{CP}=E^{elec}_{EDA}-E^{elec}_{DMA}
   \label{eq:cp}
 \end{equation}
+The advantage of this approach is it allows us to ensure that our multipoles are not biased to compensate for error in the description of charge penetration, and vice versa, which is essential to reproduce the classical electrostatic energy in EDA.
 
-The advantage of this approach is it allows us to ensure that
-our multipoles are not biased to compensate for error in the
-description of charge penetration, which is essential to reproduce
-the classical electrostatic energy in EDA.
-All distributed multipole calculations were carried out
-in Stone's Orient program.\cite{stone2002orient}
-
-Charge penetration is described by treating each atom as having both a positively
-charged core and negatively charged shell. We use the same set of damping functions
-as derived by Rackers and Ponder which are appropriate for the Slater density in Eq. \ref{eq:slater}.\cite{rackers2021polarizable}
-Very similar models have been applied successfully in MB-UCB\cite{das2019development}
-based on functional forms proposed by Piquemal\cite{piquemal2003improved} and others\cite{wang2015general,rackers2017optimized}.
-
-Considering the interactions of the collection of cores and shells, which are expanded in multipoles,
+CP is described by treating each atom as having both a positively charged core and negatively charged shell. Considering the interactions of the collection of cores and shells, which are expanded in multipoles,
 results in the following electrostatic energy expression:
 
 \begin{equation}
@@ -398,11 +192,12 @@ results in the following electrostatic energy expression:
   \label{eq:elec}
 \end{equation}
 \noindent
-In eq. \ref{eq:elec}, the first term represents repulsive core-core interactions where $T_{ij}=1/r_{ij}$
-with $Z_i$ the core charge on the $i$th atom. Note that this is not the nuclear charge but an effective
+where the first term represents repulsive core-core interactions where $T_{ij}=1/r_{ij}$
+with $Z_i$ the core charge on the $i$th atom; note that this is not the nuclear charge but an effective
 nuclear charge. The second and third terms describe attractive core-shell interactions where $\bm{M}_i$ is
-a vector whose entries are the components of the multipoles located on that atom. We allow all atoms to have
-multipoles up to the quadrupole. Note that the core-shell interactions are damped according to
+a vector whose entries are the components of the multipoles located on that atom. The final term corresponds to the shell-shell interactions.
+
+The core-shell interactions are damped according to
 \begin{equation}
   \bm{T}_{ij}^{damp}=
   \begin{bmatrix}
@@ -412,8 +207,7 @@ multipoles up to the quadrupole. Note that the core-shell interactions are dampe
   \label{eq:T_damp}
 \end{equation}
 \noindent
-The shell-shell interactions are damped, albeit with a different damping function,
-and the corresponding interaction tensor is written as:
+while the corresponding interaction tensor for shell-shell damping is written as:
 \begin{equation}
   \bm{T}_{ij}^{overlap}=
   \begin{bmatrix}
@@ -425,8 +219,7 @@ and the corresponding interaction tensor is written as:
   \label{eq:T_overlap}
 \end{equation}
 \noindent
-The damping functions $f_{ij}^{damp}(r_{ij})$ and $f_{ij}^{overlap}(r_{ij})$ 
-take the following forms.
+The damping functions $f_{ij}^{damp}(r_{ij})$ and $f_{ij}^{overlap}(r_{ij})$ themselves take the following forms.
 
 \begin{subequations}
   \begin{equation}
@@ -439,14 +232,7 @@ take the following forms.
   \end{equation}
 \end{subequations}
 \noindent
-Simply comparing the forms of Eq. \ref{eq:damp_a} with Eq. \ref{eq:damp_b} makes it clear
-why the core-shell model of charge penetration works. Namely, as long as $b_j$ is similar
-to $b_{ij}$, which it almost always will be, then the polynomial in Eq. \ref{eq:damp_b} will
-be larger than that in Eq. \ref{eq:damp_a}. This means the overlap damping function is stronger
-and hence the shell-shell repulsions will be damped more strongly than the core-shell
-attractions. Therefore, at short-range the electrostatic energy will be more attractive than a
-point multipole expansion of the density would suggest, which is exactly what is meant by
-charge penetration.
+%Simply comparing the forms of Eq. \ref{eq:damp_a} with Eq. \ref{eq:damp_b} makes it clear why the core-shell model of charge penetration works. Namely, as long as $b_j$ is similar to $b_{ij}$, which it almost always will be, then the polynomial in Eq. \ref{eq:damp_b} will be larger than that in Eq. \ref{eq:damp_a}. This means the overlap damping function is stronger and hence the shell-shell repulsions will be damped more strongly than the core-shell attractions. 
 
 The damping function in Eq. \ref{eq:damp_a} can be derived directly from the form
 of the Slater density in Eq. \ref{eq:slater} by computing its electrostatic potential.
@@ -455,47 +241,99 @@ density interacts with the damped potential generated by the other density.\cite
 Finally, it is important to note that these damping functions are the ones which apply
 to charge-charge interactions and that as higher-order multipoles are considered, new damping
 functions are generated alongside the gradients of $1/r_{ij}$. In other words, every interaction
-tensor in the multipole expansion will be damped differently. The form of all relevant damping
-functions have been derived and summarized elsewhere.\cite{rackers2021polarizable}
+tensor in the multipole expansion will be damped differently. We use the same set of damping functions
+as derived by Rackers and Ponder which are appropriate for the Slater density in Eq. \ref{eq:slater}.\cite{rackers2021polarizable}
+Very similar models have been applied successfully in MB-UCB\cite{das2019development}
+based on functional forms proposed by Piquemal\cite{piquemal2003improved} and others\cite{wang2015general,rackers2017optimized}.
 
-\section*{Polarization}
+\textbf{Pauli Repulsion.} The original aim of the density overlap model was to model the
+Pauli repulsion energy formally as an exponential
+repulsion at short-range.\cite{wallqvist1989new,wheatley1990overlap,gordon1996approximate} However, Rackers and Ponder have made a convincing argument that the appropriate
+functional form for Pauli repulsion is 
+$V^{exch}\propto e^{-b_{ij}r_{ij}}/r_{ij}$.\cite{rackers2019classical,rackers2021polarizable}
+While the exponential is the dominant contribution, the factor of $1/r_{ij}$
+becomes important at short distance and allows for the Pauli repulsion energy
+to be expressed as a multipole expansion. Their basic idea is that the Pauli repulsion energy
+between a pair of atoms is proportional to $S^2/r_{ij}$ where $S$ is the overlap between pseudo-orbitals, defined as $\sqrt{\rho}$ where $\rho$ is the density in Eq. \ref{eq:slater}.
 
-We introduce a combined fluctuating charge (FQ) and induced dipole model of electronic
-polarization. There are two reasons we have pursued this combined polarization
-approach. The first is quite simple: we want to reproduce all terms from EDA,
-one of which is charge transfer. If charges are not allowed to vary, then one
-cannot model the explicit transfer of charge between molecules. The second reason is
-that atomic polarizabilities naturally contain both charge-flow and induced dipole
-contributions.\cite{stone1985distributedb} Typically, the charge-flow contributions
-are localized away\cite{ruth1994localization}, but our approach does not require nonlocal
-charge flow polarizabilities.
+Therefore, the Pauli repulsion energy can be written as
+\begin{equation}
+  V_{Pauli}=\sum_{i<j}\frac{K_{ij}^q S^2_{q}+K_{ij}^\mu S^2_{\mu}+K_{ij}^\Theta S^2_{\Theta}}{r_{ij}}
+\label{eq:pauli}
+\end{equation}
+\noindent
+where $S^2$ contains contributions from charges, dipoles, and quadrupoles as it is found that Pauli repulsion is highly anisotropic. However, producing parameters for a complete multipole expansion
+tends to result in overfitting when there is not a way to derive the initial multipoles
+from electronic structure. Therefore, the proportionality constants $K_{ij}=K_iK_j$ are fit instead.
 
-The FQ contribution to our polarization model is a modification of the electronegativity
+Since $S^2$ takes the form of a damped multipole expansion\cite{rackers2019classical}, these proportionality
+constants mean multipoles which handle repulsion are proportional to the actual electrostatic
+multipoles. Hence the calculation of electrostatics and
+multipolar Pauli repulsion differs only in the choice of damping function thereby reducing computational cost
+of the two EDA terms.
+
+The expansion of Pauli repulsion in terms of multipoles has an interesting physical interpretation.
+Namely, as two electron densities begin to overlap, the electrons will be expelled
+from the internuclear region in order to keep the total system wavefunction antisymmetric.
+This results in a "hole" in the electron density where nuclei are exposed to one another.
+In a sense, then, these multipoles describe the magnitude and shape of the depletion of electron density between two atoms which are near one another. 
+
+\textbf{Dispersion.} The dispersion energy is the simplest term in the model. We use a damped
+polynomial interaction given by,
+\begin{equation}
+  V_{disp}=\sum_{i<j}f_6^{TT}(x_{ij})\frac{C_{6,ij}}{r_{ij}^6}
+  \label{eq:disp}
+\end{equation}
+\noindent
+where $C_{6,ij}$ is the dispersion coefficient between atoms
+$i$ and $j$ which is determined as $C_{6,ij}=\sqrt{C_{6,i}C_{6,j}}$, and $C_{6,i}$ is
+a parameter fit to the EDA dispersion energy. $f_6^{TT}(x_{ij})$ is the sixth-order
+Tang-Toennies damping function\cite{tang1984improved} which was originally derived
+to damp short-range dispersion,
+
+\begin{equation}
+  f_n^{TT}(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij}^k}{k!}
+  \label{eq:TT}
+\end{equation}
+
+The appropriate form of $x$ for the tail of a Slater electron density
+has been derived before\cite{van2016beyond} and takes the form,
+\begin{equation}
+  x_{ij}=b_{ij}r_{ij}-\frac{2b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}}{b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}+3}
+  \label{eq:TT_x}
+\end{equation}
+
+Note that the TT damping functions, Eq. \ref{eq:TT}, depend parametrically on
+the choice of integer $n$. In their original work, Tang and Toennies show that the appropriate choice
+of $n$ for dispersion is $n=6$. This makes the damping function an exponential multiplied by a sixth order polynomial.
+This polynomial is able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no
+damping at long distances. As an aside, one could also use TT damping functions of different orders to control
+mutual polarization. We have tested this and it works just as well as the procedure we
+described of increasing the order of $f^{overlap}$.
+
+\subsection*{Polarization, Charge Transfer, and the One-Body Potential}
+This work introduces new physics for polarization, charge transfer, and the one-body potential. In particular, we introduce a combined fluctuating charge (FQ) and induced dipole model of electronic
+polarization that couples to our model for many-body charge transfer that we will show better reproduces all terms from EDA, and allowing for explicit transfer of charge between molecules. When combined with our new model for the one-body potential, we also ensure that the force field reproduces
+all physically relevant monomer properties including the dipole moment, dipole derivatives,
+molecular polarizability, and polarizability derivatives. 
+
+\textbf{Polarization}. While atomic polarizabilities naturally contain both charge-flow and induced dipole
+contributions\cite{stone1985distributedb}, typically the charge-flow contributions
+are contained through localization.\cite{ruth1994localization} Our approach allows for charge flow polarizabilities using a modification of the electronegativity
 equalization model (EEM) of polarization.\cite{mortier1986electronegativity} In EEM,
 the energy of a molecule is expanded to second-order as a function of charge while allowing
-all charges to interact. Mathematically, this takes the following form,
+all charges to interact
 \begin{equation}
   V(\bm{q})=\sum_i \chi_i q_i + \frac12 \sum_i \eta_i q_i^2 + \sum_{i<j} \frac{q_i q_j}{r_{ij}}
   \label{eq:eem}
 \end{equation}
+where $\chi_i$ represents the electronegativity of atom $i$ and
+$\eta_i$ is the atomic hardness of atom $i$. By requiring the electronegativity of all atoms
+to become become equal, new atomic charges are determined by solving a system of linear equations. 
 
-In Eq. \ref{eq:eem}, $\chi_i$ represents the electronegativity of atom $i$ and
-$\eta_i$ is the atomic hardness of atom $i$. The principle of electronegativity
-equalization states that  at equilibrium, the electronegativity of all atoms
-will become equal. This allows the charges in an atom to be determined by solving
-a system of linear equations. There are several known shortcomings of EEM. The first
-is the long-range transfer of charge between molecules, even at infinite distance,
-which is unrealistic for the dielectric systems studied here.\cite{chen2007qtpie,chen2008unified}
-Our solution to this problem is to only allow charge rearrangements within
-a molecule and not between molecules. This constraint can be introduced using
-Lagrange multipliers. A second limitation of EEM is that the approach in Eq. \ref{eq:eem}
-gives back the total charge of atoms in a molecule. This is somewhat awkward because
-we want to separate the multipolar electrostatics, which depends on the total charge,
-from the polarization contribution which should only depend on the external potential
-and field experienced by each atom. Hence, we drop the linear term and focus only on the
-fluctuation of charges around the reference charge used for permanent electrostatics.
-Another way of viewing this is that we are equalizing electronegativity around an "already
-equalized" state. The change in electronegativity at each atom due to an environment is simply
+There are several known shortcomings of EEM for non-reactive FFs including allowing for long-range transfer of charge between molecules, which is unphysical,\cite{chen2007qtpie,chen2008unified}
+as well as a change in charge of atoms in a molecule that interferes with the definition of the permanent electrostatics. Our solution to the first problem is to only allow charge rearrangements within a molecule and not between molecules, a constraint that introduces the use of Lagrange multipliers. For the second problem, we drop the linear term in Eq. \ref{eq:eem} and focus only on the fluctuation of charge around the reference charge used for the permanent electrostatics. Thus we are equalizing electronegativity around an "already
+equalized" state, and the change in electronegativity at each atom due to an environment is simply
 the electric potential at that atom. We can then write the FQ contribution in our
 model as,
 \begin{equation}
@@ -503,66 +341,14 @@ model as,
   \label{eq:fq}
 \end{equation}
 
-To summarize, Eq. \ref{eq:fq} allows charges to rearrange, $\delta q_i$, in response to an external
-potential, $V_i$, with a quadratic penalty determined by the atomic hardness, $\eta_i$.
-The charge rearrangements are constrained to only occur between atoms such that rearranged
-charges in a molecule sum to the total charge of a molecule. Therefore, the model has $N$ lagrange
-multipliers, $\lambda_\alpha$, where $N$ is the number of molecules in the system. These molecules
-could be water or an ion in this work. Note that all fluctuating charges (and induced
-dipoles) are allowed to interact whether they are in the same molecule or not.
-
-We also allow electric fields due to the environment to induce dipoles on all atoms.
-The energy of an induced dipole in an electric field, $\bm{E}$, including mutual polarization is,
+We also allow electric fields due to the environment to induce dipoles on all atoms as done previously for models such as AMOEBA, HIPPO, MB-UCB, MB-Pol and q-Aqua. The energy of an induced dipole $\bm{\mu}_i^{ind}$ in an electric field, $\bm{E}$, including mutual polarization is,
 \begin{equation}
   V(\bm{\mu}^{ind})=-\frac12\sum_i \bm{\mu}_i^{ind}\cdot \bm{E}_i^{damp} + \sum_{i<j}\bm{\mu}^{ind}_i \bm{T}^{\mu\mu}_{ij}\bm{\mu}^{ind}_j
   \label{eq:induced_dipoles}
 \end{equation}
-
-In Eq. \ref{eq:induced_dipoles}, the induced dipoles at each polarizable site, $\bm{\mu}_i^{ind}$,
-interact with an external electric field, $\bm{E}_i^{damp}$, and with each other via the dipole interaction tensor.
 The field $\bm{E}_i^{damp}$ is the damped electric field generated by a Slater density
 and $\bm{T}^{\mu\mu}_{ij}$ is the damped dipole-dipole interaction tensor which is derived from appropriate
 gradients of $f_{ij}^{overlap}/r_{ij}$.
-
-What now remains is to determine the values of $\delta \bm{q}$ and $\bm{\mu}^{ind}$
-which minimize the total energy of the system. In order to do this, we take
-the derivative with respect to each $\delta q_i$ and each component of each
-$\bm{\mu}_i^{ind}$ and set them all equal to zero. This results in a system of linear
-equations which can be written succintly as follows:
-
-
-\begin{equation}
-  \begin{pmatrix}
-    \bm{T}^{qq} & \bm{1}_\lambda & \bm{T}^{q\mu} \\
-    \bm{1}_\lambda^\dagger & 0 & 0 \\
-    -\bm{T}^{\mu q} & 0 & \bm{T}^{\mu\mu} \\
-  \end{pmatrix}
-  \begin{pmatrix}
-    \delta \bm{q} \\
-    \bm{\lambda} \\
-    \bm{\mu} \\
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    -\bm{V} \\
-    \bm{Q} \\
-    \bm{E} \\
-  \end{pmatrix}
-  \label{eq:pol_mat}
-\end{equation}
-
-The solution vector in Eq. \ref{eq:pol_mat} contains the electric potential,
-$\bm{V}$, the total charges of each molecule, $\bm{Q}$, and the electric
-field on each atom $\bm{E}$. The matrix has several blocks containing the
-charge-charge ($\bm{T}^{qq}$), charge-dipole ($\bm{T}^{q\mu}$),
-dipole-charge ($\bm{T}^{\mu q}$), and dipole-dipole interaction tensors ($\bm{T}^{\mu\mu}$).
-Note that the diagonal elements of $\bm{T}^{qq}$ are the atomic hardness $\eta$ and
-the $3\times 3$ diagonal blocks of $\bm{T}^{\mu\mu}$ are the inverse polarizability tensor
-$\bm{\alpha}_i^{-1}$. The block $\bm{1}_\lambda$ has a column for each molecule in the system.
-An entry in that column is 1 if the $i$th atom is in that molecule and zero otherwise.
-These blocks enforce the charge-conservation constraints for each molecule.
-Finally, $\delta\bm{q}$ contains the optimally rearranged charges, $\bm{\lambda}$ contains
-the Lagrange multipliers which enforce charge conservation, and $\bm{\mu}$ are the induced dipoles.
 
 The form of the $ij$ entries of the multipole interaction tensors are as follows:
 \begin{subequations}
@@ -580,8 +366,7 @@ The form of the $ij$ entries of the multipole interaction tensors are as follows
   \end{equation}
   \label{eq:tensors}
 \end{subequations}
-
-The interaction tensors in Eq. \ref{eq:tensors} are the usual cartesian multipole interaction
+The interaction tensors in Eq. \ref{eq:tensors} are the usual Cartesian multipole interaction
 tensors, generated by successive gradients of $1/r_{ij}$ where $r_{ij}$ is the distance between
 two atoms. These tensors are multiplied by the overlap damping function derived from the overlap
 of two slater pseudo-orbitals\cite{rackers2021polarizable}.
@@ -593,7 +378,8 @@ of a similar permanent multipole interaction. That is, the field due to a perman
 decays as $r_{ij}^{-3}$. The dipole induced by this field interacts with other induced dipoles
 with an energy that is proportional to the magnitude of the induced dipole and via a field
 that decays as $r_{ij}^{-3}$. Since the magnitude of an induced dipole is proportional to
-the permanent applied field, this means mutual polarization of induced dipoles decays as roughly $r_{ij}^{-6}$.
+the permanent applied field, this means mutual polarization of induced dipoles decays as $\sim$$r_{ij}^{-6}$.
+
 The damping functions generated from the overlap of slater orbitals are
 third-, fourth-, and fifth-order polynmials multiplied by an exponential for charge-charge, charge-dipole,
 and dipole-dipole interactions, respectively. These damping functions are therefore better able
@@ -633,20 +419,45 @@ modelled in Eq. \ref{eq:polarizability} is the shrinking of atoms which occurs d
 antisymmetrization of the wavefunction. The effect is most important for very diffuse atoms, such as \ce{I^-},
 or for very close contacts such as the interaction of \ce{Li^+} with \ce{H2O}.
 
-Most polarizable force fields include intramolecular polarization by allowing the induced
-dipoles to interact regardless of whether they are in the same molecule or not. In our
-experience, this tends to result in worse agreement between the model and reference polarization
-energies. This is not surprising given that multipoles located within a couple bond lengths
-are too close for electrostatics to give a good representation of the relevant interactions.
-There is no doubt, however, that intramolecular polarization should be considered in some way.
-Rather, in our model, the intramolecular polarization is described by coupling the bonding potential
-to the environment through the electric field, as shown in Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}.
+%To summarize, Eq. \ref{eq:fq} allows charges to rearrange, $\delta q_i$, in response to an externalpotential, $V_i$, with a quadratic penalty determined by the atomic hardness, $\eta_i$, as well as an induced dipole model described by Eq. \ref{eq:induced_dipoles} The charge rearrangements are constrained to only occur between atoms in a molecule such that rearranged charges sum to the total charge of a molecule utilizing $N$ lagrange multipliers, $\lambda_\alpha$, where $N$ is the number of molecules in the system. These molecules could be water or an ion in this work. Note that all fluctuating charges and induced dipoles are allowed to interact whether they are in the same molecule or not.
 
-Our experience is that describing intramolecular polarization by coupling it to the bond potential
-makes the polarization energies more accurate and dramatically improves the underlying forces.
-This term enables us to more accurately reproduce the expected correlation between bond length and
-frequency. Without the field-dependent morse potential, we could not reproduce the structure-frequency correlation
-since the forces along a hydrogen-bonded \ce{O-H} bond were systematically underestimated.
+What now remains is to determine the values of $\delta \bm{q}$ and $\bm{\mu}^{ind}$
+which minimize the total energy of the system. In order to do this, we take
+the derivative with respect to each $\delta q_i$ and each component of each
+$\bm{\mu}_i^{ind}$ and set them all equal to zero. This results in a system of linear
+equations which can be written succinctly as follows:
+
+\begin{equation}
+  \begin{pmatrix}
+    \bm{T}^{qq} & \bm{1}_\lambda & \bm{T}^{q\mu} \\
+    \bm{1}_\lambda^\dagger & 0 & 0 \\
+    -\bm{T}^{\mu q} & 0 & \bm{T}^{\mu\mu} \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \delta \bm{q} \\
+    \bm{\lambda} \\
+    \bm{\mu} \\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -\bm{V} \\
+    \bm{Q} \\
+    \bm{E} \\
+  \end{pmatrix}
+  \label{eq:pol_mat}
+\end{equation}
+The solution vector in Eq. \ref{eq:pol_mat} contains the electric potential,
+$\bm{V}$, the total charges of each molecule, $\bm{Q}$, and the electric
+field on each atom $\bm{E}$. The matrix has several blocks containing the
+charge-charge ($\bm{T}^{qq}$), charge-dipole ($\bm{T}^{q\mu}$),
+dipole-charge ($\bm{T}^{\mu q}$), and dipole-dipole interaction tensors ($\bm{T}^{\mu\mu}$).
+Note that the diagonal elements of $\bm{T}^{qq}$ are the atomic hardness $\eta$ and
+the $3\times 3$ diagonal blocks of $\bm{T}^{\mu\mu}$ are the inverse polarizability tensor
+$\bm{\alpha}_i^{-1}$. The block $\bm{1}_\lambda$ has a column for each molecule in the system.
+An entry in that column is 1 if the $i$th atom is in that molecule and zero otherwise.
+These blocks enforce the charge-conservation constraints for each molecule.
+Finally, $\delta\bm{q}$ contains the optimally rearranged charges, $\bm{\lambda}$ contains
+the Lagrange multipliers which enforce charge conservation, and $\bm{\mu}$ are the induced dipoles.
 
 Finally, there is one more term in our polarization model which is designed to only contribute at very
 short range. Specifically, we introduce another term proportional to density overlap,
@@ -654,41 +465,30 @@ short range. Specifically, we introduce another term proportional to density ove
   V_{pol,sr}=\sum_{i<j}a_{ij}^{sr}f_4^{TT}(x_{ij})\left(\frac{1}{2}\frac{\bar{\alpha}_i + \bar{\alpha}_j}{r_{ij}^3}\right)^{4/3}S_{ij}^{\rho}
 \label{eq:pol_sr}
 \end{equation}
-\noindent
-While Eq. \ref{eq:pol_sr} is much more empirical than the rest of the force field,
-it seems capture the effect of quadrupole polarization, which is known to be important
-in water\cite{herman2023accurate} but is very computationally expensive for the magnitude of the effect.
-In Eq. \ref{eq:pol_sr}, $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$, $f_4^{TT}(x_{ij})$
+where $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$, $f_4^{TT}(x_{ij})$
 is the fourth-order Tang-Toennies damping function, defined later in Eq. \ref{eq:TT}, and $a_{ij}^{sr}=a_{i}^{sr}a_{j}^{sr}$ is
-the pairwise parameter fit for this term. This term tends to have a magnitude for water
-that is only a bit larger than what would one expect for quadrupole polarization (around 20\%). Eq. \ref{eq:pol_sr} is clearly
-not a true model for quadrupole polarization since it is pairwise-additive
-while quadrupole polarization would make small, nonzero many-body contributions. Similar terms
+the pairwise parameter fit for this term. While Eq. \ref{eq:pol_sr} is more empirical than the rest of the FQCT force field, it captures the effect of quadrupole polarization, which is known to be important
+in water\cite{herman2023accurate} (which is very computationally expensive to account for given the magnitude of the effect). In fact the last term in Eq. \ref{eq:pol_sr} tends to have a magnitude for water
+that is only a bit larger than what would one expect for quadrupole polarization of around 20\%. Thus even though Eq. \ref{eq:pol_sr} is clearly
+not a true model for quadrupole polarization, since it is pairwise-additive
+while quadrupole polarization is a many-body contributions, it works quite well. Similar terms
 have been suggested before for capturing the short-range polarization of ions.\cite{sheng2022semiempirical}
 
-\section*{Charge Transfer}
-Charge transfer is the most difficult of the terms in EDA to model. This is
-because there is no classical analogue for charge transfer. One common approach to
+\textbf{Charge Transfer.} Charge transfer is the most difficult of the terms in EDA to model since there is no classical analogue to th QM charge transfer process involving electron flow. One common approach to
 capturing charge transfer is to use a simple exponential dependent on the distance
-between atoms.\cite{rackers2021polarizable} This captures the main effect which is the
-short-range exponential stabilization due to charge delocalization. Unfortunately,
-many-body charge transfer is non-negligible and this effect will be completely
-missed when using just exponentials. Another attempt is to essentially treat
-charge transfer the same way as polarization and solve a set of induced dipole equations.\cite{das2019development,wang2023general}
-This has the benefit that it can capture many-body charge transfer. One drawback of this
-approach is that it does not actually allow for charge to flow between molecules
+between atoms\cite{rackers2021polarizable}, which captures the main effect of short-range exponential stabilization due to charge delocalization. But many-body charge transfer is non-negligible and this effect will be completely
+missed when using just exponentials. Another idea is to treat charge transfer the same way as polarization and solve a set of induced dipole equations as was done in MB-UCB.\cite{das2019development,wang2023general}
+While it has the benefit of capturing many-body charge transfer enrgies, it does not actually allow for charge to flow between molecules
 and therefore misses some of the salient physics. It is also ambiguous if the induced
 dipoles relevant to CT should be treated as real dipoles and allowed to interact 
-with permanent and induced multipoles. Perhaps a bigger problem is that
-charge transfer can be an even larger contribution than polarization, especially at short range.
-This means the charge transfer energy would be even more susceptible to
-polarization catastrophes than ordinary polarization.
+with permanent and induced multipoles. These unsatisfactory approaches are plagued by a bigger problem in that charge transfer can be an even larger contribution than polarization, especially at short range. This means the charge transfer energy would be even more susceptible to
+polarization catastrophes than ordinary polarization, and thus requiring new damping schemes that obviate thir inclusion at all.
 
 For all of these reasons, we introduce a new approach to describing charge transfer
 which is enabled by the fact we allow for explicit charge rearrangements in our
 description of polarization. Our charge transfer model includes both direct and
 indirect energy contributions. The direct contributions allow for energetic stabilization
-associated with both forward and backward charge transfer.
+associated with both forward and backward charge transfer
 \begin{subequations}
   \begin{equation}
   V^{CT}_{i\rightarrow j}=a_{i\rightarrow j}^{CT}S_{ij}^\rho
@@ -702,9 +502,8 @@ associated with both forward and backward charge transfer.
   \label{eq:ct_direct}
 \end{subequations}
 
-As shown in Eq. \ref{eq:ct_direct}, the forward and backward contributions to
-charge transfer are proportional to the density overlap.
-We take inspiration from perturbation theory which shows, roughly, that
+in which the forward and backward contributions to
+charge transfer are proportional to the density overlap. We take inspiration from perturbation theory which shows, approximately, that
 the amount of charge transferred between two molecules is proportional to the
 energy associated with forward and backward charge transfer.\cite{khaliullin2007unravelling,khaliullin2008analysis,khaliullin2009electron}
 Therefore, we define the amount of charge transferred from $i$ to $j$, $\Delta Q^{CT}_{i\rightarrow j}$,
@@ -745,103 +544,72 @@ For example, when charge is transferred from oxygen to hydrogen in a water
 dimer, the final excess charge will mostly come to rest on the oxygen in
 the water with net-negative charge.
 
-There is one technical point worth noting about this model. Because the
+Because the
 charge transferred between fragments is proportional to the direct CT contributions,
 the charge constraints depend on the distance between atoms. This means there
 is a gradient contribution which multiplies the lagrange multipliers
 with the gradient of $\Delta Q^{CT}_{i\rightarrow j}$ and $\Delta Q^{CT}_{j\rightarrow i}$.
-This is not difficult or expensive to evaluate, but because it is a rather
-unusual gradient term, we wanted to point this out clearly.
+This is not difficult or expensive to evaluate, but is an 
+unusual gradient term which must be accounted for in software implementations.
 
-\subsection*{Pauli Repulsion}
-The original aim of the density overlap model was to model the
-Pauli repulsion energy.\cite{wallqvist1989new,wheatley1990overlap,gordon1996approximate}
-The density overlap model of Pauli repulsion results in a formally exponential
-repulsion at short-range.
-However, Rackers and Ponder have made a convinving argument that the appropriate
-scaling of Pauli repulsion is actually of the form $E^{exch}\propto e^{-b_{ij}r_{ij}}/r_{ij}$.\cite{rackers2019classical,rackers2021polarizable}
-While the exponential is the more important contribution, the factor of $1/r_{ij}$
-becomes important at short distance and allows for the Pauli repulsion energy
-to be expressed as a multipole expansion.
 
-The multipolar pauli repulsion model has been discussed extensively elsewhere\cite{rackers2019classical}
-so we only recapitulate the main points. The basic idea is that Pauli repulsion energy
-between a pair of atoms is proportional to $S^2/r_{ij}$ where $S$ is the pseudo-orbital
-overlap. The pseudo-orbital is defined as $\sqrt{\rho}$ where $\rho$ is the density in Eq. \ref{eq:slater}.
+\textbf{The One-Body Potential.} The deformation energy for a single water molecule is constructed following a protocol we have
+recently published.\cite{Sami2024} The one-body potential consists of a Morse potential, cosine angle potential, a bond-bond coupling term, and bond-angle coupling
+term. 
+\begin{align}
+  \label{eq:morse}
+  V_{bond}&=D_{\mathrm{OH}}\left[ 1-\exp(-\alpha (R-R_e))\right]^2 \\
+  \label{eq:bond_bond}
+  V_{bb}&=k_{bb}(R_1-R_e)(R_2-R_e) \\
+  \label{eq:angle}
+  V_{angle}&=\frac{k_a}{2}(\cos\theta-\cos\theta_e)^2 \\
+  \label{eq:bond_angle}
+  V_{ba}&=k_{ba}(R-R_e)(\cos\theta-\cos\theta_e)
+\end{align}
+where $D_{\mathrm{OH}}$ is the dissociation energy of
+the \ce{O-H} bond in water, $R_e$ is the equilibrium bond length in water,
+and $\alpha=\sqrt{k_e/2D}$ determines the curvature of the potential as is
+evident from the fact it is written in terms of the harmonic force constant, $k_e$. The two \ce{O-H} stretches in water are coupled linearly in Eq. \ref{eq:bond_bond}
+via a single bond-coupling parameter, $k_{bb}$. The angle potential is harmonic in $\cos\theta$ where $\theta$ is the \ce{HOH} angle
+and $\theta_e$ is the equilbrium angle in water, as seen in Eq. \ref{eq:angle}.
+Eq. \ref{eq:bond_angle} shows that the angle and bond potentials are linearly
+coupled by a single parameter, $k_{ba}$. The parameters are fit to reproduce the CCSD(T)/aug-cc-pV5Z Hessian at the
+corresponding equilibrium geometry. Note that this is the only term for which we do not
+use $\omega$B97X-V/def2-QZVPPD as a reference, simply because CCSD(T)/aug-cc-pV5Z is a
+bit closer to the experimental geometry. 
 
-Therefore, the Pauli repulsion energy can be written as
+Like electrostatics, polarization parameters need to be constrained to give physically meaningful
+parameters. Specifically, in addition to EDA energies, we include the polarizability and polarizability derivatives
+at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry of water in the fitting process.
+The loss function we minimize against is,
 \begin{equation}
-  V_{Pauli}=\sum_{i<j}\frac{K_{ij}^q S^2_{q}+K_{ij}^\mu S^2_{\mu}+K_{ij}^\Theta S^2_{\Theta}}{r_{ij}}
-\label{eq:pauli}
+  L_{pol}=\sqrt{\frac{\sum_{i=1}^{N}(E_i^{FF}-E_i^{EDA})^2}{N}} + w_1||\bm{\alpha}^{FF}-\bm{\alpha}^{EDA}||+w_2||\frac{\partial\bm{\alpha}^{FF}}{\partial \bm{r}}-\frac{\partial\bm{\alpha}^{EDA}}{\partial \bm{r}}||
+\label{eq:pol_loss}
 \end{equation}
 \noindent
-In Eq. \ref{eq:pauli}, $S^2$ represents the orbital overlap squared with different contributions
-from charges, dipoles, and quadrupoles. This is critically important since Pauli repulsion
-turns out to be highly anisotropic. However, producing parameters for a complete multipole expansion
-tends to result in overfitting when there is not a way to derive the initial multipoles
-from electronic structure. Therefore, the proportionality constants $K_{ij}=K_iK_j$ are fit instead.
-Since $S^2$ takes the form of a damped multipole expansion\cite{rackers2019classical}, these proportionality
-constants mean multipoles which handle repulsion are proportional to the actual electrostatic
-multipoles. One nice thing about this approach is that the calculation of electrostatics and
-multipolar Pauli repulsion differs only in the choice of damping function. Therefore, significant
-computation can be shared between the two terms.
+In the above, the first term is the RMSD of the predicted energies, $E_i^{FF}$, from the
+EDA energies $E_i^{FF}$. The second term is the frobenius norm of the difference between the
+computed and predicted molecular polarizabilities, $\bm{\alpha}$. The third term is the same as
+the second but for the polarizability derivatives. The weights, $w_1$ and $w_2$ are set to
+1.0 and 0.01 respectively. This, in essence, forces the molecular polarizability to be
+reproduced exactly while allowing for error in the polarizability derivatives which are much
+more difficult to reproduce.
 
-The expansion of Pauli repulsion in terms of multipoles has an interesting physical interpretation.
-Namely, as two electron densities begin to overlap, the electrons will be expelled
-from the internuclear region in order to keep the total system wavefunction antisymmetric.
-This results in a "hole" in the electron density where nuclei are exposed to one another.
-In a sense, then, these multipoles describe the magnitude and shape of the depletion of electron density
-between two atoms which are near one another.
+The dipole derivatives needed to evaluate the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}
+are computed from electronic structure. We actually use four different sets of dipole derivatives
+during the fitting process to be consistent with the dipole surface relevant to each term in EDA.
+The dipole derivatives are quite sensitive to the local environment, as illustrated in Figure S1.
+For electrostatics, we use the dipole derivatives computed from scanning along the \ce{O-H}
+bond length of a water monomer. For polarization, we use the dipole derivatives from
+the same scan, but with a field applied along the \ce{O-H} bond. For charge transfer,
+we constructed a tetrahedrally solvated water dimer and compute dipole derivatives from a
+scan along the hydrogen-bonded \ce{O-H} in a dielectric environment. Finally, as will be shown,
+Pauli repulsion suffers from the same systematic error in forces as the other terms. We do not
+know of a way to compute the dipole derivatives relevant to Pauli repulsion from electronic
+structure, so we treat these as fitting parameters. More details are provided
+in the supporting information along with a figure showing the various scans (Figure S2).
 
-Based on this electrostatic interpretation of Pauli repulsion, we also include a contribution
-to the Pauli energy based on the field-dependent morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}.
-In fact, we find it interesting to observe that when permanent electrostatics are used, the shifts
-in bond length and frequency are unrealistically large. Allowing Pauli repulsion to also contribute
-to the field-dependent morse potential therefore acts to mostly cancel out the effect of permanent
-electrostatics in shifting the bond length and frequency. This makes physical sense if one considers
-how each term affects the electron density of another molecule. For example, in the water dimer, electrostatics
-will tend to pull electron density into the internuclear region, hence weakening the hydrogen-bonded \ce{O-H}
-bond. Pauli repulsion, however, arises from antisymmetrization of the total system wavefunction which
-will tend to expel electron density from the internuclear region and therefore shorten the hydrogen-bonded \ce{O-H} bond.
-
-\section*{Dispersion}
-
-The dispersion energy is the simplest term in the model. We use a damped
-polynomial interaction given by,
-\begin{equation}
-  V_{disp}=\sum_{i<j}f_6^{TT}(x_{ij})\frac{C_{6,ij}}{r_{ij}^6}
-  \label{eq:disp}
-\end{equation}
-\noindent
-In Eq. \ref{eq:disp}, $C_{6,ij}$ is the dispersion coefficient between atoms
-$i$ and $j$ which is determined as $C_{6,ij}=\sqrt{C_{6,i}C_{6,j}}$ and $C_{6,i}$ is
-a parameter fit to the EDA dispersion energy. $f_6^{TT}(x_{ij})$ is the sixth-order
-Tang-Toennies damping function\cite{tang1984improved} which was originally derived
-to damp short-range dispersion,
-
-\begin{equation}
-  f_n^{TT}(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij}^k}{k!}
-  \label{eq:TT}
-\end{equation}
-
-The appropriate form of $x$ for the tail of a Slater electron density
-has been derived before\cite{van2016beyond} and takes the form,
-\begin{equation}
-  x_{ij}=b_{ij}r_{ij}-\frac{2b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}}{b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}+3}
-  \label{eq:TT_x}
-\end{equation}
-
-Note that the TT damping functions, Eq. \ref{eq:TT}, depend parametrically on
-the choice of integer $n$. In their original work, Tang and Toennies show that the appropriate choice
-of $n$ for dispersion is $n=6$. This makes the damping function an exponential multiplied by a sixth order polynomial.
-This polynomial is able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no
-damping at long distances. As an aside, one could also use TT damping functions of different orders to control
-mutual polarization. We have tested this and it works just as well as the procedure we
-described of increasing the order of $f^{overlap}$.
-
-\section*{Reference Data}
-
-Our model is parameterized using water clusters of size \ce{(H_2O)_n} with n=2-5.
+\textbf{Reference Data}. Our model is parameterized using water clusters of size \ce{(H_2O)_n} with n=2-5.
 We use 2400 dimers, trimers, tetramers, and pentamers extracted from various minimized
 cluster geometries. We additionally generated 4800 psuedo-random water dimers
 based on a Sobol sequence. We follow exactly the same procedure as described elsewhere.\cite{misquitta2008first}
@@ -867,15 +635,11 @@ at the $\omega$B97X-V/def2-QZVPPD level of theory. In the cases where clusters a
 $\omega$B97X-V/def2-TZVPPD, we recompute the energies of those clusters and any derived sub-structures
 with $\omega$B97X-V/def2-QZVPPD.
 
-\section*{Parameterization}
-
-When parameterizing this force field, we fit each term against only the EDA contribution
-to that particular energy. We also try to ensure that the force field reproduces
-all physically relevant monomer properties including the dipole moment, dipole derivatives,
-molecular polarizability, and polarizability derivatives. Optimization of parameters is done using simple gradient descent
-against the root mean-square deviation (RMSD) of predicted and EDA energies.
-For Pauli repulsion and electrostatics 200 random water dimers from the datasets
-described above are used in fitting. For dispersion, polarization, and charge transfer, we use
+\textbf{Parameterization strategy.} We fit each term against only the EDA contribution to that particular energy component. Optimization of parameters is done using simple gradient descent
+against the root mean-square deviation (RMSD) of predicted and EDA energies. For electrostatics and Pauli repulsion, we only use dimers in
+the fitting process since electrostatics is strictly pairwise-additive and Pauli repulsion is nearly so.
+For these terms 200 random water dimers from the datasets
+described above are used in fitting whereas for other many-body terms we use
 200 random water dimers, trimers, tetramers, and pentamers from the datasets described above.
 
 When parameterizing electrostatics, we optimize against two objectives. First, we ensure
@@ -889,49 +653,10 @@ will remain correct. Next, we fit the value of the core charges, $Z$ and electro
 with respect to the total electrostatic energy from EDA. We also allow the quadrupoles to relax
 against the total electrostatic energy as a form of compensation for the lack of higher-order multipoles.
 
-Like electrostatics, polarization parameters need to be constrained to give physically meaningful
-parameters. Specifically, in addition to EDA energies, we include the polarizability and polarizability derivatives
-at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry of water in the fitting process.
-The loss function we minimize against is,
-\begin{equation}
-  L_{pol}=\sqrt{\frac{\sum_{i=1}^{N}(E_i^{FF}-E_i^{EDA})^2}{N}} + w_1||\bm{\alpha}^{FF}-\bm{\alpha}^{EDA}||+w_2||\frac{\partial\bm{\alpha}^{FF}}{\partial \bm{r}}-\frac{\partial\bm{\alpha}^{EDA}}{\partial \bm{r}}||
-\label{eq:pol_loss}
-\end{equation}
-\noindent
-In the above, the first term is the RMSD of the predicted energies, $E_i^{FF}$, from the
-EDA energies $E_i^{FF}$. The second term is the frobenius norm of the difference between the
-computed and predicted molecular polarizabilities, $\bm{\alpha}$. The third term is the same as
-the second but for the polarizability derivatives. The weights, $w_1$ and $w_2$ are set to
-1.0 and 0.01 respectively. This, in essence, forces the molecular polarizability to be
-reproduced exactly while allowing for error in the polarizability derivatives which are much
-more difficult to reproduce.
-
-The dipole derivatives needed to evaluate the field-dependent morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}
-are computed from electronic structure. We actually use four different sets of dipole derivatives
-during the fitting process to be consistent with dipole surface relevant to each term in EDA.
-The dipole derivatives are quite sensitive to the local environment, as illustrated in Fig. S2.
-For electrostatics, we use the dipole derivatives computed from scanning along the \ce{O-H}
-bond length of a water monomer. For polarization, we use the dipole derivatives from
-the same scan, but with a field applied along the \ce{O-H} bond. For charge transfer,
-we constructed a tetrahedrally solvated water dimer and compute dipole derivatives from a
-scan along the hydrogen-bonded \ce{O-H} in a dielectric environment. Finally, as will be shown,
-Pauli repulsion suffers from the same systematic error in forces as the other terms. We do not
-know of a way to compute the dipole derivatives relevant to Pauli repulsion from electronic
-structure, so we treat these as fitting parameters. More details are provided
-in the supporting information along with a figure showing the various scans (Figure S1).
-
-The charge transfer energy and dispersion energies are simply fit against the RMSD
-from their EDA energies. Note that for electrostatics and Pauli repulsion, we only use dimers in
-the fitting process since electrostatics is strictly pairwise-additive and Pauli repulsion is nearly so.
-Dispersion, on the other hand, has a large enough many-body contribution that if only dimers
-are used in the fitting, one will systematically over-estimate the dispersion energy since
-many-body dispersion is usually repulsive. There are methods for modeling many-body dispersion,
-but we have not included such terms in this model.\cite{anatole2010two,van2018new}
-
 The Pauli repulsion term is first fit against the RMSD of the corresponding EDA energy.
 The repulsion parameters are then allowed to relax against the total interaction energy
 and interaction forces for only dimers. Using the forces is essential to get meaningful
-values of the dipole derivatives used in the field-dependent morse potential for Pauli
+values of the dipole derivatives used in the field-dependent Morse potential for Pauli
 repulsion. This procedure essentially results in improved error cancellation
 which we find is still necessary for a robust force field. We will have more to say about the necessity
 of error cancellation in force fields later. It should be noted that we only allow
@@ -939,24 +664,78 @@ the Pauli repulsion to optimize against dimers so that it cannot correct errors
 in the many-body contributions. Furthermore, we will see that the Pauli repulsion energy
 still ends up providing an unbiased estimate of the EDA Pauli repulsion energy.
 
-\section*{Results and discussion}
-\subsection*{Motivation for Modelling Many-Body Charge Transfer}
+The charge transfer energy and dispersion energies are simply fit against the RMSD from their EDA energies. 
+Dispersion, on the other hand, has a large enough many-body contribution that if only dimers
+are used in the fitting, one will systematically over-estimate the dispersion energy since
+many-body dispersion is usually repulsive. There are methods for modeling many-body dispersion,
+but we have not included such terms in this model.\cite{anatole2010two,van2018new} 
 
-Before describing the outcomes of applying our model to various water clusters and
-ion-water clusters, let us discuss two important problems which we set out to solve
-in the construction of this model. First, it is broadly understood that there are
+\section*{Results}
+Before describing the outcomes of applying the FQCT model to various water and
+ion-water cluster energies outside the training data, let us discuss three important problems which we set out to solve in the construction of this advanced force field model. First is the benefit of a new on-body potential that accounts for intramolecular polarization that is more physical than models such as AMOEBA. Second, it is broadly understood that there are
 contributions to the non-additive component of molecular interactions other than
-classical mutual polarization. By classical mutual polarization, we mean what some
-authors call induction.\cite{herman2023accurate} Induction aims to describe
-how multipoles are induced under an applied field, field gradient, etc.
-and how these induced multipoles interact further. The reason this is classical
+classical mutual polarization.\cite{herman2023accurate} The reason it is classical
 is that it does not describe the effect of charge delocalization which we refer to
 as charge transfer. Note that charge transfer can be understood as energetic
 stabilization associated with tunneling of electrons between molecules
-and hence grows at least exponentially at short distances.\cite{misquitta2013charge}
-
-We will focus on the EDA definition of charge transfer energy in this work, though
+and hence grows at least exponentially at short distances.\cite{misquitta2013charge} We will focus on the EDA definition of charge transfer energy in this work, though
 other definitions are possible based on symmetry-adapted perturbation theory.\cite{stone2009charge,misquitta2013charge}
+
+\subsection*{Intramolecular Polarization using a One-Body Potential }
+Most polarizable force fields include intramolecular polarization by allowing the induced
+dipoles to interact regardless of whether they are in the same molecule or not. In our
+experience with EDA, this tends to result in worse agreement between the model and reference polarization
+energies. This is not surprising given that multipoles located within a couple bond lengths
+are too close for electrostatics to give a good representation of the relevant interactions.
+There is no doubt, however, that intramolecular polarization should be considered in some way. In the FQCT model the intramolecular polarization is described by coupling the bonding potential
+to the environment through the electric field. Describing intramolecular polarization by coupling it to the bond potential
+makes the polarization energies more accurate and dramatically improves the underlying forces.
+
+Furthermore, this term enables us to more accurately reproduce the well-known structure-frequency correspondence in water.\cite{boyer2019beyond} We do this
+by modifying Eq. \ref{eq:morse} to be dependent on the nvironmental electric field. Specifically, the bond force constant, $k_e$,
+and equilibrium bond length, $R_e$, are coupled to the electric field projected along the bond, $\mathrm{E_{OH}}$,
+via the first and second dipole derivatives, $\mu^{(1)}$ and $\mu^{(2)}$. These derivatives
+are treated as parameters which we compute from electronic structure. The equilibrium bond
+length, $R_e$, becomes
+\begin{equation}
+  R_e(\mathrm{E_{OH}})=R_e^0+ \frac{\mathrm{E_{OH}}\mu^{(1)}}{k_e^0-\mathrm{E_{OH}}\mu^{(2)}}
+  \label{eq:bond_in_field}
+\end{equation}
+where $R_e^0$ is the equilibrium bond length and $k_e^0$ is the force constant under zero field. The force constant under a nonzero field, $k_e(\mathrm{E_{OH}})$, is then
+\begin{equation}
+  k_e(\mathrm{E_{OH}})=k_e^0-3k_e^0\alpha\left(R_e(\mathrm{E_{OH}})-R_e^0\right)-\mathrm{E_{OH}}\mu^{(2)}
+  \label{eq:force_constant_in_field}
+\end{equation}
+These equations can be derived by analyzing the behavior of a Morse potential in an electric field.\cite{boyer2019beyond} We see in Eq. \ref{eq:force_constant_in_field} that the field-dependent Morse potential guarantees the structure-frequency correlation will be respected at least approximately. This is because the first dipole derivative
+primarily controls the bond length and the second dipole derivative primarily controls the frequency.
+
+Based on the electrostatic interpretation of Pauli repulsion, we also include a contribution
+to the Pauli energy based on the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}.
+In fact, we find it interesting to observe that when permanent electrostatics are used, the shifts
+in bond length and frequency are unrealistically large. Allowing Pauli repulsion to also contribute
+to the field-dependent Morse potential therefore acts to mostly cancel out the effect of permanent
+electrostatics in shifting the bond length and frequency. This makes physical sense if one considers
+how each term affects the electron density of another molecule. For example, in the water dimer, electrostatics will tend to pull electron density into the internuclear region, hence weakening the hydrogen-bonded \ce{O-H} bond. Pauli repulsion, however, arises from antisymmetrization of the total system wavefunction which
+will tend to expel electron density from the internuclear region and therefore shorten the hydrogen-bonded \ce{O-H} bond.
+
+In order for a force field to be useful theoretical spectroscopy, it must respect the relationships
+between structure and vibrational frequencies. For water this manifests as a linear
+relationship between the change in bond length and change in \ce{O-H} stretching frequency\cite{boyer2019beyond}, colloquially referred to as Badger's rule.\cite{badger1934relation} It is expected that an accurate FF should satisfy the expected slope
+$\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001\AA}$\cite{boyer2019beyond}. Without a field-dependent bond coupling, we find that 
+we obtain a slope of $\approx -10\ \mathrm{cm^{-1}/.001\AA}$ (Fig. S2), consistent with a field-independent Morse
+oscillator developed by Boyer et al with parameters appropriate to water.\cite{boyer2019beyond} This is a strong indication that we should allow our bonding potential parameters to be modulated by the field along that bond as shown in Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}. The result of doing this is shown in Figure \ref{fig:badger}, accurately reproducing the structure-frequency correlation
+in water without any additional free parameters. When we compute the dipole derivatives from a simple \ce{O-H} scan we find the QM parameters are $\mu^{(1)}=0.1654$ and $\mu^{(2)}=-0.01246$, while the same calculation with FQCT yields $\mu^{(1)}=0.1658$ and $\mu^{(2)}=-0.0104$. This indicates that as
+long as a force field has an accurate dipole surface, the dipole derivatives needed to compute
+the field-dependence of a Morse potential will be good for water spectroscopy.
+
+\begin{figure}[H]
+   \includegraphics*[width=0.475\textwidth]{figures/badger_correlation_no_fd_morse.png}
+     \includegraphics*[width=0.475\textwidth]{figures/badger_correlation_final.png}
+  \caption{TBA See text for discussion.}
+  \label{fig:badger}
+\end{figure}
+
+\subsection*{Motivation for Modelling Many-Body Charge Transfer}
 If we consider that charge transfer involves the transfer of actual charge between
 molecules, which is certainly the case in EDA\cite{thirman2018characterizing},
 then it should be clear that there are both attractive and repulsive contributions
@@ -1401,30 +1180,7 @@ was highly innovative and an inspiration in this work, but to emphasize that it 
 energies but sub-optimal structures in the same model. Therefore, we suggest that any future water models should
 benchmark both energies and structures.
 
-In order for a force field to be useful theoretical spectroscopy, it must respect the relationships
-between structure and vibrational frequncies. In the case of water, this manifests as a linear
-relationship between the change in bond length and change in \ce{O-H} stretching frequency.\cite{boyer2019beyond}
-This is sometimes colloquially referred to as Badger's rule since Richard Badger famously pointed out a
-correspondence between equilibrium bond lengths and bond force constants.\cite{badger1934relation}
 
-In the course of constructing this force field, we tested if it satisfied the expected slope
-$\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001\AA}$\cite{boyer2019beyond}.
-We found, instead, that the slope was around $\approx -10\ \mathrm{cm^{-1}/.001\AA}$ (See Fig. S2).
-This is quite an interesting slope since Boyer \textit{et al.} show that a field-independent Morse
-oscillator, with parameters appropriate to water, will give a slope of $\approx -11\ \mathrm{cm^{-1}/.001\AA}$.
-This was a strong indication that we should allow our bonding potential parameters to be modulated
-by the field along that bond. How this is done is shown in Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}.
-
-The result of doing this is shown in Figure \ref{fig:badger} we can more accurately reproduce the structure-frequency correlation
-in water which strongly indicates our model will be useful for spectroscopy. The necessity
-of coupling the bonding potential to the environment to accurately reproduce structure-frequency
-relationships in a force field is a new observation as far as we are aware. We consider this an
-excellent result given the simplicity of the field-dependent morse potential, especially since it
-requires no free parameters. We computed the necessary dipole derivatives from a simple \ce{O-H} scan
-and found the parameters $\mu^{(1)}=0.1654$ and $\mu^{(2)}=-0.01246$. If we do the same
-calculation with FQCT, we get $\mu^{(1)}=0.1658$ and $\mu^{(2)}=-0.0104$. This indicates that as
-long as a force field has an accurate dipole surface, the dipole derivatives needed to compute
-the field-dependence of a morse potential can be computed directly from the force field.
 
 This approach is easily extensible to other force fields and should immediately improve spectroscopic predictions.
 Additionally, the ability of FQCT to generate accurate structures is useful for cases
@@ -1615,6 +1371,12 @@ historically struggled.
 \textbf{Need to decide if we should discuss these here. Definitely need to pair-specific parameters
 for the ion-ion pairs.}
 
+\section*{Discussion}
+The necessity
+of coupling the bonding potential to the environment to accurately reproduce structure-frequency
+relationships in a force field is a new observation as far as we are aware. We consider this an
+excellent result given the simplicity of the field-dependent morse potential, especially since it
+requires no free parameters. 
 \section*{Conclusions}
 
 We have described new approaches to modeling polarization and charge transfer which
@@ -1643,10 +1405,26 @@ fit error corrections on top of this force field. We expect that achieving such 
 accuracy with a physical model will enable systems that are otherwise out of reach to be studied.
 These might include concentrated ionic solutions and divalent ions.
 
+The most recent
+progress, arguably, has been made by explicitly fitting the terms of the MBE for
+ion-water interactions.\cite{zhuang2022hydration,caruso2022accurate} This approach
+has the drawback that generalizing the procedure to multi-component systems,
+such as a solution containing multiple types of ions, is made difficult by
+the combinatorial explosion of terms which need to be fit.
+
+Even worse, one can only
+exclude charge transfer and charge penetration from force fields because
+these energies are strongly correlated to the Pauli repulsion (see Fig. \ref{fig:cp_ct_pauli}).
+This correlation is not guaranteed to be consistent between systems, however,
+which may explain part of the historical difficulty in producing water models which
+generalize to heterogeneous systems.
+
+\section*{Methods}
+All distributed multipole calculations were carried out
+in the Orient program.\cite{stone2002orient}
+
 \begin{acknowledgement}
-
-TODO
-
+We acknowledge support from the U.S. National Science Foundation through Grant No. CHE-2313791. Computational resources were provided by the National Energy Research Scientific Computing Center (NERSC), a U.S. Department of Energy Office of Science User Facility operated under Contract DE-AC02-05CH11231.
 \end{acknowledgement}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
