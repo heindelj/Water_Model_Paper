@@ -16,8 +16,8 @@
 \usepackage{bm}
 \usepackage{xcolor}
 \usepackage{dsfont}
-\usepackage{pdflscape}
-\usepackage[left=2cm,right=2cm,top=3cm,bottom=2cm]
+%\usepackage[left=2cm,right=2cm,top=3cm,bottom=2cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2cm]{pdflscape}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If issues arise when submitting your manuscript, you may want to
@@ -927,36 +927,13 @@ to others since very few models report this quantity. At least one water model h
 for the express purpose of reproducing Raman spectra.\cite{sidler2018efficient}
 The polarizability derivatives were not reported. The polarization is described using
 anisotropic polarizabilities but no fluctuating charges which, based on the contents of
-Table \ref{tab:pol_derivs}, lead us to believe the present model likely has more accurate
-polarizability derivatives.
+Table \ref{tab:pol_derivs}, lead us to believe the present model likely has more accurate polarizability derivatives.
 
 \subsection*{Water Model}
 
-Having characterized the properties of the monomer surface used in this model, let
-us turn our attention to its performance on intermolecular properties. To that end, Table \ref{tab:mae}
-presents the mean absolute errors (MAEs) over each cluster size for each
-energy category in the EDA. Focusing on the dimers first, it is clear that the term
-in error by the most is Pauli repulsion, but even this is in error by less than 0.25 kcal/mol
-on average. Note that this MAE includes the re-parameterization to maximize error cancellation.
-Without including error cancellation, the Pauli MAE for dimers is 0.20 kcal/mol and all other terms,
-besides the interaction energy, remain the same. In general, the MAEs obtained by this model are
-excellent.
+Having characterized the properties of the monomer surface used in this model, let us turn our attention to its performance on intermolecular properties. To that end, Table \ref{tab:mae} presents the mean absolute errors (MAEs) over each cluster size for each energy category in the EDA. Focusing on the dimers first, it is clear that the term in error by the most is Pauli repulsion, but even this is in error by less than 0.25 kcal/mol on average. Note that this MAE includes the re-parameterization to maximize error cancellation. Without including error cancellation, the Pauli MAE for dimers is 0.20 kcal/mol and all other terms, besides the interaction energy, remain the same. In general, the MAEs obtained by this model are excellent.
 
-In addition to the MAEs for each category of the EDA, we also report the skewness of the error distribution.
-The skewness is the standardized third moment of a distribution and is a simple measure of asymmetry.
-Ideally, this number will be zero indicating that the errors are symmetrically distributed. For reference,
-a skewness between -0.5 and 0.5 is generally interpreted as indicating an approximately symmetric distribution.
-Therefore, every individual term in our model is very nearly unbiased in the sense of having approximately
-symmetric errors. The only term of some concern is the interaction energy of dimers which
-has a skewness of 0.982. Note, however, that the MAE is 0.088 kcal/mol and this asymmtry in the error shrinks
-as large clusters are considered.
-One contributor to the asymmetry in the dimer interaction energies is the lack of many-body dispersion.
-That is, we have not included many-body dispersion in this model and, as a result, we have to fit the dispersion to implicitly account for this error.
-This is why the distribution of dispersion errors starts out positively skewed (i.e. too weakly attractive) and
-ends up negatively skewed (i.e. too attractive). This follows from the fact that many-body dispersion is repulsive
-on average. It is quite interesting to note that the interaction energy
-is in error by less than every category besides polarization and dispersion. This immediately indicates that
-there must be rather significant error cancellation.
+In addition to the MAEs for each category of the EDA, we also report the skewness of the error distribution. The skewness is the standardized third moment of a distribution and is a simple measure of asymmetry. Ideally, this number will be zero indicating that the errors are symmetrically distributed. For reference, a skewness between -0.5 and 0.5 is generally interpreted as indicating an approximately symmetric distribution. Therefore, every individual term in our model is very nearly unbiased in the sense of having approximately symmetric errors. The only term of some concern is the interaction energy of dimers which has a skewness of 1.09. Note, however, that the MAE is 0.093 kcal/mol and this asymmtry in the error shrinks as larger clusters are considered. One contributor to the asymmetry in the dimer interaction energies is the lack of many-body dispersion. That is, we have not included many-body dispersion in this model and, as a result, we have to fit the dispersion to implicitly account for this error. This is why the distribution of dispersion errors starts out positively skewed (i.e. too weakly attractive) and ends up negatively skewed (i.e. too attractive). This follows from the fact that many-body dispersion is repulsive on average. It is quite interesting to note that the dimer interaction energy is in error by less than every category besides polarization and dispersion. This immediately indicates that there must be rather significant error cancellation.
 
 \begin{table}[ht!]
   \begin{center}
@@ -964,13 +941,13 @@ there must be rather significant error cancellation.
       \multicolumn{5}{c}{MAE of Force Field EDA Terms (kcal/mol)} \\\hline
        & \ce{(H2O)2} & \ce{(H2O)3} & \ce{(H2O)4} & \ce{(H2O)5} \\\hline
       %Deform. &  &  &  &  \\
-      Pauli (no error fit)   & 0.201 (0.342) & 0.323 (0.167) & 0.422 (0.090) & 0.523 (-0.029) \\
-      Pauli                  & 0.257 (-0.104) & 0.408 (-0.046) & 0.501 (0.097) & 0.650 (-0.201) \\
-      Electrostatics         & 0.138 (0.149) & 0.224 (0.169) & 0.288 (-0.066) & 0.364 (0.139) \\
-      Dispersion             & 0.067 (0.083) & 0.090 (-0.169) & 0.107 (-0.456) & 0.145 (-0.456) \\
-      Polarization           & 0.051 (0.209) & 0.099 (-0.179) & 0.140 (0.292) & 0.182 (0.276) \\
-      Charge Transfer        & 0.116 (0.134) & 0.175 (0.054) & 0.235 (-0.161) & 0.295 (0.048) \\\hline
-      Interaction            & 0.088 (0.982) & 0.179 (0.429) & 0.255 (0.063) & 0.328 (0.265) \\\hline
+      Pauli (no error fit)   & 0.134 (1.513)  & 0.209 (0.538) & 0.277 (0.491) & 0.329 (0.400) \\
+      Pauli                  & 0.184 (0.335)  & 0.297 (0.090) & 0.387 (0.193) & 0.506 (-0.059) \\
+      Electrostatics         & 0.125 (-0.209) & 0.205 (0.234) & 0.276 (-0.104) & 0.342 (-0.062) \\
+      Dispersion             & 0.069 (0.090)  & 0.092 (-0.124) & 0.109 (-0.407) & 0.149 (-0.420) \\
+      Polarization           & 0.046 (-0.219)  & 0.087 (-0.037) & 0.121 (0.437) & 0.154 (0.496) \\
+      Charge Transfer        & 0.112 (-0.362)  & 0.168 (-0.342) & 0.229 (-0.116) & 0.269 (-0.118) \\\hline
+      Interaction            & 0.093 (1.09) & 0.172 (0.940) & 0.237 (0.330) & 0.298 (0.399) \\\hline
   \end{tabular}
   \end{center}
   \vspace{-3mm}
@@ -995,63 +972,41 @@ there must be rather significant error cancellation.
   \label{fig:error_correlation}
 \end{figure}
 
-Figure \ref{fig:error_correlation} shows the correlation of errors in all attractive terms (i.e. not Pauli)
-and Pauli repulsion both with and without error fitting. As a reminder, we only allow the Pauli
-repulsion parameters to adjust against the interaction energies and forces and we only use water dimers
-when fitting for error cancellation. This makes it clear that even for larger clusters, the
-predominant source of error is in the dimers. Virtually all force fields take advantage
-of some kind of error cancellation during parameterization. While it would be preferable
-if no error cancellation was required to construct quantitative force fields, we find it
-highly unlikely that this will ever be the case. This is because making quantitative
-force fields requires an accurate description of short-range interactions which requires
-modelling quantum mechanics based on simple functional forms. As will be seen, we think this
-force field is a major step forward in modelling charge transfer, which is a purely
-quantum mechanical phenomenon, but even so, tuning the error cancellation was necessary to
-quantitatively reproduce cluster energetics and structures.
+Figure \ref{fig:error_correlation} shows the correlation of errors in all attractive terms (i.e. not Pauli) and Pauli repulsion both with and without error fitting. As a reminder, we only allow the Pauli repulsion parameters to adjust against the interaction energies and forces and we only use water dimers when fitting for error cancellation. This makes it clear that even for larger clusters, the predominant source of error is in the dimers. Virtually all force fields take advantage of some kind of error cancellation during parameterization. While it would be preferable if no error cancellation was required to construct quantitative force fields, we find it highly unlikely that this will ever be the case. This is because making quantitative force fields requires an accurate description of short-range interactions which requires modelling quantum mechanics based on simple functional forms. As will be seen, we think this force field is a major step forward in modelling charge transfer, which is a purely quantum mechanical phenomenon, but even so, tuning the error cancellation was necessary to quantitatively reproduce cluster energetics and structures.
 
-One might wonder why this model is so effective at taking advantage of error cancellation.
-We believe this stems from two facts. First, as discussed, all of the terms in
-this force field are very nearly unbiased. That is, each term is nearly equally likely
-to be in error by a positive or negative energy. This means the total energy is also unbiased
-and small tweaks to the Pauli parameters will tend to rapidly correlate the errors in each term.
-Second, error cancellation is to be expected from the simple fact that Pauli repulsion and all other terms are naturally
-correlated. This is easily seen in Figure \ref{fig:cp_ct_pauli} where the sum of charge penetration
-and charge transfer are linearly correlated to Pauli repulsion over a very wide energy range.
-Also, Figure \ref{fig:error_correlation}A shows that just by fitting each EDA term, our model naturally
-correlates attractive and repulsive errors. To put it simply, when repulsion gets stronger,
-all of the attractive terms also get stronger, so some amount of error cancellation is basically guaranteed.
+One might wonder why this model is so effective at taking advantage of error cancellation. We believe this stems from two facts. First, as discussed, all of the terms in this force field are very nearly unbiased. That is, each term is nearly equally likely to be in error by a positive or negative energy. This means the total energy is also unbiased and small tweaks to the Pauli parameters will tend to rapidly correlate the errors in each term. Second, error cancellation is to be expected from the simple fact that Pauli repulsion and all other terms are naturally correlated. This is easily seen in Figure \ref{fig:cp_ct_pauli} where the sum of charge penetration and charge transfer are linearly correlated to Pauli repulsion over a very wide energy range. Also, Figure \ref{fig:error_correlation}A shows that just by fitting each EDA term, our model naturally correlates attractive and repulsive errors. To put it simply, when repulsion gets stronger, all of the attractive terms also get stronger, so some amount of error cancellation is basically guaranteed.
 
 \begin{table}[ht!]
   \begin{center}
   \begin{tabular}{llccccccc}
       \multicolumn{9}{c}{Comparison of Methods on Benchmark Water Cluster Binding Energies} \\\hline
       \ce{(H2O)_n}& Isomer & q-AQUA & MB-Pol & FQCT & $\omega$B97X-V & HIPPO & TTM2.1-F & Ref. \\\hline
-      \ce{(H2O)_2} &  & -4.97 & -4.96 & -4.95 & -5.00 & -4.96 & -5.03 & -4.99 \\
-      \ce{(H2O)_3} &  & -15.73 & 15.69 & -15.51 & -15.77 & -15.77 & -15.94 & -15.77 \\
-      \ce{(H2O)_4} &  & -27.35 & -27.18 & -27.48 & -27.75 &	-26.69 & -27.62 &	-27.39 \\
-      \ce{(H2O)_5} &  & -35.71 & -35.55 & -36.65 & -36.51 &	-34.58 & -36.81 &	-35.9 \\
-      \ce{(H2O)_6} & Prism & -46.21 & -45.94 & -46.24 & -46.53 &	-46.15 & -45.91 &	-46.2 \\
-      \ce{(H2O)_6} & Cage & -45.94 & -45.66 & -45.98 & -46.30 &	-45.39 & -46.51 &	-45.9 \\
-      \ce{(H2O)_6} & Book & -45.21 & -44.89 & -45.93 & -45.95 &	-44.25 & -46.09 &	-45.4 \\
-      \ce{(H2O)_6} & Ring & -43.71 & -43.66 & -45.82 & -45.07 &	-42.54 & -45.17 &	-44.3 \\
-      \ce{(H2O)_7} &  & -57.71 & -57.11 & -57.99 & -58.08 & - &	-57.83 & -57.4 \\
-      \ce{(H2O)_8} & $D_2d$ & -73.32 & -72.38 & -73.24 & -73.58 & -71.55 & -73.3 & -73.0 \\
-      \ce{(H2O)_8} & $S_4$ & -72.93 & -72.06 & -73.30 & -73.55 & -71.56 & -73.33 & -72.9 \\
-      \ce{(H2O)_9} & $D_2dDD$ & -82.87 & -81.4 & -82.96 & -83.00 & - & -83.4 & -83.0 \\
-      \ce{(H2O)_{10}} &  & -94.72 &	-92.53 & -94.64 &	-94.50 & - & -94.66 &	-94.6 \\
-      \ce{(H2O)_{11}} & 43'4 & -104.23 & -103.93 & -102.69 & -103.77 & -100.23 & -104.14 & -104.6 \\
-      \ce{(H2O)_{16}} & Antiboat & -164.87 & -160.89 & -165.21 & -164.20 & -159.63 & -165.99 & -164.6 \\
-      \ce{(H2O)_{16}} & 4444-a & -163.10 & -162.28 & -164.70 & -164.28 & -161.84 & -167.25 & -164.2 \\
-      \ce{(H2O)_{16}} & 4444-b & -162.54 & -161.08 & -164.43 & -163.84 & -161.56 & -167.11 & -164.1 \\
-      \ce{(H2O)_{16}} & Boat a & -164.53 & -161.43 & -164.68 & -164.51 & -159.36 & -165.71 & -164.4 \\
-      \ce{(H2O)_{16}} & Boat b & -164.31 & -160.86 & -164.80 & -164.35 & -159.43 & -165.82 & -164.2 \\
-      \ce{(H2O)_{17}} & Sphere & -177.56 & -171.75 & -177.20 & -175.78 & -170.68 & -178.60 & -175.7 \\
-      \ce{(H2O)_{20}} & ES Prism & -212.49 & -207.84 & -213.82 & -211.98 & - & -216.46 & -214.2 \\
-      \ce{(H2O)_{20}} & FS Prism & -210.63 & -206.96 & -211.08 & -210.12 & - & -214.07 & -211.9 \\
-      \ce{(H2O)_{20}} & Fused Cubes & -208.07 & -207.45 & -210.61 & -209.90 & - & -214.34 & -210.6 \\
-      \ce{(H2O)_{20}} & Pentag. Dodec. & -199.79 & -195.22 & -201.69 & -201.22 & - & -202.22 & -200.8 \\
-      \ce{(H2O)_{25}} & Isomer 2 & -276.50 & -266.04 & -273.33 & -272.02 & - & -277.06 & -276.3 \\\hline
-      MAE/n & & \textbf{0.040} &	\textbf{0.156} &	\textbf{0.053} &	\textbf{0.051} & \textbf{0.194} & \textbf{0.092} & - \\\hline
+      \ce{(H2O)_2} &  & -4.97 & -4.96 & -4.93 & -5.00 & -4.96 & -5.03 & -4.99 \\
+      \ce{(H2O)_3} &  & -15.73 & 15.69 & -15.38 & -15.77 & -15.77 & -15.94 & -15.77 \\
+      \ce{(H2O)_4} &  & -27.35 & -27.18 & -27.30 & -27.75 &	-26.69 & -27.62 &	-27.39 \\
+      \ce{(H2O)_5} &  & -35.71 & -35.55 & -36.19 & -36.51 &	-34.58 & -36.81 &	-35.9 \\
+      \ce{(H2O)_6} & Prism & -46.21 & -45.94 & -46.10 & -46.53 &	-46.15 & -45.91 &	-46.2 \\
+      \ce{(H2O)_6} & Cage & -45.94 & -45.66 & -45.76 & -46.30 &	-45.39 & -46.51 &	-45.9 \\
+      \ce{(H2O)_6} & Book & -45.21 & -44.89 & -45.47 & -45.95 &	-44.25 & -46.09 &	-45.4 \\
+      \ce{(H2O)_6} & Ring & -43.71 & -43.66 & -45.01 & -45.07 &	-42.54 & -45.17 &	-44.3 \\
+      \ce{(H2O)_7} &  & -57.71 & -57.11 & -57.68 & -58.08 & - &	-57.83 & -57.4 \\
+      \ce{(H2O)_8} & $D_2d$ & -73.32 & -72.38 & -72.66 & -73.58 & -71.55 & -73.3 & -73.0 \\
+      \ce{(H2O)_8} & $S_4$ & -72.93 & -72.06 & -72.74 & -73.55 & -71.56 & -73.33 & -72.9 \\
+      \ce{(H2O)_9} & $D_2dDD$ & -82.87 & -81.40 & -82.13 & -83.00 & - & -83.4 & -83.0 \\
+      \ce{(H2O)_{10}} &  & -94.72 &	-92.53 & -93.59 &	-94.50 & - & -94.66 &	-94.6 \\
+      \ce{(H2O)_{11}} & 43'4 & -104.23 & -103.93 & -102.76 & -103.77 & -100.23 & -104.14 & -104.6 \\
+      \ce{(H2O)_{16}} & Antiboat & -164.87 & -160.89 & -162.95 & -164.20 & -159.63 & -165.99 & -164.6 \\
+      \ce{(H2O)_{16}} & 4444-a & -163.10 & -162.28 & -163.67 & -164.28 & -161.84 & -167.25 & -164.2 \\
+      \ce{(H2O)_{16}} & 4444-b & -162.54 & -161.08 & -163.56 & -163.84 & -161.56 & -167.11 & -164.1 \\
+      \ce{(H2O)_{16}} & Boat a & -164.53 & -161.43 & -162.71 & -164.51 & -159.36 & -165.71 & -164.4 \\
+      \ce{(H2O)_{16}} & Boat b & -164.31 & -160.86 & -162.82 & -164.35 & -159.43 & -165.82 & -164.2 \\
+      \ce{(H2O)_{17}} & Sphere & -177.56 & -171.75 & -175.01 & -175.78 & -170.68 & -178.60 & -175.7 \\
+      \ce{(H2O)_{20}} & ES Prism & -212.49 & -207.84 & -211.12 & -211.98 & - & -216.46 & -214.2 \\
+      \ce{(H2O)_{20}} & FS Prism & -210.63 & -206.96 & -209.32 & -210.12 & - & -214.07 & -211.9 \\
+      \ce{(H2O)_{20}} & Fused Cubes & -208.07 & -207.45 & -209.39 & -209.90 & - & -214.34 & -210.6 \\
+      \ce{(H2O)_{20}} & Pentag. Dodec. & -199.79 & -195.22 & -199.29 & -201.22 & - & -202.22 & -200.8 \\
+      \ce{(H2O)_{25}} & Isomer 2 & -276.50 & -266.04 & -269.60 & -272.02 & - & -277.06 & -276.3 \\\hline
+      MAE/n & & \textbf{0.040} &	\textbf{0.156} &	\textbf{0.079} &	\textbf{0.051} & \textbf{0.194} & \textbf{0.092} & - \\\hline
   \end{tabular}
   \end{center}
   \vspace{-3mm}
@@ -1069,32 +1024,32 @@ all of the attractive terms also get stronger, so some amount of error cancellat
   \begin{tabular}{llccccc}
       \multicolumn{7}{c}{Comparison of Methods on Benchmark Water Cluster Structures} \\\hline
       \ce{(H2O)_n}& Isomer & q-AQUA & MB-Pol & FQCT & $\omega$B97X-V & TTM2.1-F \\\hline
-      \ce{(H2O)_2} &  & 0.005 &	0.008 &	0.013 &	0.005 &	0.059 \\
-      \ce{(H2O)_3} &  & 0.01 &	0.014 &	0.022 &	0.008 &	0.077 \\
-      \ce{(H2O)_4} &  & 0.008 &	0.024 &	0.019 &	0.006 &	0.102 \\
-      \ce{(H2O)_5} &  & 0.013 &	0.059 &	0.043 &	0.008 &	0.156 \\
-      \ce{(H2O)_6} & Prism & 0.01	& 0.035	& 0.014	& 0.009	& 0.094 \\
-      \ce{(H2O)_6} & Cage & 0.013	& 0.027	& 0.027	& 0.018	& 0.134 \\
-      \ce{(H2O)_6} & Book & 0.01	& 0.029	& 0.048	& 0.009	& 0.142 \\
-      \ce{(H2O)_6} & Ring & 0.013	& 0.043	& 0.032	& 0.010	& 0.158 \\
-      \ce{(H2O)_7} &  & 0.016 &	0.041 &	0.031 &	0.025 &	0.122	\\
-      \ce{(H2O)_8} & $D_2d$ & 0.006	& 0.041 &	0.016	& 0.004	& 0.068 \\
+      \ce{(H2O)_2} &  & 0.005 &	0.008 &	0.017 &	0.005 &	0.059 \\
+      \ce{(H2O)_3} &  & 0.01 &	0.014 &	0.020 &	0.008 &	0.077 \\
+      \ce{(H2O)_4} &  & 0.008 &	0.024 &	0.015 &	0.006 &	0.102 \\
+      \ce{(H2O)_5} &  & 0.013 &	0.059 &	0.046 &	0.008 &	0.156 \\
+      \ce{(H2O)_6} & Prism & 0.01	& 0.035	& 0.019	& 0.009	& 0.094 \\
+      \ce{(H2O)_6} & Cage & 0.013	& 0.027	& 0.023	& 0.018	& 0.134 \\
+      \ce{(H2O)_6} & Book & 0.01	& 0.029	& 0.040	& 0.009	& 0.142 \\
+      \ce{(H2O)_6} & Ring & 0.013	& 0.043	& 0.025	& 0.010	& 0.158 \\
+      \ce{(H2O)_7} &  & 0.016 &	0.041 &	0.027 &	0.025 &	0.122	\\
+      \ce{(H2O)_8} & $D_2d$ & 0.006	& 0.041 &	0.017	& 0.004	& 0.068 \\
       \ce{(H2O)_8} & $S_4$ & 0.007	& 0.019 &	0.016	& 0.005	& 0.064 \\
-      \ce{(H2O)_9} & $D_2dDD$ & 0.089 &	0.116 &	0.038 &	0.052 &	0.207 \\
+      \ce{(H2O)_9} & $D_2dDD$ & 0.089 &	0.116 &	0.035 &	0.052 &	0.207 \\
       \ce{(H2O)_{10}} &  & 0.012 & 0.049 & 0.022 & 0.010 & 0.085 \\
-      \ce{(H2O)_{11}} & 43'4 & 0.034 & 0.065 & 0.031 & 0.017 & 0.102 \\
-      \ce{(H2O)_{16}} & Antiboat & 0.023 & 0.064 & 0.037 & 0.017 & 0.094 \\
-      \ce{(H2O)_{16}} & 4444-a & 0.039 & 0.038 & 0.026 & 0.015 & 0.074 \\
-      \ce{(H2O)_{16}} & 4444-b & 0.04 & 0.049 & 0.025 & 0.029 & 0.071 \\
+      \ce{(H2O)_{11}} & 43'4 & 0.034 & 0.065 & 0.024 & 0.017 & 0.102 \\
+      \ce{(H2O)_{16}} & Antiboat & 0.023 & 0.064 & 0.035 & 0.017 & 0.094 \\
+      \ce{(H2O)_{16}} & 4444-a & 0.039 & 0.038 & 0.028 & 0.015 & 0.074 \\
+      \ce{(H2O)_{16}} & 4444-b & 0.04 & 0.049 & 0.029 & 0.029 & 0.071 \\
       \ce{(H2O)_{16}} & Boat a & 0.023 & 0.038 & 0.027 & 0.016 & 0.076 \\
-      \ce{(H2O)_{16}} & Boat b & 0.028 & 0.057 & 0.056 & 0.016 & 0.102 \\
-      \ce{(H2O)_{17}} & Sphere & 0.039 & 0.063 & 0.034 & 0.022 & 0.086 \\
-      \ce{(H2O)_{20}} & ES Prism & 0.042 & 0.056 & 0.048 & 0.024 & 0.076 \\
-      \ce{(H2O)_{20}} & FS Prism & 0.047 & 0.05 & 0.025 & 0.023 & 0.090 \\
-      \ce{(H2O)_{20}} & Fused Cubes & 0.067 & 0.05 & 0.027 & 0.029 & 0.073 \\
-      \ce{(H2O)_{20}} & Pentag. Dodec. & 0.034 & 0.066 & 0.042 & 0.018 & 0.149 \\
-      \ce{(H2O)_{25}} & Isomer 2 & 0.029 & 0.049 & 0.048 & 0.023 & 0.109 \\\hline
-      RMSD (\AA) & & \textbf{0.026} &	\textbf{0.046} &	\textbf{0.031} &	\textbf{0.017} & \textbf{0.132} \\\hline
+      \ce{(H2O)_{16}} & Boat b & 0.028 & 0.057 & 0.048 & 0.016 & 0.102 \\
+      \ce{(H2O)_{17}} & Sphere & 0.039 & 0.063 & 0.035 & 0.022 & 0.086 \\
+      \ce{(H2O)_{20}} & ES Prism & 0.042 & 0.056 & 0.041 & 0.024 & 0.076 \\
+      \ce{(H2O)_{20}} & FS Prism & 0.047 & 0.05 & 0.030 & 0.023 & 0.090 \\
+      \ce{(H2O)_{20}} & Fused Cubes & 0.067 & 0.05 & 0.029 & 0.029 & 0.073 \\
+      \ce{(H2O)_{20}} & Pentag. Dodec. & 0.034 & 0.066 & 0.033 & 0.018 & 0.149 \\
+      \ce{(H2O)_{25}} & Isomer 2 & 0.029 & 0.049 & 0.037 & 0.023 & 0.109 \\\hline
+      RMSD (\AA) & & \textbf{0.026} &	\textbf{0.046} &	\textbf{0.029} &	\textbf{0.017} & \textbf{0.132} \\\hline
   \end{tabular}
   \end{center}
   \vspace{-3mm}
@@ -1106,15 +1061,7 @@ all of the attractive terms also get stronger, so some amount of error cancellat
   \label{tab:benchmark_structures}
 \end{table}
 
-One of the major goals of this model is to quantitiatively reproduce the many-body contributions
-to both polarization and charge transfer. To assess how well we have achieved this, we computed
-the three-body contribution to both polarization and charge transfer for many trimers extracted
-from the ion-water clusters used in parameterizing the ions. That is, these water trimers were
-not used in parameterizing the water model. The three-body polarization and
-charge transfer energy are defined as, $E_{3B}(123)=E(123)-E(12)-E(13)-E(23)$. That is,
-we take any EDA energy component for a trimer, $E_{3B}(123)$, and subtract off the same
-EDA energy component for the three dimers forming that trimer. There is no one-body
-contribution to this energy since EDA only deals with intermolecular forces.
+One of the major goals of this model is to quantitiatively reproduce the many-body contributions to both polarization and charge transfer. To assess how well we have achieved this, we computed the three-body contribution to both polarization and charge transfer for many trimers extracted from the ion-water clusters used in parameterizing the ions. That is, these water trimers were not used in parameterizing the water model. The three-body polarization and charge transfer energy are defined as, $E_{3B}(123)=E(123)-E(12)-E(13)-E(23)$. That is, we take any EDA energy component for a trimer, $E_{3B}(123)$, and subtract off the same EDA energy component for the three dimers forming that trimer. There is no one-body contribution to this energy since EDA only deals with intermolecular forces.
 
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/three_body_pol_and_ct_water.png}
@@ -1128,65 +1075,25 @@ contribution to this energy since EDA only deals with intermolecular forces.
   \label{fig:pol_ct_water}
 \end{figure}
 
-Figure \ref{fig:pol_ct_water} shows what we consider to be excellent agreement with
-electronic structure for the major three-body contributions to the energy. Indeed, the
-model manages to capture both repulsive and attractive three-body contributions to both
-polarization and charge transfer despite repulsive three-body contributions to either
-of those quantities being absent in ordinary water clusters.\cite{heindel2020many} In fact, 
-ion-water clusters have been shown to have repulsive three-body contributions in many cases.\cite{heindel2021many,herman2021many}
-We consider Figure \ref{fig:pol_ct_water} a strong validation that our models of polarization
-and charge transfer capture the salient physics that generates these many-body energies.
+Figure \ref{fig:pol_ct_water} shows what we consider to be excellent agreement with electronic structure for the major three-body contributions to the energy. Indeed, the model manages to capture both repulsive and attractive three-body contributions to both polarization and charge transfer despite repulsive three-body contributions to either of those quantities being absent in ordinary water clusters.\cite{heindel2020many} In fact,  ion-water clusters have been shown to have repulsive three-body contributions in many cases.\cite{heindel2021many,herman2021many} We consider Figure \ref{fig:pol_ct_water} a strong validation that our models of polarization and charge transfer capture the salient physics that generates these many-body energies.
 
-We have also computed the energy at the force-field optimized geometries of several clusters
-for which high-quality benchmark energies are available.\cite{herman2023extensive}
-Table \ref{tab:benchmark_energies} shows the energies predicted by our model and several other force fields
-for which data is available. It is worth noting that both q-AQUA and MB-Pol include
-fits of the 2-body, 3-body, and in the case of q-AQUA, 4-body contributions to the energy.
-Therefore, the fact that we are able to achieve an MAE over all clusters intermediate
-between these models is a great result. Interestingly, MB-Pol seems to have a tendency to
-underestimate the binding energy of clusters as they get larger. Presumably this shortcoming
-has been corrected in the updated version of MB-Pol\cite{zhu2023mb} which is reportedly at
-least as accurate as q-AQUA.
+We have also computed the energy at the force-field optimized geometries of several clusters for which high-quality benchmark energies are available.\cite{herman2023extensive} Table \ref{tab:benchmark_energies} shows the energies predicted by our model and several other force fields for which data is available. It is worth noting that both q-AQUA and MB-Pol include fits of the 2-body, 3-body, and in the case of q-AQUA, 4-body contributions to the energy. Therefore, the fact that we are able to achieve an MAE over all clusters intermediate between these models is a great result. Interestingly, MB-Pol seems to have a tendency to underestimate the binding energy of clusters as they get larger. Presumably this shortcoming has been corrected in the updated version of MB-Pol\cite{zhu2023mb} which is reportedly at least as accurate as q-AQUA.
 
-As highlighted in the methods section, the electrostatics and pauli repulsion used in this
-model are the same as those used in HIPPO.\cite{rackers2021polarizable} It is very encouraging,
-therefore, to see that our model improves on the MAEs of the HIPPO model rather substantially.
-One of the main reasons we are able to achieve better MAEs is that our many-body energies, as shown
-in Figure \ref{fig:pol_ct_water}, are both accurate and nearly unbiased. The HIPPO model systematically
-underestimates the many-body contributions to water cluster energies\cite{rackers2021polarizable},
-which is likely attributable to the absence of many-body charge transfer.
+As highlighted in the methods section, the electrostatics and pauli repulsion used in this model are the same as those used in HIPPO.\cite{rackers2021polarizable} It is very encouraging, therefore, to see that our model improves on the MAEs of the HIPPO model rather substantially. One of the main reasons we are able to achieve better MAEs is that our many-body energies, as shown in Figure \ref{fig:pol_ct_water}, are both accurate and nearly unbiased. The HIPPO model systematically underestimates the many-body contributions to water cluster energies\cite{rackers2021polarizable}, which is likely attributable to the absence of many-body charge transfer.
 
-Finally, note that we have included $\omega$B97X-V/def2-QZVPPD in Table \ref{tab:benchmark_energies} since
-this is the reference method for our force field. It is clear that this level of theory
-compares very favorably to the CCSD(T)/CBS and MP2/CBS numbers used as reference. The MAE for
-$\omega$B97X-V is also a useful benchmark since the best our force field can possibly perform
-is to reproduce these numbers. Interestingly, for larger clusters our model begins to slightly
-underestimate the energies compared to the references, but so does $\omega$B97X-V/def2-QZVPPD.
+Finally, note that we have included $\omega$B97X-V/def2-QZVPPD in Table \ref{tab:benchmark_energies} since this is the reference method for our force field. It is clear that this level of theory compares very favorably to the CCSD(T)/CBS and MP2/CBS numbers used as reference. The MAE for $\omega$B97X-V is also a useful benchmark since the best our force field can possibly perform is to reproduce these numbers. Interestingly, for larger clusters our model begins to slightly underestimate the energies compared to the references, but so does $\omega$B97X-V/def2-QZVPPD.
 
-In addition to accurate energetics, polarizable force fields should produce accurate geometries
-compared to electronic structure. To this end, Table \ref{tab:benchmark_structures} shows the root mean-squared
-deviation (RMSD) of water cluster structures optimized with various force fields and $\omega$B97X-V/def2-QZVPPD
-compared to previously reported structures optimized with either CCSD(T) or MP2.\cite{herman2023extensive}
-The average RMSD for our model manages to outperform MB-Pol and is comparable even to
-q-AQUA. Notably, $\omega$B97X-V/def2-QZVPPD is even more accurate on this benchmark than q-AQUA
-which provides further evidence of the high accuracy of this functional.
+In addition to accurate energetics, polarizable force fields should produce accurate geometries compared to electronic structure. To this end, Table \ref{tab:benchmark_structures} shows the root mean-squared deviation (RMSD) of water cluster structures optimized with various force fields and $\omega$B97X-V/def2-QZVPPD compared to previously reported structures optimized with either CCSD(T) or MP2.\cite{herman2023extensive} The average RMSD for our model manages to outperform MB-Pol and is comparable even to q-AQUA. Notably, $\omega$B97X-V/def2-QZVPPD is even more accurate on this benchmark than q-AQUA which provides further evidence of the high accuracy of this functional.
 
-Unfortunately, TTM2.1-F struggles at accurately reproducing the structures of water clusters. It is important
-to realize, however, that TTM2.1-F was published in 2006\cite{fanourgakis2006flexible} and
-is itself a minor modification of TTM2-F which was published in 2002.\cite{burnham2002development}
-TTM2.1-F is quite simple compared to the present model and MB-Pol or q-AQUA, so it is not
-surprising that it falls short on certain benchmarks. We bring this up not to criticize TTM2.1-F, which
-was highly innovative and an inspiration in this work, but to emphasize that it is possible to have accurate
-energies but sub-optimal structures in the same model. Therefore, we suggest that any future water models should
-benchmark both energies and structures.
+Unfortunately, TTM2.1-F struggles at accurately reproducing the structures of water clusters. It is important to realize, however, that TTM2.1-F was published in 2006\cite{fanourgakis2006flexible} and is itself a minor modification of TTM2-F which was published in 2002.\cite{burnham2002development} TTM2.1-F is quite simple compared to the present model and MB-Pol or q-AQUA, so it is not surprising that it falls short on certain benchmarks. We bring this up not to criticize TTM2.1-F, which was highly innovative and an inspiration in this work, but to emphasize that it is possible to have accurate energies but sub-optimal structures in the same model. Therefore, we suggest that any future water models should benchmark both energies and structures.
 
+In order for a force field to be useful theoretical spectroscopy, it must respect the relationships between structure and vibrational frequncies. In the case of water, this manifests as a linear relationship between the change in bond length and change in \ce{O-H} stretching frequency.\cite{boyer2019beyond} This is sometimes colloquially referred to as Badger's rule since Richard Badger famously pointed out a correspondence between equilibrium bond lengths and bond force constants.\cite{badger1934relation}
 
+In the course of constructing this force field, we tested if it satisfied the expected slope $\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001}$\AA\cite{boyer2019beyond}. We found, instead, that the slope was around $\approx -10\ \mathrm{cm^{-1}/.001}$\AA (See Fig. S2). This is quite an interesting slope since Boyer \textit{et al.} show that a field-independent Morse oscillator, with parameters appropriate to water, will give a slope of $\approx -11\ \mathrm{cm^{-1}/.001}$\AA. This was a strong indication that we should allow our bonding potential parameters to be modulated by the field along that bond. How this is done is shown in Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}.
 
-This approach is easily extensible to other force fields and should immediately improve spectroscopic predictions.
-Additionally, the ability of FQCT to generate accurate structures is useful for cases
-where the force field is used to generate configurations for further analysis with electronic structure.
-As an aside, many force fields use harmonic bond potentials and the field-perturbed quantum harmonic oscillator
-is exactly solvable, so a similar modification can be made in that case.
+The result of doing this is shown in Figure \ref{fig:badger} we can more accurately reproduce the structure-frequency correlation in water which strongly indicates our model will be useful for spectroscopy. The necessity of coupling the bonding potential to the environment to accurately reproduce structure-frequency relationships in a force field is a new observation as far as we are aware. We consider this an excellent result given the simplicity of the field-dependent morse potential, especially since it requires no free parameters. We computed the necessary dipole derivatives from a simple \ce{O-H} scan and found the parameters $\mu^{(1)}=0.1654$ and $\mu^{(2)}=-0.01246$. If we do the same calculation with FQCT, we get $\mu^{(1)}=0.1658$ and $\mu^{(2)}=-0.0104$. This indicates that as long as a force field has an accurate dipole surface, the dipole derivatives needed to compute the field-dependence of a morse potential can be computed directly from the force field.
+
+This approach is easily extensible to other force fields and should immediately improve spectroscopic predictions. Additionally, the ability of FQCT to generate accurate structures is useful for cases where the force field is used to generate configurations for further analysis with electronic structure. As an aside, many force fields use harmonic bond potentials and the field-perturbed quantum harmonic oscillator is exactly solvable, so a similar modification can be made in that case.
 
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/badger_correlation_final.png}
@@ -1201,12 +1108,9 @@ is exactly solvable, so a similar modification can be made in that case.
 
 \section*{Ion-Water Model}
 
-We now turn our attention to the performance of this model on ion-water clusters.
-First, we will look at simple scans for each of the ion-water dimers considered
-in this study. The scans in Figures \ref{fig:halide_scans} and \ref{fig:alkali_scans}
-show the total energy curve in a solid colored line and the reference energy curve in
-a dashed colored line. In the SI, we include a variation on these plots where
-we show the error in each individual component of the scan.
+\section*{Ion-Water Model}
+
+We now turn our attention to the performance of this model on ion-water clusters. First, we will look at simple scans for each of the ion-water dimers considered in this study. The scans in Figures \ref{fig:halide_scans} and \ref{fig:alkali_scans} show the total energy curve in a solid colored line and the reference energy curve in a dashed colored line. In the SI, we include a variation on these plots where we show the error in each individual component of the scan.
 
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/anion_dimer_scans.png}
@@ -1218,18 +1122,7 @@ we show the error in each individual component of the scan.
   }\label{fig:halide_scans}
 \end{figure}
 
-Perhaps the most important of the dimer potentials in Figures \ref{fig:halide_scans} and \ref{fig:alkali_scans}
-is the long-range attractive part of the potential which we are able to capture very accurately in
-all cases. Unsurprisingly, the largest errors are found for \ce{F^-} and \ce{Li^+} which are the
-most challening ions considered in this work due to their extremely short-range interactions.
-Another important feature of a dimer potential is the repulsive wall since in the condensed phase,
-many-body stabilization shortens the oxygen-ion distance beyond the dimer equilibrium distance.
-Looking at the errors of each term inside the equilbrium distance in Figures \ref{fig:halide_scans_si} and \ref{fig:alkali_scans_si},
-it is clear that the Pauli repulsion tends to be underestimated on the repulsive wall as is charge transfer.
-On the other hand, electrostatics and polarization are overesimated on the repulsive wall. These effects
-are largest for smaller ions but in each case.
-Achieving accurate energies high up the repulsive wall is not particularly important beyond ensuring
-that the repulsive wall does not have a short-range singularity.
+Perhaps the most important of the dimer potentials in Figures \ref{fig:halide_scans} and \ref{fig:alkali_scans} is the long-range attractive part of the potential which we are able to capture very accurately in all cases. Unsurprisingly, the largest errors are found for \ce{F^-} and \ce{Li^+} which are the most challening ions considered in this work due to their extremely short-range interactions. Another important feature of a dimer potential is the repulsive wall since in the condensed phase, many-body stabilization shortens the oxygen-ion distance beyond the dimer equilibrium distance. Looking at the errors of each term inside the equilbrium distance in Figures \ref{fig:halide_scans_si} and \ref{fig:alkali_scans_si}, it is clear that the Pauli repulsion tends to be underestimated on the repulsive wall as is charge transfer. On the other hand, electrostatics and polarization are overestimated on the repulsive wall. These effects are largest for smaller ions but in each case. Achieving accurate energies high up the repulsive wall is not particularly important beyond ensuring that the repulsive wall does not have a short-range singularity.
 
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/cation_dimer_scans.png}
@@ -1240,40 +1133,30 @@ that the repulsive wall does not have a short-range singularity.
   Binding energies and harmonic frequencies are reported in Table \ref{tab:ion_freqs}.
   }\label{fig:alkali_scans}
 \end{figure}
-
-%It should come as no
-%surprise that inside of the equilibrium distance, the errors can become quite large.
-%Systematically, the Pauli repulsion and charge transfer tend to be underestimated going up the repulsive wall
-%while electrostatics and polarization tend to be overestimated at very short distances.
-%The underestimation of Pauli repulsion and charge transfer is not surprising given they
-%are expected to scale super-exponentially at short distances.
-
-Since ion-water interactions are strong, they can result in large red-shifts
-of the underlying vibrational frequencies. To that end, we show the frequencies and
-binding energies of FQCT compared to $\omega$B97X-V in Table \ref{tab:ion_freqs}.
+Since ion-water interactions are strong, they can result in large red-shifts of the underlying vibrational frequencies. To that end, we show the frequencies and binding energies of FQCT compared to $\omega$B97X-V in Table \ref{tab:ion_freqs}.
 
 \begin{table}[ht!]
   \begin{center}
   \begin{tabular}{llccccccc}
       \multicolumn{9}{c}{Ion-Water Dimer Vibrational Frequencies} \\\hline
       \ce{X^{+/-}(H2O)} & Method & NM1 & NM2 & NM3 & NM4 & NM5 & NM6 & $D_e$ \\\hline
-      \ce{F^-(H2O)} & FQCT  & 296 & 665 & 1258 & 1768 & 2182 & 3929 & -27.1 \\
+      \ce{F^-(H2O)} & FQCT  & 390 & 717 & 1353 & 1795 & 2095 & 3931 & -27.9 \\
            & $\omega$B97X-V & 384 & 569 & 1144 & 1702 & 2233 & 3916 & -27.2 \\\hline
-      \ce{Cl^-(H2O)} & FQCT & 196 & 393 & 770 & 1720 & 3412 & 3936 & -15.2 \\
+      \ce{Cl^-(H2O)} & FQCT & 197 & 396 & 773 & 1724 & 3485 & 3938 & -15.2 \\
            & $\omega$B97X-V & 193 & 341 & 726 & 1678 & 3417 & 3919 & -14.9 \\\hline
-      \ce{Br^-(H2O)} & FQCT & 155 & 349 & 709 & 1713 & 3527 & 3930 & -13.2 \\
+      \ce{Br^-(H2O)} & FQCT & 158 & 354 & 712 & 1713 & 3549 & 3931 & -13.2 \\
            & $\omega$B97X-V & 151 & 288 & 657 & 1673 & 3521 & 3916 & -12.9 \\\hline
-      \ce{I^-(H2O)} & FQCT  & 128 & 292 & 635 & 1700 & 3591 & 3920 & -11.1 \\
+      \ce{I^-(H2O)} & FQCT  & 129 & 297 & 638 & 1700 & 3596 & 3921 & -11.1 \\
            & $\omega$B97X-V & 118 & 220 & 579 & 1668 & 3623 & 3911 & -10.9 \\\hline
-      \ce{Li^+(H2O)} & FQCT & 303 & 516 & 532 & 1668 & 3673 & 3798 & -34.8 \\
+      \ce{Li^+(H2O)} & FQCT & 304 & 497 & 534 & 1669 & 3676 & 3799 & -34.8 \\
            & $\omega$B97X-V & 392 & 524 & 554 & 1681 & 3815 & 3882 & -34.9 \\\hline
-      \ce{Na^+(H2O)} & FQCT & 268 & 315 & 442 & 1679 & 3735 & 3847 & -24.3 \\
+      \ce{Na^+(H2O)} & FQCT & 273 & 316 & 424 & 1680 & 3735 & 3846 & -24.2 \\
            & $\omega$B97X-V & 307 & 367 & 437 & 1677 & 3830 & 3902 & -24.3 \\\hline
-      \ce{K^+(H2O)} & FQCT  & 221 & 307 & 372 & 1681 & 3766 & 3873 & -17.6 \\
+      \ce{K^+(H2O)} & FQCT  & 221 & 306 & 355 & 1681 & 3766 & 3872 & -17.6 \\
            & $\omega$B97X-V & 213 & 359 & 369 & 1673 & 3833 & 3910 & -17.7 \\\hline
-      \ce{Rb^+(H2O)} & FQCT & 181 & 304 & 346 & 1680 & 3776 & 3881 & -15.4 \\
+      \ce{Rb^+(H2O)} & FQCT & 181 & 307 & 332 & 1680 & 3775 & 3880 & -15.4 \\
            & $\omega$B97X-V & 178 & 347 & 351 & 1671 & 3836 & 3914 & -15.6 \\\hline
-      \ce{Cs^+(H2O)} & FQCT & 159 & 305 & 322 & 1679 & 3784 & 3889 & -13.8 \\
+      \ce{Cs^+(H2O)} & FQCT & 160 & 305 & 307 & 1679 & 3784 & 3888 & -13.8 \\
            & $\omega$B97X-V & 157 & 327 & 339 & 1668 & 3836 & 3916 & -14.0 \\\hline
   \end{tabular}
   \end{center}
@@ -1284,34 +1167,13 @@ binding energies of FQCT compared to $\omega$B97X-V in Table \ref{tab:ion_freqs}
   \label{tab:ion_freqs}
 \end{table}
 
-To begin, the binding energies of FQCT are extremely accurate compared to its reference
-method. Indeed, the largest error is only 0.3 kcal/mol for \ce{Br^-(H_2O)}. \textbf{More 
-to say here...}
+To begin, the binding energies of FQCT are extremely accurate compared to its reference method. Indeed, the largest error is 0.7 kcal/mol for \ce{F^-(H_2O)}, which is by far the most difficult case. The rest of the ions have binding energies accurate to within a few tenths of a kcal/mol.
 
-The harmonic frequencies in Table \ref{tab:ion_freqs} are generally quite accurate. The \ce{O-H}
-stretching modes, NM5, are very accurate for all anions are very accurate especially considering
-the strength of interactions involved. This highlights that reproducing the structure-frequency
-correspondence shown in Figure \ref{fig:badger} transfers to interactions with anions.
-Interestingly, the bending mode for anion-water dimers, NM4, is systematically blue-shifted. This
-is almost certainly attributable to the lack of a field-dependent contribution to the bending
-potential. Essentially, the anion attracts the other hydrogen atom causing the \ce{HOH} angle to
-close more than it should. This effect would be counter-acted by a field-dependent angle potential
-which would tend to result in an opening of the \ce{HOH} angle.
-In the future, we may explore the addition of a field-dependent contribution to the bending potential.
-The low-frequency modes for the anions are also rather accurate but a bit overestimated.
+The harmonic frequencies in Table \ref{tab:ion_freqs} are generally quite accurate. The \ce{O-H} stretching modes, NM5, are fairly accurate for all anions especially considering the strength of interactions involved. This highlights that reproducing the structure-frequency correspondence shown in Figure \ref{fig:badger} transfers to interactions with anions. Interestingly, the bending mode for anion-water dimers, NM4, is systematically blue-shifted. This is almost certainly attributable to the lack of a field-dependent contribution to the bending potential. Essentially, the anion attracts the other hydrogen atom causing the \ce{HOH} angle to close more than it should. This effect would be counter-acted by a field-dependent angle potential which would tend to result in an opening of the \ce{HOH} angle. In the future, we may explore the addition of a field-dependent contribution to the bending potential. The low-frequency modes for the anions are also rather accurate but a bit overestimated.
 
-Interestingly, the low-frequency modes for cation-water dimers are a bit more accurate than those for the anions except
-the frequencies tend to be slightly underestimated. The problem with the bending frequencies
-seen for the anions does not occur for the cations. \textbf{See if the O-H stretching thing persists
-after fixing the CT thing...}
+Interestingly, the low-frequency modes for cation-water dimers are a bit more accurate than those for the anions except the frequencies tend to be slightly underestimated. The problem with the bending frequencies seen for the anions does not occur for the cations. On the other hand, the \ce{O-H} stretching modes for cation-water dimers are red-shifted too much compared to $\omega$B97X-V.
 
-Just as with water, many-body contributions to both polarization and charge transfer
-are important for ion-water systems. On a relative basis, both are less important
-than in water clusters simply because electrostatic interactions with ions are so
-large but that does not mean they can be neglected. In Figures \ref{fig:halide_3b}A and \ref{fig:halide_3b}B,
-we show the correlation of three-body polarization energies computed from FQCT and
-EDA. These energies are computed from 400 trimers drawn from ion-water clusters which
-we generated for this work.
+Just as with water, many-body contributions to both polarization and charge transfer are important for ion-water systems. On a relative basis, both are less important than in water clusters simply because electrostatic interactions with ions are so large but that does not mean they can be neglected. In Figures \ref{fig:halide_3b}A and \ref{fig:halide_3b}B, we show the correlation of three-body polarization energies computed from FQCT and EDA. These energies are computed from 400 trimers drawn from ion-water clusters which we generated for this work.
 
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/three_body_pol_and_ct_halides.png}
@@ -1326,12 +1188,7 @@ we generated for this work.
   \label{fig:halide_3b}
 \end{figure}
 
-Figures \ref{fig:halide_3b}A and \ref{fig:halide_3b}B demonstrate that our models
-of polarization and charge transfer are transferable even to very strong interactions.
-The attractive contributions to many-body polarization are captured exceptionally well,
-while some additional scatter arises for repulsive three-body polarization. The accuracy
-of many-body charge transfer with halides is similar regardless of whether the energy
-is attractive or repulsive. 
+Figures \ref{fig:halide_3b}A and \ref{fig:halide_3b}B demonstrate that our models of polarization and charge transfer are transferable even to very strong interactions. The attractive contributions to many-body polarization are captured exceptionally well, while some additional scatter arises for repulsive three-body polarization. The accuracy of many-body charge transfer with halides is similar regardless of whether the energy is attractive or repulsive. 
 
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/three_body_pol_and_ct_cations.png}
@@ -1347,24 +1204,11 @@ is attractive or repulsive.
   \label{fig:alkali_3b}
 \end{figure}
 
-Figures \ref{fig:alkali_3b}A and \ref{fig:alkali_3b}B show the same correlations we just discussed
-for halide-water trimers but for the alkali metal cations. The description of many-body polarization
-is somewhat worse than for halides, but is still quite accurate by consistently being around
-an MAE of 0.1 kcal/mol. Our experience is that modeling polarization for cations is generally
-more difficult than for the halides. This is likely the case since the the oxygen atom in water
-is very polarizable and cations interact directly with the oxygen.
+Figures \ref{fig:alkali_3b}A and \ref{fig:alkali_3b}B show the same correlations we just discussed for halide-water trimers but for the alkali metal cations. The description of many-body polarization is somewhat worse than for halides, but is still quite accurate by consistently being around an MAE of 0.1 kcal/mol. Our experience is that modeling polarization for cations is generally more difficult than for the halides. This is likely the case since the the oxygen atom in water is very polarizable and cations interact directly with the oxygen.
 
-Figure \ref{fig:alkali_3b}B is another illustration of the transferability and general accuracy
-of our charge transfer model. Interestingly, the errors in three-body charge transfer decrease
-going from \ce{Li^+} to \ce{Na^+} to \ce{K^+}, which is expected since the magnitude
-of the energy also decreases. The MAEs for \ce{Rb^+} and \ce{Cs^+} increase to about 0.045 kcal/mol
-and the correlation is slightly skewed. In any case, many-body charge transfer is rather small
-for these ions and FQCT is still able to capture the trend accurately.
+Figure \ref{fig:alkali_3b}B is another illustration of the transferability and general accuracy of our charge transfer model. Interestingly, the errors in three-body charge transfer decrease going from \ce{Li^+} to \ce{Na^+} to \ce{K^+}, which is expected since the magnitude of the energy also decreases. The MAEs for \ce{Rb^+} and \ce{Cs^+} increase to about 0.045 kcal/mol and the correlation is slightly skewed. In any case, many-body charge transfer is rather small for these ions and FQCT is still able to capture the trend accurately.
 
-Overall, we are very pleased with the transferability of our polarization and charge transfer models
-from water to ions. Accurately reproducing many-body energies is a very stringent test of
-any model, but especially for ion-water systems where polarizable force fields have
-historically struggled.
+Overall, we are very pleased with the transferability of our polarization and charge transfer models from water to ions. Accurately reproducing many-body energies is a very stringent test of any model, but especially for ion-water systems where polarizable force fields have historically struggled.
 
 \section*{Ion-Ion Potentials}
 
