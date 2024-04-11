@@ -1180,10 +1180,10 @@ Just as with water, many-body contributions to both polarization and charge tran
   \caption{Correlation of three-body polarization (A) and charge transfer energies (B)
   between FQCT and EDA. All trimers are drawn from ion-water clusters optimized
   with $\omega$B97X-V/def2-TZVPPD and energies are computed with the def2-QZVPPD basis set.
-  The 3-body polarization MAEs over the trimers in panel A are 0.058, 0.056, and 0.044 kcal/mol
-  for \ce{Cl^-}, \ce{Br^-}, \ce{I^-}, respectively. The 3-body charge transfer MAEs over
-  the trimers in panel B are 0.044, 0.036, and 0.033 kcal/mol
-  for \ce{Cl^-}, \ce{Br^-}, \ce{I^-}, respectively.
+  The 3-body polarization MAEs over the trimers in panel A are 0.208, 0.072, 0.060, and 0.046 kcal/mol
+  for \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, and \ce{I^-}, respectively. The 3-body charge transfer MAEs over
+  the trimers in panel B are 0.129, 0.068, 0.056, and 0.044 kcal/mol
+  for \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, and \ce{I^-}, respectively.
 }
   \label{fig:halide_3b}
 \end{figure}
@@ -1195,10 +1195,10 @@ Figures \ref{fig:halide_3b}A and \ref{fig:halide_3b}B demonstrate that our model
   \caption{Correlation of three-body polarization (A) and charge transfer energies (B)
   between FQCT and EDA. All trimers are drawn from ion-water clusters optimized
   with $\omega$B97X-V/def2-TZVPPD and energies are computed with the def2-QZVPPD basis set.
-  The 3-body polarization MAEs over the trimers in panel A are 0.143, 0.131, 0.099,
-  0.095, and 0.069 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
+  The 3-body polarization MAEs over the trimers in panel A are 0.122, 0.105, 0.080,
+  0.123, and 0.078 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
   respectively. The 3-body charge transfer MAEs over the trimers in panel B are
-  0.067, 0.034, 0.027, 0.046, and 0.045 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
+  0.050, 0.024, 0.021, 0.033, and 0.029 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
   respectively.
 }
   \label{fig:alkali_3b}
@@ -1206,14 +1206,13 @@ Figures \ref{fig:halide_3b}A and \ref{fig:halide_3b}B demonstrate that our model
 
 Figures \ref{fig:alkali_3b}A and \ref{fig:alkali_3b}B show the same correlations we just discussed for halide-water trimers but for the alkali metal cations. The description of many-body polarization is somewhat worse than for halides, but is still quite accurate by consistently being around an MAE of 0.1 kcal/mol. Our experience is that modeling polarization for cations is generally more difficult than for the halides. This is likely the case since the the oxygen atom in water is very polarizable and cations interact directly with the oxygen.
 
-Figure \ref{fig:alkali_3b}B is another illustration of the transferability and general accuracy of our charge transfer model. Interestingly, the errors in three-body charge transfer decrease going from \ce{Li^+} to \ce{Na^+} to \ce{K^+}, which is expected since the magnitude of the energy also decreases. The MAEs for \ce{Rb^+} and \ce{Cs^+} increase to about 0.045 kcal/mol and the correlation is slightly skewed. In any case, many-body charge transfer is rather small for these ions and FQCT is still able to capture the trend accurately.
+Figure \ref{fig:alkali_3b}B is another illustration of the transferability and general accuracy of our charge transfer model. Interestingly, the errors in three-body charge transfer decrease going from \ce{Li^+} to \ce{Na^+} to \ce{K^+}, which is expected since the magnitude of the energy also decreases. The MAEs for \ce{Rb^+} and \ce{Cs^+} increase to about 0.033 kcal/mol and the correlation is slightly skewed. In any case, many-body charge transfer is rather small for these ions and FQCT is still able to capture the trend accurately.
 
 Overall, we are very pleased with the transferability of our polarization and charge transfer models from water to ions. Accurately reproducing many-body energies is a very stringent test of any model, but especially for ion-water systems where polarizable force fields have historically struggled.
 
 \section*{Ion-Ion Potentials}
 
-\textbf{Need to decide if we should discuss these here. Definitely need to pair-specific parameters
-for the ion-ion pairs.}
+
 
 \section*{Discussion}
 The necessity
