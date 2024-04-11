@@ -317,7 +317,7 @@ described of increasing the order of $f^{overlap}$.
 
 \subsection*{Polarization, Charge Transfer, and the One-Body Potential}
 This work introduces new physics for polarization, charge transfer, and the one-body potential. In particular, we introduce a combined fluctuating charge (FQ) and induced dipole model of electronic
-polarization that couples to our model for many-body charge transfer that we will show better reproduces all terms from EDA, and allowing for explicit transfer of charge between molecules. When combined with our new model for the one-body potential, we also ensure that the force field reproduces
+polarization that couples to our model for many-body charge transfer that we will show better reproduces all terms from EDA, and allows for explicit transfer of charge between molecules. When combined with our new model for the one-body potential, we also ensure that the force field reproduces
 all physically relevant monomer properties including the dipole moment, dipole derivatives,
 molecular polarizability, and polarizability derivatives. 
 
@@ -393,12 +393,12 @@ The damping functions generated from the overlap of slater orbitals are
 third-, fourth-, and fifth-order polynmials multiplied by an exponential for charge-charge, charge-dipole,
 and dipole-dipole interactions, respectively. These damping functions are therefore better able
 to control the polarization energy than the Thole damping functions used in other force fields.
-In fact, the small orders of the polynomials in Thole damping likely explain much of the historic difficulty of controlling
+In fact, the small orders of the polynomials in Thole damping likely explains much of the historic difficulty of controlling
 polarization between ions and water.\cite{jiao2006simulation,mason2012accurate}
 
 Normally, the dipole polarizability is treated as a constant in polarizable force fields,
-but Chung \textit{et al.} have pointed out that the polarizability of ions
-is significantly diminished in the aqueous phase.\cite{chung2022classical}
+but Chung \textit{et al.} have pointed out that polarizabilities
+can be significantly diminished in the aqueous phase.\cite{chung2022classical}
 This effect is not exclusive to ions, but is simply more noticable for diffuse anions. We adopt a slightly
 simplified version of the scheme suggested by Chung \textit{et al.} for making the polarizability dependent on the local
 environment. We damp the inverse polarizability, $\bm{\alpha}^{-1}$, as follows
@@ -481,7 +481,7 @@ short range. Specifically, we introduce another term proportional to density ove
 where $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$, $f_4^{TT}(x_{ij})$
 is the fourth-order Tang-Toennies damping function, defined later in Eq. \ref{eq:TT}, and $a_{ij}^{sr}=a_{i}^{sr}a_{j}^{sr}$ is
 the pairwise parameter fit for this term. While Eq. \ref{eq:pol_sr} is more empirical than the rest of the FQCT force field, it captures the effect of quadrupole polarization, which is known to be important
-in water\cite{herman2023accurate} (which is very computationally expensive to account for given the magnitude of the effect). In fact the last term in Eq. \ref{eq:pol_sr} tends to have a magnitude for water
+in water\cite{herman2023accurate} (which is very computationally expensive to account for compared to the magnitude of the effect). In fact the last term in Eq. \ref{eq:pol_sr} tends to have a magnitude for water
 that is only a bit larger than what would one expect for quadrupole polarization of around 20\%. Thus even though Eq. \ref{eq:pol_sr} is clearly
 not a true model for quadrupole polarization, since it is pairwise-additive
 while quadrupole polarization is a many-body contributions, it works quite well. Similar terms
