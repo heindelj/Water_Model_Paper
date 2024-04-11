@@ -26,6 +26,40 @@
   {\relax}
   {\relax}
 
+\bibitem[Xantheas(2000)]{xantheas2000cooperativity}
+Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
+  \emph{Chemical Physics} \textbf{2000}, \emph{258}, 225--231\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Heindel and Xantheas(2021)Heindel, and Xantheas]{heindel2021many}
+Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
+  revisited: II. Alkali metal and halide ion--water interactions. \emph{Journal
+  of chemical theory and computation} \textbf{2021}, \emph{17},
+  2200--2216\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Herman \latin{et~al.}(2021)Herman, Heindel, and
+  Xantheas]{herman2021many}
+Herman,~K.~M.; Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for
+  aqueous systems revisited: III. Hofmeister ion--water interactions.
+  \emph{Physical Chemistry Chemical Physics} \textbf{2021}, \emph{23},
+  11196--11210\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Heindel and Xantheas(2020)Heindel, and Xantheas]{heindel2020many}
+Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
+  revisited: I. Water--water interactions. \emph{Journal of Chemical Theory and
+  Computation} \textbf{2020}, \emph{16}, 6843--6855\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Rick \latin{et~al.}(1994)Rick, Stuart, and Berne]{rick1994dynamical}
 Rick,~S.~W.; Stuart,~S.~J.; Berne,~B.~J. Dynamical fluctuating charge force
   fields: Application to liquid water. \emph{The Journal of chemical physics}
@@ -68,40 +102,6 @@ Mao,~Y.; Loipersberger,~M.; Horn,~P.~R.; Das,~A.; Demerdash,~O.; Levine,~D.~S.;
   interaction energies and observable shifts to component contributions and
   back again: A tale of variational energy decomposition analysis. \emph{Annual
   review of physical chemistry} \textbf{2021}, \emph{72}, 641--666\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Xantheas(2000)]{xantheas2000cooperativity}
-Xantheas,~S.~S. Cooperativity and hydrogen bonding network in water clusters.
-  \emph{Chemical Physics} \textbf{2000}, \emph{258}, 225--231\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Heindel and Xantheas(2021)Heindel, and Xantheas]{heindel2021many}
-Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
-  revisited: II. Alkali metal and halide ion--water interactions. \emph{Journal
-  of chemical theory and computation} \textbf{2021}, \emph{17},
-  2200--2216\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Herman \latin{et~al.}(2021)Herman, Heindel, and
-  Xantheas]{herman2021many}
-Herman,~K.~M.; Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for
-  aqueous systems revisited: III. Hofmeister ion--water interactions.
-  \emph{Physical Chemistry Chemical Physics} \textbf{2021}, \emph{23},
-  11196--11210\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Heindel and Xantheas(2020)Heindel, and Xantheas]{heindel2020many}
-Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
-  revisited: I. Water--water interactions. \emph{Journal of Chemical Theory and
-  Computation} \textbf{2020}, \emph{16}, 6843--6855\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
