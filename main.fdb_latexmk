@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1712880121 "main.aux" "main.bbl" "main" 1712880441 0
-  "./acs-main.bib" 1712880440 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
-  "./references.bib" 1712878254 28398 033e506634cb38369b78e516a4fd1408 ""
+["bibtex main"] 1712885119 "main.aux" "main.bbl" "main" 1712885336 0
+  "./acs-main.bib" 1712885336 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
+  "./references.bib" 1712885101 29205 2f7671dc49c970cd56c223f3ff6f21c0 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1712880441 25401 097774a76277a2688c1edcfbddbd4f82 "pdflatex"
+  "main.aux" 1712885336 26006 700539af6b95320a7ee7c504c1ab7194 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1712880437 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1712880441 0
+["pdflatex"] 1712885332 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1712885336 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1712880436 110168 b74a56152f12628706a429a6c2be07f0 ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1712885332 112941 dc09f4190d534cada77d8d21ab1e7d3f ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -141,9 +141,9 @@
   "figures/three_body_pol_and_ct_halides.png" 1712866363 104367 92d423935bd73d4f984d017b5bfbbcc9 ""
   "figures/three_body_pol_and_ct_water.png" 1712354518 102844 1d5d22206563bd3440afa2c95372cee2 ""
   "figures/trimer_mbe_example.png" 1705705040 71772 1c186bc1ce9f9a727cfd81d510a4a0af ""
-  "main.aux" 1712880441 25401 097774a76277a2688c1edcfbddbd4f82 "pdflatex"
-  "main.bbl" 1712880121 34804 0bc2f9792facc4b6212277db6e05f3cf "bibtex main"
-  "main.tex" 1712880436 110168 b74a56152f12628706a429a6c2be07f0 ""
+  "main.aux" 1712885336 26006 700539af6b95320a7ee7c504c1ab7194 "pdflatex"
+  "main.bbl" 1712885119 35821 2149d1abdd798c0d207fb0a373b19b50 "bibtex main"
+  "main.tex" 1712885332 112941 dc09f4190d534cada77d8d21ab1e7d3f ""
   (generated)
   "acs-main.bib"
   "main.aux"

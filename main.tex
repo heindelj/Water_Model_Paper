@@ -526,6 +526,7 @@ and from $j$ to $i$, $\Delta Q^{CT}_{j\rightarrow i}$, as
 \begin{subequations}
   \begin{equation}
   \Delta Q^{CT}_{i\rightarrow j}=\frac{V^{CT}_{i\rightarrow j}}{\epsilon_{i\rightarrow j}}
+    \label{eq:ct_forward}
 \end{equation}
 \begin{equation}
   \Delta Q^{CT}_{j\rightarrow i}=\frac{V^{CT}_{j\rightarrow i}}{\epsilon_{j\rightarrow i}}
@@ -540,23 +541,9 @@ This approach is novel by allowing charge to explicitly move between fragments. 
   \label{eq:charge_constraint}
 \end{equation}
 
-The charge constraint including charge transfer, $Q^{CT}_A$, is simply the
-difference in charge transferred to atom $i$ (in $A$) and charge transferred from atom
-$i$, summed over all atoms in molecule $A$. These charges will not be optimally
-distributed, so they will be allowed to relax during the polarization process.
-This allows us to capture the so-called "re-polarization"\cite{khaliullin2007unravelling}
-effect in which orbitals relax after allowing for occupied-virtual mixing.
-For example, when charge is transferred from oxygen to hydrogen in a water
-dimer, the final excess charge will mostly come to rest on the oxygen in
-the water with net-negative charge.
+The charge constraint including charge transfer, $Q^{CT}_A$, is simply the difference in charge transferred to atom $i$ (in $A$) and charge transferred from atom $i$, summed over all atoms in molecule $A$. These charges will not be optimally distributed, so they will be allowed to relax during the polarization process. This allows us to capture the so-called "re-polarization"\cite{khaliullin2007unravelling} effect in which orbitals relax after allowing for occupied-virtual mixing. For example, when charge is transferred from oxygen to hydrogen in a water dimer, the final excess charge will mostly come to rest on the oxygen in the water with net-negative charge.
 
-Because the
-charge transferred between fragments is proportional to the direct CT contributions,
-the charge constraints depend on the distance between atoms. This means there
-is a gradient contribution which multiplies the lagrange multipliers
-with the gradient of $\Delta Q^{CT}_{i\rightarrow j}$ and $\Delta Q^{CT}_{j\rightarrow i}$.
-This is not difficult or expensive to evaluate, but is an 
-unusual gradient term which must be accounted for in software implementations.
+Because the charge transferred between fragments is proportional to the direct CT contributions, the charge constraints depend on the distance between atoms. This means there is a gradient contribution which multiplies the lagrange multipliers with the gradient of $\Delta Q^{CT}_{i\rightarrow j}$ and $\Delta Q^{CT}_{j\rightarrow i}$. This is not difficult or expensive to evaluate, but is an  unusual gradient term which must be accounted for in software implementations.
 
 
 \textbf{The One-Body Potential.} The deformation energy for a single water molecule is constructed following a protocol we have recently published.\cite{Sami2024} The one-body potential consists of a Morse potential, cosine angle potential, a bond-bond coupling term, and bond-angle coupling term. 
@@ -611,68 +598,22 @@ We then generated clusters of the form \ce{X^-Y^+(H_2O)_n} for n=4-10 where \ce{
 
 All energies used in fitting parameters of the force field are computed at the $\omega$B97X-V/def2-QZVPPD level of theory. In the cases where clusters are optimized at $\omega$B97X-V/def2-TZVPPD, we recompute the energies of those clusters and any derived sub-structures with $\omega$B97X-V/def2-QZVPPD.
 
-\textbf{Parameterization strategy.} We fit each term against only the EDA contribution to that particular energy component. Optimization of parameters is done using simple gradient descent
-against the root mean-square deviation (RMSD) of predicted and EDA energies. For electrostatics and Pauli repulsion, we only use dimers in
-the fitting process since electrostatics is strictly pairwise-additive and Pauli repulsion is nearly so.
-For these terms 200 random water dimers from the datasets
-described above are used in fitting whereas for other many-body terms we use
-200 random water dimers, trimers, tetramers, and pentamers from the datasets described above.
+\textbf{Parameterization strategy.} We fit each term against only the EDA contribution to that particular energy component. Optimization of parameters is done using simple gradient descent against the root mean-square deviation (RMSD) of predicted and EDA energies. For electrostatics and Pauli repulsion, we only use dimers in the fitting process since electrostatics is strictly pairwise-additive and Pauli repulsion is nearly so. For these terms 200 random water dimers from the datasets described above are used in fitting whereas for other many-body terms we use 200 random water dimers, trimers, tetramers, and pentamers from the datasets described above.
 
-When parameterizing electrostatics, we optimize against two objectives. First, we ensure
-that the dipole derivatives at the equilibrium geometry of water are correct (this can be achieved
-nearly exactly). Second, we optimize against the distributed multipole electrostatic energy described
-near Eq. \ref{eq:cp}. We also include 200 random dimers
-of \ce{Cl^-(H2O)} and \ce{K^+(H2O)} when fitting against the distributed multipole electrostatics.
-This seems to help with optimizing to physically meaningful multipoles.
-We then freeze the total charges and dipoles on each atom so that the dipole derivatives
-will remain correct. Next, we fit the value of the core charges, $Z$ and electrostatic exponents, $b_{elec}$, on each atom
-with respect to the total electrostatic energy from EDA. We also allow the quadrupoles to relax
-against the total electrostatic energy as a form of compensation for the lack of higher-order multipoles.
+When parameterizing electrostatics, we optimize against two objectives. First, we ensure that the dipole derivatives at the equilibrium geometry of water are correct (this can be achieved nearly exactly). Second, we optimize against the distributed multipole electrostatic energy described near Eq. \ref{eq:cp}. We also include 200 random dimers of \ce{Cl^-(H2O)} and \ce{K^+(H2O)} when fitting against the distributed multipole electrostatics. This seems to help with optimizing to physically meaningful multipoles. We then freeze the total charges and dipoles on each atom so that the dipole derivatives will remain correct. Next, we fit the value of the core charges, $Z$ and electrostatic exponents, $b_{elec}$, on each atom with respect to the total electrostatic energy from EDA. We also allow the quadrupoles to relax against the total electrostatic energy as a form of compensation for the lack of higher-order multipoles.
 
-The Pauli repulsion term is first fit against the RMSD of the corresponding EDA energy.
-The repulsion parameters are then allowed to relax against the total interaction energy
-and interaction forces for only dimers. Using the forces is essential to get meaningful
-values of the dipole derivatives used in the field-dependent Morse potential for Pauli
-repulsion. This procedure essentially results in improved error cancellation
-which we find is still necessary for a robust force field. We will have more to say about the necessity
-of error cancellation in force fields later. It should be noted that we only allow
-the Pauli repulsion to optimize against dimers so that it cannot correct errors
-in the many-body contributions. Furthermore, we will see that the Pauli repulsion energy
-still ends up providing an unbiased estimate of the EDA Pauli repulsion energy.
+The Pauli repulsion term is first fit against the RMSD of the corresponding EDA energy. The repulsion parameters are then allowed to relax against the total interaction energy and interaction forces for only dimers. Using the forces is essential to get meaningful values of the dipole derivatives used in the field-dependent Morse potential for Pauli repulsion. This procedure essentially results in improved error cancellation which we find is still necessary for a robust force field. We will have more to say about the necessity of error cancellation in force fields later. It should be noted that we only allow the Pauli repulsion to optimize against dimers so that it cannot correct errors in the many-body contributions. Furthermore, we will see that the Pauli repulsion energy still ends up providing an unbiased estimate of the EDA Pauli repulsion energy.
 
-The charge transfer energy and dispersion energies are simply fit against the RMSD from their EDA energies. 
-Dispersion, on the other hand, has a large enough many-body contribution that if only dimers
-are used in the fitting, one will systematically over-estimate the dispersion energy since
-many-body dispersion is usually repulsive. There are methods for modeling many-body dispersion,
-but we have not included such terms in this model.\cite{anatole2010two,van2018new} 
+The charge transfer energy and dispersion energies are simply fit against the RMSD from their EDA energies. Dispersion, on the other hand, has a large enough many-body contribution that if only dimers are used in the fitting, one will systematically over-estimate the dispersion energy since many-body dispersion is usually repulsive. There are methods for modeling many-body dispersion, but we have not included such terms in this model.\cite{anatole2010two,van2018new} 
 
 \section*{Results}
 Before describing the outcomes of applying the FQCT model to various water and
-ion-water cluster energies outside the training data, let us discuss three important problems which we set out to solve in the construction of this advanced force field model. First is the benefit of a new on-body potential that accounts for intramolecular polarization that is more physical than models such as AMOEBA. Second, it is broadly understood that there are
-contributions to the non-additive component of molecular interactions other than
-classical mutual polarization.\cite{herman2023accurate} The reason it is classical
-is that it does not describe the effect of charge delocalization which we refer to
-as charge transfer. Note that charge transfer can be understood as energetic
-stabilization associated with tunneling of electrons between molecules
-and hence grows at least exponentially at short distances.\cite{misquitta2013charge} We will focus on the EDA definition of charge transfer energy in this work, though
-other definitions are possible based on symmetry-adapted perturbation theory.\cite{stone2009charge,misquitta2013charge}
+ion-water cluster energies outside the training data, let us discuss two important problems which we set out to solve in the construction of this advanced force field. First is the benefit of a new one-body potential that accounts for intramolecular polarization that is more physical than models such as AMOEBA. Second, is the inclusion of non-additivite interactions beyond classical mutual polarization, namely charge transfer.\cite{herman2023accurate} Note that charge transfer can be understood as energetic stabilization associated with tunneling of electrons between molecules and hence grows at least exponentially at short distances.\cite{misquitta2013charge} We will focus on the EDA definition of charge transfer energy in this work, though other definitions are possible based on symmetry-adapted perturbation theory.\cite{stone2009charge,misquitta2013charge}
 
-\subsection*{Intramolecular Polarization using a One-Body Potential }
-Most polarizable force fields include intramolecular polarization by allowing the induced
-dipoles to interact regardless of whether they are in the same molecule or not. In our
-experience with EDA, this tends to result in worse agreement between the model and reference polarization
-energies. This is not surprising given that multipoles located within a couple bond lengths
-are too close for electrostatics to give a good representation of the relevant interactions.
-There is no doubt, however, that intramolecular polarization should be considered in some way. In the FQCT model the intramolecular polarization is described by coupling the bonding potential
-to the environment through the electric field. Describing intramolecular polarization by coupling it to the bond potential
-makes the polarization energies more accurate and dramatically improves the underlying forces.
+\subsection*{Intramolecular Polarization using a One-Body Potential}
+Most polarizable force fields include intramolecular polarization by allowing the induced dipoles to interact regardless of whether they are in the same molecule or not. In our experience with EDA, this tends to result in worse agreement between the model and reference polarization energies. This is not surprising given that multipoles located within a couple bond lengths are too close for electrostatics to give a good representation of the relevant interactions. There is no doubt, however, that intramolecular polarization should be considered in some way. In the FQCT model the intramolecular polarization is described by coupling the bonding potential to the environment through the electric field. Describing intramolecular polarization by coupling it to the bond potential makes the polarization energies more accurate and dramatically improves the underlying forces.
 
-Furthermore, this term enables us to more accurately reproduce the well-known structure-frequency correspondence in water.\cite{boyer2019beyond} We do this
-by modifying Eq. \ref{eq:morse} to be dependent on the nvironmental electric field. Specifically, the bond force constant, $k_e$,
-and equilibrium bond length, $R_e$, are coupled to the electric field projected along the bond, $\mathrm{E_{OH}}$,
-via the first and second dipole derivatives, $\mu^{(1)}$ and $\mu^{(2)}$. These derivatives
-are treated as parameters which we compute from electronic structure. The equilibrium bond
-length, $R_e$, becomes
+Furthermore, this term enables us to more accurately reproduce the well-known structure-frequency correspondence in water.\cite{boyer2019beyond} We do this by modifying Eq. \ref{eq:morse} to be dependent on the environmental electric field. Specifically, the bond force constant, $k_e$, and equilibrium bond length, $R_e$, are coupled to the electric field projected along the bond, $\mathrm{E_{OH}}$, via the first and second dipole derivatives, $\mu^{(1)}$ and $\mu^{(2)}$. These derivatives are treated as parameters which we compute from electronic structure. The equilibrium bond length, $R_e$, becomes
 \begin{equation}
   R_e(\mathrm{E_{OH}})=R_e^0+ \frac{\mathrm{E_{OH}}\mu^{(1)}}{k_e^0-\mathrm{E_{OH}}\mu^{(2)}}
   \label{eq:bond_in_field}
@@ -682,17 +623,36 @@ where $R_e^0$ is the equilibrium bond length and $k_e^0$ is the force constant u
   k_e(\mathrm{E_{OH}})=k_e^0-3k_e^0\alpha\left(R_e(\mathrm{E_{OH}})-R_e^0\right)-\mathrm{E_{OH}}\mu^{(2)}
   \label{eq:force_constant_in_field}
 \end{equation}
-These equations can be derived by analyzing the behavior of a Morse potential in an electric field.\cite{boyer2019beyond} We see in Eq. \ref{eq:force_constant_in_field} that the field-dependent Morse potential guarantees the structure-frequency correlation will be respected at least approximately. This is because the first dipole derivative
-primarily controls the bond length and the second dipole derivative primarily controls the frequency.
+These equations can be derived by analyzing the behavior of a Morse potential in an electric field.\cite{boyer2019beyond} We see in Eq. \ref{eq:force_constant_in_field} that the field-dependent Morse potential guarantees the structure-frequency correlation will be respected at least approximately.
 
-Based on the electrostatic interpretation of Pauli repulsion, we also include a contribution
-to the Pauli energy based on the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}.
-In fact, we find it interesting to observe that when permanent electrostatics are used, the shifts
-in bond length and frequency are unrealistically large. Allowing Pauli repulsion to also contribute
-to the field-dependent Morse potential therefore acts to mostly cancel out the effect of permanent
-electrostatics in shifting the bond length and frequency. This makes physical sense if one considers
-how each term affects the electron density of another molecule. For example, in the water dimer, electrostatics will tend to pull electron density into the internuclear region, hence weakening the hydrogen-bonded \ce{O-H} bond. Pauli repulsion, however, arises from antisymmetrization of the total system wavefunction which
-will tend to expel electron density from the internuclear region and therefore shorten the hydrogen-bonded \ce{O-H} bond.
+Based on the electrostatic interpretation of Pauli repulsion, we also include a contribution to the Pauli energy based on the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}. In fact, we find it interesting to observe that when permanent electrostatics are used, the shifts in bond length and frequency are unrealistically large. Allowing Pauli repulsion to also contribute to the field-dependent Morse potential therefore acts to mostly cancel out the effect of permanent electrostatics in shifting the bond length and frequency. This makes physical sense if one considers how each term affects the electron density of another molecule. For example, in the water dimer, electrostatics will tend to pull electron density into the internuclear region, hence weakening the hydrogen-bonded \ce{O-H} bond. Pauli repulsion, however, arises from antisymmetrization of the total system wavefunction which will tend to expel electron density from the internuclear region and therefore shorten the hydrogen-bonded \ce{O-H} bond.
+
+Using the above equations, in our experience, will result in approximately the correct slope of the structure-frequency correlation but will tend to understimate the actual bond length and frequency shifts. The final step to reproduce the bond lengths and vibrational frequencies is to include a contribution from charge transfer. This is motivated by adiabatic EDA calculations, where the largest contribution to bond elongation and red-shifting occurs on the charge transfer surface.\cite{mao2017energy} Specifically, we allow both the bond length and force constants to be modified according to the amount of charge transferred into a hydrogen atom, as computed with Eq. \ref{eq:ct_forward}. This results in the final expressions used for the bond length and force constant in our environment-dependent bonding potential,
+
+\begin{align}
+  \label{eq:bond_in_field_2}
+  R_e(\mathrm{E_{OH}})&=R_e^0+ \frac{\mathrm{E_{OH}}\mu^{(1)}}{k_e^0-\mathrm{E_{OH}}\mu^{(2)}} + k_{ct}^{(1)}\Delta Q_{CT}^{\mathrm{H}} \\
+  \label{eq:force_constant_in_field_2}
+  k_e(\mathrm{E_{OH}})&=k_e^0-3k_e^0\alpha\left(R_e(\mathrm{E_{OH}})-R_e^0\right)-\mathrm{E_{OH}}\mu^{(2)}+k_{ct}^{(2)}\Delta Q_{CT}^{\mathrm{H}}
+\end{align}
+
+The rationale for using the amount of charge accepted by a hydrogen atom, $\Delta Q_{CT}^{\mathrm{H}}$, in Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2} is that this charge is transferred into an anti-bonding orbital and hence should have a large effect on the \ce{O-H} bond in question. Similarly, we ignore the charge transferred out of the oxygen atom since these electrons come from non-bonding orbitals and should therefore minimally affect the \ce{O-H} bonds in that water. This introduces two additional parameters, $k_{ct}^{(1)}$ and $k_{ct}^{(2)}$, which determine the sensitivity of the bond-length and force constant to charge transfer. It is very important to note that these parameters have a very small effect on the charge transfer energy, but a sizable effect on the charge transfer forces.
+
+To summarize the large effect this environment-dependent bonding potential has on the forces within FQCT, let us consider a water dimer where each monomer is fixed at the $\omega$B97X-V/def2-QZVPPD geometry. This simply eliminates the geometric distortion forces which are not relevant here. We now compute the forces due to each term in EDA, a so-called force decomposition analysis\cite{aldossary2023force}, and compare them against the same forces predicted by FQCT with and without Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2}.
+
+\begin{table}[ht!]
+  \begin{center}
+  \begin{tabular}{lccccc}
+      \multicolumn{6}{c}{Water Dimer Force Decomposition Analysis} \\\hline
+       Method/EDA Term & Mod. Pauli & Cls. Elec. & Disp. & Pol. & CT \\\hline
+       FQCT No F.D. Morse & & & & & \\
+       FQCT & & & & & \\
+       $\omega$B97X-V & & & & & \\\hline
+  \end{tabular}
+  \end{center}
+  \caption{TBD}
+  \label{tab:dimer_forces}
+\end{table}
 
 In order for a force field to be useful theoretical spectroscopy, it must respect the relationships
 between structure and vibrational frequencies. For water this manifests as a linear
@@ -787,52 +747,19 @@ The last monomer property we explicitly aimed to reproduce are the polarizabilit
   \end{tabular}
   \end{center}
   \vspace{-3mm}
-  \caption{Polarizability derivatives of water computed at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry
-  in three different ways. The first entry is computed with $\omega$B97X-V/def2-QZVPPD, the second with FQCT,
-  and the third with the same model but using parameters optimized without fluctuating charges.
-  The Atom column tells both the atom and component
-  of its position we take the derivative with respect to.
-  The water monomer has its bisector aligned with the $x$-axis and the $z$-axis is normal to the water 
-  molecule plane. Note that the derivatives for the second hydrogen are identical to the first
-  but with opposite sign. The $xz$ and $yz$ entries are omitted since they are small and
-  reproduced to three decimal places by both models.}
+  \caption{Polarizability derivatives of water computed at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry in three different ways. The first entry is computed with $\omega$B97X-V/def2-QZVPPD, the second with FQCT, and the third with the same model but using parameters optimized without fluctuating charges. The Atom column tells both the atom and component of its position we take the derivative with respect to. The water monomer has its bisector aligned with the $x$-axis and the $z$-axis is normal to the water molecule plane. Note that the derivatives for the second hydrogen are identical to the first but with opposite sign. The $xz$ and $yz$ entries are omitted since they are small and reproduced to three decimal places by both models.}
   \label{tab:pol_derivs}
 \end{table}
 
-Certain polarizability derivatives in Table \ref{tab:pol_derivs} are reproduced very accurately,
-while others are not at all. Most notably, our model does not have any $zz$ polarizability derivatives
-while these should be rather large. The reason our model has no $zz$ polarizability derivatives
-is that we do not include intramolecular polarization. We tested what happens when intramolecular
-polarization is turned on and found that the $zz$ polarizability derivatives are still reproduced
-very poorly and the polarization energies generally became less accurate. It is of some interest that
-when intramolecular polarization is turned on, the polarizability derivatives are quite sensitive
-to the choice and strength of damping function. This may enable the tuning of damping functions
-based on monomers alone.
+Certain polarizability derivatives in Table \ref{tab:pol_derivs} are reproduced very accurately, while others are not at all. Most notably, our model does not have any $zz$ polarizability derivatives while these should be rather large. The reason our model has no $zz$ polarizability derivatives is that we do not include intramolecular polarization. We tested what happens when intramolecular polarization is turned on and found that the $zz$ polarizability derivatives are still reproduced very poorly and the polarization energies generally became less accurate. It is of some interest that when intramolecular polarization is turned on, the polarizability derivatives are quite sensitive to the choice and strength of damping function. This may enable the tuning of damping functions based on monomers alone.
 
-We find it very interesting that the model which includes fluctuating charges in the polarization
-calculation gives much better polarizability derivatives than one which just uses anisotropic dipole
-polarizabilities. This indicates that one of the main reasons water models have historically
-predicted Raman intensities very poorly\cite{hamm20142d} is the lack of fluctuating charges in the
-polarization process. Furthermore, we are able to achieve higher accuracy in the polarization energies
-using fluctuating charges than without.
+We find it very interesting that the model which includes fluctuating charges in the polarization calculation gives much better polarizability derivatives than one which just uses anisotropic dipole polarizabilities. This indicates that one of the main reasons water models have historically predicted Raman intensities very poorly\cite{hamm20142d} is the lack of fluctuating charges in the polarization process. Furthermore, we are able to achieve higher accuracy in the polarization energies using fluctuating charges than without.
 
-The $zz$ polarizability derivatives of water are an interesting case
-since they can be reproduced accurately when using intramolecular polarization, but in our experience, the strength
-of damping to enable this is too weak to have a stable water model. This indicates that an
-interesting future direction for advanced force fields is the construcion of geometry-dependent
-polarizability surfaces. In much the same way that recent force fields, and this one, employ
-charge flux to ensure accurate dipole surfaces, future models will benefit from
-accurate polarizability surfaces. Indeed, some recent work indicates that
-simple linear interpolation based on internal coordinates may be sufficient for water.\cite{herman2023accurate}
-Linear models of charge flux are accurate for organic molecules\cite{sedghamiz2017probing,yang2020accurate},
-but the same remains to be seen for the polarizability surface of organic molecules.
+The $zz$ polarizability derivatives of water are an interesting case since they can be reproduced accurately when using intramolecular polarization, but in our experience, the strength of damping to enable this is too weak to have a stable water model. This indicates that an interesting future direction for advanced force fields is the construcion of geometry-dependent polarizability surfaces. In much the same way that recent force fields, and this one, employ charge flux to ensure accurate dipole surfaces, future models will benefit from accurate polarizability surfaces. Indeed, some recent work indicates that simple linear interpolation based on internal coordinates may be sufficient for water.\cite{herman2023accurate} Linear models of charge flux are accurate for organic molecules\cite{sedghamiz2017probing,yang2020accurate}, but the same remains to be seen for the polarizability surface of organic molecules.
 
-It is difficult to compare the accuracy of the polarizability derivatives of this model
-to others since very few models report this quantity. At least one water model has been constructed
-for the express purpose of reproducing Raman spectra.\cite{sidler2018efficient}
-The polarizability derivatives were not reported. The polarization is described using
-anisotropic polarizabilities but no fluctuating charges which, based on the contents of
-Table \ref{tab:pol_derivs}, lead us to believe the present model likely has more accurate polarizability derivatives.
+\textbf{Joe, above needs to be rewritten considering the variable poalrizabilities...}
+
+It is difficult to compare the accuracy of the polarizability derivatives of this model to others since very few models report this quantity. At least one water model has been constructed for the express purpose of reproducing Raman spectra.\cite{sidler2018efficient} The polarizability derivatives were not reported. The polarization is described using anisotropic polarizabilities but no fluctuating charges which, based on the contents of Table \ref{tab:pol_derivs}, lead us to believe the present model likely has more accurate polarizability derivatives.
 
 \subsection*{Water Model}
 

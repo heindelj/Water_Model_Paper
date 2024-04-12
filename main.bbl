@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{74}
+\begin{mcitethebibliography}{76}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -507,6 +507,25 @@ Boyer,~M.~A.; Marsalek,~O.; Heindel,~J.~P.; Markland,~T.~E.; McCoy,~A.~B.;
   Xantheas,~S.~S. Beyond Badger’s rule: The origins and generality of the
   structure--spectra relationship of aqueous hydrogen bonds. \emph{The Journal
   of Physical Chemistry Letters} \textbf{2019}, \emph{10}, 918--924\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Mao \latin{et~al.}(2017)Mao, Horn, and Head-Gordon]{mao2017energy}
+Mao,~Y.; Horn,~P.~R.; Head-Gordon,~M. Energy decomposition analysis in an
+  adiabatic picture. \emph{Physical Chemistry Chemical Physics} \textbf{2017},
+  \emph{19}, 5944--5958\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Aldossary \latin{et~al.}(2023)Aldossary, Gimferrer, Mao, Hao, Das,
+  Salvador, Head-Gordon, and Head-Gordon]{aldossary2023force}
+Aldossary,~A.; Gimferrer,~M.; Mao,~Y.; Hao,~H.; Das,~A.~K.; Salvador,~P.;
+  Head-Gordon,~T.; Head-Gordon,~M. Force Decomposition Analysis: A method to
+  decompose intermolecular forces into physically relevant component
+  contributions. \emph{The Journal of Physical Chemistry A} \textbf{2023},
+  \emph{127}, 1760--1774\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
