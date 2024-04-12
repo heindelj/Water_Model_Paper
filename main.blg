@@ -5,45 +5,56 @@ The style file: achemso.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: acs-main.bib
 Database file #2: references.bib
+Warning--I didn't find a database entry for "Kitaura1976"
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "Khaliullin2007"
+Warning--I didn't find a database entry for "Horn2016"
+Warning--I didn't find a database entry for "Sami2024"
+Warning--I didn't find a database entry for "Mao2016"
+Warning--I didn't find a database entry for "Horn2015"
+Warning--I didn't find a database entry for "Mardirossian2014"
+Warning--I didn't find a database entry for "Rappoport2010"
+Warning--I didn't find a database entry for "Q-chem"
 achemso 2021-01-20 v3.13c
-You've used 72 entries,
+You've used 74 entries,
             2538 wiz_defined-function locations,
-            1141 strings with 20582 characters,
-and the built_in function-call counts, 25719 in all, are:
-= -- 2197
-> -- 1373
-< -- 31
-+ -- 537
-- -- 465
-* -- 2827
-:= -- 3439
-add.period$ -- 142
-call.type$ -- 72
+            1169 strings with 21097 characters,
+and the built_in function-call counts, 26486 in all, are:
+= -- 2331
+> -- 1396
+< -- 30
++ -- 545
+- -- 471
+* -- 2894
+:= -- 3521
+add.period$ -- 146
+call.type$ -- 74
 change.case$ -- 4
-chr.to.int$ -- 2
-cite$ -- 72
-duplicate$ -- 1380
-empty$ -- 1784
-format.name$ -- 567
-if$ -- 4974
+chr.to.int$ -- 1
+cite$ -- 74
+duplicate$ -- 1409
+empty$ -- 1835
+format.name$ -- 577
+if$ -- 5172
 int.to.chr$ -- 0
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 454
-num.names$ -- 213
-pop$ -- 130
+newline$ -- 466
+num.names$ -- 219
+pop$ -- 134
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 72
+skip$ -- 74
 stack$ -- 0
-substring$ -- 1725
-swap$ -- 1407
-text.length$ -- 142
+substring$ -- 1777
+swap$ -- 1433
+text.length$ -- 146
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 501
+type$ -- 515
 warning$ -- 0
-while$ -- 266
+while$ -- 273
 width$ -- 0
-write$ -- 940
+write$ -- 966
+(There were 10 warnings)

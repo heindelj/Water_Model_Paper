@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{72}
+\begin{mcitethebibliography}{74}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -52,10 +52,68 @@ Herman,~K.~M.; Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Leontyev and Stuchebrukhov(2011)Leontyev, and
+  Stuchebrukhov]{leontyev2011accounting}
+Leontyev,~I.; Stuchebrukhov,~A. Accounting for electronic polarization in
+  non-polarizable force fields. \emph{Physical Chemistry Chemical Physics}
+  \textbf{2011}, \emph{13}, 2613--2626\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Bedrov \latin{et~al.}(2019)Bedrov, Piquemal, Borodin, MacKerell~Jr,
+  Roux, and Schroeder]{bedrov2019molecular}
+Bedrov,~D.; Piquemal,~J.-P.; Borodin,~O.; MacKerell~Jr,~A.~D.; Roux,~B.;
+  Schroeder,~C. Molecular dynamics simulations of ionic liquids and
+  electrolytes using polarizable force fields. \emph{Chemical reviews}
+  \textbf{2019}, \emph{119}, 7940--7995\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Heindel and Xantheas(2020)Heindel, and Xantheas]{heindel2020many}
 Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
   revisited: I. Water--water interactions. \emph{Journal of Chemical Theory and
   Computation} \textbf{2020}, \emph{16}, 6843--6855\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Das \latin{et~al.}(2019)Das, Urban, Leven, Loipersberger, Aldossary,
+  Head-Gordon, and Head-Gordon]{das2019development}
+Das,~A.~K.; Urban,~L.; Leven,~I.; Loipersberger,~M.; Aldossary,~A.;
+  Head-Gordon,~M.; Head-Gordon,~T. Development of an advanced force field for
+  water using variational energy decomposition analysis. \emph{Journal of
+  chemical theory and computation} \textbf{2019}, \emph{15}, 5001--5013\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Mao \latin{et~al.}(2021)Mao, Loipersberger, Horn, Das, Demerdash,
+  Levine, Prasad~Veccham, Head-Gordon, and Head-Gordon]{mao2021intermolecular}
+Mao,~Y.; Loipersberger,~M.; Horn,~P.~R.; Das,~A.; Demerdash,~O.; Levine,~D.~S.;
+  Prasad~Veccham,~S.; Head-Gordon,~T.; Head-Gordon,~M. From intermolecular
+  interaction energies and observable shifts to component contributions and
+  back again: A tale of variational energy decomposition analysis. \emph{Annual
+  review of physical chemistry} \textbf{2021}, \emph{72}, 641--666\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Rackers \latin{et~al.}(2021)Rackers, Silva, Wang, and
+  Ponder]{rackers2021polarizable}
+Rackers,~J.~A.; Silva,~R.~R.; Wang,~Z.; Ponder,~J.~W. Polarizable water
+  potential derived from a model electron density. \emph{Journal of chemical
+  theory and computation} \textbf{2021}, \emph{17}, 7056--7084\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Horn \latin{et~al.}(2016)Horn, Mao, and Head-Gordon]{horn2016probing}
+Horn,~P.~R.; Mao,~Y.; Head-Gordon,~M. Probing non-covalent interactions with a
+  second generation energy decomposition analysis using absolutely localized
+  molecular orbitals. \emph{Physical Chemistry Chemical Physics} \textbf{2016},
+  \emph{18}, 23067--23079\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -82,64 +140,6 @@ Stern,~H.~A.; Rittner,~F.; Berne,~B.; Friesner,~R.~A. Combined fluctuating
   charge and polarizable dipole models: Application to a five-site water
   potential function. \emph{The Journal of chemical physics} \textbf{2001},
   \emph{115}, 2237--2251\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Horn \latin{et~al.}(2016)Horn, Mao, and Head-Gordon]{horn2016probing}
-Horn,~P.~R.; Mao,~Y.; Head-Gordon,~M. Probing non-covalent interactions with a
-  second generation energy decomposition analysis using absolutely localized
-  molecular orbitals. \emph{Physical Chemistry Chemical Physics} \textbf{2016},
-  \emph{18}, 23067--23079\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Mao \latin{et~al.}(2021)Mao, Loipersberger, Horn, Das, Demerdash,
-  Levine, Prasad~Veccham, Head-Gordon, and Head-Gordon]{mao2021intermolecular}
-Mao,~Y.; Loipersberger,~M.; Horn,~P.~R.; Das,~A.; Demerdash,~O.; Levine,~D.~S.;
-  Prasad~Veccham,~S.; Head-Gordon,~T.; Head-Gordon,~M. From intermolecular
-  interaction energies and observable shifts to component contributions and
-  back again: A tale of variational energy decomposition analysis. \emph{Annual
-  review of physical chemistry} \textbf{2021}, \emph{72}, 641--666\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Zhuang \latin{et~al.}(2022)Zhuang, Riera, Zhou, Deary, and
-  Paesani]{zhuang2022hydration}
-Zhuang,~D.; Riera,~M.; Zhou,~R.; Deary,~A.; Paesani,~F. Hydration structure of
-  Na+ and K+ ions in solution predicted by data-driven many-body potentials.
-  \emph{The Journal of Physical Chemistry B} \textbf{2022}, \emph{126},
-  9349--9360\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Caruso \latin{et~al.}(2022)Caruso, Zhu, Fulton, and
-  Paesani]{caruso2022accurate}
-Caruso,~A.; Zhu,~X.; Fulton,~J.~L.; Paesani,~F. Accurate modeling of bromide
-  and iodide hydration with data-driven many-body potentials. \emph{The Journal
-  of Physical Chemistry B} \textbf{2022}, \emph{126}, 8266--8278\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Leontyev and Stuchebrukhov(2011)Leontyev, and
-  Stuchebrukhov]{leontyev2011accounting}
-Leontyev,~I.; Stuchebrukhov,~A. Accounting for electronic polarization in
-  non-polarizable force fields. \emph{Physical Chemistry Chemical Physics}
-  \textbf{2011}, \emph{13}, 2613--2626\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Bedrov \latin{et~al.}(2019)Bedrov, Piquemal, Borodin, MacKerell~Jr,
-  Roux, and Schroeder]{bedrov2019molecular}
-Bedrov,~D.; Piquemal,~J.-P.; Borodin,~O.; MacKerell~Jr,~A.~D.; Roux,~B.;
-  Schroeder,~C. Molecular dynamics simulations of ionic liquids and
-  electrolytes using polarizable force fields. \emph{Chemical reviews}
-  \textbf{2019}, \emph{119}, 7940--7995\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -207,25 +207,6 @@ Misquitta,~A.~J.; Stone,~A.~J. ISA-Pol: distributed polarizabilities and
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Rackers \latin{et~al.}(2021)Rackers, Silva, Wang, and
-  Ponder]{rackers2021polarizable}
-Rackers,~J.~A.; Silva,~R.~R.; Wang,~Z.; Ponder,~J.~W. Polarizable water
-  potential derived from a model electron density. \emph{Journal of chemical
-  theory and computation} \textbf{2021}, \emph{17}, 7056--7084\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Boyer \latin{et~al.}(2019)Boyer, Marsalek, Heindel, Markland, McCoy,
-  and Xantheas]{boyer2019beyond}
-Boyer,~M.~A.; Marsalek,~O.; Heindel,~J.~P.; Markland,~T.~E.; McCoy,~A.~B.;
-  Xantheas,~S.~S. Beyond Badger’s rule: The origins and generality of the
-  structure--spectra relationship of aqueous hydrogen bonds. \emph{The Journal
-  of Physical Chemistry Letters} \textbf{2019}, \emph{10}, 918--924\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
 \bibitem[Stone(1981)]{stone1981distributed}
 Stone,~A.~J. Distributed multipole analysis, or how to describe a molecular
   charge distribution. \emph{Chemical Physics Letters} \textbf{1981},
@@ -238,25 +219,6 @@ Stone,~A.~J. Distributed multipole analysis, or how to describe a molecular
 Stone,~A.~J.; Alderton,~M. Distributed multipole analysis: methods and
   applications. \emph{Molecular Physics} \textbf{1985}, \emph{56},
   1047--1064\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Stone \latin{et~al.}(2002)Stone, Dullweber, Engkvist, Fraschini,
-  Hodges, Meredith, Nutt, Popelier, and Wales]{stone2002orient}
-Stone,~A.~J.; Dullweber,~A.; Engkvist,~O.; Fraschini,~E.; Hodges,~M.~P.;
-  Meredith,~A.; Nutt,~D.; Popelier,~P.; Wales,~D. ORIENT, version 4.6.
-  \emph{University of Cambridge, England} \textbf{2002}, \relax
-\mciteBstWouldAddEndPunctfalse
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Das \latin{et~al.}(2019)Das, Urban, Leven, Loipersberger, Aldossary,
-  Head-Gordon, and Head-Gordon]{das2019development}
-Das,~A.~K.; Urban,~L.; Leven,~I.; Loipersberger,~M.; Aldossary,~A.;
-  Head-Gordon,~M.; Head-Gordon,~T. Development of an advanced force field for
-  water using variational energy decomposition analysis. \emph{Journal of
-  chemical theory and computation} \textbf{2019}, \emph{15}, 5001--5013\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -289,6 +251,39 @@ Rackers,~J.~A.; Wang,~Q.; Liu,~C.; Piquemal,~J.-P.; Ren,~P.; Ponder,~J.~W. An
   optimized charge penetration model for use with the AMOEBA force field.
   \emph{Physical Chemistry Chemical Physics} \textbf{2017}, \emph{19},
   276--291\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Wallqvist and Karlstr{\"o}m(1989)Wallqvist, and
+  Karlstr{\"o}m]{wallqvist1989new}
+Wallqvist,~A.; Karlstr{\"o}m,~G. A new non-empirical force field for computer
+  simulations. \emph{Chem. Scr. A} \textbf{1989}, \emph{29}, 1989\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Gordon(1996)]{gordon1996approximate}
+Gordon,~J. H. J. M.~S. An approximate formula for the intermolecular Pauli
+  repulsion between closed shell molecules. \emph{molecular physics}
+  \textbf{1996}, \emph{89}, 1313--1325\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Rackers and Ponder(2019)Rackers, and Ponder]{rackers2019classical}
+Rackers,~J.~A.; Ponder,~J.~W. Classical Pauli repulsion: An anisotropic, atomic
+  multipole model. \emph{The Journal of chemical physics} \textbf{2019},
+  \emph{150}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Tang and Toennies(1984)Tang, and Toennies]{tang1984improved}
+Tang,~K.; Toennies,~J.~P. An improved simple model for the van der Waals
+  potential based on universal damping functions for the dispersion
+  coefficients. \emph{The Journal of chemical physics} \textbf{1984},
+  \emph{80}, 3726--3741\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -427,35 +422,18 @@ Khaliullin,~R.~Z.; Bell,~A.~T.; Head-Gordon,~M. Electron donation in the
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Wallqvist and Karlstr{\"o}m(1989)Wallqvist, and
-  Karlstr{\"o}m]{wallqvist1989new}
-Wallqvist,~A.; Karlstr{\"o}m,~G. A new non-empirical force field for computer
-  simulations. \emph{Chem. Scr. A} \textbf{1989}, \emph{29}, 1989\relax
+\bibitem[Liu \latin{et~al.}(2019)Liu, Piquemal, and Ren]{liu2019implementation}
+Liu,~C.; Piquemal,~J.-P.; Ren,~P. Implementation of geometry-dependent charge
+  flux into the polarizable AMOEBA+ potential. \emph{The journal of physical
+  chemistry letters} \textbf{2019}, \emph{11}, 419--426\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Gordon(1996)]{gordon1996approximate}
-Gordon,~J. H. J. M.~S. An approximate formula for the intermolecular Pauli
-  repulsion between closed shell molecules. \emph{molecular physics}
-  \textbf{1996}, \emph{89}, 1313--1325\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Rackers and Ponder(2019)Rackers, and Ponder]{rackers2019classical}
-Rackers,~J.~A.; Ponder,~J.~W. Classical Pauli repulsion: An anisotropic, atomic
-  multipole model. \emph{The Journal of chemical physics} \textbf{2019},
-  \emph{150}\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Tang and Toennies(1984)Tang, and Toennies]{tang1984improved}
-Tang,~K.; Toennies,~J.~P. An improved simple model for the van der Waals
-  potential based on universal damping functions for the dispersion
-  coefficients. \emph{The Journal of chemical physics} \textbf{1984},
-  \emph{80}, 3726--3741\relax
+\bibitem[McCoy(2014)]{mccoy2014role}
+McCoy,~A.~B. The role of electrical anharmonicity in the association band in
+  the water spectrum. \emph{The Journal of Physical Chemistry B} \textbf{2014},
+  \emph{118}, 8286--8294\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -519,6 +497,24 @@ Misquitta,~A.~J. Charge transfer from regularized symmetry-adapted perturbation
 Stone,~A.~J.; Misquitta,~A.~J. Charge-transfer in symmetry-adapted perturbation
   theory. \emph{Chemical Physics Letters} \textbf{2009}, \emph{473},
   201--205\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Boyer \latin{et~al.}(2019)Boyer, Marsalek, Heindel, Markland, McCoy,
+  and Xantheas]{boyer2019beyond}
+Boyer,~M.~A.; Marsalek,~O.; Heindel,~J.~P.; Markland,~T.~E.; McCoy,~A.~B.;
+  Xantheas,~S.~S. Beyond Badger’s rule: The origins and generality of the
+  structure--spectra relationship of aqueous hydrogen bonds. \emph{The Journal
+  of Physical Chemistry Letters} \textbf{2019}, \emph{10}, 918--924\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Badger(1934)]{badger1934relation}
+Badger,~R.~M. A relation between internuclear distances and bond force
+  constants. \emph{The Journal of Chemical Physics} \textbf{1934}, \emph{2},
+  128--131\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -667,12 +663,32 @@ Burnham,~C.~J.; Xantheas,~S.~S. Development of transferable interaction models
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Badger(1934)]{badger1934relation}
-Badger,~R.~M. A relation between internuclear distances and bond force
-  constants. \emph{The Journal of Chemical Physics} \textbf{1934}, \emph{2},
-  128--131\relax
+\bibitem[Zhuang \latin{et~al.}(2022)Zhuang, Riera, Zhou, Deary, and
+  Paesani]{zhuang2022hydration}
+Zhuang,~D.; Riera,~M.; Zhou,~R.; Deary,~A.; Paesani,~F. Hydration structure of
+  Na+ and K+ ions in solution predicted by data-driven many-body potentials.
+  \emph{The Journal of Physical Chemistry B} \textbf{2022}, \emph{126},
+  9349--9360\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Caruso \latin{et~al.}(2022)Caruso, Zhu, Fulton, and
+  Paesani]{caruso2022accurate}
+Caruso,~A.; Zhu,~X.; Fulton,~J.~L.; Paesani,~F. Accurate modeling of bromide
+  and iodide hydration with data-driven many-body potentials. \emph{The Journal
+  of Physical Chemistry B} \textbf{2022}, \emph{126}, 8266--8278\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Stone \latin{et~al.}(2002)Stone, Dullweber, Engkvist, Fraschini,
+  Hodges, Meredith, Nutt, Popelier, and Wales]{stone2002orient}
+Stone,~A.~J.; Dullweber,~A.; Engkvist,~O.; Fraschini,~E.; Hodges,~M.~P.;
+  Meredith,~A.; Nutt,~D.; Popelier,~P.; Wales,~D. ORIENT, version 4.6.
+  \emph{University of Cambridge, England} \textbf{2002}, \relax
+\mciteBstWouldAddEndPunctfalse
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \end{mcitethebibliography}

@@ -559,9 +559,7 @@ This is not difficult or expensive to evaluate, but is an
 unusual gradient term which must be accounted for in software implementations.
 
 
-\textbf{The One-Body Potential.} The deformation energy for a single water molecule is constructed following a protocol we have
-recently published.\cite{Sami2024} The one-body potential consists of a Morse potential, cosine angle potential, a bond-bond coupling term, and bond-angle coupling
-term. 
+\textbf{The One-Body Potential.} The deformation energy for a single water molecule is constructed following a protocol we have recently published.\cite{Sami2024} The one-body potential consists of a Morse potential, cosine angle potential, a bond-bond coupling term, and bond-angle coupling term. 
 \begin{align}
   \label{eq:morse}
   V_{bond}&=D_{\mathrm{OH}}\left[ 1-\exp(-\alpha (R-R_e))\right]^2 \\
@@ -582,12 +580,18 @@ Eq. \ref{eq:bond_angle} shows that the angle and bond potentials are linearly
 coupled by a single parameter, $k_{ba}$. The parameters are fit to reproduce the CCSD(T)/aug-cc-pV5Z Hessian at the
 corresponding equilibrium geometry. Note that this is the only term for which we do not
 use $\omega$B97X-V/def2-QZVPPD as a reference, simply because CCSD(T)/aug-cc-pV5Z is a
-bit closer to the experimental geometry. 
+bit closer to the experimental water monomer geometry.
 
-Like electrostatics, polarization parameters need to be constrained to give physically meaningful
-parameters. Specifically, in addition to EDA energies, we include the polarizability and polarizability derivatives
-at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry of water in the fitting process.
-The loss function we minimize against is,
+As will be shown, the polarizability derivatives of the water monomer are not possible to reproduce using just atomic dipole polarizabilities. Our model, however, includes fluctuating charges which improve the polarizability derivatives considerably. Even so, the agreement between polarizability derivates computed from electronic structure and with fluctuating charges leaves something to be desired. In the same way the dipole derivatives can be reproduced accurately by including charge flux in a model\cite{liu2019implementation}, we have implemented geometry-dependent atomic hardness parameters, $\eta$.
+
+\begin{equation}
+  \eta_{\mathrm{H1}} = \eta_\mathrm{H} \left(\frac{R_e}{R_{\mathrm{OH,1}}}\right)^{k^\eta}\left(\frac{R_e}{R_{\mathrm{OH,2}}}\right)^{k^\eta_{bb}} + k^\eta_{a}(\theta - \theta_e)
+  \label{eq:variable_hardness}
+\end{equation}
+
+In Eq. \ref{eq:variable_hardness}, the atomic hardness of a particular hydrogen, $\eta_{\mathrm{H1}}$, is modified based on the length of both \ce{O-H} bonds, $R_{\mathrm{OH,1}}$ and $R_{\mathrm{OH,2}}$, and the angle $\theta$. The parameters $k^\eta$, $k^\eta_{bb}$, and $k^\eta_{a}$ describe the magnitude of change in atomic hardness and are fit to reproduce the polarizability derivatives computed from electronic structure. This particular functional form was chosen to be well-behaved at long bond lengths. That is, when either bond is elongated, the hardness of atom $\mathrm{H1}$ is decreased, hence increasing the polarizability along that bond. This is a source of so-called electrical anharmonicity and hence contributes to the large, positive second dipole derivative associated with hydrogen-bonded water molecules.\cite{mccoy2014role} Note that this term adds negligible cost to the force field evaulation since we already compute the derivatives with respect to each internal coordinate when computing the deformation energy.
+
+Like electrostatics, polarization parameters need to be constrained to give physically meaningful parameters. Specifically, in addition to EDA energies, we include the polarizability and polarizability derivatives at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry of water in the fitting process. The loss function we minimize against is,
 
 \begin{equation}
   L_{pol}=\sqrt{\frac{\sum_{i=1}^{N}(E_i^{FF}-E_i^{EDA})^2}{N}} + w_1||\bm{\alpha}^{FF}-\bm{\alpha}^{EDA}||+w_2||\frac{\partial\bm{\alpha}^{FF}}{\partial \bm{r}}-\frac{\partial\bm{\alpha}^{EDA}}{\partial \bm{r}}||
@@ -595,53 +599,17 @@ The loss function we minimize against is,
 \end{equation}
 \noindent
 
-In the above, the first term is the RMSD of the predicted energies, $E_i^{FF}$, from the
-EDA energies $E_i^{FF}$. The second term is the frobenius norm of the difference between the
-computed and predicted molecular polarizabilities, $\bm{\alpha}$. The third term is the same as
-the second but for the polarizability derivatives. The weights, $w_1$ and $w_2$ are set to
-1.0 and 0.01 respectively. This, in essence, forces the molecular polarizability to be
-reproduced exactly while allowing for error in the polarizability derivatives which are much
-more difficult to reproduce.
+In the above, the first term is the RMSD of the predicted energies, $E_i^{FF}$, from the EDA energies $E_i^{FF}$. The second term is the frobenius norm of the difference between the computed and predicted molecular polarizabilities, $\bm{\alpha}$. The third term is the same as the second but for the polarizability derivatives. The weights, $w_1$ and $w_2$ are set to 1.0 and 0.5 respectively. This, in essence, forces the molecular polarizability to be reproduced exactly while allowing for some error in the polarizability derivatives which are much more difficult to reproduce.
 
-The dipole derivatives needed to evaluate the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}
-are computed from electronic structure. We actually use four different sets of dipole derivatives
-during the fitting process to be consistent with the dipole surface relevant to each term in EDA.
-The dipole derivatives are quite sensitive to the local environment, as illustrated in Figure S1.
-For electrostatics, we use the dipole derivatives computed from scanning along the \ce{O-H}
-bond length of a water monomer. For polarization, we use the dipole derivatives from
-the same scan, but with a field applied along the \ce{O-H} bond. For charge transfer,
-we constructed a tetrahedrally solvated water dimer and compute dipole derivatives from a
-scan along the hydrogen-bonded \ce{O-H} in a dielectric environment. Finally, as will be shown,
-Pauli repulsion suffers from the same systematic error in forces as the other terms. We do not
-know of a way to compute the dipole derivatives relevant to Pauli repulsion from electronic
-structure, so we treat these as fitting parameters. More details are provided
-in the supporting information along with a figure showing the various scans (Figure S2).
+The dipole derivatives needed to evaluate the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field} are computed from electronic structure by scanning along the \ce{O-H} bond length of a water monomer. As will be shown, Pauli repulsion suffers from the same systematic error in forces as the other terms. We do not know of a way to compute the dipole derivatives relevant to Pauli repulsion from electronic structure, so we treat these as fitting parameters. We have already mentioned that our Pauli repulsion model has a natural electrostatic interpretation which provides justification for having a field-dependent contribution to Pauli repulsion. Note that the field used in the case of Pauli repulsion is not the actual electric field, but the field produced by the Pauli multipoles used in evaluating Eq. \ref{eq:pauli}.
 
-\textbf{Reference Data}. Our model is parameterized using water clusters of size \ce{(H_2O)_n} with n=2-5.
-We use 2400 dimers, trimers, tetramers, and pentamers extracted from various minimized
-cluster geometries. We additionally generated 4800 psuedo-random water dimers
-based on a Sobol sequence. We follow exactly the same procedure as described elsewhere.\cite{misquitta2008first}
-Using the same procedure we generated 4800 ion-water dimer geometries for all ion species considered in this study,
-namely \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, \ce{I^-}, \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+}.
-For all ions, we also ran a 10ps \textit{ab initio} molecular dynamics simulation
-at 500K with $\omega$B97X-V/def2-TZVPPD to generate more probable ion-water configurations. We then sampled 2400 evenly spaced
-configurations from this trajectory to be used for parameterization.
+\textbf{Reference Data}. Our model is parameterized using water clusters of size \ce{(H_2O)_n} with n=2-5. We use 2400 dimers, trimers, tetramers, and pentamers extracted from various minimized cluster geometries. We additionally generated 4800 psuedo-random water dimers based on a Sobol sequence. We follow exactly the same procedure as described elsewhere.\cite{misquitta2008first} Using the same procedure we generated 4800 ion-water dimer geometries for all ion species considered in this study, namely \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, \ce{I^-}, \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+}. For all ions, we also ran a 10ps \textit{ab initio} molecular dynamics simulation at 500K with $\omega$B97X-V/def2-TZVPPD to generate more probable ion-water configurations. We then sampled 2400 evenly spaced configurations from this trajectory to be used for parameterization.
 
-Some larger ion-water clusters were also generated by the following procedure.
-We used the Crest software package\cite{pracht2020automated} which uses the semi-empirical GFN2-XTB\cite{bannwarth2019gfn2}
-method to search for global minima on a potential energy surface. We carried out the Crest global minimum
-search with five different seed structures generated by taking water clusters, \ce{(H_2O)_n}, n=6-17, from a
-water cluster database\cite{rakshit2019atlas} and replacing one water randomly with one of the ions mentioned.
-We then took the structures of up to the ten lowest energy minima which had different hydrogen-bond
-networks and optimized them at the $\omega$B97X-V/def2-TZVPPD level of theory. This resulted in a total
-of 1044 unique ion-water clusters. These full clusters
-are used to characterize the ion-water potentials, but we also extracted all possible dimers
-and trimers from these clusters to be used in fitting of the ion force field parameters.
+Some larger ion-water clusters were also generated by the following procedure. We used the Crest software package\cite{pracht2020automated} which uses the semi-empirical GFN2-XTB\cite{bannwarth2019gfn2} method to search for global minima on a potential energy surface. We carried out the Crest global minimum search with five different seed structures generated by taking water clusters, \ce{(H_2O)_n}, n=6-17, from a water cluster database\cite{rakshit2019atlas} and replacing one water randomly with one of the ions mentioned. We then took the structures of up to the ten lowest energy minima which had different hydrogen-bond networks and optimized them at the $\omega$B97X-V/def2-TZVPPD level of theory. This resulted in a total of 1044 unique ion-water clusters. These full clusters are used to characterize the ion-water potentials, but we also extracted all possible dimers and trimers from these clusters to be used in fitting of the ion force field parameters.
 
-All energies used in fitting parameters of the force field are computed
-at the $\omega$B97X-V/def2-QZVPPD level of theory. In the cases where clusters are optimized at
-$\omega$B97X-V/def2-TZVPPD, we recompute the energies of those clusters and any derived sub-structures
-with $\omega$B97X-V/def2-QZVPPD.
+We then generated clusters of the form \ce{X^-Y^+(H_2O)_n} for n=4-10 where \ce{X^-} is any of the halide anions and \ce{Y^+} is any of the alkali metals cations. We followed the same protocol as above in generating these clusters except we started from the clusters containing a cation sampled in the previous step. A large number (\textbf{insert when finalized}) of trimers and tetramers of the ion pairs, \ce{X^-Y^+(H_2O)_{1,2}}, were then extracted from these clusters for analyis of many-body energies involving pairs of ions rather than just a single ion. All sampled clusters are available with the paper.
+
+All energies used in fitting parameters of the force field are computed at the $\omega$B97X-V/def2-QZVPPD level of theory. In the cases where clusters are optimized at $\omega$B97X-V/def2-TZVPPD, we recompute the energies of those clusters and any derived sub-structures with $\omega$B97X-V/def2-QZVPPD.
 
 \textbf{Parameterization strategy.} We fit each term against only the EDA contribution to that particular energy component. Optimization of parameters is done using simple gradient descent
 against the root mean-square deviation (RMSD) of predicted and EDA energies. For electrostatics and Pauli repulsion, we only use dimers in
