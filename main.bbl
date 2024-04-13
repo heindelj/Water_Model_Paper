@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{76}
+\begin{mcitethebibliography}{74}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -622,23 +622,6 @@ Yu,~Q.; Qu,~C.; Houston,~P.~L.; Conte,~R.; Nandi,~A.; Bowman,~J.~M. q-AQUA: A
 Hamm,~P. 2D-Raman-THz spectroscopy: A sensitive test of polarizable water
   models. \emph{The Journal of Chemical Physics} \textbf{2014},
   \emph{141}\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Sedghamiz \latin{et~al.}(2017)Sedghamiz, Nagy, and
-  Jensen]{sedghamiz2017probing}
-Sedghamiz,~E.; Nagy,~B.; Jensen,~F. Probing the importance of charge flux in
-  force field modeling. \emph{Journal of chemical theory and computation}
-  \textbf{2017}, \emph{13}, 3715--3721\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Yang \latin{et~al.}(2020)Yang, Liu, Walker, and Ren]{yang2020accurate}
-Yang,~X.; Liu,~C.; Walker,~B.~D.; Ren,~P. Accurate description of molecular
-  dipole surface with charge flux implemented for molecular mechanics.
-  \emph{The Journal of Chemical Physics} \textbf{2020}, \emph{153}\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax

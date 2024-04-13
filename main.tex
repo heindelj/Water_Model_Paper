@@ -642,27 +642,27 @@ To summarize the large effect this environment-dependent bonding potential has o
 
 \begin{table}[ht!]
   \begin{center}
-  \begin{tabular}{lccccc}
-      \multicolumn{6}{c}{Water Dimer Force Decomposition Analysis} \\\hline
-       Method/EDA Term & Mod. Pauli & Cls. Elec. & Disp. & Pol. & CT \\\hline
-       FQCT No F.D. Morse & & & & & \\
-       FQCT & & & & & \\
-       $\omega$B97X-V & & & & & \\\hline
+  \begin{tabular}{llcccccc}
+      \multicolumn{8}{c}{Water Dimer Force Decomposition Analysis Along \ce{O-H} Bond} \\\hline
+       Method & Atom & Mod. Pauli & Cls. Elec. & Disp. & Pol. & CT & Total \\\hline
+       FQCT & \ce{O_{don.}}          & -30.1 & 1.4  & 6.0   & -3.4  & -1.5  & -27.5 \\
+       No F.D. Morse & \ce{H_{don.}} & -73.7 & 54.5 & 5.3   & 15.4  & 24.9  & 26.4 \\
+       & \ce{O_{acc.}}               & 96.4 & -48.9 & -10.1 & -12.7 & -22.3 & 2.4 \\\hline
+       FQCT & \ce{O_{don.}} & -15.5 (7.50) & -13.7 & 6.0   & -5.6  & -8.7 & -37.5 \\
+       & \ce{H_{don.}}      & -88.5 (-111.9) & 70.0  & 5.3   & 17.7  & 31.9 & 36.4 \\
+       & \ce{O_{acc.}}      & 96.4 (95.5)  & -51.7 & -10.1 & -13.0 & -22.0 & -0.4 \\\hline
+       $\omega$B97X-V & \ce{O_{don.}} & 3.92 & -15.0  & 0.75  & -8.4  & -15.6 & -34.3 \\
+       & \ce{H_{don.}}                & -105.7 & 72.4 & 10.8  & 18.9  & 39.3  & 35.8 \\
+       & \ce{O_{acc.}}                & 92.3 & -52.3  & -10.3 & -10.4 & -19.6  & -0.50 \\\hline
   \end{tabular}
   \end{center}
-  \caption{TBD}
+  \caption{Comparison of the forces projected along the \ce{O-H} bond of a water dimer due to each component in the EDA. Forces predicted by FQCT are computed with and without the field-dependent morse potential described in Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2}. The first block of entries is FQCT with no field-dependent Morse potential, the second block is FQCT, and the third is $\omega$B97X-V/def2-QZVPPD. All forces in KJ/mol/\AA. \ce{O_{don.}} and \ce{H_{don.}} are the oxygen and hydrogen atoms donating the hydrogen bond and \ce{O_{acc.}} is the oxygen accepting the hydrogen bond. All forces are projected along the \ce{O-H} bond vector. The numbers in parentheses are what we forces before error fitting with Pauli repulsion.}
   \label{tab:dimer_forces}
 \end{table}
 
-In order for a force field to be useful theoretical spectroscopy, it must respect the relationships
-between structure and vibrational frequencies. For water this manifests as a linear
-relationship between the change in bond length and change in \ce{O-H} stretching frequency\cite{boyer2019beyond}, colloquially referred to as Badger's rule.\cite{badger1934relation} It is expected that an accurate FF should satisfy the expected slope
-$\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001\AA}$\cite{boyer2019beyond}. Without a field-dependent bond coupling, we find that 
-we obtain a slope of $\approx -10\ \mathrm{cm^{-1}/.001\AA}$ (Fig. S2), consistent with a field-independent Morse
-oscillator developed by Boyer et al with parameters appropriate to water.\cite{boyer2019beyond} This is a strong indication that we should allow our bonding potential parameters to be modulated by the field along that bond as shown in Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}. The result of doing this is shown in Figure \ref{fig:badger}, accurately reproducing the structure-frequency correlation
-in water without any additional free parameters. When we compute the dipole derivatives from a simple \ce{O-H} scan we find the QM parameters are $\mu^{(1)}=0.1654$ and $\mu^{(2)}=-0.01246$, while the same calculation with FQCT yields $\mu^{(1)}=0.1658$ and $\mu^{(2)}=-0.0104$. This indicates that as
-long as a force field has an accurate dipole surface, the dipole derivatives needed to compute
-the field-dependence of a Morse potential will be good for water spectroscopy.
+The net effect of the field-dependent Morse potential and charge transfer correction is to shift force from the oxygen atom to the hydrogen atom participating in a hydrogen bond. The improvement in accuracy in electrostatics and polarization forces are particularly notable since this correction involves no free parameters. The improvement in Pauli repulsion is also quite large correcting about half the force error at negligible computational cost. The charge transfer forces also remove about half the force error along the \ce{O-H} bond. Note that the Pauli repulsion forces can be quite a bit more accurate with the present model, as shown in the parentheses in Table \ref{tab:dimer_forces}. Since we use the Pauli repulsion to correlate errors in the model, as shown in Figure \ref{fig:error_correlation}, the Pauli forces compensate for remaining errors in the dispersion and charge transfer forces.
+
+In order for a force field to be useful theoretical spectroscopy, it must respect the relationships between structure and vibrational frequencies. For water this manifests as a linear relationship between the change in bond length and change in \ce{O-H} stretching frequency\cite{boyer2019beyond}, colloquially referred to as Badger's rule.\cite{badger1934relation} It is expected that an accurate FF should satisfy the expected slope $\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001\AA}$\cite{boyer2019beyond}. Without a field-dependent bond coupling, we find that  we obtain a slope of $\approx -10\ \mathrm{cm^{-1}/.001\AA}$ (Fig. \ref{fig:badger}), consistent with a field-independent Morse oscillator analyzed by Boyer \textit{et al.} with parameters appropriate to water.\cite{boyer2019beyond} This observation is what motivated us to couple our bonding potential parameters to the field along that bond as shown in Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2}. The result of doing this is shown in Figure \ref{fig:badger}, accurately reproducing the structure-frequency correlation in water. When we compute the dipole derivatives from a simple \ce{O-H} scan we find the QM parameters are $\mu^{(1)}=0.1654$ and $\mu^{(2)}=-0.01246$, while the same calculation with FQCT yields $\mu^{(1)}=0.1658$ and $\mu^{(2)}=-0.0104$. This indicates that as long as a force field has an accurate dipole surface, the dipole derivatives needed to compute the field-dependence of a Morse potential can be extracted from the force field itself.
 
 \begin{figure}[H]
    \includegraphics*[width=0.475\textwidth]{figures/badger_correlation_no_fd_morse.png}
@@ -726,9 +726,9 @@ In the construction of this model, we have gone to great lengths to ensure that 
 
 The orange points in Figure \ref{fig:dipole_surface} are the dipole surface associated with the Partridge-Schwenke (PS) water monomer surface.\cite{partridge1997determination} The PS potential and dipole surface are used by many water models such as the TTM models,\cite{burnham1999parametrization,fanourgakis2006flexible} MB-Pol\cite{babin2013development,babin2014development}, and q-aqua\cite{yu2022q}. Clearly, the PS dipole surface is very accurate over a wide range of energies. We chose not to use the PS dipole surface since we intend to construct force fields for molecules other than water. Clearly, we have not sacrificed much since the FQCT dipole surface essentially parallels the PS dipole surface.
 
-It was first pointed out by Fanourgakis and Xantheas that reproducing the dipole surface of water is essential for capturing the opening of the bend angle of water in the condensed phase.\cite{fanourgakis2006flexible} Essentially, a model needs to reproduce the dipole derivatives of water to correctly predict the opening of the bend angle as water clusters become larger. Our model is able to reproduce the dipole derivatives of water to five decimal places in atomic units.
+It was first pointed out by Fanourgakis and Xantheas that reproducing the dipole surface of water is essential for capturing the opening of the bend angle of water in the condensed phase.\cite{fanourgakis2006flexible} Essentially, a model needs to reproduce the dipole derivatives of water to correctly predict the opening of the bend angle as water clusters become larger. Our model is able to reproduce the dipole derivatives of water at its equilibrium geometry to five decimal places in atomic units.
 
-Another important property for accurate energetics and transferability, especially for interactions with ions, is the molecular polarizability. Because our model contains anisotropic dipole polarizabilities and fluctuating charges, there is more than enough flexibility in parameter space to exactly reproduce the molecular polarizability. Our model aims to reproduce the $\omega$B97X-V/def2-QZVPPD molecular polarizability with $\alpha_{xx}=10.0321$, $\alpha_{yy}=9.65958$, $\alpha_{zz}=9.40921$, which it manages to do up to five decimal places in bohr$^3$. The quoted polarizability values correspond to a water molecule with the x-axis as the bisector of the HOH angle and the z-axis normal to the plane of the water molecule.
+Another important property for accurate energetics and transferability, especially for interactions with ions, is the molecular polarizability. Because our model contains anisotropic dipole polarizabilities and fluctuating charges, there is more than enough flexibility in parameter space to exactly reproduce the molecular polarizability. Our model aims to reproduce the $\omega$B97X-V/def2-QZVPPD molecular polarizability with $\alpha_{xx}=10.0321$, $\alpha_{yy}=9.65958$, $\alpha_{zz}=9.40921$, which it manages to do up to three decimal places in bohr$^3$. The quoted polarizability values correspond to a water molecule with the y-axis as the bisector of the HOH angle and the z-axis normal to the plane of the water molecule.
 
 The last monomer property we explicitly aimed to reproduce are the polarizability derivatives of gas-phase water at its equilibrium geometry. The polarizability derivatives control the intensity of peaks measured with raman spectroscopy but have rarely been discussed in the construction of water models to our knowledge. Additionally, since water distorts when interacting with other molecules, reproducing the polarizability derivatives indicates how well the molecular polarizability at distorted geometries will be reproduced. In Table \ref{tab:pol_derivs}, we report the polarizability derivatives of our final model as well as the polarizability derivatives for an identically parameterized model which does not include fluctuating charges. It is important to note that one can achieve better agreement with reference polarizability derivatives if that is the only quantity one aims to reproduce. These models, however, tend to result in inadequate polarization energies.
 
@@ -737,27 +737,24 @@ The last monomer property we explicitly aimed to reproduce are the polarizabilit
   \begin{tabular}{ccccc}
       \multicolumn{5}{c}{Polarizability Derivatives of Water (bohr$^2$)} \\\hline
        Atom & $xx$ & $xy$ & $yy$ & $zz$ \\\hline
-       O$x$ & -                 & 4.04/2.92/-0.13    & -                  & -  \\
-       O$y$ & 5.15/1.58/2.04    & -                  & 4.45/3.24/-2.03    & 1.50/0.0/0.0  \\
+       O$x$ & -                 & 4.04/3.99/-0.13    & -                  & -  \\
+       O$y$ & 5.15/6.07/2.04    & -                  & 4.45/4.85/-2.03    & 1.50/0.0/0.0  \\
        O$z$ & -                 & -                  & -                  & -  \\
-       H$x$ & -4.61/-2.57/0.78  & -2.02/-1.46/0.06   & -2.53/-0.60/-0.78  & -1.39/0.0/0.0  \\
-       H$y$ & -2.57/-0.79/-1.02 & -1.68/-1.25/-0.08  & -2.22/-1.62/1.02   & -0.75/0.0/0.0  \\
+       H$x$ & -4.61/-4.80/0.78  & -2.02/-1.99/0.06   & -2.53/-1.68/-0.78  & -1.39/0.0/0.0  \\
+       H$y$ & -2.57/-3.04/-1.02 & -1.68/-1.66/-0.08  & -2.22/-2.43/1.02   & -0.75/0.0/0.0  \\
        H$z$ & -                 & -                  & -                  & -  \\\hline
-
   \end{tabular}
   \end{center}
   \vspace{-3mm}
-  \caption{Polarizability derivatives of water computed at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry in three different ways. The first entry is computed with $\omega$B97X-V/def2-QZVPPD, the second with FQCT, and the third with the same model but using parameters optimized without fluctuating charges. The Atom column tells both the atom and component of its position we take the derivative with respect to. The water monomer has its bisector aligned with the $x$-axis and the $z$-axis is normal to the water molecule plane. Note that the derivatives for the second hydrogen are identical to the first but with opposite sign. The $xz$ and $yz$ entries are omitted since they are small and reproduced to three decimal places by both models.}
+  \caption{Polarizability derivatives of water computed at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry in three different ways. The first entry is computed with $\omega$B97X-V/def2-QZVPPD, the second with FQCT, and the third with the same model but using parameters optimized without fluctuating charges. The Atom column tells both the atom and component of its position we take the derivative with respect to. The water monomer has its bisector aligned with the $y$-axis and the $z$-axis is normal to the water molecule plane. Note that the derivatives for the second hydrogen are identical to the first but with opposite sign. The $xz$ and $yz$ entries are omitted since they are small and reproduced to three decimal places by both models.}
   \label{tab:pol_derivs}
 \end{table}
 
 Certain polarizability derivatives in Table \ref{tab:pol_derivs} are reproduced very accurately, while others are not at all. Most notably, our model does not have any $zz$ polarizability derivatives while these should be rather large. The reason our model has no $zz$ polarizability derivatives is that we do not include intramolecular polarization. We tested what happens when intramolecular polarization is turned on and found that the $zz$ polarizability derivatives are still reproduced very poorly and the polarization energies generally became less accurate. It is of some interest that when intramolecular polarization is turned on, the polarizability derivatives are quite sensitive to the choice and strength of damping function. This may enable the tuning of damping functions based on monomers alone.
 
-We find it very interesting that the model which includes fluctuating charges in the polarization calculation gives much better polarizability derivatives than one which just uses anisotropic dipole polarizabilities. This indicates that one of the main reasons water models have historically predicted Raman intensities very poorly\cite{hamm20142d} is the lack of fluctuating charges in the polarization process. Furthermore, we are able to achieve higher accuracy in the polarization energies using fluctuating charges than without.
+We find it very interesting that the model which includes fluctuating charges in the polarization calculation gives much better polarizability derivatives than one which just uses anisotropic dipole polarizabilities. Note that the polarizability derivatives in Table \ref{tab:pol_derivs} are improved considerably by the geometry-dependent atomic hardness described in Eq. \ref{eq:variable_hardness}. Even without variable atomic hardness, including fluctuating charges dramtically improves polarizability derivatives compared to models with only dipole polarizablities. This indicates that one of the main reasons water models have historically predicted Raman intensities very poorly\cite{hamm20142d} is the lack of fluctuating charges in the polarization process. Furthermore, we are able to achieve higher accuracy in the polarization energies using fluctuating charges than without.
 
-The $zz$ polarizability derivatives of water are an interesting case since they can be reproduced accurately when using intramolecular polarization, but in our experience, the strength of damping to enable this is too weak to have a stable water model. This indicates that an interesting future direction for advanced force fields is the construcion of geometry-dependent polarizability surfaces. In much the same way that recent force fields, and this one, employ charge flux to ensure accurate dipole surfaces, future models will benefit from accurate polarizability surfaces. Indeed, some recent work indicates that simple linear interpolation based on internal coordinates may be sufficient for water.\cite{herman2023accurate} Linear models of charge flux are accurate for organic molecules\cite{sedghamiz2017probing,yang2020accurate}, but the same remains to be seen for the polarizability surface of organic molecules.
-
-\textbf{Joe, above needs to be rewritten considering the variable poalrizabilities...}
+The $zz$ polarizability derivatives of water are an interesting case since they can be reproduced accurately when using intramolecular polarization, but in our experience, the strength of damping to enable this is too weak to have a stable water model. We already include variable polarizability in this model via Eq. \ref{eq:variable_hardness}. Charge fluctuations only contribute to in-plane polarization. We could, undoubdetdly, reproduce the $zz$ polarizability derivatives by allowing the z-component of atomic polarizabilities to be geometry-dependent. We decided not to do this since it adds additonal complexity that with a fairly small benefit. One can imagine, however, for a system like benzene which predominantly interacts via $\pi$ interactions that accurate out-of-plane polarizability derivatives could be quite important.
 
 It is difficult to compare the accuracy of the polarizability derivatives of this model to others since very few models report this quantity. At least one water model has been constructed for the express purpose of reproducing Raman spectra.\cite{sidler2018efficient} The polarizability derivatives were not reported. The polarization is described using anisotropic polarizabilities but no fluctuating charges which, based on the contents of Table \ref{tab:pol_derivs}, lead us to believe the present model likely has more accurate polarizability derivatives.
 
@@ -919,7 +916,7 @@ In addition to accurate energetics, polarizable force fields should produce accu
 
 Unfortunately, TTM2.1-F struggles at accurately reproducing the structures of water clusters. It is important to realize, however, that TTM2.1-F was published in 2006\cite{fanourgakis2006flexible} and is itself a minor modification of TTM2-F which was published in 2002.\cite{burnham2002development} TTM2.1-F is quite simple compared to the present model and MB-Pol or q-AQUA, so it is not surprising that it falls short on certain benchmarks. We bring this up not to criticize TTM2.1-F, which was highly innovative and an inspiration in this work, but to emphasize that it is possible to have accurate energies but sub-optimal structures in the same model. Therefore, we suggest that any future water models should benchmark both energies and structures.
 
-In order for a force field to be useful theoretical spectroscopy, it must respect the relationships between structure and vibrational frequncies. In the case of water, this manifests as a linear relationship between the change in bond length and change in \ce{O-H} stretching frequency.\cite{boyer2019beyond} This is sometimes colloquially referred to as Badger's rule since Richard Badger famously pointed out a correspondence between equilibrium bond lengths and bond force constants.\cite{badger1934relation}
+In order for a force field to be useful for theoretical spectroscopy, it must respect the relationships between structure and vibrational frequncies. In the case of water, this manifests as a linear relationship between the change in bond length and change in \ce{O-H} stretching frequency.\cite{boyer2019beyond} This is sometimes colloquially referred to as Badger's rule since Richard Badger famously pointed out a correspondence between equilibrium bond lengths and bond force constants.\cite{badger1934relation}
 
 In the course of constructing this force field, we tested if it satisfied the expected slope $\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001}$\AA\cite{boyer2019beyond}. We found, instead, that the slope was around $\approx -10\ \mathrm{cm^{-1}/.001}$\AA (See Fig. S2). This is quite an interesting slope since Boyer \textit{et al.} show that a field-independent Morse oscillator, with parameters appropriate to water, will give a slope of $\approx -11\ \mathrm{cm^{-1}/.001}$\AA. This was a strong indication that we should allow our bonding potential parameters to be modulated by the field along that bond. How this is done is shown in Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}.
 
@@ -972,23 +969,23 @@ Since ion-water interactions are strong, they can result in large red-shifts of 
   \begin{tabular}{llccccccc}
       \multicolumn{9}{c}{Ion-Water Dimer Vibrational Frequencies} \\\hline
       \ce{X^{+/-}(H2O)} & Method & NM1 & NM2 & NM3 & NM4 & NM5 & NM6 & $D_e$ \\\hline
-      \ce{F^-(H2O)} & FQCT  & 390 & 717 & 1353 & 1795 & 2095 & 3931 & -27.9 \\
+      \ce{F^-(H2O)} & FQCT  & 365 & 723 & 1328 & 1806 & 2156 & 3842 & -26.7 \\
            & $\omega$B97X-V & 384 & 569 & 1144 & 1702 & 2233 & 3916 & -27.2 \\\hline
-      \ce{Cl^-(H2O)} & FQCT & 197 & 396 & 773 & 1724 & 3485 & 3938 & -15.2 \\
+      \ce{Cl^-(H2O)} & FQCT & 197 & 395 & 767 & 1719 & 3427 & 3893 & -15.1 \\
            & $\omega$B97X-V & 193 & 341 & 726 & 1678 & 3417 & 3919 & -14.9 \\\hline
-      \ce{Br^-(H2O)} & FQCT & 158 & 354 & 712 & 1713 & 3549 & 3931 & -13.2 \\
+      \ce{Br^-(H2O)} & FQCT & 157 & 360 & 718 & 1713 & 3507 & 3894 & -13.2 \\
            & $\omega$B97X-V & 151 & 288 & 657 & 1673 & 3521 & 3916 & -12.9 \\\hline
-      \ce{I^-(H2O)} & FQCT  & 129 & 297 & 638 & 1700 & 3596 & 3921 & -11.1 \\
+      \ce{I^-(H2O)} & FQCT  & 129 & 303 & 643 & 1701 & 3591 & 3895 & -11.1 \\
            & $\omega$B97X-V & 118 & 220 & 579 & 1668 & 3623 & 3911 & -10.9 \\\hline
-      \ce{Li^+(H2O)} & FQCT & 304 & 497 & 534 & 1669 & 3676 & 3799 & -34.8 \\
+      \ce{Li^+(H2O)} & FQCT & 301 & 512 & 535 & 1669 & 3677 & 3801 & -34.9 \\
            & $\omega$B97X-V & 392 & 524 & 554 & 1681 & 3815 & 3882 & -34.9 \\\hline
-      \ce{Na^+(H2O)} & FQCT & 273 & 316 & 424 & 1680 & 3735 & 3846 & -24.2 \\
+      \ce{Na^+(H2O)} & FQCT & 268 & 316 & 434 & 1679 & 3737 & 3848 & -24.2 \\
            & $\omega$B97X-V & 307 & 367 & 437 & 1677 & 3830 & 3902 & -24.3 \\\hline
-      \ce{K^+(H2O)} & FQCT  & 221 & 306 & 355 & 1681 & 3766 & 3872 & -17.6 \\
+      \ce{K^+(H2O)} & FQCT  & 220 & 306 & 367 & 1680 & 3767 & 3873 & -17.6 \\
            & $\omega$B97X-V & 213 & 359 & 369 & 1673 & 3833 & 3910 & -17.7 \\\hline
-      \ce{Rb^+(H2O)} & FQCT & 181 & 307 & 332 & 1680 & 3775 & 3880 & -15.4 \\
+      \ce{Rb^+(H2O)} & FQCT & 180 & 304 & 342 & 1680 & 3776 & 3881 & -15.4 \\
            & $\omega$B97X-V & 178 & 347 & 351 & 1671 & 3836 & 3914 & -15.6 \\\hline
-      \ce{Cs^+(H2O)} & FQCT & 160 & 305 & 307 & 1679 & 3784 & 3888 & -13.8 \\
+      \ce{Cs^+(H2O)} & FQCT & 160 & 306 & 316 & 1679 & 3785 & 3889 & -13.8 \\
            & $\omega$B97X-V & 157 & 327 & 339 & 1668 & 3836 & 3916 & -14.0 \\\hline
   \end{tabular}
   \end{center}

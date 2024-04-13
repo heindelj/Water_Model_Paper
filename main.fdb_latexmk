@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1712885119 "main.aux" "main.bbl" "main" 1712885336 0
-  "./acs-main.bib" 1712885336 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
+["bibtex main"] 1712969706 "main.aux" "main.bbl" "main" 1712969974 0
+  "./acs-main.bib" 1712969974 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
   "./references.bib" 1712885101 29205 2f7671dc49c970cd56c223f3ff6f21c0 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1712885336 26006 700539af6b95320a7ee7c504c1ab7194 "pdflatex"
+  "main.aux" 1712969974 26411 b20bfe28e293057fadcb2489e0bd8b02 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1712885332 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1712885336 0
+["pdflatex"] 1712969970 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1712969974 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1712885332 112941 dc09f4190d534cada77d8d21ab1e7d3f ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1712969970 115517 ad287965bdbb0bd2f434763766816dff ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -130,10 +130,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1690152512 4036811 4cb80868003c86b962b6b5ae1e1e2902 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1690152518 1405647 cc8221b3815afa4901915eeb915f9cc3 ""
-  "figures/anion_dimer_scans.png" 1712370128 112053 2d91de288a97f9224963ee06ceba3d23 ""
-  "figures/badger_correlation_final.png" 1712866363 77405 532919e7e49c5f031dfa583b44f07904 ""
-  "figures/badger_correlation_no_fd_morse.png" 1712866360 70649 092a27853be91d68462063597670ac13 ""
-  "figures/cation_dimer_scans.png" 1712370191 117671 d9404034580275b640c02a58fbe55204 ""
+  "figures/anion_dimer_scans.png" 1712957045 112347 08579686a85a97bd06b6b8ddd3ad822a ""
+  "figures/badger_correlation_final.png" 1712951250 75539 73035023dcedb61ef66f649e38853270 ""
+  "figures/badger_correlation_no_fd_morse.png" 1712951223 65354 ecdc525a487eb6be3d2256af97622107 ""
+  "figures/cation_dimer_scans.png" 1712957073 118225 44ea5368f823b22c54b1290935381bec ""
   "figures/dipole_surface.png" 1710036481 99865 dc428ffd381aa7f9d11b70306b5291ed ""
   "figures/error_correlation.png" 1710266151 107766 cef711bae9811be5cf05bab37a76a287 ""
   "figures/pauli_ct_cp_correlation.png" 1709933789 116279 4aa83092e750216f2ea2abab5d44bb08 ""
@@ -141,9 +141,9 @@
   "figures/three_body_pol_and_ct_halides.png" 1712866363 104367 92d423935bd73d4f984d017b5bfbbcc9 ""
   "figures/three_body_pol_and_ct_water.png" 1712354518 102844 1d5d22206563bd3440afa2c95372cee2 ""
   "figures/trimer_mbe_example.png" 1705705040 71772 1c186bc1ce9f9a727cfd81d510a4a0af ""
-  "main.aux" 1712885336 26006 700539af6b95320a7ee7c504c1ab7194 "pdflatex"
-  "main.bbl" 1712885119 35821 2149d1abdd798c0d207fb0a373b19b50 "bibtex main"
-  "main.tex" 1712885332 112941 dc09f4190d534cada77d8d21ab1e7d3f ""
+  "main.aux" 1712969974 26411 b20bfe28e293057fadcb2489e0bd8b02 "pdflatex"
+  "main.bbl" 1712969706 34939 08092e94fcb6c0d3ac24ac3f505b18bf "bibtex main"
+  "main.tex" 1712969970 115517 ad287965bdbb0bd2f434763766816dff ""
   (generated)
   "acs-main.bib"
   "main.aux"

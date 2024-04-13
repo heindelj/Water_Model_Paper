@@ -16,45 +16,45 @@ Warning--I didn't find a database entry for "Mardirossian2014"
 Warning--I didn't find a database entry for "Rappoport2010"
 Warning--I didn't find a database entry for "Q-chem"
 achemso 2021-01-20 v3.13c
-You've used 76 entries,
+You've used 74 entries,
             2538 wiz_defined-function locations,
-            1178 strings with 21546 characters,
-and the built_in function-call counts, 27390 in all, are:
-= -- 2404
-> -- 1457
+            1170 strings with 21215 characters,
+and the built_in function-call counts, 26718 in all, are:
+= -- 2349
+> -- 1416
 < -- 30
-+ -- 569
-- -- 493
-* -- 2996
-:= -- 3644
-add.period$ -- 150
-call.type$ -- 76
++ -- 553
+- -- 479
+* -- 2920
+:= -- 3553
+add.period$ -- 146
+call.type$ -- 74
 change.case$ -- 4
 chr.to.int$ -- 1
-cite$ -- 76
-duplicate$ -- 1457
-empty$ -- 1889
-format.name$ -- 601
-if$ -- 5343
+cite$ -- 74
+duplicate$ -- 1418
+empty$ -- 1846
+format.name$ -- 585
+if$ -- 5214
 int.to.chr$ -- 0
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 478
-num.names$ -- 225
-pop$ -- 138
+newline$ -- 466
+num.names$ -- 219
+pop$ -- 134
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 76
+skip$ -- 74
 stack$ -- 0
-substring$ -- 1837
-swap$ -- 1491
-text.length$ -- 150
+substring$ -- 1807
+swap$ -- 1450
+text.length$ -- 146
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 529
+type$ -- 515
 warning$ -- 0
-while$ -- 281
+while$ -- 275
 width$ -- 0
-write$ -- 992
+write$ -- 967
 (There were 10 warnings)
