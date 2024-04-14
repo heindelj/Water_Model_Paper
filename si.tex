@@ -47,6 +47,30 @@ corresponding author: thg@berkeley.edu
 \end{center}
 
 \newpage
+\textbf{Environment dependent bonding potential fot the water dimer}
+To summarize the large effect this environment-dependent bonding potential has on the forces within FQCT, let us consider a water dimer where each monomer is fixed at the $\omega$B97X-V/def2-QZVPPD geometry. This simply eliminates the geometric distortion forces which are not relevant here. We now compute the forces due to each term in EDA, a so-called force decomposition analysis\cite{aldossary2023force}, and compare them against the same forces predicted by FQCT with and without Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2}.
+
+\begin{table}[ht!]
+  \begin{center}
+  \begin{tabular}{llcccccc}
+      \multicolumn{8}{c}{Water Dimer Force Decomposition Analysis Along \ce{O-H} Bond} \\\hline
+       Method & Atom & Mod. Pauli & Cls. Elec. & Disp. & Pol. & CT & Total \\\hline
+       FQCT & \ce{O_{don.}}          & -30.1 & 1.4  & 6.0   & -3.4  & -1.5  & -27.5 \\
+       No F.D. Morse & \ce{H_{don.}} & -73.7 & 54.5 & 5.3   & 15.4  & 24.9  & 26.4 \\
+       & \ce{O_{acc.}}               & 96.4 & -48.9 & -10.1 & -12.7 & -22.3 & 2.4 \\\hline
+       FQCT & \ce{O_{don.}} & -15.5 (7.50) & -13.7 & 6.0   & -5.6  & -8.7 & -37.5 \\
+       & \ce{H_{don.}}      & -88.5 (-111.9) & 70.0  & 5.3   & 17.7  & 31.9 & 36.4 \\
+       & \ce{O_{acc.}}      & 96.4 (95.5)  & -51.7 & -10.1 & -13.0 & -22.0 & -0.4 \\\hline
+       $\omega$B97X-V & \ce{O_{don.}} & 3.92 & -15.0  & 0.75  & -8.4  & -15.6 & -34.3 \\
+       & \ce{H_{don.}}                & -105.7 & 72.4 & 10.8  & 18.9  & 39.3  & 35.8 \\
+       & \ce{O_{acc.}}                & 92.3 & -52.3  & -10.3 & -10.4 & -19.6  & -0.50 \\\hline
+  \end{tabular}
+  \end{center}
+  \caption{Comparison of the forces projected along the \ce{O-H} bond of a water dimer due to each component in the EDA. Forces predicted by FQCT are computed with and without the field-dependent morse potential described in Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2}. The first block of entries is FQCT with no field-dependent Morse potential, the second block is FQCT, and the third is $\omega$B97X-V/def2-QZVPPD. All forces in KJ/mol/\AA. \ce{O_{don.}} and \ce{H_{don.}} are the oxygen and hydrogen atoms donating the hydrogen bond and \ce{O_{acc.}} is the oxygen accepting the hydrogen bond. All forces are projected along the \ce{O-H} bond vector. The numbers in parentheses are what we forces before error fitting with Pauli repulsion.}
+  \label{tab:dimer_forces}
+\end{table}
+
+The net effect of the field-dependent Morse potential and charge transfer correction is to shift force from the oxygen atom to the hydrogen atom participating in a hydrogen bond. The improvement in accuracy in electrostatics and polarization forces are particularly notable since this correction involves no free parameters. The improvement in Pauli repulsion is also quite large correcting about half the force error at negligible computational cost. The charge transfer forces also remove about half the force error along the \ce{O-H} bond. Note that the Pauli repulsion forces can be quite a bit more accurate with the present model, as shown in the parentheses in Table \ref{tab:dimer_forces}. Since we use the Pauli repulsion to correlate errors in the model, as shown in Figure \ref{fig:error_correlation}, the Pauli forces compensate for remaining errors in the dispersion and charge transfer forces.
 
 
 In the course of developing this model, we found that we were unable to reproduce the
