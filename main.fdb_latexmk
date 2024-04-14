@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1712969706 "main.aux" "main.bbl" "main" 1712969974 0
-  "./acs-main.bib" 1712969974 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
-  "./references.bib" 1712885101 29205 2f7671dc49c970cd56c223f3ff6f21c0 ""
+["bibtex main"] 1713055268 "main.aux" "main.bbl" "main" 1713055273 0
+  "./acs-main.bib" 1713055272 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
+  "./references.bib" 1713055224 29518 e3621608768267143e003deaa06961f3 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1712969974 26411 b20bfe28e293057fadcb2489e0bd8b02 "pdflatex"
+  "main.aux" 1713055272 26749 8f88a3039a3b7092be9b73d936f25874 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1712969970 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1712969974 0
+["pdflatex"] 1713055268 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1713055273 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1712969970 115517 ad287965bdbb0bd2f434763766816dff ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1713055263 118205 c74cbaf1e3ae23e221935ec4ef85c4e1 ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -64,6 +64,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1248133631 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb" 1248133631 24457 5cbb7bdf209d5d1ce9892a9b80a307cc ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb" 1248133631 24393 3b7eb51a67a0a62aec5849271bdb9c2e ""
@@ -136,14 +137,15 @@
   "figures/cation_dimer_scans.png" 1712957073 118225 44ea5368f823b22c54b1290935381bec ""
   "figures/dipole_surface.png" 1710036481 99865 dc428ffd381aa7f9d11b70306b5291ed ""
   "figures/error_correlation.png" 1710266151 107766 cef711bae9811be5cf05bab37a76a287 ""
+  "figures/ion_ion_dimer_scans.png" 1713055153 355173 27c6cd9c44e8e1603a0dfd4a551e9c43 ""
   "figures/pauli_ct_cp_correlation.png" 1709933789 116279 4aa83092e750216f2ea2abab5d44bb08 ""
   "figures/three_body_pol_and_ct_cations.png" 1712866363 106857 503cb32cd6b6602bcd82efb5cf92f59f ""
   "figures/three_body_pol_and_ct_halides.png" 1712866363 104367 92d423935bd73d4f984d017b5bfbbcc9 ""
   "figures/three_body_pol_and_ct_water.png" 1712354518 102844 1d5d22206563bd3440afa2c95372cee2 ""
   "figures/trimer_mbe_example.png" 1705705040 71772 1c186bc1ce9f9a727cfd81d510a4a0af ""
-  "main.aux" 1712969974 26411 b20bfe28e293057fadcb2489e0bd8b02 "pdflatex"
-  "main.bbl" 1712969706 34939 08092e94fcb6c0d3ac24ac3f505b18bf "bibtex main"
-  "main.tex" 1712969970 115517 ad287965bdbb0bd2f434763766816dff ""
+  "main.aux" 1713055272 26749 8f88a3039a3b7092be9b73d936f25874 "pdflatex"
+  "main.bbl" 1713055268 35345 12910992265ffb904371f943cb9c23dc "bibtex main"
+  "main.tex" 1713055263 118205 c74cbaf1e3ae23e221935ec4ef85c4e1 ""
   (generated)
   "acs-main.bib"
   "main.aux"

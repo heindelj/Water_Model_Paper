@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{74}
+\begin{mcitethebibliography}{75}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -661,6 +661,14 @@ Burnham,~C.~J.; Xantheas,~S.~S. Development of transferable interaction models
   geometry dependent charges derived from an ab initio monomer dipole moment
   surface. \emph{The Journal of chemical physics} \textbf{2002}, \emph{116},
   5115--5124\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Roy \latin{et~al.}(2017)Roy, Baer, Mundy, and Schenter]{roy2017marcus}
+Roy,~S.; Baer,~M.~D.; Mundy,~C.~J.; Schenter,~G.~K. Marcus theory of
+  ion-pairing. \emph{Journal of chemical theory and computation} \textbf{2017},
+  \emph{13}, 3470--3477\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
