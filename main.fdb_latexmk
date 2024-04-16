@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 0 "main.aux" "main.bbl" "main" 0 -1
-  "./acs-main.bib" 1713299332 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
+["bibtex main"] 1713299530 "main.aux" "main.bbl" "main" 1713299554 0
+  "./acs-main.bib" 1713299553 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
   "./references.bib" 1713055579 33685 d827b940550935ef3ce951f020a4e58a ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1713299332 24408 23f4b44b22a1fcec4d82e0c8a2581a29 "pdflatex"
+  "main.aux" 1713299554 23785 e68a246cf2c004186390545deca11ba4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1713299328 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1713299333 2
+["pdflatex"] 1713299549 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1713299554 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1713299323 105135 968eff1137972e5213140c7ae6790f84 ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1713299549 105059 03cb65583f71788d5511661d1bd8274a ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -64,6 +64,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1248133631 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb" 1248133631 24457 5cbb7bdf209d5d1ce9892a9b80a307cc ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb" 1248133631 24393 3b7eb51a67a0a62aec5849271bdb9c2e ""
@@ -139,9 +140,9 @@
   "figures/three_body_pol_and_ct_ions.png" 1713197734 291200 b21c75f1b673892aedf877b41be89a4c ""
   "figures/three_body_pol_and_ct_water.png" 1712354518 102844 1d5d22206563bd3440afa2c95372cee2 ""
   "figures/trimer_mbe_example.png" 1713197734 138151 9b2ff21d883290c41d95281b803625ad ""
-  "main.aux" 1713299332 24408 23f4b44b22a1fcec4d82e0c8a2581a29 "pdflatex"
-  "main.bbl" 1713298329 37994 09a248668c59829a148f8f18117781e6 "bibtex main"
-  "main.tex" 1713299323 105135 968eff1137972e5213140c7ae6790f84 ""
+  "main.aux" 1713299554 23785 e68a246cf2c004186390545deca11ba4 "pdflatex"
+  "main.bbl" 1713299530 35023 b5b5b86770f1d0721dfdfc0361cef0a4 "bibtex main"
+  "main.tex" 1713299549 105059 03cb65583f71788d5511661d1bd8274a ""
   (generated)
   "acs-main.bib"
   "main.aux"
