@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{71}
+\begin{mcitethebibliography}{74}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -115,12 +115,31 @@ Heindel,~J.~P.; Xantheas,~S.~S. The many-body expansion for aqueous systems
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Heindel \latin{et~al.}(2023)Heindel, Herman, and
+  Xantheas]{heindel2023many}
+Heindel,~J.~P.; Herman,~K.~M.; Xantheas,~S.~S. Many-body effects in aqueous
+  systems: Synergies between interaction analysis techniques and force field
+  development. \emph{Annual Review of Physical Chemistry} \textbf{2023},
+  \emph{74}, 337--360\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Das \latin{et~al.}(2019)Das, Urban, Leven, Loipersberger, Aldossary,
   Head-Gordon, and Head-Gordon]{das2019development}
 Das,~A.~K.; Urban,~L.; Leven,~I.; Loipersberger,~M.; Aldossary,~A.;
   Head-Gordon,~M.; Head-Gordon,~T. Development of an advanced force field for
   water using variational energy decomposition analysis. \emph{Journal of
   chemical theory and computation} \textbf{2019}, \emph{15}, 5001--5013\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Das \latin{et~al.}(2022)Das, Liu, and Head-Gordon]{das2022development}
+Das,~A.~K.; Liu,~M.; Head-Gordon,~T. Development of a many-body force field for
+  aqueous alkali metal and halogen ions: an energy decomposition analysis
+  guided approach. \emph{Journal of Chemical Theory and Computation}
+  \textbf{2022}, \emph{18}, 953--967\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -190,6 +209,16 @@ Horn,~P.~R.; Mao,~Y.; Head-Gordon,~M. Probing non-covalent interactions with a
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Boyer \latin{et~al.}(2019)Boyer, Marsalek, Heindel, Markland, McCoy,
+  and Xantheas]{boyer2019beyond}
+Boyer,~M.~A.; Marsalek,~O.; Heindel,~J.~P.; Markland,~T.~E.; McCoy,~A.~B.;
+  Xantheas,~S.~S. Beyond Badger’s rule: The origins and generality of the
+  structure--spectra relationship of aqueous hydrogen bonds. \emph{The Journal
+  of Physical Chemistry Letters} \textbf{2019}, \emph{10}, 918--924\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Mao \latin{et~al.}(2017)Mao, Horn, and Head-Gordon]{mao2017energy}
 Mao,~Y.; Horn,~P.~R.; Head-Gordon,~M. Energy decomposition analysis in an
   adiabatic picture. \emph{Physical Chemistry Chemical Physics} \textbf{2017},
@@ -212,6 +241,15 @@ Mardirossian,~N.; Head-Gordon,~M. Exploring the limit of accuracy for density
   functionals based on the generalized gradient approximation: Local, global
   hybrid, and range-separated hybrid functionals with and without dispersion
   corrections. \emph{J Chem Phys} \textbf{2014}, \emph{140}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Rappoport and Furche(2010)Rappoport, and
+  Furche]{rappoport2010property}
+Rappoport,~D.; Furche,~F. Property-optimized Gaussian basis sets for molecular
+  response calculations. \emph{The Journal of chemical physics} \textbf{2010},
+  \emph{133}\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -495,16 +533,6 @@ Liu,~C.; Piquemal,~J.-P.; Ren,~P. Implementation of geometry-dependent charge
 McCoy,~A.~B. The role of electrical anharmonicity in the association band in
   the water spectrum. \emph{The Journal of Physical Chemistry B} \textbf{2014},
   \emph{118}, 8286--8294\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Boyer \latin{et~al.}(2019)Boyer, Marsalek, Heindel, Markland, McCoy,
-  and Xantheas]{boyer2019beyond}
-Boyer,~M.~A.; Marsalek,~O.; Heindel,~J.~P.; Markland,~T.~E.; McCoy,~A.~B.;
-  Xantheas,~S.~S. Beyond Badger’s rule: The origins and generality of the
-  structure--spectra relationship of aqueous hydrogen bonds. \emph{The Journal
-  of Physical Chemistry Letters} \textbf{2019}, \emph{10}, 918--924\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
