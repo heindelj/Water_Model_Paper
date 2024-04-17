@@ -5,56 +5,56 @@ The style file: achemso.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: acs-main.bib
 Database file #2: references.bib
-Warning--I didn't find a database entry for "Kitaura1976"
-Warning--I didn't find a database entry for ""
-Warning--I didn't find a database entry for "Khaliullin2007"
-Warning--I didn't find a database entry for "Horn2016"
+Warning--string name "wires" is undefined
+--line 16 of file references.bib
+Warning--string name "arpc" is undefined
+--line 25 of file references.bib
+Warning--string name "wires" is undefined
+--line 35 of file references.bib
+Warning--string name "jcp" is undefined
+--line 367 of file references.bib
 Warning--I didn't find a database entry for "Sami2024"
-Warning--I didn't find a database entry for "Mao2016"
-Warning--I didn't find a database entry for "Horn2015"
-Warning--I didn't find a database entry for "Mardirossian2014"
-Warning--I didn't find a database entry for "Rappoport2010"
-Warning--I didn't find a database entry for "Q-chem"
+Warning--I didn't find a database entry for "LaCour2023"
 achemso 2021-01-20 v3.13c
-You've used 75 entries,
+You've used 74 entries,
             2538 wiz_defined-function locations,
-            1174 strings with 21346 characters,
-and the built_in function-call counts, 27122 in all, are:
-= -- 2384
-> -- 1439
-< -- 30
-+ -- 562
-- -- 487
-* -- 2965
-:= -- 3607
-add.period$ -- 148
-call.type$ -- 75
+            1169 strings with 22790 characters,
+and the built_in function-call counts, 29005 in all, are:
+= -- 2371
+> -- 1841
+< -- 32
++ -- 723
+- -- 650
+* -- 3204
+:= -- 3932
+add.period$ -- 146
+call.type$ -- 74
 change.case$ -- 4
 chr.to.int$ -- 1
-cite$ -- 75
-duplicate$ -- 1439
-empty$ -- 1873
-format.name$ -- 594
-if$ -- 5292
+cite$ -- 74
+duplicate$ -- 1585
+empty$ -- 1805
+format.name$ -- 757
+if$ -- 5554
 int.to.chr$ -- 0
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 472
-num.names$ -- 222
-pop$ -- 136
+newline$ -- 466
+num.names$ -- 219
+pop$ -- 143
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 75
+skip$ -- 74
 stack$ -- 0
-substring$ -- 1837
-swap$ -- 1473
-text.length$ -- 148
+substring$ -- 1678
+swap$ -- 1780
+text.length$ -- 146
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 522
+type$ -- 515
 warning$ -- 0
-while$ -- 279
+while$ -- 267
 width$ -- 0
-write$ -- 980
-(There were 10 warnings)
+write$ -- 961
+(There were 6 warnings)
