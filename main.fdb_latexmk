@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1713304756 "main.aux" "main.bbl" "main" 1713305300 0
-  "./acs-main.bib" 1713305299 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
+["bibtex main"] 1713392002 "main.aux" "main.bbl" "main" 1713392007 0
+  "./acs-main.bib" 1713392006 305 37ed46a5b6a5a18cb66b7b48b4072122 ""
   "./references.bib" 1713302600 34732 ad991b8f5c5495b83c15cc946abbb81c ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1611181357 30297 d6a58c5bca213bb62e6f40e56cd6974f ""
-  "main.aux" 1713305300 24152 e68ba69c0e5e9d3d11633613d4d69696 "pdflatex"
+  "main.aux" 1713392007 24152 a710bf0b3cbb0a9b57e220965478fd83 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1713305296 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1713305300 0
+["pdflatex"] 1713392002 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" "main.pdf" "main" 1713392007 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1713305296 103468 b388541a0e6826e47cd40450f67073b6 ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/main.tex" 1713391998 103490 66f75a92189759e6694b1fba29b3b04e ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -140,9 +140,9 @@
   "figures/three_body_pol_and_ct_ions.png" 1713197734 291200 b21c75f1b673892aedf877b41be89a4c ""
   "figures/three_body_pol_and_ct_water.png" 1712354518 102844 1d5d22206563bd3440afa2c95372cee2 ""
   "figures/trimer_mbe_example.png" 1713197734 138151 9b2ff21d883290c41d95281b803625ad ""
-  "main.aux" 1713305300 24152 e68ba69c0e5e9d3d11633613d4d69696 "pdflatex"
-  "main.bbl" 1713304756 36411 1035ef8d308ce59cc6f715fb581f698a "bibtex main"
-  "main.tex" 1713305296 103468 b388541a0e6826e47cd40450f67073b6 ""
+  "main.aux" 1713392007 24152 a710bf0b3cbb0a9b57e220965478fd83 "pdflatex"
+  "main.bbl" 1713392002 36411 1035ef8d308ce59cc6f715fb581f698a "bibtex main"
+  "main.tex" 1713391998 103490 66f75a92189759e6694b1fba29b3b04e ""
   (generated)
   "acs-main.bib"
   "main.aux"
