@@ -1,4 +1,4 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -65,11 +65,5 @@ Mark~A Boyer, Ondrej Marsalek, Joseph~P Heindel, Thomas~E Markland, Anne~B
   structure--spectra relationship of aqueous hydrogen bonds.
 \newblock \emph{The Journal of Physical Chemistry Letters}, 10\penalty0
   (5):\penalty0 918--924, 2019.
-
-\bibitem[Klamt(2011)]{klamt2011cosmo}
-Andreas Klamt.
-\newblock The cosmo and cosmo-rs solvation models.
-\newblock \emph{Wiley Interdisciplinary Reviews: Computational Molecular
-  Science}, 1\penalty0 (5):\penalty0 699--709, 2011.
 
 \end{thebibliography}

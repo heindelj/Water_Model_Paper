@@ -128,9 +128,9 @@ Solvated atomic ions such as alkaline metals and halides play critical roles in 
 Force fields (FFs) are approximations to the quantum mechanical (QM) potential energy surface, in which the model design goal is to predict structure, dynamics, and thermodynamics of any molecular system. Although pairwise additive FFs remain popular due to their insight and computational efficiency, they are inherently limited by their inability to describe the inherent many-body contributions of the QM energy, thereby reducing their accuracy in property predictions and transferability to new chemistry. For example, it has long been appreciated that non-additive interactions are critical for describing hydrogen-bonded interactions in water\cite{xantheas2000cooperativity}, and the many-body energy contributions for water interacting with ions is quite large, typically around 15\% of the non-bonded energy, and the cooperativity effects can be either stabilizing or destabilizing depending on ion type and binding motif.\cite{heindel2021many,herman2021many} And yet many simulations involving ions or ionized molecules are carried out by treating the
 ion as a scaled point charge with simple functional forms for dispersion and repulsion that cannot describe such complexity.\cite{leontyev2011accounting,bedrov2019molecular}
 
-Recently there has been a paradigm shift in non-reactive many-body FF development by combining energy decomposition analysis (EDA)\cite{Szalewicz:2012:SAPT,Patkowski:2020:SAPT,Mao:2021:EDA-review} with the many-body expansion (MBE)\cite{demerdash2017assessing,heindel2020many,heindel2023many} to better control the accuracy and transferability of advanced FF models. The MBE of the non-bonded energy\cite{heindel2020many,heindel2021many,herman2021many} allows one to gain insights into how much non-additivity is present in the QM energy (and forces), while the EDA decomposes the total energy (and forces) into physically motivated contributions from pairwise additive terms such as electrostatics with charge penetration and Pauli repulsion, and many-body contributions that arise from polarization, charge transfer, and dispersion. For example, our recent (many-body) MB-UCB force field for water\cite{das2019development} and extensions to monovalent and divalent alkali metal and halide ions\cite{das2022development} describe ion-water interactions through a systematic buildup of 2- and 3-body interactions whose molecular interactions are formulated using the ALMO-EDA energy decomposition scheme.\cite{mao2021intermolecular} By reproducing the EDA term-by-term, we can ensure that the force field will be transferable across the phase diagram of a homogeneous system and, ideally, to new heterogenous systems.
+Recently, there has been a paradigm shift in non-reactive many-body FF development by combining energy decomposition analysis (EDA)\cite{Szalewicz:2012:SAPT,Patkowski:2020:SAPT,Mao:2021:EDA-review} with the many-body expansion (MBE)\cite{demerdash2017assessing,heindel2020many,heindel2023many} to better control the accuracy and transferability of advanced FF models. The MBE of the non-bonded energy\cite{heindel2020many,heindel2021many,herman2021many} allows one to gain insights into how much non-additivity is present in the QM energy (and forces), while the EDA decomposes the total energy (and forces) into physically motivated contributions from pairwise additive terms such as electrostatics with charge penetration and Pauli repulsion, and many-body contributions that arise from polarization, charge transfer, and dispersion. For example, our recent (many-body) MB-UCB force field for water\cite{das2019development} and extensions to monovalent and divalent alkali metal and halide ions\cite{das2022development} describe ion-water interactions through a systematic buildup of 2- and 3-body interactions whose molecular interactions are formulated using the ALMO-EDA energy decomposition scheme.\cite{mao2021intermolecular} By reproducing the EDA term-by-term, we can ensure that the force field will be transferable across the phase diagram of a homogeneous system and, ideally, to new heterogenous systems.
 
-The EDA approach to FF development also provides chemical insights in the relative weights of particular energy terms, for instance, charge transfer versus polarization, and better separation of the Pauli repulsion and dispersion energies. While many-body potentials for water strive for higher accuracy, models such as AMOEBA+, HIPPO\cite{rackers2021polarizable}, MB-Pol, and q-AQUA differ in their use of EDA, MBE, and most critically, their functional forms used for the many-body energy and forces. Historically, there have been two main approaches to including polarization in force fields: fluctuating charges\cite{rick1994dynamical} and induced dipoles\cite{applequist1985multipole}. There have also been attempts to unify these approaches allowing for both charge rearrangements and induced dipoles\cite{stern2001combined} in order to also capture the charge transfer interaction.\cite{rick1994dynamical} But with the advent of variational EDA  techniques\cite{khaliullin2007,horn2016probing,Mao:2021:EDA-review}, it is now clear that the charge transfer energy scales exponentially and hence cannot be modelled by fluctuating charges or artificial induced dipole models alone.
+The EDA approach to FF development also provides chemical insights in the relative weights of particular energy terms, for instance, charge transfer versus polarization, and better separation of the Pauli repulsion and dispersion energies. While many-body potentials for water strive for higher accuracy, models such as AMOEBA+, HIPPO\cite{rackers2021polarizable}, MB-Pol, and q-AQUA differ in their use of EDA, MBE, and most critically, their functional forms used for the many-body energy and forces. Historically, there have been two main approaches to including polarization in force fields: fluctuating charges\cite{rick1994dynamical} and induced dipoles\cite{applequist1985multipole}. There have also been attempts to unify these approaches allowing for both charge rearrangements and induced dipoles\cite{stern2001combined} in order to also capture the charge transfer interaction.\cite{rick1994dynamical} But with the advent of variational EDA  techniques\cite{khaliullin2007,horn2016probing,Mao:2021:EDA-review}, it is now clear that the charge transfer energy scales exponentially and hence cannot be modelled by fluctuating charges or induced dipole models alone.
 
 This work takes a large step forwards in the construction of many-body force fields capable of not just describing water, but handling very strong interactions such as those between water and ions, which has remained elusive and is an open research problem dating back decades. This is possible through the introduction of advanced functional forms for the many-body polarization and charge transfer contributions, and the advancement of a one-body potential that accounts for intramolecular polarization. In particular, we introduce a combined fluctuating charge (FQ) and induced dipole model of electronic polarization that couples to our model for many-body charge transfer (CT) that we will show better reproduces all terms from EDA, and allows for explicit forward and backward transfer of charge between molecules. We also eliminate the need to treat intramolecular and intermolecular polarization separately through a recently reported one-body potential\cite{Sami2024}, further modified by a field-dependent correction to the Morse potential, thereby dramatically improving the accuracy of electrostatic and polarization forces. The resulting FQCT (fluctuating charges and charge transfer) model shows excellent accuracy against EDA data, and additional validation data for water clusters and ion-water energies, and reproduces the structure-frequency correspondence expected for hydrogen-bonded \ce{O-H} stretches.\cite{boyer2019beyond}
 
@@ -140,8 +140,7 @@ The FQCT force field described in this work will model each of the terms in Eq. 
 E_{\rm int} = E_{\rm elec} + E_{\rm Pauli} + E_{\rm disp} + E_{\rm pol} +  E_{\rm CT}
  \label{eq:eda}
 \end{equation}
-where $E_{\rm elec}$, $E_{\rm Pauli}$, $ E_{\rm disp}$, $E_{\rm pol}$, and  $E_{\rm CT}$ correspond to the contributions from the permanent electrostatics, Pauli repulsion, dispersion, polarization, and charge transfer, respectively. ALMO-EDA is described elsewhere\cite{khaliullin2007,horn2016probing}, but we provide two important clarifications here. First the most appropriate choice for $E_{\rm elec}$ is the quasi-classical expression, which depends only on the geometry of individual monomers\cite{mao2017energy}, and we use the fragment electric response function approach (at the dipole plus quadrupole level) to evaluate the  polarization, ensuring a well-defined basis set limit.\cite{horn2015} All the ALMO-EDA calculations are performed at the level of $\omega$B97X-V DFT functional\cite{Mardirossian2014} and def2-QZVPPD basis set\cite{rappoport2010property} using the Q-Chem software package\cite{Epifanovsky2021}. Note that we will use a convention of referring to all energy terms in the force field with a $V$ and all energy terms from electronic structure
-with an $E$. 
+where $E_{\rm elec}$, $E_{\rm Pauli}$, $ E_{\rm disp}$, $E_{\rm pol}$, and  $E_{\rm CT}$ correspond to the contributions from the permanent electrostatics, Pauli repulsion, dispersion, polarization, and charge transfer, respectively. ALMO-EDA is described elsewhere\cite{khaliullin2007,horn2016probing}, but we provide two important clarifications here. First the most appropriate choice for $E_{\rm elec}$ is the quasi-classical expression, which depends only on the geometry of individual monomers\cite{mao2017energy}, and we use the fragment electric response function approach (at the dipole plus quadrupole level) to evaluate the  polarization, ensuring a well-defined basis set limit.\cite{horn2015} All the ALMO-EDA calculations are performed at the level of $\omega$B97X-V DFT functional\cite{Mardirossian2014} and def2-QZVPPD basis set\cite{rappoport2010property} using the Q-Chem software package\cite{Epifanovsky2021}. Note that we will use a convention of referring to all energy terms in the force field with a $V$ and all energy terms from electronic structure with an $E$.
 
 \subsection*{Density Overlap Model}
 Our approach adopts ideas from the density overlap hypothesis\cite{kim1981dependence,wheatley1990overlap,gavezzotti2002calculation,van2016beyond,van2018new}
@@ -185,15 +184,7 @@ CP is described by treating each atom as having both a positively charged core a
 \end{equation}
 The first term in Eq. \ref{eq:elec} represents repulsive core-core interactions where $T_{ij}=1/r_{ij}$ with $Z_i$ the core charge on the $i$th atom; note that this is not the nuclear charge but an effective nuclear charge. The second and third terms describe attractive core-shell interactions where $\bm{M}_i$ is a vector whose entries are the components of the multipoles located on that atom. The final term corresponds to the shell-shell interactions. Further details of the damping functions are provided in the Supplementary Information.
 
-\textbf{Pauli Repulsion.} The original aim of the density overlap model was to model the
-Pauli repulsion energy formally as an exponential
-repulsion at short-range.\cite{wallqvist1989new,wheatley1990overlap,gordon1996approximate} However, Rackers and Ponder have made a convincing argument that the appropriate
-functional form for Pauli repulsion is 
-$V^{exch}\propto e^{-b_{ij}r_{ij}}/r_{ij}$.\cite{rackers2019classical,rackers2021polarizable}
-While the exponential is the dominant contribution, the factor of $1/r_{ij}$
-becomes important at short distance and allows for the Pauli repulsion energy
-to be expressed as a multipole expansion. Their basic idea is that the Pauli repulsion energy
-between a pair of atoms is proportional to $S^2/r_{ij}$ where $S$ is the overlap between pseudo-orbitals, defined as $\sqrt{\rho}$ where $\rho$ is the density in Eq. \ref{eq:slater}.
+\textbf{Pauli Repulsion.} The original aim of the density overlap model was to model the Pauli repulsion energy formally as an exponential repulsion at short-range.\cite{wallqvist1989new,wheatley1990overlap,gordon1996approximate} However, Rackers and Ponder have made a convincing argument that the appropriate functional form for Pauli repulsion is  $V^{exch}\propto e^{-b_{ij}r_{ij}}/r_{ij}$.\cite{rackers2019classical,rackers2021polarizable} While the exponential is the dominant contribution, the factor of $1/r_{ij}$ becomes important at short distance and allows for the Pauli repulsion energy to be expressed as a multipole expansion. Their basic idea is that the Pauli repulsion energy between a pair of atoms is proportional to $S^2/r_{ij}$ where $S$ is the overlap between pseudo-orbitals, defined as $\sqrt{\rho}$ where $\rho$ is the density in Eq. \ref{eq:slater}.
 
 Therefore, the Pauli repulsion energy can be written as
 \begin{equation}
@@ -201,32 +192,17 @@ Therefore, the Pauli repulsion energy can be written as
 \label{eq:pauli}
 \end{equation}
 \noindent
-where $S^2$ contains contributions from charges, dipoles, and quadrupoles as it is found that Pauli repulsion is highly anisotropic. However, producing parameters for a complete multipole expansion
-tends to result in overfitting when there is not a way to derive the initial multipoles
-from electronic structure. Therefore, the proportionality constants $K_{ij}=K_iK_j$ are fit instead. Since $S^2$ takes the form of a damped multipole expansion\cite{rackers2019classical}, these proportionality
-constants mean multipoles which handle repulsion are proportional to the actual electrostatic
-multipoles. Hence the calculation of electrostatics and
-multipolar Pauli repulsion differs only in the choice of damping function thereby reducing computational cost
-of the two EDA terms.
+where $S^2$ contains contributions from charges, dipoles, and quadrupoles as it is found that Pauli repulsion is highly anisotropic. However, producing parameters for a complete multipole expansion tends to result in overfitting when there is not a way to derive the initial multipoles from electronic structure. Therefore, the proportionality constants $K_{ij}=K_iK_j$ are fit instead. Since $S^2$ takes the form of a damped multipole expansion\cite{rackers2019classical}, these proportionality constants mean multipoles which handle repulsion are proportional to the actual electrostatic multipoles. Hence the calculation of electrostatics and multipolar Pauli repulsion differs only in the choice of damping function thereby reducing computational cost of the two EDA terms.
 
-The expansion of Pauli repulsion in terms of multipoles has an interesting physical interpretation.
-Namely, as two electron densities begin to overlap, the electrons will be expelled
-from the internuclear region in order to keep the total system wavefunction antisymmetric.
-This results in a "hole" in the electron density where nuclei are exposed to one another.
-In a sense, then, these multipoles describe the magnitude and shape of the depletion of electron density between two atoms which are near one another. 
+The expansion of Pauli repulsion in terms of multipoles has an interesting physical interpretation. Namely, as two electron densities begin to overlap, the electrons will be expelled from the internuclear region in order to keep the total system wavefunction antisymmetric. This results in a "hole" in the electron density where nuclei are exposed to one another. In a sense, then, these multipoles describe the magnitude and shape of the depletion of electron density between two atoms which are near one another. With that being said, we can anticipate that, in fact, the Pauli repulsion "charges", $K_i^q$, will be strongly geometry-dependent. We will therefore introduce a bond-length dependence to $K_i^q$ alongside the geometry-dependence of atomic charges.
 
-\textbf{Dispersion.} The dispersion energy uses a damped
-polynomial interaction given by,
+\textbf{Dispersion.} The dispersion energy uses a damped polynomial interaction given by,
 \begin{equation}
   V_{disp}=\sum_{i<j}f_6^{TT}(x_{ij})\frac{C_{6,ij}}{r_{ij}^6}
   \label{eq:disp}
 \end{equation}
 \noindent
-where $C_{6,ij}$ is the dispersion coefficient between atoms
-$i$ and $j$ which is determined as $C_{6,ij}=\sqrt{C_{6,i}C_{6,j}}$, and $C_{6,i}$ is
-a parameter fit to the EDA dispersion energy. $f_6^{TT}(x_{ij})$ is the sixth-order
-Tang-Toennies damping function\cite{tang1984improved} which was originally derived
-to damp short-range dispersion,
+where $C_{6,ij}$ is the dispersion coefficient between atoms $i$ and $j$ which is determined as $C_{6,ij}=\sqrt{C_{6,i}C_{6,j}}$, and $C_{6,i}$ is a parameter fit to the EDA dispersion energy. $f_6^{TT}(x_{ij})$ is the sixth-order Tang-Toennies damping function\cite{tang1984improved} which was originally derived to damp short-range dispersion,
 \begin{equation}
   f_n^{TT}(x_{ij}) = 1-e^{-x_{ij}}\sum_{k=0}^n\frac{x_{ij}^k}{k!}
   \label{eq:TT}
@@ -236,7 +212,7 @@ The appropriate form of $x$ for the tail of a Slater electron density has been d
   x_{ij}=b_{ij}r_{ij}-\frac{2b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}}{b_{ij}^2r_{ij}^2+3b_{ij}r_{ij}+3}
   \label{eq:TT_x}
 \end{equation}
-Note that the TT damping functions, Eq. \ref{eq:TT}, depends parametrically on the choice of integer $n$. In their original work, Tang and Toennies show that the appropriate choice of $n$ for dispersion is $n=6$. This makes the damping function an exponential multiplied by a sixth order polynomial. This polynomial is able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no damping at long distances. As an aside, one could also use TT damping functions of different orders to control mutual polarization. We have tested this and it works just as well as using $f^{overlap}$.
+Note that the TT damping functions, Eq. \ref{eq:TT}, depend parametrically on the choice of integer $n$. In their original work, Tang and Toennies show that the appropriate choice of $n$ for dispersion is $n=6$. This makes the damping function an exponential multiplied by a sixth order polynomial. This polynomial is able to control the $r^{-6}$ scaling of dispersion, while the exponential ensures no damping at long distances. As an aside, one could also use TT damping functions of different orders to control mutual polarization. We have tested this and it works just as well as using $f^{overlap}$.
 
 \subsection*{Polarization, Charge Transfer, and the One-Body Potential}
 Here we highlight the unique aspects of our FQCT model through the introduction of new physics and functional forms to describe polarization, charge transfer, and the one-body potential. Polarization is handled in a manner that allows for both intramolecular charge fluctuations and induced dipoles, while also using a new approach to modelling charge transfer which allows for explicit movement of charge between molecules. We show that this naturally describes many-body charge transfer by coupling into the polarization equations. Additionally, we offer a more quantitative way to describe intramolecular polarization through a recent design of the one-body term.
@@ -289,17 +265,11 @@ Normally, the dipole polarizability is treated as a constant in polarizable forc
     \label{eq:polarizability}
 \end{equation}
 \noindent
-The first term in Eq. \ref{eq:polarizability} is a typical expression of the dipole polarizability in the local axis frame of that atom. $\alpha_{xx,i}$ is the $xx$ component of the dipole polarizability with other entries defined analogously. $R_i$ is the rotation matrix that transforms the local axis system of atom $i$ to the global axis system. The second term defines an environment-dependent isotropic damping of the polarizability. $k_{ij}^{damp}$ is a pair-specific parameter which modulates the increase of the inverse polarizability which is proportional the density overlap, $S_{ij}^\rho$.
+The first term in Eq. \ref{eq:polarizability} is a typical expression of the dipole polarizability in the local axis frame of that atom. $\alpha_{xx,i}$ is the $xx$ component of the dipole polarizability with other entries defined analogously. $R_i$ is the rotation matrix that transforms the local axis system of atom $i$ to the global axis system. The second term defines an environment-dependent isotropic damping of the polarizability. $k_{ij}^{damp}$ is a pair-specific parameter which modulates the increase of the inverse polarizability which is proportional to the density overlap, $S_{ij}^\rho$.
 
-Note that this modification of the polarizability describes a completely different effect from the damping of induced electrostatics. In the case of multipolar interactions, the damping arises from the fact that real charge densities have a finite width. The effect modelled in Eq. \ref{eq:polarizability} is the shrinking of atoms which occurs due to antisymmetrization of the wavefunction. The effect is most important for very diffuse atoms, such as \ce{I^-}, or for very close contacts such as the interaction of \ce{Li^+} with \ce{H2O}.
+Note that this modification of the polarizability describes a completely different effect from the damping of induced electrostatics. In the case of multipolar interactions, the damping arises from the fact that real charge densities have a finite width. The effect modelled in Eq. \ref{eq:polarizability} is the modification of atomic volume which occurs due to antisymmetrization of the wavefunction. The effect is most important for very diffuse atoms, such as \ce{I^-}, or for very close contacts such as the interaction of \ce{Li^+} with \ce{H2O}.
 
-%To summarize, Eq. \ref{eq:fq} allows charges to rearrange, $\delta q_i$, in response to an externalpotential, $V_i$, with a quadratic penalty determined by the atomic hardness, $\eta_i$, as well as an induced dipole model described by Eq. \ref{eq:induced_dipoles} The charge rearrangements are constrained to only occur between atoms in a molecule such that rearranged charges sum to the total charge of a molecule utilizing $N$ lagrange multipliers, $\lambda_\alpha$, where $N$ is the number of molecules in the system. These molecules could be water or an ion in this work. Note that all fluctuating charges and induced dipoles are allowed to interact whether they are in the same molecule or not.
-
-What now remains is to determine the values of $\delta \bm{q}$ and $\bm{\mu}^{ind}$
-which minimize the total energy of the system. In order to do this, we take
-the derivative with respect to each $\delta q_i$ and each component of each
-$\bm{\mu}_i^{ind}$ and set them all equal to zero. This results in a system of linear
-equations which can be written succinctly as follows:
+What now remains is to determine the values of $\delta \bm{q}$ and $\bm{\mu}^{ind}$ which minimize the total energy of the system. In order to do this, we take the derivative with respect to each $\delta q_i$ and each component of each $\bm{\mu}_i^{ind}$ and set them all equal to zero. This results in a system of linear equations which can be written succinctly as follows:
 \begin{equation}
   \begin{pmatrix}
     \bm{T}^{qq} & \bm{1}_\lambda & \bm{T}^{q\mu} \\
@@ -328,8 +298,7 @@ Finally, there is one more term in our polarization model which is designed to o
 \end{equation}
 where $\bar{\alpha}_i$ is the mean dipole polarizability of atom $i$, $f_4^{TT}(x_{ij})$ is the fourth-order Tang-Toennies damping function, defined in Eq. \ref{eq:TT}, and $a_{ij}^{sr}=a_{i}^{sr}a_{j}^{sr}$ is the pairwise parameter fit for this term. While Eq. \ref{eq:pol_sr} is more empirical than the rest of the FQCT force field, it seems to capture the effect of quadrupole polarization, which is known to be important in water\cite{herman2023accurate} (which is very computationally expensive to account for compared to the magnitude of the effect). In fact the last term in Eq. \ref{eq:pol_sr} tends to have a magnitude for water that is only a bit larger than what would one expect for quadrupole polarization of around 20\%. Thus, even though Eq. \ref{eq:pol_sr} is  not a true model for quadrupole polarization, since it is pairwise-additive while quadrupole polarization has a many-body contribution, it works quite well. Similar terms have been suggested before for capturing the short-range polarization of ions.\cite{sheng2022semiempirical}
 
-\textbf{Charge Transfer.} The true definition of charge transfer involves the transfer of actual charge between molecules\cite{thirman2018characterizing}, and involves both attractive and repulsive contributions. The attractive component is the energy lowering associated with delocalizing
-the electron density, while the repulsive contribution arises from any molecule having a non-integer total charge. While there is a penalty for moving charge between molecules, Figure \ref{fig:trimer} illustrates how hydrogen bonding networks benefit from many-body charge transfer. If we assume that an equal amount of charge is transferred along each hydrogen bond, the hydrogen bonds of the trimer on the left are organized in such a way that some molecules donate more hydrogen bonds than they receive and vice versa so that some molecules end up with nonzero total charges. This is consistent with the known instability of double acceptor water molecules which do not donate any hydrogen bonds.\cite{kirov2008identifying}
+\textbf{Charge Transfer.} The true definition of charge transfer involves the transfer of actual charge between molecules\cite{thirman2018characterizing}, and involves both attractive and repulsive contributions. The attractive component is the energy lowering associated with delocalizing the electron density, while the repulsive contribution arises from any molecule having a non-integer total charge. While there is a penalty for moving charge between molecules, Figure \ref{fig:trimer} illustrates how hydrogen bonding networks benefit from many-body charge transfer. If we assume that an equal amount of charge is transferred along each hydrogen bond, the hydrogen bonds of the trimer on the left are organized in such a way that some molecules donate more hydrogen bonds than they receive and vice versa so that some molecules end up with nonzero total charges. This is consistent with the known instability of double acceptor water molecules which do not donate any hydrogen bonds.\cite{kirov2008identifying}
 \begin{figure}[H]
   \includegraphics*[width=\textwidth]{figures/trimer_mbe_example.png}
   \caption{Two water trimers illustrating the importance of both polarization
@@ -342,7 +311,7 @@ the electron density, while the repulsive contribution arises from any molecule 
 \end{figure}
 In the trimer on the right, each molecule donates and receives the same number of hydrogen bonds. This means each molecule will have a nearly net-zero charge while still benefitting from charge delocalization along each hydrogen bond. If we remove any water molecule from this trimer, the two remaining molecules would have nonzero total charges and hence incur a penalty. The elimination of this penalty when a third molecule is added to the network is exactly what gives rise to a many-body charge transfer stabilization.  Indeed, the trimer on the right is a so-called homodromic ring, which results in enhanced cooperativity of the induced dipoles on each molecule.\cite{xantheas2000cooperativity}
 
-The ability of hydrogen bond networks to delocalize charge while keeping each fragment very nearly neutral seems to us an under-appreciated aspect of hydrogen bond cooperativity. This can be seen by the large 3-body polarization contribution of $-1.66$ kcal/mol and non-negligible charge transfer contribution of $-0.76$ kcal/mol in Figure \ref{fig:cp_ct_pauli}. The fact that water can receive and donate two hydrogen bonds simultaneously makes it uniquely capable of passing charge between molecules while keeping the total charge of each molecule neutral. Furthermore it is interesting to note that the EDA frozen term, i.e. the sum of electrostatics, dispersion, and Pauli repulsion, can end up being smaller than either the polarization or charge transfer contributions. Additionally, although not shown explicitly here, the charge penetration contribution, Eq. \ref{eq:cp}, to the electrostatic energy of a hydrogen bond is typically about equal to the point-electrostatic contribution.
+The ability of hydrogen bond networks to delocalize charge while keeping each fragment very nearly neutral seems to us an under-appreciated aspect of hydrogen bond cooperativity. This can be seen by the large 3-body polarization contribution of $-1.66$ kcal/mol and non-negligible 3-body charge transfer contribution of $-0.76$ kcal/mol in Figure \ref{fig:cp_ct_pauli}. The fact that water can receive and donate two hydrogen bonds simultaneously makes it uniquely capable of passing charge between molecules while keeping the total charge of each molecule neutral. Furthermore it is interesting to note that the EDA frozen term, i.e. the sum of electrostatics, dispersion, and Pauli repulsion, can end up being smaller than either the polarization or charge transfer contributions. Additionally, although not shown explicitly here, the charge penetration contribution, Eq. \ref{eq:cp}, to the electrostatic energy of a hydrogen bond is typically about equal to the point-electrostatic contribution.
 
 This begs the question of how so many force fields have been even qualitatively successful while neglecting such large components of the intermolecular energy? It is rather easy to see from Figure \ref{fig:cp_ct_pauli} that the sum of CT and CP is generally better correlated to Pauli repulsion than either term individually. Hence most force fields implicitly describe CT and CP by having too soft of a repulsive wall when compared against an \textit{ab initio} calculation of Pauli repulsion such as that from EDA.
 
@@ -397,7 +366,7 @@ The indirect contribution to CT, $V_{indirect}^{CT}$, is defined as the polariza
 
 Because the charge transferred between fragments is proportional to the direct CT contributions, the charge constraints depend on the distance between atoms. This means there is a gradient contribution which multiplies the lagrange multipliers with the gradient of $\Delta Q^{CT}_{i\rightarrow j}$ and $\Delta Q^{CT}_{j\rightarrow i}$. This is not difficult or expensive to evaluate, but is an  unusual gradient term which must be accounted for in software implementations.
 
-\textbf{The One-Body Potential.} The deformation energy for a single water molecule is constructed following a protocol we have recently published.\cite{Sami2024} The one-body potential consists of a Morse potential, cosine angle potential, a bond-bond coupling term, and bond-angle coupling term. 
+\textbf{The One-Body Potential.} The deformation energy for a single water molecule is constructed following a protocol we have recently published.\cite{Sami2024} The one-body potential consists of a Morse potential, cosine angle potential, a bond-bond coupling term, and bond-angle coupling term.
 \begin{align}
   \label{eq:morse}
   V_{bond}&=D_{\mathrm{OH}}\left[ 1-\exp(-\alpha (R-R_e))\right]^2 \\
@@ -408,16 +377,7 @@ Because the charge transferred between fragments is proportional to the direct C
   \label{eq:bond_angle}
   V_{ba}&=k_{ba}(R-R_e)(\cos\theta-\cos\theta_e)
 \end{align}
-where $D_{\mathrm{OH}}$ is the dissociation energy of
-the \ce{O-H} bond in water, $R_e$ is the equilibrium bond length in water,
-and $\alpha=\sqrt{k_e/2D}$ determines the curvature of the potential as is
-evident from the fact it is written in terms of the harmonic force constant, $k_e$. The two \ce{O-H} stretches in water are coupled linearly in Eq. \ref{eq:bond_bond}
-via a single bond-coupling parameter, $k_{bb}$. The angle potential is harmonic in $\cos\theta$ where $\theta$ is the \ce{HOH} angle
-and $\theta_e$ is the equilibrium angle in water, as seen in Eq. \ref{eq:angle}, and 
-Eq. \ref{eq:bond_angle} shows that the angle and bond potentials are linearly
-coupled by a single parameter, $k_{ba}$. The parameters are fit to reproduce the CCSD(T)/aug-cc-pV5Z Hessian at the
-corresponding equilibrium geometry. Note that this is the only term for which we do not
-use $\omega$B97X-V/def2-QZVPPD as a reference, simply because CCSD(T)/aug-cc-pV5Z is closer to the experimental water monomer geometry.
+where $D_{\mathrm{OH}}$ is the dissociation energy of the \ce{O-H} bond in water, $R_e$ is the equilibrium bond length in water, and $\alpha=\sqrt{k_e/2D}$ determines the curvature of the potential as is evident from the fact it is written in terms of the harmonic force constant, $k_e$. The two \ce{O-H} stretches in water are coupled linearly in Eq. \ref{eq:bond_bond} via a single bond-coupling parameter, $k_{bb}$. The angle potential is harmonic in $\cos\theta$ where $\theta$ is the \ce{HOH} angle and $\theta_e$ is the equilibrium angle in water, as seen in Eq. \ref{eq:angle}, and  Eq. \ref{eq:bond_angle} shows that the angle and bond potentials are linearly coupled by a single parameter, $k_{ba}$. The parameters are fit to reproduce the CCSD(T)/aug-cc-pV5Z Hessian at the corresponding equilibrium geometry. Note that this is the only term for which we do not use $\omega$B97X-V/def2-QZVPPD as a reference, simply because CCSD(T)/aug-cc-pV5Z is closer to the experimental water monomer geometry.
 
 As will be shown, the polarizability derivatives of the water monomer are not possible to reproduce using just atomic dipole polarizabilities. Our model, however, includes fluctuating charges which improve the polarizability derivatives considerably, although the agreement with polarizability derivatives computed from electronic structure are still flawed. In the same way the dipole derivatives can be reproduced accurately by including charge flux in a model\cite{liu2019implementation}, we have implemented geometry-dependent atomic hardness parameters, $\eta$.
 
@@ -428,6 +388,15 @@ As will be shown, the polarizability derivatives of the water monomer are not po
 
 In Eq. \ref{eq:variable_hardness}, the atomic hardness of a particular hydrogen, $\eta_{\mathrm{H1}}$, is modified based on the length of both \ce{O-H} bonds, $R_{\mathrm{OH,1}}$ and $R_{\mathrm{OH,2}}$, and the angle $\theta$. The parameters $k^\eta$, $k^\eta_{bb}$, and $k^\eta_{a}$ describe the magnitude of change in atomic hardness and are fit to reproduce the polarizability derivatives computed from electronic structure. This particular functional form was chosen to be well-behaved when either bond is elongated, such that when the hardness of atom $\mathrm{H1}$ is decreased, it increases the polarizability along that bond. This is a source of so-called electrical anharmonicity and hence contributes to the large, positive second dipole derivative associated with hydrogen-bonded water molecules.\cite{mccoy2014role} Note that this term adds negligible cost to the force field evaluation since we already compute the derivatives with respect to each internal coordinate when computing the deformation energy.
 
+Additionally, we find that Pauli repulsion as modeled purely by Eq. \ref{eq:pauli}, results in forces that are systematically in error for hydrogen bonds (see Table S1). This problem is easily remedied by making the Pauli repulsion charges, $K_i^q$, dependent on the \ce{O-H} bond length:
+
+\begin{equation}
+  K_i^q(R_{ij})=K_i^q+j_{b,pauli}^{\mathrm{OH}}(R_{ij}-R_e)
+  \label{eq:variable_pauli}
+\end{equation}
+\noindent
+The pauli repulsion charge, $K_i^q$, is linearly modified by the change in bond length, $R_{ij}-R_e$, with a slope $j_{b,pauli}^{\mathrm{OH}}$. As shown in Table S1, this dramatically improves the forces along an \ce{O-H} bond with only one additional parameter.
+
 Like electrostatics, polarization parameters need to be constrained to give physically meaningful parameters. Specifically, in addition to EDA energies, we include the polarizability and polarizability derivatives at the $\omega$B97X-V/def2-QZVPPD equilibrium geometry of water in the fitting process. The loss function we minimize against is,
 \begin{equation}
   L_{pol}=\sqrt{\frac{\sum_{i=1}^{N}(V_i^{FF}-E_i^{EDA})^2}{N}} + w_1||\bm{\alpha}^{FF}-\bm{\alpha}^{EDA}||+w_2||\frac{\partial\bm{\alpha}^{FF}}{\partial \bm{r}}-\frac{\partial\bm{\alpha}^{EDA}}{\partial \bm{r}}||
@@ -435,8 +404,6 @@ Like electrostatics, polarization parameters need to be constrained to give phys
 \end{equation}
 \noindent
 In the above, the first term is the RMSD of the predicted energies, $V_i^{FF}$, from the EDA energies $E_i^{EDA}$. The second term is the Frobenius norm of the difference between the computed and predicted molecular polarizabilities, $\bm{\alpha}$. The third term is the same as the second but for the polarizability derivatives. The weights, $w_1$ and $w_2$ are set to 1.0 and 0.5 respectively. This, in essence, forces the molecular polarizability to be reproduced exactly while allowing for some error in the polarizability derivatives which are much more difficult to reproduce.
-
-The dipole derivatives needed to evaluate the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field} are computed from electronic structure by scanning along the \ce{O-H} bond length of a water monomer. \textcolor{blue}{somethings missing here - this is unclear. As will be shown, Pauli repulsion suffers from the same systematic error in forces as the other terms. We do not know of a way to compute the dipole derivatives relevant to Pauli repulsion from electronic structure, so we treat these as fitting parameters. We have already mentioned that our Pauli repulsion model has a natural electrostatic interpretation which provides justification for having a field-dependent contribution to Pauli repulsion. Note that the field used in the case of Pauli repulsion is not the actual electric field, but the field produced by the Pauli multipoles used in evaluating Eq. \ref{eq:pauli}.}
 
 In the FQCT model the intramolecular polarization is described by coupling the bonding potential to the environment through the electric field, which makes the polarization energies more accurate and dramatically improves the underlying forces. Furthermore, this term enables us to more accurately reproduce the well-known structure-frequency correspondence in water.\cite{boyer2019beyond} We do this by modifying Eq. \ref{eq:morse} to also be dependent on the environmental electric field.\cite{boyer2019beyond} Specifically, the bond force constant, $k_e$, and equilibrium bond length, $R_e$, are coupled to the electric field projected along the bond, $\mathrm{E_{OH}}$, via the first and second dipole derivatives, $\mu^{(1)}$ and $\mu^{(2)}$. These derivatives are treated as parameters which we compute from electronic structure. The equilibrium bond length, $R_e$, becomes
 \begin{equation}
@@ -448,30 +415,27 @@ where $R_e^0$ is the equilibrium bond length and $k_e^0$ is the force constant u
   k_e(\mathrm{E_{OH}})=k_e^0-3k_e^0\alpha\left(R_e(\mathrm{E_{OH}})-R_e^0\right)-\mathrm{E_{OH}}\mu^{(2)}
   \label{eq:force_constant_in_field}
 \end{equation}
-%These equations can be derived by analyzing the behavior of a Morse potential in an electric field.\cite{boyer2019beyond} 
-We see in Eq. \ref{eq:force_constant_in_field} that the field-dependent Morse potential guarantees the structure-frequency correlation will be respected at least approximately.
-
-Based on the electrostatic interpretation of Pauli repulsion, we also include a contribution to the Pauli energy based on the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}. In fact, we find it interesting to observe that when permanent electrostatics are used, the shifts in bond length and frequency are unrealistically large. Allowing Pauli repulsion to also contribute to the field-dependent Morse potential therefore acts to mostly cancel out the effect of permanent electrostatics in shifting the bond length and frequency. This makes physical sense if one considers how each term affects the electron density of another molecule. For example, in the water dimer, electrostatics will tend to pull electron density into the internuclear region, hence weakening the hydrogen-bonded \ce{O-H} bond. Pauli repulsion, however, arises from antisymmetrization of the total system wavefunction which will tend to expel electron density from the internuclear region and therefore shorten the hydrogen-bonded \ce{O-H} bond.
+These equations can be derived by analyzing the behavior of a Morse potential in an electric field.\cite{boyer2019beyond}  We see in Eq. \ref{eq:force_constant_in_field} that the field-dependent Morse potential guarantees the structure-frequency correlation will be respected at least approximately. The dipole derivatives needed to evaluate the field-dependent Morse potential, Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field} are computed from electronic structure by scanning along the \ce{O-H} bond length of a water monomer. The molecular dipole moment, $\bm{\mu}$, is projected along the \ce{O-H} bond unit vector, $\hat{R}_{\mathrm{OH}}$, to give $\mu_{\mathrm{OH}}=\bm{\mu}\cdot\hat{R}_{\mathrm{OH}}$. $\mu_{\mathrm{OH}}$ is then fit to a second-order polynomial whose coefficients directly give the dipole derivatives (see Figure S1).
 
 By using the above equations we will obtain the correct slope of the structure-frequency correlation, but it will tend to understimate the actual bond length and frequency shifts. The final step to reproduce the bond lengths and vibrational frequencies is to include a contribution from CT. This is motivated by adiabatic EDA calculations, where the largest contribution to bond elongation and red-shifting occurs on the CT surface.\cite{mao2017energy} Specifically, we allow both the bond length and force constants to be modified according to the amount of charge transferred into a hydrogen atom, as computed with Eq. \ref{eq:ct_forward}. This results in the final expressions used for the bond length and force constant in our environment-dependent bonding potential,
 \begin{align}
   \label{eq:bond_in_field_2}
-  R_e(\mathrm{E_{OH}})&=R_e^0+ \frac{\mathrm{E_{OH}}\mu^{(1)}}{k_e^0-\mathrm{E_{OH}}\mu^{(2)}} + k_{ct}^{(1)}\Delta Q_{CT}^{\mathrm{H}} \\
+  R_e(\mathrm{E_{OH}})&=R_e^0+ \frac{\mathrm{E_{OH}}\mu^{(1)}}{k_e^0-\mathrm{E_{OH}}\mu^{(2)}} + k_{ct}^{(1)}(\Delta Q_{CT}^{\mathrm{H}})^2 \\
   \label{eq:force_constant_in_field_2}
-  k_e(\mathrm{E_{OH}})&=k_e^0-3k_e^0\alpha\left(R_e(\mathrm{E_{OH}})-R_e^0\right)-\mathrm{E_{OH}}\mu^{(2)}+k_{ct}^{(2)}\Delta Q_{CT}^{\mathrm{H}}
+  k_e(\mathrm{E_{OH}})&=k_e^0-3k_e^0\alpha\left(R_e(\mathrm{E_{OH}})-R_e^0\right)-\mathrm{E_{OH}}\mu^{(2)}+k_{ct}^{(2)}(\Delta Q_{CT}^{\mathrm{H}})^2
 \end{align}
 
-The rationale for using the amount of charge accepted by a hydrogen atom, $\Delta Q_{CT}^{\mathrm{H}}$, in Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2} is that this charge is transferred into an anti-bonding orbital and hence should have a large effect on the \ce{O-H} bond in question. Similarly, we ignore the charge transferred out of the oxygen atom since these electrons come from non-bonding orbitals and should therefore minimally affect the \ce{O-H} bonds in that water. This introduces two additional parameters, $k_{ct}^{(1)}$ and $k_{ct}^{(2)}$, which determine the sensitivity of the bond-length and force constant to CT. The importance of these parameters is that while they have a very small effect on the CT energy, they contribute a sizable effect on the CT forces. In the Supplementary Information we illustrate how the environment-dependent bonding potential improves energies and forces for the water dimer. 
+The rationale for using the amount of charge accepted by a hydrogen atom, $\Delta Q_{CT}^{\mathrm{H}}$, in Eqs. \ref{eq:bond_in_field_2} and \ref{eq:force_constant_in_field_2} is that this charge is transferred into an anti-bonding orbital and hence should have a large effect on the \ce{O-H} bond in question. Similarly, we ignore the charge transferred out of the oxygen atom since these electrons come from non-bonding orbitals and should therefore minimally affect the \ce{O-H} bonds in that water. This introduces two additional parameters, $k_{ct}^{(1)}$ and $k_{ct}^{(2)}$, which determine the sensitivity of the bond-length and force constant to CT. The importance of these parameters is that while they have a very small effect on the CT energy, they contribute a sizable effect on the CT forces. In the Supplementary Information we illustrate how the environment-dependent bonding potential improves energies and forces for the water dimer.
 
 
 \textbf{Ion-Water and Ion-Ion Potentials}
-Most of the functional forms used in the representation of water are identical for ion-water and ion-ion interactions with some exceptions described here. First, ion-ion interactions at very short-range are large and hence the validity of the combination rules we use for the ion-water interaction breaks down. To remedy this issue, we make all ion-ion parameters pair-specific, and to parameterize the model in such a way that it will be easy to add new solvent-solute parameters. For many molecules pair-specific parameters are unnecessary, but for others, such as ion-ion interactions, they cannot be avoided. We also introduce simple terms which are quadratic in the density overlap.
+Most of the functional forms used in the representation of water are identical for ion-water and ion-ion interactions with some exceptions described here. First, ion-ion interactions at very short-range are large and hence the validity of the combination rules we use for the water-water and ion-water interactions break down. To remedy this issue, we make all ion-ion parameters pair-specific, and to parameterize the model in such a way that it will be easy to add new solvent-solute parameters. For many molecules pair-specific parameters are unnecessary, but for others, such as ion-ion interactions, they cannot be avoided. We also introduce simple terms which are quadratic in the density overlap.
 
 \begin{equation}  V_{S^2}=\sum_{i=1}^{N_{ion}-1}\sum_{j=i+1}^{N_{ion}}a_{ij}(S_{ij}^\rho)^2
   \label{eq:squared_overlap}
 \end{equation}
 \noindent
-This term is convenient since $(S_{ij}^\rho)^2$ tends to only be nonzero at short-range and near the equilibrium ion-ion distance. The form of Eq. \ref{eq:squared_overlap} is used for the following terms in the ion-ion force field potential: Pauli repulsion, electrostatics, and polarization. Dispersion and charge transfer are both well-behaved enough that pair-specific parameters are sufficient. As we will see, this strategy of adding energy terms proportional to the overlap squared is very effective and we we expect to see this strategy exploited in future force fields. Finally, the ion-ion polarization and charge transfer are the same as the water model, so, as we will show, ion-ion-water many-body interactions are described accurately. \textbf{Need to see how true this is.}
+This term is convenient since $(S_{ij}^\rho)^2$ tends to only be nonzero at short-range and near the equilibrium ion-ion distance. The form of Eq. \ref{eq:squared_overlap} is used for the following terms in the ion-ion force field potential: Pauli repulsion, electrostatics, and polarization. Dispersion and charge transfer are both well-behaved enough that pair-specific parameters are sufficient. As we will see, this strategy of adding energy terms proportional to the overlap squared is very effective and we we expect to see this strategy exploited in future force fields. Finally, the ion-ion polarization and charge transfer are the same as the water model, so, as we will show, ion-ion-water many-body interactions are described accurately. \textbf{Still waiting on final results for this.}
 
 \section*{Methods}
 \textbf{Reference Data}. Our model is parameterized using water clusters of size \ce{(H_2O)_n} with n=2-5. We use 2400 dimers, trimers, tetramers, and pentamers extracted from various minimized cluster geometries. We additionally generated 4800 pseudo-random water dimers based on a Sobol sequence. We follow exactly the same procedure as described elsewhere.\cite{misquitta2008first} Using the same procedure we generated 4800 ion-water dimer geometries for all ion species considered in this study, namely \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, \ce{I^-}, \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+}. For all ions, we also ran a 10ps \textit{ab initio} molecular dynamics simulation at 500K with $\omega$B97X-V/def2-TZVPPD to generate more probable ion-water configurations. We then sampled 2400 evenly spaced configurations from this trajectory to be used for parameterization.
@@ -518,11 +482,11 @@ In Table \ref{tab:pol_derivs}, we report the polarizability derivatives of the F
   \begin{tabular}{ccccc}
       \multicolumn{5}{c}{Polarizability Derivatives of Water (bohr$^2$)} \\\hline
        Atom & $xx$ & $xy$ & $yy$ & $zz$ \\\hline
-       O$x$ & -                 & 4.04/3.99/-0.13    & -                  & -  \\
-       O$y$ & 5.15/6.07/2.04    & -                  & 4.45/4.85/-2.03    & 1.50/0.0/0.0  \\
+       O$x$ & -                 & 4.04/4.00/-0.13    & -                  & -  \\
+       O$y$ & 5.15/5.20/2.04    & -                  & 4.45/4.45/-2.03    & 1.50/0.0/0.0  \\
        O$z$ & -                 & -                  & -                  & -  \\
-       H$x$ & -4.61/-4.80/0.78  & -2.02/-1.99/0.06   & -2.53/-1.68/-0.78  & -1.39/0.0/0.0  \\
-       H$y$ & -2.57/-3.04/-1.02 & -1.68/-1.66/-0.08  & -2.22/-2.43/1.02   & -0.75/0.0/0.0  \\
+       H$x$ & -4.61/-5.00/0.78  & -2.02/-2.00/0.06   & -2.53/-1.78/-0.78  & -1.39/0.0/0.0  \\
+       H$y$ & -2.57/-2.60/-1.02 & -1.68/-1.66/-0.08  & -2.22/-2.22/1.02   & -0.75/0.0/0.0  \\
        H$z$ & -                 & -                  & -                  & -  \\\hline
   \end{tabular}
   \end{center}
@@ -531,13 +495,12 @@ In Table \ref{tab:pol_derivs}, we report the polarizability derivatives of the F
   \label{tab:pol_derivs}
 \end{table}
 
-While some the polarizability derivatives in Table \ref{tab:pol_derivs} are reproduced very accurately for the in-plane components, the $zz$ polarizability derivatives are not as well described. It is important to note that one can achieve better agreement with reference polarizability derivatives if that is the only quantity one aims to reproduce, but these models tend to result in inadequate polarization energies.  %The reason our model has no $zz$ polarizability derivatives is that we do not include intramolecular polarization. We tested what happens when intramolecular polarization is turned on and found that the $zz$ polarizability derivatives are still reproduced very poorly and the polarization energies generally became less accurate. It is of some interest that when intramolecular polarization is turned on, the polarizability derivatives are quite sensitive to the choice and strength of damping function. This may enable the tuning of damping functions based on monomers alone.
-The $zz$ polarizability derivatives of water are an interesting case since they can be reproduced accurately when using intramolecular induced dipole interactions, but this tends to make the polarization energies worse and will make polarization catastrophes more likely for ion-water systems. We can also reproduce the $zz$ polarizability derivatives by allowing the z-component of atomic polarizabilities to be geometry-dependent. We decided not to do this since it adds additional complexity with a fairly small benefit for water, but for a system like benzene which predominantly interacts via $\pi$ interactions we will take that additional step to recover accurate out-of-plane polarizability derivatives in the future.
+The polarizability derivatives in Table \ref{tab:pol_derivs} are reproduced very accurately for the in-plane components, especially when compared with the polarizability derivatives neglecting charge fluctuations. The $zz$ polarizability derivatives, however, are not as well described. It is important to note that one can achieve better agreement with reference polarizability derivatives if that is the only quantity one aims to reproduce, but these models tend to result in inadequate polarization energies.  
 
-The $zz$ polarizability derivatives of water are an interesting case since they can be reproduced accurately when using intramolecular induced dipole interactions, but this tends to make the polarization energies worse and will make polarization catastrophes more likely for ion-water systems. We could certainly reproduce the $zz$ polarizability derivatives by allowing the z-component of atomic polarizabilities to be geometry-dependent. We decided not to do this since it adds additional complexity with a fairly small benefit for water. For a system like benzene, which predominantly interacts via $\pi$ interactions, we will take that additional step to recover accurate out-of-plane polarizability derivatives in the future.
+The $zz$ polarizability derivatives of water are an interesting case since they can be reproduced accurately when using intramolecular induced dipole interactions, but this tends to make the polarization energies worse and will make polarization catastrophes more likely for ion-water systems. We can also reproduce the $zz$ polarizability derivatives by allowing the z-component of atomic polarizabilities to be geometry-dependent. We decided not to do this since it adds additional complexity with a fairly small benefit for water, but for a system like benzene which predominantly interacts via $\pi$ interactions we would take that additional step to recover accurate out-of-plane polarizability derivatives.
 
 \subsection*{Water Intermolecular Interactions}
-Next we turn to the performance of FQCT on water-water intermolecular properties. We start with the reproduction of the QM energies and ALMO-EDA energy components presented in Supplementary Table S1 which presents the mean absolute errors (MAEs) over each cluster size. In general, the MAEs obtained by our model are excellent, with errors no larger than 0.25 kcal/mol. The reason for this is illustrated in Figure \ref{fig:error_correlation} which shows the correlation of errors in all attractive terms against Pauli repulsion both with and without error fitting against ALMO-EDA.
+Next we turn to the performance of FQCT on water-water intermolecular properties. We start with the reproduction of the QM energies and ALMO-EDA energy components presented in Supplementary Table S3 which presents the mean absolute errors (MAEs) over each cluster size. In general, the MAEs obtained by our model are excellent, with errors no larger than 0.25 kcal/mol. The reason for this is illustrated in Figure \ref{fig:error_correlation} which shows the correlation of errors in all attractive terms against Pauli repulsion both with and without error fitting against ALMO-EDA.
 \begin{figure}[h]
   \includegraphics*[width=0.95\textwidth]{figures/error_correlation.png}
   \caption{Correlation of errors in Pauli repulsion against all attractive interactions from EDA including dispersion, electrostatics and CP, polarization, and charge transfer. Figure A shows the error correlation without any error fitting, where each EDA term is fit independently. Figure B shows
@@ -545,12 +508,9 @@ Next we turn to the performance of FQCT on water-water intermolecular properties
   energy for dimers only to improve error cancellation. See section on parameterization for more details.}
   \label{fig:error_correlation}
 \end{figure}
-Figure \ref{fig:error_correlation}A shows that just by fitting each EDA term independently, our model naturally correlates attractive and repulsive errors such that when repulsion gets stronger, all of the attractive terms also get stronger, indicating that some amount of error cancellation is guaranteed. %But since all of the terms in an EDA-derived FF are very nearly unbiased, that is each term is nearly equally likely to be in error by a positive or negative energy, this means the total energy is also unbiased and thus small changes to the Pauli parameters will tend to rapidly correlate the errors in each term. %As a reminder, we only allow the Pauli repulsion parameters to adjust against the interaction energies and forces and we only use water dimers when fitting for error cancellation. This makes it clear that even for larger clusters, the predominant source of error is in the dimers. Virtually all force fields take advantage of some kind of error cancellation during parameterization. 
-%While it would be preferable if no error cancellation was required to construct quantitative force fields, we find it highly unlikely that this will ever be the case when  modelling quantum mechanics based on approximate functional forms. But 
-Thus the FQCT model is much more effective at taking advantage of error cancellation as seen in Figure \ref{fig:error_correlation}B because Pauli repulsion and all other terms are naturally correlated. This is easily seen in Figure \ref{fig:cp_ct_pauli} where the sum of charge penetration and charge transfer are linearly correlated to Pauli repulsion over a very wide energy range. %As will be seen, we think this force field is a major step forward in modelling charge transfer, which is a purely quantum mechanical phenomenon, but even so, tuning the error cancellation was necessary to quantitatively reproduce cluster energetics and structures.
+Figure \ref{fig:error_correlation}A shows that just by fitting each EDA term independently, our model naturally correlates attractive and repulsive errors such that when repulsion gets stronger, all of the attractive terms also get stronger, indicating that some amount of error cancellation is guaranteed. Thus the FQCT model is much more effective at taking advantage of error cancellation as seen in Figure \ref{fig:error_correlation}B because Pauli repulsion and all other terms are naturally correlated. This is easily seen in Figure \ref{fig:cp_ct_pauli} where the sum of charge penetration and charge transfer are linearly correlated to Pauli repulsion over a very wide energy range.
 
-One of the major goals of the FQCT model is to quantitatively reproduce the many-body contributions to both polarization and charge transfer. To assess how well we have achieved this, we computed the three-body contribution to both polarization and charge transfer with water trimers not used in parameterizing the water model. %The three-body polarization and charge transfer energy are defined as, $E_{3B}(123)=E(123)-E(12)-E(13)-E(23)$. That is, we take any EDA energy component for a trimer, $E_{3B}(123)$, and subtract off the same EDA energy component for the three dimers forming that trimer. There is no one-body contribution to this energy since EDA only deals with intermolecular forces.
-Figure \ref{fig:pol_ct_water} shows that we obtain excellent agreement with electronic structure for the major three-body contributions to the energy. Indeed, the model manages to capture both repulsive and attractive three-body contributions to both polarization and charge transfer despite repulsive three-body contributions to either of those quantities being absent in ordinary water clusters.\cite{heindel2020many} %In fact, ion-water clusters have been shown to have repulsive three-body contributions in many cases.\cite{heindel2021many,herman2021many} We consider Figure \ref{fig:pol_ct_water} a strong validation that our models of polarization and charge transfer capture the salient physics that generates these many-body energies.
+One of the major goals of the FQCT model is to quantitatively reproduce the many-body contributions to both polarization and charge transfer. To assess how well we have achieved this, we computed the three-body contribution to both polarization and charge transfer with water trimers not used in parameterizing the water model.  Figure \ref{fig:pol_ct_water} shows that we obtain excellent agreement with electronic structure for the major three-body contributions to the energy. Indeed, the model manages to capture repulsive and attractive three-body contributions to both polarization and charge transfer despite repulsive three-body contributions to either of those quantities being absent in ordinary water clusters.\cite{heindel2020many} This is important since ion-water clusters have been shown to have repulsive three-body contributions in many cases.\cite{heindel2021many,herman2021many}
 \begin{figure}[h]
   \includegraphics*[width=0.9\textwidth]{figures/three_body_pol_and_ct_water.png}
   \caption{Correlation plot of the three-body contribution to polarization and
@@ -570,32 +530,32 @@ We have also computed the energy of many water clusters for which high-quality C
   \begin{tabular}{llcccccc}
       \multicolumn{8}{c}{Comparison of Methods on Benchmark Water Cluster Binding Energies} \\\hline
       \ce{(H2O)_n}& Isomer & q-AQUA & MB-Pol & FQCT & $\omega$B97X-V & HIPPO & Ref. \\\hline
-      \ce{(H2O)_2} &  & -4.97 & -4.96                          & -4.90 & -5.00 & -4.96  & -4.99 \\
-      \ce{(H2O)_3} &  & -15.73 & 15.69                         & -15.35 & -15.77 & -15.77  & -15.77 \\
-      \ce{(H2O)_4} &  & -27.35 & -27.18                        & -27.34 & -27.75 &	-26.69  &	-27.39 \\
-      \ce{(H2O)_5} &  & -35.71 & -35.55                        & -36.36 & -36.51 &	-34.58  &-35.9 \\
-      \ce{(H2O)_6} & Prism & -46.21 & -45.94                   & -45.95 & -46.53 &-46.15 &	-46.2 \\
-      \ce{(H2O)_6} & Cage & -45.94 & -45.66                    & -45.70 & -46.30 &	-45.39  &	-45.9 \\
-      \ce{(H2O)_6} & Book & -45.21 & -44.89                    & -45.58 & -45.95 &	-44.25  &	-45.4 \\
-      \ce{(H2O)_6} & Ring & -43.71 & -43.66                    & -45.31 & -45.07 &	-42.54  &	-44.3 \\
-      \ce{(H2O)_7} &  & -57.71 & -57.11                        & -57.63 & -58.08 & -  & -57.4 \\
-      \ce{(H2O)_8} & $D_2d$ & -73.32 & -72.38                  & -72.67 & -73.58 & -71.55  & -73.0 \\
-      \ce{(H2O)_8} & $S_4$ & -72.93 & -72.06                   & -72.75 & -73.55 & -71.56 & -72.9 \\
-      \ce{(H2O)_9} & $D_2dDD$ & -82.87 & -81.40                & -82.28 & -83.00 & -  & -83.0 \\
-      \ce{(H2O)_{10}} &  & -94.72 &	-92.53                     & -93.81 &	-94.50 & -  &	-94.6 \\
-      \ce{(H2O)_{11}} & 43'4 & -104.23 & -103.93               & -103.03 & -103.77 & -100.23 & -104.6 \\
-      \ce{(H2O)_{16}} & Antiboat & -164.87 & -160.89           & -163.26 & -164.20 & -159.63  & -164.6 \\
-      \ce{(H2O)_{16}} & 4444-a & -163.10 & -162.28             & -163.32 & -164.28 & -161.84  & -164.2 \\
-      \ce{(H2O)_{16}} & 4444-b & -162.54 & -161.08             & -163.18 & -163.84 & -161.56  & -164.1 \\
-      \ce{(H2O)_{16}} & Boat a & -164.53 & -161.43             & -162.99 & -164.51 & -159.36  & -164.4 \\
-      \ce{(H2O)_{16}} & Boat b & -164.31 & -160.86             & -163.09 & -164.35 & -159.43  & -164.2 \\
-      \ce{(H2O)_{17}} & Sphere & -177.56 & -171.75             & -175.26 & -175.78 & -170.68  & -175.7 \\
-      \ce{(H2O)_{20}} & ES Prism & -212.49 & -207.84           & -211.35 & -211.98 & -  & -214.2 \\
-      \ce{(H2O)_{20}} & FS Prism & -210.63 & -206.96           & -209.20 & -210.12 & - & -211.9 \\
-      \ce{(H2O)_{20}} & Fused Cubes & -208.07 & -207.45        & -208.85 & -209.90 & - & -210.6 \\
-      \ce{(H2O)_{20}} & Pentag. Dodec. & -199.79 & -195.22     & -200.29 & -201.22 & - & -200.8 \\
-      \ce{(H2O)_{25}} & Isomer 2 & -276.50 & -266.04 & -269.60 & -270.26 & - & -276.3 \\\hline
-      MAE/n & & \textbf{0.040} &	\textbf{0.156} &	\textbf{0.079} &	\textbf{0.051} & \textbf{0.194}  & - \\\hline
+      \ce{(H2O)_2} &  & -4.97 & -4.91                          & -4.90 & -5.00 & -4.96  & -4.99 \\
+      \ce{(H2O)_3} &  & -15.73 -15.30                         & -15.35 & -15.77 & -15.77  & -15.77 \\
+      \ce{(H2O)_4} &  & -27.35 & -27.12                        & -27.34 & -27.75 &	-26.69  &	-27.39 \\
+      \ce{(H2O)_5} &  & -35.71 & -35.94                        & -36.36 & -36.51 &	-34.58  &-35.9 \\
+      \ce{(H2O)_6} & Prism & -46.21 & -45.87                   & -45.95 & -46.53 &-46.15 &	-46.2 \\
+      \ce{(H2O)_6} & Cage & -45.94 & -45.51                    & -45.70 & -46.30 &	-45.39  &	-45.9 \\
+      \ce{(H2O)_6} & Book & -45.21 & -45.19                    & -45.58 & -45.95 &	-44.25  &	-45.4 \\
+      \ce{(H2O)_6} & Ring & -43.71 & -44.70                    & -45.31 & -45.07 &	-42.54  &	-44.3 \\
+      \ce{(H2O)_7} &  & -57.71 & -57.37                        & -57.63 & -58.08 & -  & -57.4 \\
+      \ce{(H2O)_8} & $D_2d$ & -73.32 & -72.28                  & -72.67 & -73.58 & -71.55  & -73.0 \\
+      \ce{(H2O)_8} & $S_4$ & -72.93 & -72.35                   & -72.75 & -73.55 & -71.56 & -72.9 \\
+      \ce{(H2O)_9} & $D_2dDD$ & -82.87 & -81.67                & -82.28 & -83.00 & -  & -83.0 \\
+      \ce{(H2O)_{10}} &  & -94.72 &	-93.07                     & -93.81 &	-94.50 & -  &	-94.6 \\
+      \ce{(H2O)_{11}} & 43'4 & -104.23 & -102.17               & -103.03 & -103.77 & -100.23 & -104.6 \\
+      \ce{(H2O)_{16}} & Antiboat & -164.87 & -162.20           & -163.26 & -164.20 & -159.63  & -164.6 \\
+      \ce{(H2O)_{16}} & 4444-a & -163.10 & -162.98             & -163.32 & -164.28 & -161.84  & -164.2 \\
+      \ce{(H2O)_{16}} & 4444-b & -162.54 & -162.87             & -163.18 & -163.84 & -161.56  & -164.1 \\
+      \ce{(H2O)_{16}} & Boat a & -164.53 & -161.92             & -162.99 & -164.51 & -159.36  & -164.4 \\
+      \ce{(H2O)_{16}} & Boat b & -164.31 & -162.04             & -163.09 & -164.35 & -159.43  & -164.2 \\
+      \ce{(H2O)_{17}} & Sphere & -177.56 & -174.15             & -175.26 & -175.78 & -170.68  & -175.7 \\
+      \ce{(H2O)_{20}} & ES Prism & -212.49 & -210.20           & -211.35 & -211.98 & -  & -214.2 \\
+      \ce{(H2O)_{20}} & FS Prism & -210.63 & -208.46           & -209.20 & -210.12 & - & -211.9 \\
+      \ce{(H2O)_{20}} & Fused Cubes & -208.07 & -208.56        & -208.85 & -209.90 & - & -210.6 \\
+      \ce{(H2O)_{20}} & Pentag. Dodec. & -199.79 & -197.99     & -200.29 & -201.22 & - & -200.8 \\
+      \ce{(H2O)_{25}} & Isomer 2 & -276.50 & -266.04 & -268.44 & -272.02 & - & -276.3 \\\hline
+      MAE/n & & \textbf{0.040} &	\textbf{0.156} &	\textbf{0.112} &	\textbf{0.051} & \textbf{0.194}  & - \\\hline
   \end{tabular}
   \end{center}
   \vspace{-3mm}
@@ -607,7 +567,7 @@ We have also computed the energy of many water clusters for which high-quality C
   \label{tab:benchmark_energies}
 \end{table}
 
-It is worth noting that both q-AQUA and MB-Pol include fits of the 2-body, 3-body, and in the case of q-AQUA 4-body contributions to the energy at CCSD(T). Therefore, the fact that our model built for transferability is able to achieve an MAE over all clusters that is as accurate as these fitted models is encouraging. Interestingly, MB-Pol seems to have a tendency to underestimate the binding energy of clusters as they get larger. Presumably this shortcoming has been corrected in the updated version of MB-Pol\cite{zhu2023mb} which is reportedly at least as accurate as q-AQUA. As highlighted in the methods section, the electrostatics and Pauli repulsion used in our  model are nearly the same as those used in HIPPO.\cite{rackers2021polarizable} It is very encouraging, therefore, to see that our model improves on the MAEs of the HIPPO model rather substantially. One of the main reasons we are able to achieve better MAEs is that our many-body energies, as shown in Figure \ref{fig:pol_ct_water}, are both accurate and nearly unbiased, while the HIPPO model systematically underestimates the many-body contributions to water cluster energies\cite{rackers2021polarizable}, which is likely attributable to the absence of many-body charge transfer. Interestingly, for larger clusters our model begins to slightly underestimate the energies compared to the benchmark references, but so does $\omega$B97X-V/def2-QZVPPD, which is the best our force field can possibly perform. 
+It is worth noting that both q-AQUA and MB-Pol include fits of the 2-body, 3-body, and in the case of q-AQUA 4-body contributions to the energy at CCSD(T). Therefore, the fact that our model built for transferability is able to achieve an MAE over all clusters that falls between these fitted models is encouraging. Interestingly, MB-Pol seems to have a tendency to underestimate the binding energy of clusters as they get larger. Presumably this shortcoming has been corrected in the updated version of MB-Pol\cite{zhu2023mb} which is reportedly at least as accurate as q-AQUA. As highlighted in the methods section, the electrostatics and Pauli repulsion used in our  model are nearly the same as those used in HIPPO.\cite{rackers2021polarizable} It is very encouraging, therefore, to see that our model improves on the MAEs of the HIPPO model rather substantially. One of the main reasons we are able to achieve better MAEs is that our many-body energies, as shown in Figure \ref{fig:pol_ct_water}, are both accurate and nearly unbiased, while the HIPPO model systematically underestimates the many-body contributions to water cluster energies\cite{rackers2021polarizable}, which is likely attributable to the absence of many-body charge transfer. Interestingly, for larger clusters our model begins to slightly underestimate the energies compared to the benchmark references, but so does $\omega$B97X-V/def2-QZVPPD, which is the best our force field can possibly perform.
 
 In addition to accurate energetics, many-body FFs should also produce accurate geometries. Table \ref{tab:benchmark_structures} shows the root mean-squared deviation (RMSD) of water cluster structures optimized with various FFs and $\omega$B97X-V/def2-QZVPPD compared to previously reported structures optimized with either CCSD(T) or MP2.\cite{herman2023extensive} The average RMSD for our model manages to outperform MB-Pol and is comparable even to q-AQUA. Notably, $\omega$B97X-V/def2-QZVPPD is even more accurate on this benchmark than q-AQUA which provides further evidence of the high accuracy of this density functional.
 
@@ -616,31 +576,31 @@ In addition to accurate energetics, many-body FFs should also produce accurate g
   \begin{tabular}{llcccc}
       \multicolumn{6}{c}{Comparison of Methods on Benchmark Water Cluster Structures} \\\hline
       \ce{(H2O)_n} & Isomer & q-AQUA & MB-Pol & FQCT & $\omega$B97X-V \\\hline
-      \ce{(H2O)_2} &  & 0.005 &	0.008                    & 0.014 &	0.005 \\
-      \ce{(H2O)_3} &  & 0.010 &	0.014                    & 0.021 &	0.008 \\
-      \ce{(H2O)_4} &  & 0.008 &	0.024                    & 0.017 &	0.006 \\
-      \ce{(H2O)_5} &  & 0.013 &	0.059                    & 0.047 &	0.008 \\
-      \ce{(H2O)_6} & Prism & 0.010	& 0.035	             & 0.021	& 0.009	\\
-      \ce{(H2O)_6} & Cage & 0.013	& 0.027	               & 0.024	& 0.018	\\
-      \ce{(H2O)_6} & Book & 0.010	& 0.029	               & 0.042	& 0.009	\\
-      \ce{(H2O)_6} & Ring & 0.013	& 0.043	               & 0.031	& 0.010	\\
-      \ce{(H2O)_7} &  & 0.016 &	0.041                    & 0.027 &	0.025 \\
-      \ce{(H2O)_8} & $D_2d$ & 0.006	& 0.041              & 0.018	& 0.004	\\
-      \ce{(H2O)_8} & $S_4$ & 0.007	& 0.019              & 0.017	& 0.005	\\
-      \ce{(H2O)_9} & $D_2dDD$ & 0.089 &	0.116            & 0.037 &	0.052 \\
+      \ce{(H2O)_2} &  & 0.005 &	0.008                    & 0.015 &	0.005 \\
+      \ce{(H2O)_3} &  & 0.010 &	0.014                    & 0.017 &	0.008 \\
+      \ce{(H2O)_4} &  & 0.008 &	0.024                    & 0.012 &	0.006 \\
+      \ce{(H2O)_5} &  & 0.013 &	0.059                    & 0.045 &	0.008 \\
+      \ce{(H2O)_6} & Prism & 0.010	& 0.035	             & 0.018	& 0.009	\\
+      \ce{(H2O)_6} & Cage & 0.013	& 0.027	               & 0.023	& 0.018	\\
+      \ce{(H2O)_6} & Book & 0.010	& 0.029	               & 0.040	& 0.009	\\
+      \ce{(H2O)_6} & Ring & 0.013	& 0.043	               & 0.023	& 0.010	\\
+      \ce{(H2O)_7} &  & 0.016 &	0.041                    & 0.029 &	0.025 \\
+      \ce{(H2O)_8} & $D_2d$ & 0.006	& 0.041              & 0.016	& 0.004	\\
+      \ce{(H2O)_8} & $S_4$ & 0.007	& 0.019              & 0.015	& 0.005	\\
+      \ce{(H2O)_9} & $D_2dDD$ & 0.089 &	0.116            & 0.036 &	0.052 \\
       \ce{(H2O)_{10}} &  & 0.012 & 0.049                 & 0.022 & 0.010  \\
-      \ce{(H2O)_{11}} & 43'4 & 0.034 & 0.065             & 0.029 & 0.017  \\
-      \ce{(H2O)_{16}} & Antiboat & 0.023 & 0.064         & 0.036 & 0.017  \\
-      \ce{(H2O)_{16}} & 4444-a & 0.039 & 0.038           & 0.026 & 0.015  \\
-      \ce{(H2O)_{16}} & 4444-b & 0.040 & 0.049           & 0.026 & 0.029  \\
-      \ce{(H2O)_{16}} & Boat a & 0.023 & 0.038           & 0.025 & 0.016  \\
-      \ce{(H2O)_{16}} & Boat b & 0.028 & 0.057           & 0.047 & 0.016  \\
-      \ce{(H2O)_{17}} & Sphere & 0.039 & 0.063           & 0.032 & 0.022  \\
-      \ce{(H2O)_{20}} & ES Prism & 0.042 & 0.056         & 0.039 & 0.024  \\
-      \ce{(H2O)_{20}} & FS Prism & 0.047 & 0.050         & 0.028 & 0.023  \\
-      \ce{(H2O)_{20}} & Fused Cubes & 0.067 & 0.050      & 0.027 & 0.029  \\
-      \ce{(H2O)_{20}} & Pentag. Dodec. & 0.034 & 0.066   & 0.035 & 0.018  \\
-      \ce{(H2O)_{25}} & Isomer 2 & 0.029 & 0.049 & 0.037 & 0.038  \\\hline
+      \ce{(H2O)_{11}} & 43'4 & 0.034 & 0.065             & 0.023 & 0.017  \\
+      \ce{(H2O)_{16}} & Antiboat & 0.023 & 0.064         & 0.035 & 0.017  \\
+      \ce{(H2O)_{16}} & 4444-a & 0.039 & 0.038           & 0.029 & 0.015  \\
+      \ce{(H2O)_{16}} & 4444-b & 0.040 & 0.049           & 0.030 & 0.029  \\
+      \ce{(H2O)_{16}} & Boat a & 0.023 & 0.038           & 0.027 & 0.016  \\
+      \ce{(H2O)_{16}} & Boat b & 0.028 & 0.057           & 0.049 & 0.016  \\
+      \ce{(H2O)_{17}} & Sphere & 0.039 & 0.063           & 0.038 & 0.022  \\
+      \ce{(H2O)_{20}} & ES Prism & 0.042 & 0.056         & 0.043 & 0.024  \\
+      \ce{(H2O)_{20}} & FS Prism & 0.047 & 0.050         & 0.032 & 0.023  \\
+      \ce{(H2O)_{20}} & Fused Cubes & 0.067 & 0.050      & 0.030 & 0.029  \\
+      \ce{(H2O)_{20}} & Pentag. Dodec. & 0.034 & 0.066   & 0.033 & 0.018  \\
+      \ce{(H2O)_{25}} & Isomer 2 & 0.029 & 0.049         & 0.038 & 0.023  \\\hline
       RMSD (\AA) & & \textbf{0.026} &	\textbf{0.046} &	\textbf{0.029} &	\textbf{0.017}  \\\hline
   \end{tabular}
   \end{center}
@@ -653,8 +613,8 @@ In addition to accurate energetics, many-body FFs should also produce accurate g
   \label{tab:benchmark_structures}
 \end{table}
 
-In order for a FF to be useful for theoretical spectroscopy, it must respect the relationships between structure and vibrational frequencies. In the case of water, this manifests as a linear relationship between the change in bond length and change in \ce{O-H} stretching frequency\cite{boyer2019beyond}, also known as Badger's rule.\cite{badger1934relation} In the course of constructing the FQCT FF, we tested Badger's rule and if it satisfied the expected slope $\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001}$\AA\cite{boyer2019beyond}. We found instead that the slope was $\approx -10\ \mathrm{cm^{-1}/.001}$\AA (See Fig. S2) which is in agreement with a slope of $\approx -11\ \mathrm{cm^{-1}/.001}$\AA found by Boyer \textit{et al.} when they use a field-independent Morse oscillator with parameters appropriate to water. To obtain the correct slope value requires an environmental electric field dependence\cite{boyer2019beyond}, and motivates our bonding potential parameters to be modulated by the field along the O-H bond, as given by  Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}. 
-\begin{figure}[h]
+In order for a FF to be useful for theoretical spectroscopy, it must respect the relationships between structure and vibrational frequencies. In the case of water, this manifests as a linear relationship between the change in bond length and change in \ce{O-H} stretching frequency\cite{boyer2019beyond}, also known as Badger's rule.\cite{badger1934relation} In the course of constructing the FQCT FF, we tested Badger's rule and if it satisfied the expected slope $\Delta\omega$ vs $\Delta R_e$ of $\approx -19\ \mathrm{cm^{-1}/.001}$\AA\cite{boyer2019beyond}. We found instead that the slope was $\approx -10\ \mathrm{cm^{-1}/.001}$\AA (See Fig. S2) which is in agreement with a slope of $\approx -11\ \mathrm{cm^{-1}/.001}$\AA~ found by Boyer \textit{et al.} when they use a field-independent Morse oscillator with parameters appropriate to water. To obtain the correct slope requires an environmental electric field dependence\cite{boyer2019beyond}, and motivates our bonding potential parameters to be modulated by the field along the O-H bond, as given by  Eqs. \ref{eq:bond_in_field} and \ref{eq:force_constant_in_field}. 
+\begin{figure}[ht!]
   \includegraphics*[width=0.9\textwidth]{figures/badger_correlation_final.png}
   \caption{Correlation of $\Delta\omega$ vs $\Delta R_e$ over a collection
   of small water clusters using FQCT and $\omega$B97X-V/def2-QZVPPD.
@@ -665,10 +625,10 @@ In order for a FF to be useful for theoretical spectroscopy, it must respect the
   \label{fig:badger2}
 \end{figure}
 
-We computed the necessary dipole derivatives from a simple \ce{O-H} scan and found the parameters $\mu^{(1)}=0.1654$ and $\mu^{(2)}=-0.01246$. If we do the same calculation with FQCT, we get $\mu^{(1)}=0.1658$ and $\mu^{(2)}=-0.0104$. This indicates that as long as a force field has an accurate dipole surface, the dipole derivatives needed to compute the field-dependence of a Morse potential can be computed directly from the force field. The final result of the structure-frequency correlation in water using the FQCT model is shown in Figure \ref{fig:badger2}. We consider this an excellent result given the simplicity of the field-dependent Morse potential, especially since it requires no free parameters. 
+We computed the necessary dipole derivatives from a simple \ce{O-H} scan and found the parameters $\mu^{(1)}=0.1654$ and $\mu^{(2)}=-0.01246$. If we do the same calculation with FQCT, we get $\mu^{(1)}=0.1658$ and $\mu^{(2)}=-0.0104$. This indicates that as long as a force field has an accurate dipole surface, the dipole derivatives needed to compute the field-dependence of a Morse potential can be computed directly from the force field. The final result of the structure-frequency correlation in water using the FQCT model is shown in Figure \ref{fig:badger2}. We consider this an excellent result given the simplicity of the field-dependent Morse potential, especially since it requires no free parameters.
 
 \section*{Ion-Water Model}
-Accurately reproducing many-body energies is a very stringent test of a water model, but this is especially true for ion-water systems where polarizable force fields have historically struggled. We now turn our attention to the performance of this model on ion-water clusters. First, we consider simple scans for each of the ion-water dimers considered in this study. Figure \ref{fig:ion_scans} show the total energy curve of FQCT as a solid colored line and the QM reference energy curve as a dashed line of the same color for each ion. In the Supplementary Information, we include a variation on these plots where we show the error in each individual EDA component of the scan.
+Accurately reproducing many-body energies is a very stringent test of a water model, but this is especially true for ion-water systems where polarizable force fields have historically struggled. We now turn our attention to the performance of this model on ion-water clusters. First, we consider simple scans for each of the ion-water dimers considered in this study. Figure \ref{fig:ion_scans} show the total energy curve of FQCT as a solid colored line and the QM reference energy curve as a dashed line of the same color for each ion. In the Supplementary Information, we include a variation on these plots where we show the error in each individual EDA component of the scan. \textbf{Need to add these still.}
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/anion-cation_dimer_scans.png}
   \caption{Scans of the \ce{X^-(H_2O)} for cations and anions. (A) (\ce{X^-}=\ce{F^-}, \ce{Cl^-}, \ce{Br^-}, and \ce{I^-}) and (B) Scans of the \ce{X^+(H_2O)} (\ce{X^+}=\ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+})
@@ -685,23 +645,23 @@ Perhaps the most important feature of the dimer scans in Figure \ref{fig:ion_sca
   \begin{tabular}{llccccccc}
       \multicolumn{9}{c}{Ion-Water Dimer Vibrational Frequencies} \\\hline
       \ce{X^{+/-}(H2O)} & Method & NM1 & NM2 & NM3 & NM4 & NM5 & NM6 & $D_e$ \\\hline
-      \ce{F^-(H2O)} & FQCT  & 365 & 723 & 1328 & 1806 & 2156 & 3842 & -26.7 \\
+      \ce{F^-(H2O)} & FQCT  & 433 & 621 & 1276 & 1768 & 2375 & 3854 & -27.9 \\
            & $\omega$B97X-V & 384 & 569 & 1144 & 1702 & 2233 & 3916 & -27.2 \\\hline
-      \ce{Cl^-(H2O)} & FQCT & 197 & 395 & 767 & 1719 & 3427 & 3893 & -15.1 \\
+      \ce{Cl^-(H2O)} & FQCT & 196 & 376 & 751 & 1717 & 3467 & 3895 & -14.8 \\
            & $\omega$B97X-V & 193 & 341 & 726 & 1678 & 3417 & 3919 & -14.9 \\\hline
-      \ce{Br^-(H2O)} & FQCT & 157 & 360 & 718 & 1713 & 3507 & 3894 & -13.2 \\
+      \ce{Br^-(H2O)} & FQCT & 155 & 352 & 710 & 1712 & 3504 & 3894 & -13.2 \\
            & $\omega$B97X-V & 151 & 288 & 657 & 1673 & 3521 & 3916 & -12.9 \\\hline
-      \ce{I^-(H2O)} & FQCT  & 129 & 303 & 643 & 1701 & 3591 & 3895 & -11.1 \\
+      \ce{I^-(H2O)} & FQCT  & 128 & 295 & 636 & 1701 & 3583 & 3895 & -11.1 \\
            & $\omega$B97X-V & 118 & 220 & 579 & 1668 & 3623 & 3911 & -10.9 \\\hline
-      \ce{Li^+(H2O)} & FQCT & 301 & 512 & 535 & 1669 & 3677 & 3801 & -34.9 \\
+      \ce{Li^+(H2O)} & FQCT & 308 & 501 & 533 & 1679 & 3677 & 3800 & -34.8 \\
            & $\omega$B97X-V & 392 & 524 & 554 & 1681 & 3815 & 3882 & -34.9 \\\hline
-      \ce{Na^+(H2O)} & FQCT & 268 & 316 & 434 & 1679 & 3737 & 3848 & -24.2 \\
+      \ce{Na^+(H2O)} & FQCT & 276 & 314 & 421 & 1684 & 3735 & 3846 & -24.2 \\
            & $\omega$B97X-V & 307 & 367 & 437 & 1677 & 3830 & 3902 & -24.3 \\\hline
-      \ce{K^+(H2O)} & FQCT  & 220 & 306 & 367 & 1680 & 3767 & 3873 & -17.6 \\
+      \ce{K^+(H2O)} & FQCT  & 218 & 310 & 357 & 1683 & 3764 & 3870 & -17.6 \\
            & $\omega$B97X-V & 213 & 359 & 369 & 1673 & 3833 & 3910 & -17.7 \\\hline
-      \ce{Rb^+(H2O)} & FQCT & 180 & 304 & 342 & 1680 & 3776 & 3881 & -15.4 \\
+      \ce{Rb^+(H2O)} & FQCT & 180 & 309 & 331 & 1682 & 3774 & 3879 & -15.4 \\
            & $\omega$B97X-V & 178 & 347 & 351 & 1671 & 3836 & 3914 & -15.6 \\\hline
-      \ce{Cs^+(H2O)} & FQCT & 160 & 306 & 316 & 1679 & 3785 & 3889 & -13.8 \\
+      \ce{Cs^+(H2O)} & FQCT & 158 & 307 & 310 & 1681 & 3781 & 3886 & -13.8 \\
            & $\omega$B97X-V & 157 & 327 & 339 & 1668 & 3836 & 3916 & -14.0 \\\hline
   \end{tabular}
   \end{center}
@@ -712,18 +672,18 @@ Perhaps the most important feature of the dimer scans in Figure \ref{fig:ion_sca
   \label{tab:ion_freqs}
 \end{table}
 
-Since ion-water interactions are strong, they can result in large red-shifts of the underlying vibrational frequencies. Table \ref{tab:ion_freqs} provides the frequencies and binding energies of FQCT compared to $\omega$B97X-V in which the FF model is generally quite accurate. The \ce{O-H} stretching modes, NM5, are fairly accurate for all anions especially considering the strength of interactions involved. This highlights that reproducing the structure-frequency correspondence shown in Figure \ref{fig:badger2} transfers to interactions with anions. \textcolor{blue}{Is this true - it looks as good as anions to me....On the other hand, the \ce{O-H} stretching modes for cation-water dimers are red-shifted too much compared to $\omega$B97X-V.} The bending mode for anion-water dimers, NM4, is systematically blue-shifted, while this problem with the bending frequencies does not occur for the cations. This is because the anion attracts the water hydrogen atom causing the \ce{HOH} angle to close more than it should. This is likely attributable to the lack of a field-dependent contribution to the bending potential, which would counter-act this tendency by instead opening the \ce{HOH} angle. In the future, we may explore the addition of a field-dependent contribution to the bending potential. \textbf{cite allen} %The low-frequency modes for the anions are also rather accurate but a bit overestimated, whereas the low-frequency modes for cation-water dimers are a bit more accurate than those for the anions except the frequencies tend to be slightly underestimated.
+Since ion-water interactions are strong, they can result in large red-shifts of the underlying vibrational frequencies. Table \ref{tab:ion_freqs} provides the frequencies and binding energies of FQCT compared to $\omega$B97X-V in which the FF model is generally quite accurate. The \ce{O-H} stretching modes, NM5, are fairly accurate for all anions especially considering the strength of interactions involved. This highlights that reproducing the structure-frequency correspondence shown in Figure \ref{fig:badger2} transfers to interactions with anions. The bending mode for anion-water dimers, NM4, is systematically blue-shifted, while this problem with the bending frequencies does not occur for the cations. This is because the anion attracts the water hydrogen atom causing the \ce{HOH} angle to close more than it should. This is likely attributable to the lack of a field-dependent contribution to the bending potential, which would counter-act this tendency to close the \ce{HOH} angle. In the future, we may explore the addition of a field-dependent contribution to the bending potential.\cite{lacour2023predicting} The low-frequency modes for both anions and cations are generally quite accurate.
 
-Just as with water, many-body contributions to both polarization and charge transfer are important for ion-water systems. While on a relative basis their contributions in ion-water systems are smaller than in water due to the dominance of electrostatic interactions, that does not mean they can be neglected. In Figure \ref{fig:Pol_CT_ions} we show the correlation of three-body polarization and charge transfer energies computed from FQCT and EDA. These energies are computed from 400 trimers drawn from ion-water clusters which we generated for this work. Figures \ref{fig:Pol_CT_ions} demonstrate that our models of polarization and charge transfer are transferable even to very strong interactions. 
+Just as with water, many-body contributions to both polarization and charge transfer are important for ion-water systems. While on a relative basis their contributions in ion-water systems are smaller than in water due to the dominance of electrostatic interactions, that does not mean they can be neglected. In Figure \ref{fig:Pol_CT_ions} we show the correlation of three-body polarization and charge transfer energies computed from FQCT and EDA. These energies are computed from 400 trimers drawn from ion-water clusters which we generated for this work. Figures \ref{fig:Pol_CT_ions} demonstrate that our models of polarization and charge transfer are transferable even to very strong interactions.
 
 \begin{figure}[h]
   \includegraphics*[width=\textwidth]{figures/three_body_pol_and_ct_ions.png}
-  \caption{Correlation of three-body polarization and charge transfer energies between FQCT and EDA for anions and cations. All trimers are drawn from ion-water clusters optimized with $\omega$B97X-V/def2-TZVPPD and energies are computed with the def2-QZVPPD basis set. (A) The 3-body polarization MAEs over the halide trimers are 0.208, 0.072, 0.060, and 0.046 kcal/mol
+  \caption{Correlation of three-body polarization and charge transfer energies between FQCT and EDA for anions and cations. All trimers are drawn from ion-water clusters optimized with $\omega$B97X-V/def2-TZVPPD and energies are computed with the def2-QZVPPD basis set. (A) The 3-body polarization MAEs over the halide trimers are 0.227, 0.068, 0.059, and 0.044 kcal/mol
   for \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, and \ce{I^-}, respectively. (B) The 3-body charge transfer MAEs over
-  the halide trimers are 0.129, 0.068, 0.056, and 0.044 kcal/mol
-  for \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, and \ce{I^-}, respectively. (C) The 3-body polarization MAEs over the alkali trimers are 0.122, 0.105, 0.080, 0.123, and 0.078 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
+  the halide trimers are 0.143, 0.054, 0.048, and 0.030 kcal/mol
+  for \ce{F^-}, \ce{Cl^-}, \ce{Br^-}, and \ce{I^-}, respectively. (C) The 3-body polarization MAEs over the alkali trimers are 0.126, 0.120, 0.095, 0.106, and 0.075 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
   respectively. (D) The 3-body charge transfer MAEs over the alkali trimers are
-  0.050, 0.024, 0.021, 0.033, and 0.029 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
+  0.052, 0.028, 0.036, 0.031, and 0.023 kcal/mol for \ce{Li^+}, \ce{Na^+}, \ce{K^+}, \ce{Rb^+}, and \ce{Cs^+},
   respectively.
 }
   \label{fig:Pol_CT_ions}
@@ -742,7 +702,7 @@ Aqueous ionic solutions often exhibit equilibria between ion-ion contact pairs, 
 \end{figure}
 
 \section*{Discussion}
-Most polarizable force fields include intramolecular polarization by allowing the induced dipoles to interact regardless of whether they are in the same molecule or not. In our experience with EDA, this tends to result in worse agreement between the model and reference polarization energies. This is not surprising given that multipoles located within a couple bond lengths are too close for electrostatics to give a good representation of the relevant interactions. There is no doubt, however, that intramolecular polarization should be considered in some way. 
+Most polarizable force fields include intramolecular polarization by allowing the induced dipoles to interact regardless of whether they are in the same molecule or not. In our experience with EDA, this tends to result in worse agreement between the model and reference polarization energies. This is not surprising given that multipoles located within a couple bond lengths are too close for electrostatics to give a good representation of the relevant interactions. There is no doubt, however, that intramolecular polarization should be considered in some way.
 
 The necessity of coupling the bonding potential to the environment to accurately reproduce structure-frequency relationships in a force field is a new observation as far as we are aware. We consider this an excellent result given the simplicity of the field-dependent morse potential, especially since it requires no free parameters. 
 

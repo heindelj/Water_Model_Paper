@@ -90,7 +90,6 @@
 \newlabel{eq:disp}{{8}{8}}
 \newlabel{eq:TT}{{9}{8}}
 \newlabel{eq:TT_x}{{10}{8}}
-\@writefile{toc}{\contentsline {subsection}{Polarization, Charge Transfer, and the One-Body Potential}{8}{}\protected@file@percent }
 \citation{stone1985distributedb}
 \citation{stone1985distributedb}
 \citation{ruth1994localization}
@@ -100,11 +99,12 @@
 \citation{chen2007qtpie}
 \citation{chen2008unified}
 \citation{chen2007qtpie,chen2008unified}
+\@writefile{toc}{\contentsline {subsection}{Polarization, Charge Transfer, and the One-Body Potential}{9}{}\protected@file@percent }
 \newlabel{eq:eem}{{11}{9}}
-\newlabel{eq:fq}{{12}{9}}
 \citation{rackers2021polarizable}
 \citation{chung2022classical}
 \citation{chung2022classical}
+\newlabel{eq:fq}{{12}{10}}
 \newlabel{eq:induced_dipoles}{{13}{10}}
 \newlabel{eq:tensors_a}{{14a}{10}}
 \newlabel{eq:tensors_b}{{14b}{10}}
@@ -152,12 +152,15 @@
 \newlabel{eq:variable_hardness}{{26}{19}}
 \citation{boyer2019beyond}
 \citation{boyer2019beyond}
-\newlabel{eq:pol_loss}{{27}{20}}
+\newlabel{eq:variable_pauli}{{27}{20}}
+\newlabel{eq:pol_loss}{{28}{20}}
+\citation{boyer2019beyond}
 \citation{mao2017energy}
-\newlabel{eq:bond_in_field}{{28}{21}}
-\newlabel{eq:force_constant_in_field}{{29}{21}}
-\newlabel{eq:bond_in_field_2}{{30}{22}}
-\newlabel{eq:force_constant_in_field_2}{{31}{22}}
+\newlabel{eq:bond_in_field}{{29}{21}}
+\newlabel{eq:force_constant_in_field}{{30}{21}}
+\newlabel{eq:bond_in_field_2}{{31}{22}}
+\newlabel{eq:force_constant_in_field_2}{{32}{22}}
+\newlabel{eq:squared_overlap}{{33}{22}}
 \citation{misquitta2008first}
 \citation{misquitta2008first}
 \citation{pracht2020automated}
@@ -166,7 +169,6 @@
 \citation{bannwarth2019gfn2}
 \citation{rakshit2019atlas}
 \citation{rakshit2019atlas}
-\newlabel{eq:squared_overlap}{{32}{23}}
 \@writefile{toc}{\contentsline {section}{Methods}{23}{}\protected@file@percent }
 \citation{stone2002orient}
 \citation{stone2002orient}
@@ -188,19 +190,20 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Polarizability derivatives of water computed at the $\omega $B97X-V/def2-QZVPPD equilibrium geometry in three different ways. The first entry is computed with $\omega $B97X-V/def2-QZVPPD, the second with FQCT, and the third with the same model but using parameters optimized without fluctuating charges. The Atom column tells both the atom and component of its position we take the derivative with respect to. The water monomer has its bisector aligned with the $y$-axis and the $z$-axis is normal to the water molecule plane. Note that the derivatives for the second hydrogen are identical to the first but with opposite sign. The $xz$ and $yz$ entries are omitted since they are small and reproduced to three decimal places by both models.\relax }}{28}{}\protected@file@percent }
 \newlabel{tab:pol_derivs}{{1}{28}}
 \citation{heindel2020many}
+\citation{heindel2021many,herman2021many}
 \@writefile{toc}{\contentsline {subsection}{Water Intermolecular Interactions}{29}{}\protected@file@percent }
 \citation{herman2023extensive}
 \citation{herman2023extensive}
+\citation{herman2023extensive}
+\citation{herman2023extensive}
+\citation{herman2023extensive}
+\citation{herman2023extensive}
+\citation{zhu2023mb}
+\citation{zhu2023mb}
+\citation{rackers2021polarizable}
+\citation{rackers2021polarizable}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Correlation of errors in Pauli repulsion against all attractive interactions from EDA including dispersion, electrostatics and CP, polarization, and charge transfer. Figure A shows the error correlation without any error fitting, where each EDA term is fit independently. Figure B shows the same plot after allowing the Pauli repulsion to relax against the interaction energy for dimers only to improve error cancellation. See section on parameterization for more details.\relax }}{30}{}\protected@file@percent }
 \newlabel{fig:error_correlation}{{4}{30}}
-\citation{herman2023extensive}
-\citation{herman2023extensive}
-\citation{herman2023extensive}
-\citation{herman2023extensive}
-\citation{zhu2023mb}
-\citation{zhu2023mb}
-\citation{rackers2021polarizable}
-\citation{rackers2021polarizable}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Correlation plot of the three-body contribution to polarization and charge transfer as computed by our model and with $\omega $B97X-V/def2-QZVPPD. All water trimers in this plot are drawn from ion-water clusters and therefore span a wide range of configurations, some of which are atypical of liquid water. Since trimers drawn from a cluster may be disonnected, we enforce that the trimer have an absolute three-body contribution of at least 0.02 kcal/mol. \relax }}{31}{}\protected@file@percent }
 \newlabel{fig:pol_ct_water}{{5}{31}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of various advanced force fields and $\omega $B97X-V/def2-QZVPPD against benchmark cluster energies.\mciteCiteA  {\@auxout }{main}{\relax }{\relax }{\cite }{herman2023extensive} The reference energies are mostly CCSD(T)/CBS values but some are MP2/CBS values; see original paper for further details on structures.\mciteCiteA  {\@auxout }{main}{\relax }{\relax }{\cite }{herman2023extensive} We use the FF optimized geometries to evaluate energies, and any FF energies which could not be found in the literature are left blank. The bottom row shows the mean absolute error per molecule for all available energies. \relax }}{32}{}\protected@file@percent }
@@ -219,40 +222,42 @@
 \citation{boyer2019beyond}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of various advanced force fields and $\omega $B97X-V/def2-QZVPPD against benchmark cluster structures.\mciteCiteA  {\@auxout }{main}{\relax }{\relax }{\cite }{herman2023extensive} The reference structures are optimized at either CCSD(T)/aug-cc-pVDZ or MP2/aug-cc-pVTZ. See original paper for further details on structures.\mciteCiteA  {\@auxout }{main}{\relax }{\relax }{\cite }{herman2023extensive} The bottom row shows the root mean-squared deviation (RMSD) in angstrom for all available structures. \relax }}{34}{}\protected@file@percent }
 \newlabel{tab:benchmark_structures}{{3}{34}}
+\@writefile{toc}{\contentsline {section}{Ion-Water Model}{34}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Correlation of $\Delta \omega $ vs $\Delta R_e$ over a collection of small water clusters using FQCT and $\omega $B97X-V/def2-QZVPPD. The water clusters are low-energy structures of \ce {(H_2O)_{2-6}} available with the paper. The linear fits are not constrained to pass through zero which explains the slightly large slopes compared to previous work.\mciteCiteA  {\@auxout }{main}{\relax }{\relax }{\cite }{boyer2019beyond} \relax }}{35}{}\protected@file@percent }
 \newlabel{fig:badger2}{{6}{35}}
-\@writefile{toc}{\contentsline {section}{Ion-Water Model}{35}{}\protected@file@percent }
+\citation{lacour2023predicting}
+\citation{lacour2023predicting}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Scans of the \ce {X^-(H_2O)} for cations and anions. (A) (\ce {X^-}=\ce {F^-}, \ce {Cl^-}, \ce {Br^-}, and \ce {I^-}) and (B) Scans of the \ce {X^+(H_2O)} (\ce {X^+}=\ce {Li^+}, \ce {Na^+}, \ce {K^+}, \ce {Rb^+}, and \ce {Cs^+}) potentials where the geometry is held fixed at the equilibrium structure of each dimer. The solid curve corresponds to FQCT and the dashed curve corresponds to $\omega $B97X-V/def2-QZVPPD. Vertical dashed lines show the positions of each minimum with $\omega $B97X-V/def2-QZVPPD. Binding energies and harmonic frequencies are reported in Table 4\hbox {}. \relax }}{36}{}\protected@file@percent }
 \newlabel{fig:ion_scans}{{7}{36}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comparison of FQCT frequencies ($\mathrm  {cm^{-1}}$) and binding energies (kcal/mol) against $\omega $B97X-V/def2-QZVPPD for all ion-water dimers discussed in this paper. \relax }}{37}{}\protected@file@percent }
 \newlabel{tab:ion_freqs}{{4}{37}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Correlation of three-body polarization and charge transfer energies between FQCT and EDA for anions and cations. All trimers are drawn from ion-water clusters optimized with $\omega $B97X-V/def2-TZVPPD and energies are computed with the def2-QZVPPD basis set. (A) The 3-body polarization MAEs over the halide trimers are 0.208, 0.072, 0.060, and 0.046 kcal/mol for \ce {F^-}, \ce {Cl^-}, \ce {Br^-}, and \ce {I^-}, respectively. (B) The 3-body charge transfer MAEs over the halide trimers are 0.129, 0.068, 0.056, and 0.044 kcal/mol for \ce {F^-}, \ce {Cl^-}, \ce {Br^-}, and \ce {I^-}, respectively. (C) The 3-body polarization MAEs over the alkali trimers are 0.122, 0.105, 0.080, 0.123, and 0.078 kcal/mol for \ce {Li^+}, \ce {Na^+}, \ce {K^+}, \ce {Rb^+}, and \ce {Cs^+}, respectively. (D) The 3-body charge transfer MAEs over the alkali trimers are 0.050, 0.024, 0.021, 0.033, and 0.029 kcal/mol for \ce {Li^+}, \ce {Na^+}, \ce {K^+}, \ce {Rb^+}, and \ce {Cs^+}, respectively. \relax }}{38}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Correlation of three-body polarization and charge transfer energies between FQCT and EDA for anions and cations. All trimers are drawn from ion-water clusters optimized with $\omega $B97X-V/def2-TZVPPD and energies are computed with the def2-QZVPPD basis set. (A) The 3-body polarization MAEs over the halide trimers are 0.227, 0.068, 0.059, and 0.044 kcal/mol for \ce {F^-}, \ce {Cl^-}, \ce {Br^-}, and \ce {I^-}, respectively. (B) The 3-body charge transfer MAEs over the halide trimers are 0.143, 0.054, 0.048, and 0.030 kcal/mol for \ce {F^-}, \ce {Cl^-}, \ce {Br^-}, and \ce {I^-}, respectively. (C) The 3-body polarization MAEs over the alkali trimers are 0.126, 0.120, 0.095, 0.106, and 0.075 kcal/mol for \ce {Li^+}, \ce {Na^+}, \ce {K^+}, \ce {Rb^+}, and \ce {Cs^+}, respectively. (D) The 3-body charge transfer MAEs over the alkali trimers are 0.052, 0.028, 0.036, 0.031, and 0.023 kcal/mol for \ce {Li^+}, \ce {Na^+}, \ce {K^+}, \ce {Rb^+}, and \ce {Cs^+}, respectively. \relax }}{38}{}\protected@file@percent }
 \newlabel{fig:Pol_CT_ions}{{8}{38}}
 \citation{roy2017marcus}
 \citation{roy2017marcus}
-\@writefile{toc}{\contentsline {section}{Ion-Ion Potentials}{39}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{Discussion}{39}{}\protected@file@percent }
 \citation{thole1981molecular}
 \citation{thole1981molecular}
 \citation{thole1981molecular}
 \citation{jiao2006simulation}
 \citation{mason2012accurate}
 \citation{jiao2006simulation,mason2012accurate}
+\@writefile{toc}{\contentsline {section}{Ion-Ion Potentials}{39}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Discussion}{39}{}\protected@file@percent }
 \citation{LaCour2023}
 \citation{LaCour2023}
+\@writefile{toc}{\contentsline {section}{Conclusions}{40}{}\protected@file@percent }
 \citation{zhuang2022hydration}
 \citation{caruso2022accurate}
 \citation{zhuang2022hydration,caruso2022accurate}
-\@writefile{toc}{\contentsline {section}{Conclusions}{41}{}\protected@file@percent }
 \bibdata{acs-main,references}
 \bibcite{xantheas2000cooperativity}{{1}{2000}{{Xantheas}}{{}}}
 \bibcite{heindel2021many}{{2}{2021}{{Heindel and Xantheas}}{{Heindel, and Xantheas}}}
 \bibcite{herman2021many}{{3}{2021}{{Herman et~al.}}{{Herman, Heindel, and Xantheas}}}
+\bibcite{leontyev2011accounting}{{4}{2011}{{Leontyev and Stuchebrukhov}}{{Leontyev, and Stuchebrukhov}}}
+\bibcite{bedrov2019molecular}{{5}{2019}{{Bedrov et~al.}}{{Bedrov, Piquemal, Borodin, MacKerell~Jr, Roux, and Schroeder}}}
 \@writefile{toc}{\contentsline {section}{Acknowledgement}{42}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{Supporting Information Available}{42}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{References}{42}{}\protected@file@percent }
-\bibcite{leontyev2011accounting}{{4}{2011}{{Leontyev and Stuchebrukhov}}{{Leontyev, and Stuchebrukhov}}}
-\bibcite{bedrov2019molecular}{{5}{2019}{{Bedrov et~al.}}{{Bedrov, Piquemal, Borodin, MacKerell~Jr, Roux, and Schroeder}}}
 \bibcite{Szalewicz:2012:SAPT}{{6}{2012}{{Szalewicz}}{{}}}
 \bibcite{Patkowski:2020:SAPT}{{7}{2020}{{Patkowski}}{{}}}
 \bibcite{Mao:2021:EDA-review}{{8}{2021}{{Mao et~al.}}{{Mao, Loipersberger, Horn, Das, Demerdash, Levine, Veccham, {Head-Gordon}, and {Head-Gordon}}}}
@@ -315,13 +320,14 @@
 \bibcite{herman2023extensive}{{65}{2023}{{Herman and Xantheas}}{{Herman, and Xantheas}}}
 \bibcite{zhu2023mb}{{66}{2023}{{Zhu et~al.}}{{Zhu, Riera, Bull-Vulpe, and Paesani}}}
 \bibcite{badger1934relation}{{67}{1934}{{Badger}}{{}}}
-\bibcite{roy2017marcus}{{68}{2017}{{Roy et~al.}}{{Roy, Baer, Mundy, and Schenter}}}
-\bibcite{thole1981molecular}{{69}{1981}{{Thole}}{{}}}
-\bibcite{jiao2006simulation}{{70}{2006}{{Jiao et~al.}}{{Jiao, King, Grossfield, Darden, and Ren}}}
-\bibcite{mason2012accurate}{{71}{2012}{{Mason et~al.}}{{Mason, Wernersson, and Jungwirth}}}
-\bibcite{zhuang2022hydration}{{72}{2022}{{Zhuang et~al.}}{{Zhuang, Riera, Zhou, Deary, and Paesani}}}
-\bibcite{caruso2022accurate}{{73}{2022}{{Caruso et~al.}}{{Caruso, Zhu, Fulton, and Paesani}}}
-\mciteSetMaxCount{main}{bibitem}{73}
+\bibcite{lacour2023predicting}{{68}{2023}{{LaCour et~al.}}{{LaCour, Heindel, and Head-Gordon}}}
+\bibcite{roy2017marcus}{{69}{2017}{{Roy et~al.}}{{Roy, Baer, Mundy, and Schenter}}}
+\bibcite{thole1981molecular}{{70}{1981}{{Thole}}{{}}}
+\bibcite{jiao2006simulation}{{71}{2006}{{Jiao et~al.}}{{Jiao, King, Grossfield, Darden, and Ren}}}
+\bibcite{mason2012accurate}{{72}{2012}{{Mason et~al.}}{{Mason, Wernersson, and Jungwirth}}}
+\bibcite{zhuang2022hydration}{{73}{2022}{{Zhuang et~al.}}{{Zhuang, Riera, Zhou, Deary, and Paesani}}}
+\bibcite{caruso2022accurate}{{74}{2022}{{Caruso et~al.}}{{Caruso, Zhu, Fulton, and Paesani}}}
+\mciteSetMaxCount{main}{bibitem}{74}
 \mciteSetMaxCount{main}{subitem}{1}
 \mciteSetMaxWidth{main}{bibitem}{770040}
 \mciteSetMaxWidth{main}{subitem}{0}

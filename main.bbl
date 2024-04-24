@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{74}
+\begin{mcitethebibliography}{75}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -652,6 +652,15 @@ Zhu,~X.; Riera,~M.; Bull-Vulpe,~E.~F.; Paesani,~F. MB-pol (2023): Sub-chemical
 Badger,~R.~M. A relation between internuclear distances and bond force
   constants. \emph{The Journal of Chemical Physics} \textbf{1934}, \emph{2},
   128--131\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[LaCour \latin{et~al.}(2023)LaCour, Heindel, and
+  Head-Gordon]{lacour2023predicting}
+LaCour,~R.~A.; Heindel,~J.~P.; Head-Gordon,~T. Predicting the Raman Spectra of
+  Liquid Water with a Monomer-Field Model. \emph{The Journal of Physical
+  Chemistry Letters} \textbf{2023}, \emph{14}, 11742--11749\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax

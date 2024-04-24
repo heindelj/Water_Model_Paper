@@ -16,45 +16,45 @@ Warning--string name "jcp" is undefined
 Warning--I didn't find a database entry for "Sami2024"
 Warning--I didn't find a database entry for "LaCour2023"
 achemso 2021-01-20 v3.13c
-You've used 74 entries,
+You've used 75 entries,
             2538 wiz_defined-function locations,
-            1169 strings with 22790 characters,
-and the built_in function-call counts, 29005 in all, are:
-= -- 2371
-> -- 1841
+            1174 strings with 22956 characters,
+and the built_in function-call counts, 29395 in all, are:
+= -- 2407
+> -- 1859
 < -- 32
-+ -- 723
-- -- 650
-* -- 3204
-:= -- 3932
-add.period$ -- 146
-call.type$ -- 74
++ -- 730
+- -- 656
+* -- 3247
+:= -- 3983
+add.period$ -- 148
+call.type$ -- 75
 change.case$ -- 4
 chr.to.int$ -- 1
-cite$ -- 74
-duplicate$ -- 1585
-empty$ -- 1805
-format.name$ -- 757
-if$ -- 5554
+cite$ -- 75
+duplicate$ -- 1604
+empty$ -- 1834
+format.name$ -- 764
+if$ -- 5631
 int.to.chr$ -- 0
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 466
-num.names$ -- 219
-pop$ -- 143
+newline$ -- 472
+num.names$ -- 222
+pop$ -- 145
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 74
+skip$ -- 75
 stack$ -- 0
-substring$ -- 1678
-swap$ -- 1780
-text.length$ -- 146
+substring$ -- 1714
+swap$ -- 1799
+text.length$ -- 148
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 515
+type$ -- 522
 warning$ -- 0
-while$ -- 267
+while$ -- 271
 width$ -- 0
-write$ -- 961
+write$ -- 974
 (There were 6 warnings)

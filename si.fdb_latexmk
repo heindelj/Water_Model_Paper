@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex si"] 1713400829 "si.aux" "si.bbl" "si" 1713400976 0
-  "./references.bib" 1713302600 34732 ad991b8f5c5495b83c15cc946abbb81c ""
+["bibtex si"] 1713908031 "si.aux" "si.bbl" "si" 1713908032 0
+  "./references.bib" 1713903880 35078 ec61694d205ef7a66a6cd500393e888f ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/unsrtnat.bst" 1233624470 24550 a41a6405f4de768c43e871d9fbce2bc8 ""
-  "si.aux" 1713400976 4753 fd877e879fe1f3c9842b2776250ad028 "pdflatex"
+  "si.aux" 1713908032 4313 eb1c44f948fdba542170a5a982924242 "pdflatex"
   (generated)
   "si.bbl"
   "si.blg"
   (rewritten before read)
-["pdflatex"] 1713400974 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" "si.pdf" "si" 1713400976 0
+["pdflatex"] 1713908031 "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" "si.pdf" "si" 1713908032 0
   "/etc/texmf/web2c/texmf.cnf" 1676057231 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1690389999 28952 107937fbd117a209f7bc50fb576c28bb ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1690389995 31928 05baebd42e59c44d7754f544fe306ae9 ""
@@ -21,7 +21,7 @@
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk" 1692312765 24944 4bc71ca10ff0638f0d066ceedce11a59 ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk" 1695935521 35180 379c780e4576a86ddcc13088b94cea28 ""
   "/home/heindelj/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk" 1690389995 39096 e6ea623bf6372f99bad6436e6d903566 ""
-  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" 1713400974 22437 ab7c3b28f58938b3602e4f08f9eda328 ""
+  "/home/heindelj/OneDrive/Documents/Research/Teresa/reactive_force_fields/paper/Water_Model_Paper/si.tex" 1713908028 19446 5864ececfab42fb603abc4d6fcb3ed4a ""
   "/home/heindelj/texmf/tex/latex/chemgreek/chemgreek.sty" 1579297960 47530 64600845afa9c25b782d42fa33f66772 ""
   "/home/heindelj/texmf/tex/latex/mhchem/mhchem.sty" 1640984455 133877 e74a3594a37b21d6547a1e9494929337 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -140,10 +140,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1690152512 4036811 4cb80868003c86b962b6b5ae1e1e2902 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1690152518 1405647 cc8221b3815afa4901915eeb915f9cc3 ""
   "MyCommand" 0 -1 0 ""
-  "figures/dipole_derivatives.png" 1711162613 128187 3011a8092bc0698dd2b3f3f7be1c3d32 ""
-  "si.aux" 1713400976 4753 fd877e879fe1f3c9842b2776250ad028 "pdflatex"
-  "si.bbl" 1713400829 3607 163e39f6b5c05968c99679ed1656f607 "bibtex si"
-  "si.tex" 1713400974 22437 ab7c3b28f58938b3602e4f08f9eda328 ""
+  "figures/dipole_derivatives.png" 1713907757 72608 31bdd81b0712d5aa31300d0e03e69a0e ""
+  "si.aux" 1713908032 4313 eb1c44f948fdba542170a5a982924242 "pdflatex"
+  "si.bbl" 1713908031 3376 5a0bd4efa58562a94ade2bdecb40306a "bibtex si"
+  "si.tex" 1713908028 19446 5864ececfab42fb603abc4d6fcb3ed4a ""
   (generated)
   "si.aux"
   "si.log"
